@@ -1,46 +1,103 @@
-# Astro Starter Kit: Basics
+# Instituto Visión Acción Landing
 
-```sh
-npm create astro@latest -- --template basics
+Landing + orientation funnel for Instituto Visión Acción, built with Astro.
+
+## What this repo contains
+
+The actual app lives in:
+
+`instituto-Vision-Accion-FunnelVenta/`
+
+The funnel flow is:
+
+1. Hero section
+2. VIA method section
+3. 5-step orientation quiz
+4. Lead capture form
+5. Thank-you state
+
+The submission adapter uses:
+
+- **mock mode** by default
+- **real API mode** when `PUBLIC_FUNNEL_API_URL` is defined
+
+## Stack
+
+- Astro 7
+- TypeScript
+- Vitest
+
+## Quick start
+
+```bash
+cd instituto-Vision-Accion-FunnelVenta
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Open `http://localhost:4321`.
 
-## 🚀 Project Structure
+## Available scripts
 
-Inside of your Astro project, you'll see the following folders and files:
+Run these from `instituto-Vision-Accion-FunnelVenta/`:
+
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Start local development server |
+| `npm run build` | Create production build |
+| `npm run preview` | Preview the production build locally |
+| `npm run test` | Run unit tests once |
+| `npm run test:watch` | Run tests in watch mode |
+| `npm run check` | Run Astro type/content checks |
+
+## Project structure
 
 ```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+InstitutoVisionAccion/
+├── README.md
+├── instituto-Vision-Accion-FunnelVenta/
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── layouts/
+│   │   ├── lib/
+│   │   │   └── api/
+│   │   ├── pages/
+│   │   └── styles/
+│   └── package.json
+├── openspec/
+└── .atl/
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Key files
 
-## 🧞 Commands
+- `src/pages/index.astro` — app entry page
+- `src/components/OrientationFunnel.astro` — orchestrates the funnel flow on the client
+- `src/lib/funnelState.ts` — state transitions and payload building
+- `src/lib/quizData.ts` — quiz questions and options
+- `src/lib/validation.ts` — quiz and lead form validation
+- `src/lib/api/index.ts` — chooses mock or real submission adapter
 
-All commands are run from the root of the project, from a terminal:
+## Environment
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+To connect the real backend, define:
 
-## 👀 Want to learn more?
+```bash
+PUBLIC_FUNNEL_API_URL=https://your-api.example.com
+```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+If the variable is missing, the app stays in mock mode.
+
+## Testing
+
+```bash
+cd instituto-Vision-Accion-FunnelVenta
+npm run test
+npm run check
+```
+
+## Notes
+
+- The repository root is mainly a wrapper/workspace.
+- The deployable frontend is the nested Astro project.
+- `openspec/` and `.atl/` contain planning/AI workflow artifacts, not runtime app code.
