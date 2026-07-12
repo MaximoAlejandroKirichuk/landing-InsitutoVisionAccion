@@ -1,0 +1,37 @@
+# OpenSpec Config — instituto-vision-accion-funnelventa
+# Generated: 2026-07-10
+
+context: |
+  Astro 7 static site for Instituto Visión Acción — funnel/landing page.
+  Pure Astro (no UI framework), TypeScript strict, no external CSS framework.
+  Currently on Astro starter template; minimal source structure.
+
+strict_tdd: false
+reasoning: >
+  Vitest installed with unit test coverage for funnelState.ts and validation.ts (61 tests).
+  strict_tdd remains off because tests were not authored before implementation — this is
+  retroactive coverage. TDD can be enabled for future changes now that the runner exists.
+
+testing:
+  runner: vitest
+  unit: true
+  integration: false
+  e2e: false
+  coverage: false
+  linter: null
+  type_checker: astro/tsconfigs/strict + `npm run check` (`astro check`)
+  formatter: null
+
+phase_rules:
+  proposal: require intent and scope
+  spec: require scenarios
+  design: required for changes
+  tasks: required for changes
+  apply: implement per tasks
+  verify: run tests before close
+  archive: sync specs on close
+
+modes:
+  engram: true
+  openspec: true
+  hybrid: true
