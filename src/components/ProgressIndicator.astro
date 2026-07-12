@@ -1,0 +1,147 @@
+---
+// ProgressIndicator — 5-dot step indicator for the quiz phase.
+// Presentational only; current step is set via data attribute by the client script.
+// Warm emotional palette: cream-deep inactive, sage-dark completed, gold current.
+// Honors prefers-reduced-motion.
+---
+<nav
+  id="funnel-progress"
+  class="progress"
+  aria-label="Progreso del test"
+>
+  <p class="progress-meta">
+    <span class="progress-label">Paso</span>
+    <strong class="progress-current" data-progress-current>1</strong>
+    <span class="progress-divider" aria-hidden="true">de</span>
+    <span class="progress-total" data-progress-total>5</span>
+  </p>
+
+  <div class="progress-track" role="list" aria-hidden="true">
+    <span class="progress-dot" data-progress-step="1" aria-current="false" aria-label="Paso 1"></span>
+    <span class="progress-dot" data-progress-step="2" aria-current="false" aria-label="Paso 2"></span>
+    <span class="progress-dot" data-progress-step="3" aria-current="false" aria-label="Paso 3"></span>
+    <span class="progress-dot" data-progress-step="4" aria-current="false" aria-label="Paso 4"></span>
+    <span class="progress-dot" data-progress-step="5" aria-current="false" aria-label="Paso 5"></span>
+  </div>
+</nav>
+
+<style>
+  .progress {
+    display: grid;
+    justify-items: start;
+    gap: 0.75rem;
+    width: 100%;
+    margin-bottom: 1.25rem;
+    padding: 0.9rem 1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(217, 209, 192, 0.8);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(250, 247, 240, 0.96) 100%);
+    box-shadow:
+      0 10px 22px rgba(26, 39, 68, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.75);
+  }
+
+  .progress-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    font-size: 0.875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--via-gray-500);
+  }
+
+  .progress-current,
+  .progress-total {
+    font-size: 1rem;
+    letter-spacing: 0;
+    color: var(--via-night-blue);
+  }
+
+  .progress-track {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.55rem;
+    width: 100%;
+  }
+
+  .progress-dot {
+    display: block;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--via-gray-200);
+    border: 1px solid var(--via-gray-300);
+    box-shadow:
+      inset 0 0 0 2px rgba(255, 255, 255, 0.74),
+      0 1px 2px rgba(26, 39, 68, 0.04);
+    transition: background var(--transition-base),
+                transform var(--transition-base),
+                border-color var(--transition-base);
+  }
+
+  /* ── Current step — gold ──────────────────── */
+  .progress-dot[aria-current="step"] {
+    background: var(--via-gold);
+    border-color: var(--via-gold);
+    transform: translateY(-1px);
+    width: 28px;
+    box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.12);
+  }
+
+  /* ── Completed steps — sage-dark ──────────── */
+  .progress-dot.progress-done {
+    background: var(--via-sage-dark);
+    border-color: var(--via-sage-dark);
+    box-shadow: none;
+  }
+
+  /* ── Accessibility ────────────────────────── */
+  @media (prefers-reduced-motion: reduce) {
+    .progress-dot {
+      transition: none;
+    }
+  }
+
+  /* ── Mobile ───────────────────────────────── */
+  @media (max-width: 640px) {
+    .progress {
+      margin-bottom: 0.85rem;
+      padding: 0.7rem 0.85rem;
+      gap: 0.55rem;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(250, 247, 240, 0.97) 100%);
+      box-shadow:
+        0 8px 18px rgba(26, 39, 68, 0.035),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    .progress-meta {
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+    }
+
+    .progress-current,
+    .progress-total {
+      font-size: 0.95rem;
+    }
+
+    .progress-track {
+      gap: 0.42rem;
+      flex-wrap: wrap;
+    }
+
+    .progress-dot {
+      width: 9px;
+      height: 9px;
+    }
+
+    .progress-dot[aria-current="step"] {
+      width: 22px;
+      box-shadow: none;
+      transform: none;
+    }
+  }
+</style>

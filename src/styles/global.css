@@ -1,0 +1,259 @@
+/* ═══════════════════════════════════════════════
+   VIA Orientation Funnel — Warm Cream Tokens
+   Emotional Art-Direction Redesign
+   ═══════════════════════════════════════════════ */
+
+/* ── Fonts ──────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700;800&display=swap');
+
+/* ── Brand Tokens ───────────────────────────── */
+:root {
+  /* ── Palette ───────────────────────────────── */
+  --via-cream: #FCF9F2;
+  --via-cream-deep: #F5F0E5;
+  --via-night-blue: #1A2744;
+  --via-night-blue-light: #253A5E;
+  --via-gold: #FFD700;
+  --via-gold-deep: #E6C200;
+  --via-sage: #B7C4B1;
+  --via-sage-dark: #8FA38A;
+  --via-sage-light: #D5DDD1;
+  --via-white: #ffffff;
+  --via-black: #0F0F0F;
+
+  /* ── Neutrals (cream-adapted warm grays) ───── */
+  --via-gray-50: #faf8f3;
+  --via-gray-100: #f5f2eb;
+  --via-gray-200: #ebe5d8;
+  --via-gray-300: #d9d1c0;
+  --via-gray-400: #b8ae9a;
+  --via-gray-500: #8c8270;
+  --via-gray-600: #635b4d;
+  --via-gray-700: #4a4439;
+  --via-gray-800: #332e26;
+  --via-gray-900: #1c1915;
+
+  --ff-heading: 'Playfair Display', Georgia, serif;
+  --ff-body: 'Montserrat', system-ui, -apple-system, sans-serif;
+
+  --fw-normal: 400;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  --transition-base: 200ms ease;
+
+  /* ── Scene / Image Tokens ──────────────────── */
+  --via-scene-radius: var(--radius-lg);
+  --via-scene-shadow: 0 4px 24px rgba(26, 39, 68, 0.08);
+}
+
+/* ── Surface Utilities ──────────────────────── */
+.surface-cream {
+  background: var(--via-cream);
+  color: var(--via-gray-800);
+}
+
+.surface-cream-deep {
+  background: var(--via-cream-deep);
+  color: var(--via-gray-800);
+}
+
+.surface-sage-wash {
+  background: linear-gradient(135deg, var(--via-cream) 0%, var(--via-sage-light) 100%);
+  color: var(--via-gray-800);
+}
+
+/* ── Gradient Utilities ─────────────────────── */
+.gradient-warm {
+  background: linear-gradient(180deg, var(--via-cream) 0%, var(--via-cream-deep) 100%);
+}
+
+.gradient-sage {
+  background: linear-gradient(135deg, var(--via-cream) 0%, var(--via-sage-light) 50%, var(--via-cream) 100%);
+}
+
+.gradient-hero {
+  background:
+    radial-gradient(ellipse 80% 60% at 75% 50%, rgba(255, 215, 0, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 40%, rgba(26, 39, 68, 0.03) 0%, transparent 50%),
+    linear-gradient(180deg, var(--via-cream) 0%, var(--via-cream-deep) 100%);
+}
+
+.gradient-card-gold {
+  background: linear-gradient(135deg, var(--via-white) 0%, rgba(255, 215, 0, 0.05) 100%);
+}
+
+/* ── Frame / Panel Utilities ────────────────── */
+.frame-cream {
+  background: var(--via-white);
+  border: 1px solid var(--via-gray-200);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 24px rgba(26, 39, 68, 0.06);
+}
+
+.frame-sage {
+  background: var(--via-white);
+  border: 1px solid var(--via-sage);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 24px rgba(26, 39, 68, 0.06);
+}
+
+/* ── Gold Accent Utilities ──────────────────── */
+.accent-gold-border {
+  border-color: var(--via-gold);
+}
+
+.accent-gold-ring {
+  box-shadow: 0 0 0 2px var(--via-gold);
+}
+
+/* ── Focus Ring — Cream Background ──────────── */
+.focus-ring-cream:focus-visible {
+  outline: 2px solid var(--via-night-blue);
+  outline-offset: 3px;
+}
+
+.focus-ring-gold:focus-visible {
+  outline: 2px solid var(--via-gold);
+  outline-offset: 3px;
+}
+
+.focus-ring-light:focus-visible {
+  outline: 2px solid var(--via-night-blue);
+  outline-offset: 2px;
+}
+
+/* ── Reset ──────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--ff-body);
+  font-weight: var(--fw-normal);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--via-gray-700);
+  background-color: var(--via-cream);
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Base Typography ────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: var(--ff-heading);
+  font-weight: var(--fw-bold);
+  line-height: 1.15;
+  color: var(--via-night-blue);
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+h2 { font-size: clamp(1.5rem, 4vw, 2.25rem); }
+
+p {
+  max-width: 65ch;
+  color: var(--via-gray-600);
+}
+
+/* ── Focus ──────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--via-night-blue);
+  outline-offset: 2px;
+}
+
+/* ── Button Foundations ─────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--ff-body);
+  font-weight: var(--fw-semibold);
+  font-size: 1rem;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  padding: 0.875rem 2rem;
+  transition: background var(--transition-base),
+              color var(--transition-base),
+              box-shadow var(--transition-base);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background: var(--via-night-blue);
+  color: var(--via-white);
+}
+
+.btn-primary:hover {
+  background: var(--via-night-blue-light);
+}
+
+.btn-primary:focus-visible {
+  outline-color: var(--via-gold);
+  outline-offset: 3px;
+}
+
+/* ── Card Foundations ───────────────────────── */
+.card {
+  background: var(--via-white);
+  border: 2px solid var(--via-gray-200);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  transition: border-color var(--transition-base),
+              box-shadow var(--transition-base);
+}
+
+.card:hover {
+  border-color: var(--via-gold);
+}
+
+.card.selected {
+  border-color: var(--via-gold);
+  background: linear-gradient(135deg, var(--via-cream) 0%, var(--via-sage-light) 100%);
+  box-shadow: 0 0 0 1px var(--via-gold);
+}
+
+/* ── Layout Utilities ───────────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ── Reduced Motion ─────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,184 @@
+---
+// Hero — Warm split hero with finalized SVG illustration.
+// Cream-led background with restrained gold/night-blue accents.
+// Left-aligned copy in night-blue, right-side project-owned hero art.
+// CTA dispatches `funnel:advance` — functional behavior unchanged.
+---
+
+<section id="funnel-hero" class="hero gradient-hero">
+  <div class="hero-grid">
+    <!-- Left: text block -->
+    <div class="hero-text">
+      <h1 id="hero-heading" class="hero-headline" tabindex="-1">
+        Descubrí qué está frenando tu crecimiento y empezá un camino más claro.
+      </h1>
+      <p class="hero-subtitle">
+        Cada persona llega con una necesidad distinta. Por eso el Método VIA® (Visión, Integración y Acción) propone un recorrido personalizado para ordenar lo que te pasa y avanzar con más claridad.
+      </p>
+      <button
+        id="hero-cta"
+        class="btn hero-cta focus-ring-gold"
+        type="button"
+        aria-label="Hacer el test gratuito"
+        aria-controls="funnel-step-quiz"
+      >
+        Hacer el test gratuito
+      </button>
+      <p class="hero-trust">Respuesta personalizada por WhatsApp.</p>
+    </div>
+
+    <!-- Right: finalized hero illustration -->
+    <div class="hero-illustration" aria-hidden="true">
+      <!-- Approved final hero art: project-owned SVG asset. -->
+      <img
+        src="/images/funnel/hero-scene.svg"
+        alt=""
+        class="hero-img"
+        width="800"
+        height="600"
+        loading="eager"
+      />
+    </div>
+  </div>
+</section>
+
+<script>
+  const cta = document.getElementById('hero-cta');
+  cta?.addEventListener('click', () => {
+    window.dispatchEvent(new CustomEvent('funnel:advance'));
+  });
+</script>
+
+<style>
+  .hero {
+    display: flex;
+    align-items: center;
+    min-height: 100dvh;
+    padding: clamp(1.5rem, 3vw, 3rem);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    width: 100%;
+    max-width: 1160px;
+    margin: 0 auto;
+  }
+
+  /* ── Left: text ──────────────────────────── */
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 540px;
+  }
+
+  .hero-headline {
+    color: var(--via-night-blue);
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+    font-size: clamp(2.25rem, 4vw, 3.45rem);
+    line-height: 1.03;
+    text-wrap: balance;
+  }
+
+  .hero-subtitle {
+    font-size: 1.025rem;
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+    color: var(--via-gray-600);
+    max-width: 65ch;
+  }
+
+  .hero-trust {
+    margin-top: 0.75rem;
+    font-size: 0.925rem;
+    line-height: 1.4;
+    color: var(--via-gray-600);
+  }
+
+  /* ── CTA — night-blue fill, gold hover ───── */
+  .hero-cta {
+    background: var(--via-night-blue);
+    color: var(--via-white);
+    border-color: var(--via-night-blue);
+    font-size: 1.025rem;
+    padding: 0.95rem 2rem;
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 14px rgba(26, 39, 68, 0.15);
+  }
+
+  .hero-cta:hover {
+    background: var(--via-gold);
+    color: var(--via-night-blue);
+    border-color: var(--via-gold);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.25);
+  }
+
+  .hero-cta:active {
+    transform: translateY(1px);
+  }
+
+  /* ── Right: illustration ─────────────────── */
+  .hero-illustration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-img {
+    width: 100%;
+    height: auto;
+    max-width: 560px;
+    border-radius: var(--via-scene-radius);
+    box-shadow: var(--via-scene-shadow);
+  }
+
+  /* ── Mobile collapse (<768px) ────────────── */
+  @media (max-width: 767px) {
+    .hero {
+      padding: 1.5rem 1rem 2rem;
+    }
+
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .hero-text {
+      align-items: flex-start;
+      text-align: left;
+      max-width: 100%;
+    }
+
+    .hero-headline {
+      font-size: clamp(1.9rem, 7vw, 2.5rem);
+    }
+
+    .hero-subtitle {
+      font-size: 0.975rem;
+      text-align: left;
+    }
+
+    .hero-img {
+      max-width: 400px;
+    }
+
+    .hero-cta {
+      width: 100%;
+      max-width: 340px;
+    }
+
+    .hero-trust {
+      text-align: left;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero {
+      padding: 1.25rem 1rem 1.75rem;
+    }
+  }
+</style>

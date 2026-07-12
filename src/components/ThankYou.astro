@@ -1,0 +1,230 @@
+---
+// ThankYou — post-submission confirmation with WhatsApp CTA.
+// Presentational only; rendered after successful submission.
+// Visual: warm sage-wash cream section, human-scene illustration, gold-accented CTA card.
+// Copy was lightly tightened for coherence while preserving the approved direction.
+---
+
+<section id="funnel-step-thank-you" class="thank-you surface-sage-wash" hidden aria-labelledby="thank-you-heading">
+  <div class="thank-you-content">
+    <!-- Brand illustration — final thank-you-scene.svg asset. -->
+    <div class="thank-you-illustration" aria-hidden="true">
+      <img
+        src="/images/funnel/thank-you-scene.svg"
+        alt=""
+        class="thank-you-img"
+        width="600"
+        height="400"
+        loading="lazy"
+      />
+    </div>
+
+    <h2 id="thank-you-heading" class="thank-you-heading" tabindex="-1">
+      ¡Gracias por dar este primer paso!
+    </h2>
+
+    <p class="thank-you-body">
+      Hoy empezaste a explorar una nueva posibilidad para tu desarrollo
+      personal y bienestar integral.
+    </p>
+
+    <div class="thank-you-card">
+      <h3 class="thank-you-card-heading">
+        Agendá tu primer encuentro de orientación sin cargo
+      </h3>
+      <p class="thank-you-card-text">
+        En este encuentro online y personalizado conversaremos sobre lo que hoy
+        te importa, responderemos tus dudas y te explicaremos cómo funciona el
+        Método VIA®.
+      </p>
+      <p class="thank-you-card-text">
+        Así vas a poder evaluar con claridad si este proceso es el adecuado para
+        vos.
+      </p>
+
+      <a
+        href="https://wa.me/5491126967602"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn thank-you-cta focus-ring-gold"
+      >
+        Agendar por WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .thank-you {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100dvh;
+    padding: clamp(1.25rem, 3vw, 2.5rem);
+    overflow: clip;
+  }
+
+  .thank-you-content {
+    width: 100%;
+    max-width: 1080px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr);
+    align-items: center;
+    gap: 1.25rem;
+    text-align: center;
+  }
+
+  /* ── Illustration ──────────────────────────── */
+  .thank-you-illustration {
+    margin-bottom: 0;
+    justify-self: center;
+  }
+
+  .thank-you-img {
+    width: 100%;
+    height: auto;
+    max-width: min(100%, 440px);
+    max-height: clamp(220px, 38vh, 380px);
+    object-fit: contain;
+    border-radius: var(--via-scene-radius);
+    box-shadow: var(--via-scene-shadow);
+  }
+
+  /* ── Typography on cream background ────────── */
+  .thank-you-heading {
+    font-size: clamp(1.5rem, 4.5vw, 2.25rem);
+    margin-bottom: 0.9rem;
+    outline: none;
+    color: var(--via-night-blue);
+  }
+
+  .thank-you-body {
+    font-size: 1.05rem;
+    line-height: 1.58;
+    color: var(--via-gray-600);
+    margin: 0 auto 1.5rem;
+    max-width: 52ch;
+  }
+
+  /* ── Card — white panel, gold accent border ── */
+  .thank-you-card {
+    background: var(--via-white);
+    border: 2px solid var(--via-gold);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.4rem, 2.6vw, 1.9rem);
+    text-align: left;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 24px rgba(26, 39, 68, 0.08);
+  }
+
+  .thank-you-card-heading {
+    font-family: var(--ff-heading);
+    font-size: 1.2rem;
+    margin-bottom: 0.9rem;
+    color: var(--via-night-blue);
+  }
+
+  .thank-you-card-text {
+    font-size: 0.925rem;
+    line-height: 1.62;
+    color: var(--via-gray-600);
+    margin-bottom: 0.7rem;
+  }
+
+  .thank-you-card-text:last-of-type {
+    margin-bottom: 0;
+  }
+
+  /* ── CTA — night-blue fill, gold hover ──────── */
+  .thank-you-cta {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.95rem 1.75rem;
+    margin-top: 1.25rem;
+    text-align: center;
+    background: var(--via-night-blue);
+    color: var(--via-white);
+    border-color: var(--via-night-blue);
+    box-shadow: 0 2px 10px rgba(26, 39, 68, 0.12);
+  }
+
+  .thank-you-cta:hover {
+    background: var(--via-gold);
+    color: var(--via-night-blue);
+    border-color: var(--via-gold);
+    box-shadow: 0 4px 16px rgba(255, 215, 0, 0.22);
+  }
+
+  .thank-you-cta:active {
+    transform: translateY(1px);
+  }
+
+  /* ── Reduced Motion ─────────────────────────── */
+  @media (prefers-reduced-motion: reduce) {
+    .thank-you-cta {
+      transition: none !important;
+    }
+
+    .thank-you-cta:active {
+      transform: none;
+    }
+  }
+
+  /* ── Mobile ─────────────────────────────────── */
+
+  @media (max-width: 640px) {
+    .thank-you {
+      padding: 1.5rem 1rem 1.75rem;
+      align-items: flex-start;
+      padding-top: 2.25rem;
+    }
+
+    .thank-you-body {
+      font-size: 0.98rem;
+    }
+
+    .thank-you-card {
+      padding: 1.35rem;
+    }
+
+    .thank-you-card-text {
+      font-size: 0.88rem;
+    }
+
+    .thank-you-img {
+      max-width: 300px;
+      max-height: 230px;
+    }
+  }
+
+  @media (min-width: 960px) {
+    .thank-you-content {
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 380px);
+      column-gap: clamp(2rem, 4vw, 4rem);
+      text-align: left;
+    }
+
+    .thank-you-illustration {
+      grid-column: 2;
+      grid-row: 1 / span 4;
+      justify-self: end;
+      align-self: center;
+      max-width: 100%;
+    }
+
+    .thank-you-heading,
+    .thank-you-body,
+    .thank-you-card {
+      grid-column: 1;
+      justify-self: start;
+    }
+
+    .thank-you-body {
+      margin-left: 0;
+    }
+
+    .thank-you-card {
+      width: min(100%, 640px);
+    }
+  }
+</style>

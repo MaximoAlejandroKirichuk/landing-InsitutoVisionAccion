@@ -1,0 +1,89 @@
+---
+// MethodVIA — compact differentiator block placed between hero and quiz.
+// Keeps the existing visual language while adding a conversion bridge.
+---
+
+<section
+  id="via-method-differentiator"
+  class="via-method surface-sage-wash"
+  aria-labelledby="via-method-heading"
+>
+  <div class="via-method-card frame-sage">
+    <h2 id="via-method-heading" class="via-method-heading" tabindex="-1">
+      ¿Por qué el Método VIA® es diferente?
+    </h2>
+
+    <div class="via-method-body">
+      <p>No partimos de soluciones iguales para todos.</p>
+      <p>
+        Primero entendemos tu situación actual, lo que sentís y lo que querés cambiar. Después diseñamos un acompañamiento claro, personalizado y posible de sostener.
+      </p>
+      <p class="via-method-keyline">Visión. Integración. Acción.</p>
+      <p>
+        Un proceso pensado para transformar la comprensión en decisiones y las decisiones en acciones concretas.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .via-method {
+    display: flex;
+    justify-content: center;
+    padding: clamp(1rem, 3vw, 2rem) 1.25rem 0;
+  }
+
+  .via-method-card {
+    width: 100%;
+    max-width: 1080px;
+    padding: clamp(1.4rem, 2.8vw, 2.2rem);
+  }
+
+  .via-method-heading {
+    text-align: center;
+    margin-bottom: 0.9rem;
+    outline: none;
+  }
+
+  .via-method-body {
+    display: grid;
+    gap: 0.8rem;
+    max-width: 66ch;
+    margin: 0 auto;
+    text-align: center;
+    color: var(--via-gray-600);
+    font-size: 0.99rem;
+    line-height: 1.68;
+  }
+
+  .via-method-body p {
+    max-width: none;
+  }
+
+  .via-method-keyline {
+    color: var(--via-night-blue);
+    font-weight: var(--fw-bold);
+    letter-spacing: 0.03em;
+  }
+
+  @media (max-width: 640px) {
+    .via-method {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .via-method-card {
+      padding: 1.25rem 1rem;
+    }
+
+    .via-method-body {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      text-align: left;
+    }
+
+    .via-method-heading {
+      text-align: left;
+    }
+  }
+</style>

@@ -1,0 +1,385 @@
+---
+import Hero from './Hero.astro';
+import MethodVIA from './MethodVIA.astro';
+import QuizStep from './QuizStep.astro';
+import LeadForm from './LeadForm.astro';
+import ThankYou from './ThankYou.astro';
+---
+
+<!--
+  OrientationFunnel — root wrapper for the 4-phase funnel.
+  Owns the step state machine and orchestrates client-side transitions.
+  PR 1: hero only. PR 2: quiz engine with progress, validation, and step navigation.
+  PR 3: lead form + thank-you + adapter wiring.
+-->
+
+<main id="funnel-root" data-step="hero">
+  <div id="funnel-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+  <div id="funnel-step-hero">
+    <Hero />
+  </div>
+
+  <MethodVIA />
+
+  <QuizStep />
+  <LeadForm />
+  <ThankYou />
+</main>
+
+<script>
+  import {
+    initState,
+    type FunnelState,
+    toggleAnswer,
+    setOtherText,
+    updateLead,
+    setSubmitting,
+    setSubmitError,
+    advanceTo,
+    goBack,
+    getQuestionId,
+    getQuizStepNumber,
+    nextStep,
+    buildSubmission,
+  } from '../lib/funnelState';
+  import { QUIZ_QUESTIONS } from '../lib/quizData';
+  import { validateQuizAnswer, validateLead } from '../lib/validation';
+  import { submitFunnel } from '../lib/api/index';
+
+  /* ── State ────────────────────────────────── */
+
+  let state: FunnelState = initState();
+
+  /* ── Container Helpers ────────────────────── */
+
+  const heroEl = document.getElementById('funnel-step-hero')!;
+  const quizEl = document.getElementById('funnel-step-quiz')!;
+  const leadEl = document.getElementById('funnel-step-lead')!;
+  const thankYouEl = document.getElementById('funnel-step-thank-you')!;
+  const root = document.getElementById('funnel-root')!;
+  const announcer = document.getElementById('funnel-announcer')!;
+  const progressCurrentEl = document.querySelector<HTMLElement>('[data-progress-current]');
+  const progressTotalEl = document.querySelector<HTMLElement>('[data-progress-total]');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  root.dataset.step = state.step;
+
+  function showContainer(type: 'hero' | 'quiz' | 'lead' | 'thank-you'): void {
+    heroEl.hidden = type !== 'hero';
+    quizEl.hidden = type !== 'quiz';
+    leadEl.hidden = type !== 'lead';
+    thankYouEl.hidden = type !== 'thank-you';
+    root.dataset.step = state.step;
+  }
+
+  /* ── Focus Management ─────────────────────── */
+
+  function focusHeading(type: 'hero' | 'quiz' | 'lead' | 'thank-you'): void {
+    // Give the DOM a frame to settle after container swaps before moving focus.
+    requestAnimationFrame(() => {
+      const selector: Record<string, string> = {
+        hero: '#hero-heading',
+        quiz: '#funnel-step-quiz [data-quiz-question]:not([hidden]) .quiz-question',
+        lead: '#lead-heading',
+        'thank-you': '#thank-you-heading',
+      };
+      const heading = document.querySelector<HTMLElement>(selector[type]);
+      heading?.focus();
+    });
+  }
+
+  /* ── Live Region Announcements ────────────── */
+
+  function announceStep(label: string): void {
+    // Clear first so repeated announcements to the same label still fire.
+    announcer.textContent = '';
+    requestAnimationFrame(() => {
+      announcer.textContent = label;
+    });
+  }
+
+  /* ── Progress Indicator ──────────────────── */
+
+  function updateProgress(currentStepNum: number): void {
+    if (progressCurrentEl) {
+      progressCurrentEl.textContent = String(currentStepNum);
+    }
+
+    if (progressTotalEl) {
+      progressTotalEl.textContent = String(QUIZ_QUESTIONS.length);
+    }
+
+    const dots = document.querySelectorAll<HTMLElement>('.progress-dot');
+    dots.forEach((dot) => {
+      const step = Number(dot.dataset.progressStep);
+      if (step < currentStepNum) {
+        dot.setAttribute('aria-current', 'false');
+        dot.classList.add('progress-done');
+      } else if (step === currentStepNum) {
+        dot.setAttribute('aria-current', 'step');
+        dot.classList.remove('progress-done');
+      } else {
+        dot.setAttribute('aria-current', 'false');
+        dot.classList.remove('progress-done');
+      }
+    });
+  }
+
+  function showQuizStep(stepNum: number): void {
+    updateProgress(stepNum);
+    showContainer('quiz');
+    announceStep(`Pregunta ${stepNum} de 5`);
+  }
+
+  function revealQuizSection(): void {
+    const behavior: ScrollBehavior = prefersReducedMotion ? 'auto' : 'smooth';
+
+    quizEl.scrollIntoView({
+      behavior,
+      block: 'start',
+      inline: 'nearest',
+    });
+  }
+
+  function populateQuizStep(
+    qId: string,
+    question: (typeof QUIZ_QUESTIONS)[number],
+    answer: { selected: string[]; otherText: string },
+    error: string,
+    stepNum: number,
+  ): void {
+    window.dispatchEvent(
+      new CustomEvent('funnel:render-quiz', {
+        detail: {
+          questionId: qId,
+          selected: answer.selected,
+          otherText: answer.otherText,
+          hasOther: question.hasOther ?? false,
+          error,
+          isFirstStep: stepNum === 1,
+          isLastStep: stepNum === 5,
+        },
+      }),
+    );
+  }
+
+  /* ── Quiz Rendering ──────────────────────── */
+
+  function renderQuizStep(scrollIntoView = false, focus = false): void {
+    const stepNum = getQuizStepNumber(state.step);
+    if (!stepNum) return;
+
+    const qId = getQuestionId(state.step);
+    if (!qId) return;
+
+    const question = QUIZ_QUESTIONS.find((q) => q.id === qId);
+    if (!question) return;
+
+    showQuizStep(stepNum);
+
+    const answer = state.answers[qId] ?? { selected: [], otherText: '' };
+    const error = state.errors[state.step] || '';
+
+    populateQuizStep(qId, question, answer, error, stepNum);
+
+    if (focus) {
+      focusHeading('quiz');
+    }
+
+    if (scrollIntoView) {
+      requestAnimationFrame(() => {
+        revealQuizSection();
+      });
+    }
+  }
+
+  /* ── Lead Rendering ──────────────────────── */
+
+  function renderLeadStep(): void {
+    window.dispatchEvent(
+      new CustomEvent('funnel:render-lead', {
+        detail: {
+          fullName: state.lead.fullName,
+          whatsapp: state.lead.whatsapp,
+          email: state.lead.email,
+          consent: state.lead.consent,
+          errors: state.errors,
+          submitting: state.submitting,
+          submitError: state.submitError,
+        },
+      }),
+    );
+
+    showContainer('lead');
+    announceStep('Formulario de contacto');
+  }
+
+  function goToQuiz1(): void {
+    if (state.step === 'hero') {
+      state = advanceTo(state, 'quiz-1');
+      root.dataset.step = state.step;
+    }
+
+    renderQuizStep(true, true);
+  }
+
+  showContainer('hero');
+
+  /* ── Event: Hero CTA ─────────────────────── */
+
+  window.addEventListener('funnel:advance', () => {
+    goToQuiz1();
+  });
+
+  /* ── Event: Answer Selection ─────────────── */
+
+  window.addEventListener('funnel:select-answer', ((e: CustomEvent) => {
+    const { optionId } = e.detail;
+
+    const qId = getQuestionId(state.step);
+    if (!qId) return;
+
+    const question = QUIZ_QUESTIONS.find((q) => q.id === qId);
+    if (!question) return;
+
+    state = toggleAnswer(state, qId, optionId, question);
+    renderQuizStep();
+  }) as EventListener);
+
+  /* ── Event: Other Text Input ─────────────── */
+
+  window.addEventListener('funnel:other-text', ((e: CustomEvent) => {
+    const { text } = e.detail;
+
+    const qId = getQuestionId(state.step);
+    if (!qId) return;
+
+    state = setOtherText(state, qId, text);
+    renderQuizStep();
+  }) as EventListener);
+
+  /* ── Event: Continue ─────────────────────── */
+
+  window.addEventListener('funnel:continue', () => {
+    const qId = getQuestionId(state.step);
+    if (!qId) return;
+
+    const question = QUIZ_QUESTIONS.find((q) => q.id === qId);
+    if (!question) return;
+
+    const answer = state.answers[qId];
+    if (!answer) return;
+
+    // Validate
+    const error = validateQuizAnswer(question, answer);
+    if (error) {
+      state = {
+        ...state,
+        errors: { ...state.errors, [state.step]: error },
+      };
+      renderQuizStep();
+      return;
+    }
+
+    // Advance
+    const next = nextStep(state.step);
+    if (next) {
+      state = advanceTo(state, next);
+      if (state.step.startsWith('quiz-')) {
+        renderQuizStep(false, true);
+      } else if (state.step === 'lead') {
+        renderLeadStep();
+        focusHeading('lead');
+      } else if (state.step === 'thank-you') {
+        showContainer('thank-you');
+        focusHeading('thank-you');
+        announceStep('Envío completado — gracias por tu interés');
+      } else {
+        showContainer('hero');
+      }
+    }
+  });
+
+  /* ── Event: Back ─────────────────────────── */
+
+  window.addEventListener('funnel:back', () => {
+    state = goBack(state);
+    const currentStepNum = getQuizStepNumber(state.step);
+    if (currentStepNum) {
+      updateProgress(currentStepNum);
+    }
+
+    if (state.step === 'hero') {
+      showContainer('hero');
+      focusHeading('hero');
+      announceStep('Página de inicio del test de orientación');
+    } else if (state.step.startsWith('quiz-')) {
+      renderQuizStep(false, true);
+    } else if (state.step === 'lead') {
+      renderLeadStep();
+      focusHeading('lead');
+    }
+  });
+
+  /* ── Event: Lead Field Update ────────────── */
+
+  window.addEventListener('funnel:update-lead', ((e: CustomEvent) => {
+    const { field, value } = e.detail;
+    state = updateLead(state, field, value);
+    renderLeadStep();
+  }) as EventListener);
+
+  /* ── Event: Clear Lead Field Error ───────── */
+
+  window.addEventListener('funnel:clear-lead-error', ((e: CustomEvent) => {
+    const { field } = e.detail;
+    state = {
+      ...state,
+      errors: { ...state.errors, [field]: '' },
+    };
+  }) as EventListener);
+
+  /* ── Event: Lead Form Submit ─────────────── */
+
+  window.addEventListener('funnel:submit-lead', async () => {
+    // Validate lead fields
+    const leadErrors = validateLead(state.lead);
+    if (Object.keys(leadErrors).length > 0) {
+      state = {
+        ...state,
+        errors: { ...state.errors, ...leadErrors },
+      };
+      renderLeadStep();
+      return;
+    }
+
+    // Submit
+    state = setSubmitting(state, true);
+    renderLeadStep();
+
+    const payload = buildSubmission(state);
+    const result = await submitFunnel(payload);
+
+    if (result.ok) {
+      state = setSubmitting(state, false);
+      state = advanceTo(state, 'thank-you');
+      showContainer('thank-you');
+      focusHeading('thank-you');
+      announceStep('Envío completado — gracias por tu interés');
+    } else {
+      state = setSubmitError(
+        state,
+        result.error ?? 'Ocurrió un error inesperado. Por favor, intentá de nuevo.',
+      );
+      renderLeadStep();
+    }
+  });
+</script>
+
+<style>
+  #funnel-root {
+    width: 100%;
+    min-height: 100dvh;
+  }
+</style>
