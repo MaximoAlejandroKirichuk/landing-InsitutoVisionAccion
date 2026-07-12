@@ -29,9 +29,9 @@ function stateOnStep(step: FunnelState['step']): FunnelState {
 /* ── Init ───────────────────────────────────── */
 
 describe('initState()', () => {
-  it('starts on the hero step', () => {
+  it('starts on the first quiz step', () => {
     const s = initState();
-    expect(s.step).toBe('hero');
+    expect(s.step).toBe('quiz-1');
   });
 
   it('initializes all 5 quiz answer entries as empty', () => {

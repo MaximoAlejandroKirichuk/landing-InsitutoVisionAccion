@@ -16,13 +16,12 @@ import ThankYou from './ThankYou.astro';
 <main id="funnel-root" data-step="hero">
   <div id="funnel-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
-  <div id="funnel-step-hero">
+  <div id="funnel-step-intro" class="funnel-panel funnel-panel-intro" data-transition-state="active">
     <Hero />
   </div>
 
-  <MethodVIA />
-
   <QuizStep />
+  <MethodVIA />
   <LeadForm />
   <ThankYou />
 </main>
@@ -50,10 +49,11 @@ import ThankYou from './ThankYou.astro';
   /* ── State ────────────────────────────────── */
 
   let state: FunnelState = initState();
+  let lastAnnouncedQuizStep: number | null = null;
 
   /* ── Container Helpers ────────────────────── */
 
-  const heroEl = document.getElementById('funnel-step-hero')!;
+  const introEl = document.getElementById('funnel-step-intro')!;
   const quizEl = document.getElementById('funnel-step-quiz')!;
   const leadEl = document.getElementById('funnel-step-lead')!;
   const thankYouEl = document.getElementById('funnel-step-thank-you')!;
@@ -65,22 +65,19 @@ import ThankYou from './ThankYou.astro';
 
   root.dataset.step = state.step;
 
-  function showContainer(type: 'hero' | 'quiz' | 'lead' | 'thank-you'): void {
-    heroEl.hidden = type !== 'hero';
-    quizEl.hidden = type !== 'quiz';
-    leadEl.hidden = type !== 'lead';
-    thankYouEl.hidden = type !== 'thank-you';
-    root.dataset.step = state.step;
+  function setPanelState(panel: HTMLElement, visible: boolean): void {
+    panel.hidden = !visible;
+    panel.setAttribute('aria-hidden', String(!visible));
+    panel.toggleAttribute('inert', !visible);
   }
 
   /* ── Focus Management ─────────────────────── */
 
-  function focusHeading(type: 'hero' | 'quiz' | 'lead' | 'thank-you'): void {
-    // Give the DOM a frame to settle after container swaps before moving focus.
+  function focusHeading(type: 'intro' | 'quiz' | 'lead' | 'thank-you'): void {
     requestAnimationFrame(() => {
       const selector: Record<string, string> = {
-        hero: '#hero-heading',
-        quiz: '#funnel-step-quiz [data-quiz-question]:not([hidden]) .quiz-question',
+        intro: '#hero-heading',
+        quiz: '#funnel-step-quiz [data-quiz-question][data-question-state="active"] .quiz-question',
         lead: '#lead-heading',
         'thank-you': '#thank-you-heading',
       };
@@ -92,7 +89,6 @@ import ThankYou from './ThankYou.astro';
   /* ── Live Region Announcements ────────────── */
 
   function announceStep(label: string): void {
-    // Clear first so repeated announcements to the same label still fire.
     announcer.textContent = '';
     requestAnimationFrame(() => {
       announcer.textContent = label;
@@ -128,8 +124,6 @@ import ThankYou from './ThankYou.astro';
 
   function showQuizStep(stepNum: number): void {
     updateProgress(stepNum);
-    showContainer('quiz');
-    announceStep(`Pregunta ${stepNum} de 5`);
   }
 
   function revealQuizSection(): void {
@@ -140,6 +134,56 @@ import ThankYou from './ThankYou.astro';
       block: 'start',
       inline: 'nearest',
     });
+  }
+
+  function revealLeadSection(): void {
+    const behavior: ScrollBehavior = prefersReducedMotion ? 'auto' : 'smooth';
+
+    leadEl.scrollIntoView({
+      behavior,
+      block: 'start',
+      inline: 'nearest',
+    });
+  }
+
+  function revealThankYouSection(): void {
+    const behavior: ScrollBehavior = prefersReducedMotion ? 'auto' : 'smooth';
+
+    thankYouEl.scrollIntoView({
+      behavior,
+      block: 'start',
+      inline: 'nearest',
+    });
+  }
+
+  function hideFollowUpPanels(): void {
+    setPanelState(leadEl, false);
+    setPanelState(thankYouEl, false);
+  }
+
+  function showLeadPanel(options: { announce?: boolean; focus?: boolean; scroll?: boolean } = {}): void {
+    setPanelState(leadEl, true);
+    setPanelState(thankYouEl, false);
+
+    if (options.announce) {
+      announceStep('Formulario de contacto');
+    }
+
+    if (options.focus) {
+      focusHeading('lead');
+    }
+
+    if (options.scroll) {
+      revealLeadSection();
+    }
+  }
+
+  function showThankYouPanel(): void {
+    setPanelState(leadEl, false);
+    setPanelState(thankYouEl, true);
+    announceStep('Envío completado, gracias por tu interés');
+    focusHeading('thank-you');
+    revealThankYouSection();
   }
 
   function populateQuizStep(
@@ -166,7 +210,7 @@ import ThankYou from './ThankYou.astro';
 
   /* ── Quiz Rendering ──────────────────────── */
 
-  function renderQuizStep(scrollIntoView = false, focus = false): void {
+  function renderQuizStep(scrollIntoView = false, focus = false, announce = true): void {
     const stepNum = getQuizStepNumber(state.step);
     if (!stepNum) return;
 
@@ -176,15 +220,21 @@ import ThankYou from './ThankYou.astro';
     const question = QUIZ_QUESTIONS.find((q) => q.id === qId);
     if (!question) return;
 
-    showQuizStep(stepNum);
-
     const answer = state.answers[qId] ?? { selected: [], otherText: '' };
     const error = state.errors[state.step] || '';
 
+    hideFollowUpPanels();
+    showQuizStep(stepNum);
+    if (announce && lastAnnouncedQuizStep !== stepNum) {
+      announceStep(`Pregunta ${stepNum} de 5`);
+      lastAnnouncedQuizStep = stepNum;
+    }
     populateQuizStep(qId, question, answer, error, stepNum);
 
     if (focus) {
-      focusHeading('quiz');
+      requestAnimationFrame(() => {
+        focusHeading('quiz');
+      });
     }
 
     if (scrollIntoView) {
@@ -196,7 +246,7 @@ import ThankYou from './ThankYou.astro';
 
   /* ── Lead Rendering ──────────────────────── */
 
-  function renderLeadStep(): void {
+  function renderLeadStep(options: { announce?: boolean; focus?: boolean; scroll?: boolean } = {}): void {
     window.dispatchEvent(
       new CustomEvent('funnel:render-lead', {
         detail: {
@@ -210,21 +260,22 @@ import ThankYou from './ThankYou.astro';
         },
       }),
     );
-
-    showContainer('lead');
-    announceStep('Formulario de contacto');
+    lastAnnouncedQuizStep = null;
+    showLeadPanel(options);
   }
 
   function goToQuiz1(): void {
     if (state.step === 'hero') {
       state = advanceTo(state, 'quiz-1');
-      root.dataset.step = state.step;
     }
 
     renderQuizStep(true, true);
   }
 
-  showContainer('hero');
+  introEl.dataset.transitionState = 'active';
+  quizEl.dataset.transitionState = 'active';
+  hideFollowUpPanels();
+  renderQuizStep(false, false, false);
 
   /* ── Event: Hero CTA ─────────────────────── */
 
@@ -286,17 +337,13 @@ import ThankYou from './ThankYou.astro';
     const next = nextStep(state.step);
     if (next) {
       state = advanceTo(state, next);
+      root.dataset.step = state.step;
       if (state.step.startsWith('quiz-')) {
         renderQuizStep(false, true);
       } else if (state.step === 'lead') {
-        renderLeadStep();
-        focusHeading('lead');
+        renderLeadStep({ announce: true, focus: true, scroll: true });
       } else if (state.step === 'thank-you') {
-        showContainer('thank-you');
-        focusHeading('thank-you');
-        announceStep('Envío completado — gracias por tu interés');
-      } else {
-        showContainer('hero');
+        showThankYouPanel();
       }
     }
   });
@@ -311,14 +358,20 @@ import ThankYou from './ThankYou.astro';
     }
 
     if (state.step === 'hero') {
-      showContainer('hero');
-      focusHeading('hero');
+      hideFollowUpPanels();
+      introEl.scrollIntoView({
+        behavior: prefersReducedMotion ? 'auto' : 'smooth',
+        block: 'start',
+        inline: 'nearest',
+      });
+      focusHeading('intro');
       announceStep('Página de inicio del test de orientación');
     } else if (state.step.startsWith('quiz-')) {
       renderQuizStep(false, true);
     } else if (state.step === 'lead') {
-      renderLeadStep();
-      focusHeading('lead');
+      renderLeadStep({ announce: true, focus: true, scroll: true });
+    } else if (state.step === 'thank-you') {
+      showThankYouPanel();
     }
   });
 
@@ -364,9 +417,8 @@ import ThankYou from './ThankYou.astro';
     if (result.ok) {
       state = setSubmitting(state, false);
       state = advanceTo(state, 'thank-you');
-      showContainer('thank-you');
-      focusHeading('thank-you');
-      announceStep('Envío completado — gracias por tu interés');
+      root.dataset.step = state.step;
+      showThankYouPanel();
     } else {
       state = setSubmitError(
         state,
@@ -381,5 +433,27 @@ import ThankYou from './ThankYou.astro';
   #funnel-root {
     width: 100%;
     min-height: 100dvh;
+  }
+
+  .funnel-panel {
+    width: 100%;
+  }
+
+  .funnel-panel-intro {
+    display: grid;
+    gap: 0;
+  }
+
+  #funnel-root [data-transition-state='active'] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #funnel-root [data-transition-state='active'] {
+      transition: none !important;
+      transform: none !important;
+      will-change: auto;
+    }
   }
 </style>

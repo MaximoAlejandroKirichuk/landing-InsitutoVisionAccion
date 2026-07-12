@@ -54,16 +54,16 @@
     display: flex;
     align-items: center;
     min-height: 100dvh;
-    padding: clamp(1.5rem, 3vw, 3rem);
+    padding: clamp(1.5rem, 2.8vw, 2.5rem) clamp(1.25rem, 3vw, 3rem) clamp(1rem, 2vw, 1.5rem);
   }
 
   .hero-grid {
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
+    grid-template-columns: minmax(0, 1.08fr) minmax(380px, 0.92fr);
     align-items: center;
-    gap: clamp(1.5rem, 4vw, 3rem);
+    gap: clamp(2rem, 4vw, 3.25rem);
     width: 100%;
-    max-width: 1160px;
+    max-width: 1140px;
     margin: 0 auto;
   }
 
@@ -72,29 +72,30 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    max-width: 540px;
+    max-width: 575px;
   }
 
   .hero-headline {
     color: var(--via-night-blue);
-    margin-bottom: 1rem;
+    margin-bottom: 0.85rem;
     letter-spacing: -0.02em;
-    font-size: clamp(2.25rem, 4vw, 3.45rem);
-    line-height: 1.03;
+    font-size: clamp(2.3rem, 4vw, 3.35rem);
+    line-height: 1.01;
     text-wrap: balance;
+    max-width: 12ch;
   }
 
   .hero-subtitle {
-    font-size: 1.025rem;
-    line-height: 1.65;
-    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.62;
+    margin-bottom: 1.4rem;
     color: var(--via-gray-600);
-    max-width: 65ch;
+    max-width: 52ch;
   }
 
   .hero-trust {
-    margin-top: 0.75rem;
-    font-size: 0.925rem;
+    margin-top: 0.6rem;
+    font-size: 0.9rem;
     line-height: 1.4;
     color: var(--via-gray-600);
   }
@@ -104,8 +105,8 @@
     background: var(--via-night-blue);
     color: var(--via-white);
     border-color: var(--via-night-blue);
-    font-size: 1.025rem;
-    padding: 0.95rem 2rem;
+    font-size: 0.98rem;
+    padding: 0.88rem 1.75rem;
     border-radius: var(--radius-md);
     box-shadow: 0 4px 14px rgba(26, 39, 68, 0.15);
   }
@@ -131,15 +132,37 @@
   .hero-img {
     width: 100%;
     height: auto;
-    max-width: 560px;
+    max-width: 520px;
     border-radius: var(--via-scene-radius);
     box-shadow: var(--via-scene-shadow);
+  }
+
+  @media (min-width: 961px) {
+    .hero {
+      min-height: 100dvh;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+    }
+
+    .hero-grid {
+      max-width: 1120px;
+      gap: 2.6rem;
+    }
+
+    .hero-text {
+      max-width: 560px;
+    }
+
+    .hero-img {
+      max-width: 500px;
+    }
   }
 
   /* ── Mobile collapse (<768px) ────────────── */
   @media (max-width: 767px) {
     .hero {
-      padding: 1.5rem 1rem 2rem;
+      min-height: auto;
+      padding: 1.5rem 1rem 1rem;
     }
 
     .hero-grid {
@@ -178,7 +201,7 @@
 
   @media (max-width: 480px) {
     .hero {
-      padding: 1.25rem 1rem 1.75rem;
+      padding: 1.25rem 1rem 0.9rem;
     }
   }
 </style>
