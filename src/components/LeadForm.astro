@@ -15,13 +15,17 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
   aria-labelledby="lead-heading"
 >
   <div class="lead-frame frame-sage">
+    <p class="lead-kicker">Último paso</p>
     <h2 id="lead-heading" class="lead-heading" tabindex="-1">
-      Ya casi terminamos.
+      Completá tus datos para recibir tu orientación.
     </h2>
 
     <p class="lead-explain">
-      Ya completaste tu Mapa Inicial VIA®. Dejanos tus datos para enviarte tu
-      orientación personalizada. Si preferís hablar ahora, también podés seguir por WhatsApp.
+      Ya terminaste el cuestionario. Ahora completá este último paso para que podamos contactarte y orientarte según tu Mapa Inicial VIA®.
+    </p>
+
+    <p class="lead-explain lead-explain-secondary">
+      Si preferís conversar primero, también podés seguir por WhatsApp.
     </p>
 
     <form id="lead-form" class="lead-form" novalidate>
@@ -117,7 +121,7 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
         class="btn lead-submit-btn focus-ring-gold"
         type="submit"
       >
-        Recibir mi orientación personalizada
+        Finalizar y recibir orientación
       </button>
 
       <a
@@ -194,7 +198,7 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
       submitErrorEl.hidden = true;
     } else {
       btnSubmit.disabled = false;
-      btnSubmit.textContent = 'Recibir mi orientación';
+      btnSubmit.textContent = 'Finalizar y recibir orientación';
       if (data.submitError) {
         submitErrorEl.textContent = data.submitError;
         submitErrorEl.hidden = false;
@@ -311,6 +315,15 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
     padding: 2.25rem 2.25rem 1.9rem;
   }
 
+  .lead-kicker {
+    margin: 0 0 0.65rem;
+    text-align: center;
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--via-rust, #b46430);
+  }
+
   .lead-heading {
     font-family: var(--ff-heading);
     font-size: clamp(1.5rem, 4vw, 2rem);
@@ -327,6 +340,13 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
     color: var(--via-gray-600);
     margin: 0 auto 1.6rem;
     max-width: 480px;
+  }
+
+  .lead-explain-secondary {
+    margin-top: -0.8rem;
+    margin-bottom: 1.6rem;
+    color: var(--via-night-blue);
+    font-weight: var(--fw-semibold);
   }
 
   /* ── Form ───────────────────────────────────── */

@@ -12,26 +12,27 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
     <!-- Left: text block -->
     <div class="hero-text">
       <h1 id="hero-heading" class="hero-headline" tabindex="-1">
-        Descubrí qué está frenando tu crecimiento y empezá a construir una vida con mayor claridad y propósito.
+        Primer encuentro de orientación
       </h1>
       <p class="hero-subtitle">
-        Cada persona vive una historia diferente.
+        Mapa Inicial VIA®
       </p>
       <p class="hero-subtitle hero-subtitle-secondary">
-        El Método VIA® (Visión, Integración y Acción) propone un recorrido personalizado para comprender qué está ocurriendo, ampliar la mirada y comenzar a diseñar nuevas posibilidades para tu vida.
+        Conocer dónde estás hoy es el primer paso para decidir hacia dónde querés ir.
       </p>
-      <p class="hero-choice-copy">
-        Podés hacer el diagnóstico para ordenar tu situación o escribirnos directamente si querés orientación ahora.
+      <p class="hero-subtitle hero-subtitle-tertiary">
+        Respondé estas preguntas. Solo te llevará unos minutos. A partir de tus respuestas podremos ofrecerte una orientación inicial sobre el proceso de acompañamiento que mejor se adapte a tu momento actual.
       </p>
+      <p class="hero-choice-copy">Primer encuentro de orientación</p>
       <div class="hero-actions" aria-label="Opciones para recibir orientación">
         <button
           id="hero-cta"
           class="btn hero-cta focus-ring-gold"
           type="button"
-          aria-label="Comenzar el diagnóstico gratuito"
+          aria-label="Comenzar el Mapa Inicial VIA"
           aria-controls="funnel-step-quiz"
         >
-          Comenzar diagnóstico gratuito
+          Comenzar Mapa Inicial VIA
         </button>
         <a
           class="btn hero-whatsapp-cta focus-ring-cream"
@@ -42,10 +43,6 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
         >
           Hablar por WhatsApp
         </a>
-      </div>
-      <div class="hero-trust" aria-label="Beneficios del diagnóstico">
-        <p>✔ Solo te llevará unos minutos.</p>
-        <p>✔ Si preferís hablar primero, WhatsApp está disponible desde el inicio.</p>
       </div>
     </div>
 
@@ -119,6 +116,10 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
     margin-bottom: 0.85rem;
   }
 
+  .hero-subtitle-tertiary {
+    margin-bottom: 0.85rem;
+  }
+
   .hero-choice-copy {
     max-width: 48ch;
     margin-bottom: 1.15rem;
@@ -133,19 +134,6 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
     flex-wrap: wrap;
     gap: 0.75rem;
     align-items: center;
-  }
-
-  .hero-trust {
-    display: grid;
-    gap: 0.35rem;
-    margin-top: 0.75rem;
-    font-size: 0.92rem;
-    line-height: 1.45;
-    color: var(--via-gray-600);
-  }
-
-  .hero-trust p {
-    margin: 0;
   }
 
   /* ── CTA — night-blue fill, gold hover ───── */
@@ -267,9 +255,6 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
       max-width: 340px;
     }
 
-    .hero-trust {
-      text-align: left;
-    }
   }
 
   @media (max-width: 480px) {

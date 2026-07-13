@@ -1,11 +1,8 @@
 /**
  * VIA Orientation Funnel — Approved quiz data.
  * Behavioral rules:
- *   Q1 — multi-select with "Otro" free-text
- *   Q2 — single-select (deselects previous)
- *   Q3 — multi-select, max 3, with "Otro" free-text
- *   Q4 — single-select
- *   Q5 — multi-select
+ *   Q1-Q5 — single-select
+ *   Q1 and Q3 — allow "Otro/Otra" free-text
  * No scoring or category inference is performed.
  */
 
@@ -20,6 +17,7 @@ export interface QuizQuestion {
   id: string;
   type: QuestionType;
   text: string;
+  supportText?: string;
   options: QuizOption[];
   /** Maximum selections allowed (enforced for Q3). */
   maxSelections?: number;
@@ -41,65 +39,72 @@ export const STEP_TO_QUESTION: Record<number, string> = {
 export const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: 'q1',
-    type: 'multi',
-    text: '¿Qué áreas de tu vida sentís que hoy necesitan un cambio?',
+    type: 'single',
+    text: '¿Qué área de tu vida sentís que hoy necesita mayor atención?',
+    supportText: 'Elegí la opción que hoy mejor describa el momento que estás viviendo.',
     options: [
-      { id: 'pareja', text: 'Relaciones de pareja' },
-      { id: 'familia', text: 'Vínculos familiares' },
-      { id: 'trabajo', text: 'Trabajo y vocación' },
-      { id: 'emocional', text: 'Gestión emocional' },
-      { id: 'proposito', text: 'Propósito de vida' },
-      { id: 'otro', text: 'Otro' },
+      { id: 'relaciones', text: 'Relaciones y vínculos (pareja, familia, hijos, amistades).' },
+      { id: 'trabajo', text: 'Trabajo, profesión o vocación.' },
+      { id: 'bienestar-emocional', text: 'Bienestar emocional.' },
+      { id: 'desarrollo-personal', text: 'Desarrollo personal y propósito.' },
+      { id: 'economia', text: 'Economía y relación con el dinero.' },
+      { id: 'salud', text: 'Salud y bienestar.' },
+      { id: 'repeticiones', text: 'Siento que se repiten situaciones en mi vida.' },
+      { id: 'otro', text: 'Otra.' },
     ],
     hasOther: true,
-    otherPlaceholder: 'Contanos qué otra área…',
+    otherPlaceholder: 'Contanos qué otra área hoy necesita atención.',
   },
   {
     id: 'q2',
     type: 'single',
-    text: '¿En qué momento de tu proceso personal te encontrás?',
+    text: '¿Con cuál de estas situaciones te identificás más hoy?',
+    supportText: 'No hay respuestas correctas. Elegí la que mejor describa tu momento actual.',
     options: [
-      { id: 'confusion', text: 'Siento confusión y necesito claridad' },
-      { id: 'identificando', text: 'Estoy empezando a entender lo que me pasa' },
-      { id: 'profundizar', text: 'Quiero profundizar y ordenar mi proceso' },
-      { id: 'accion', text: 'Quiero transformar esto en decisiones concretas' },
+      { id: 'comprender', text: 'Necesito comprender mejor lo que estoy viviendo.' },
+      { id: 'ampliando-mirada', text: 'Estoy ampliando mi manera de mirar la situación.' },
+      { id: 'integrar-recursos', text: 'Quiero integrar nuevos recursos y herramientas.' },
+      { id: 'accion', text: 'Quiero pasar a la acción y generar cambios concretos.' },
     ],
   },
   {
     id: 'q3',
     type: 'single',
-    text: '¿Tuviste alguna experiencia previa con procesos de desarrollo personal?',
+    text: '¿Tuviste alguna experiencia previa en procesos de desarrollo personal o bienestar integral?',
+    supportText: 'Te invitamos a responder con sinceridad. Cada respuesta nos acompaña a comprender mejor tu recorrido.',
     options: [
-      { id: 'coaching', text: 'Coaching' },
       { id: 'primera-experiencia', text: 'Es mi primera experiencia.' },
-      { id: 'terapia', text: 'Terapia psicológica.' },
-      { id: 'cursos', text: 'Cursos o talleres.' },
-      { id: 'meditacion', text: 'Meditación / Mindfulness' },
-      { id: 'otro', text: 'Otra.' },
+      { id: 'coaching', text: 'Coaching.' },
+      { id: 'constelaciones', text: 'Constelaciones familiares.' },
+      { id: 'meditacion', text: 'Meditación / Mindfulness.' },
+      { id: 'cursos', text: 'Cursos o talleres de desarrollo personal.' },
+      { id: 'otro', text: 'Otro.' },
     ],
     hasOther: true,
-    otherPlaceholder: '¿Cuál?',
+    otherPlaceholder: 'Contanos cuál fue esa experiencia.',
   },
   {
     id: 'q4',
     type: 'single',
-    text: '¿Cómo preferís recibir acompañamiento?',
+    text: '¿Cómo preferís recibir el acompañamiento?',
+    supportText: 'Trabajamos principalmente de forma online para acompañar personas desde distintos lugares. Si vivís en Buenos Aires o alrededores, también podemos coordinar encuentros presenciales o a domicilio, según disponibilidad de nuestra agenda.',
     options: [
-      { id: 'presencial', text: 'Presencial.' },
-      { id: 'virtual', text: 'Online.' },
-      { id: 'ambos', text: 'Me es indiferente, puedo adaptarme.' },
+      { id: 'online', text: 'Online.' },
+      { id: 'presencial', text: 'Presencial (Buenos Aires y alrededores).' },
+      { id: 'flexible', text: 'Me adapto a cualquiera de las modalidades.' },
     ],
   },
   {
     id: 'q5',
     type: 'single',
-    text: 'Si este proceso fuera realmente valioso para vos... ¿Qué te gustaría que cambiara en tu vida?',
+    text: 'Si este proceso fuera realmente valioso para vos, ¿qué te gustaría lograr?',
+    supportText: 'Elegí la opción que hoy mejor represente lo que buscás.',
     options: [
-      { id: 'claridad', text: 'Tener más claridad para decidir.' },
-      { id: 'patrones', text: 'Dejar de repetir situaciones que me hacen mal.' },
-      { id: 'emocional', text: 'Sentirme con más paz y estabilidad emocional.' },
-      { id: 'proposito', text: 'Reconectar con mi propósito y dirección.' },
-      { id: 'seguridad', text: 'Tomar decisiones con más consciencia y libertad.' },
+      { id: 'comprender', text: 'Comprender mejor lo que hoy estoy viviendo.' },
+      { id: 'herramientas', text: 'Desarrollar nuevas herramientas para afrontar mis desafíos.' },
+      { id: 'claridad', text: 'Recuperar claridad y confianza para tomar decisiones.' },
+      { id: 'coherencia', text: 'Construir una vida más coherente con mis valores y propósito.' },
+      { id: 'acciones', text: 'Transformar mis objetivos en acciones concretas.' },
     ],
   },
 ];
