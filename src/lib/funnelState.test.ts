@@ -29,9 +29,9 @@ function stateOnStep(step: FunnelState['step']): FunnelState {
 /* ── Init ───────────────────────────────────── */
 
 describe('initState()', () => {
-  it('starts on the first quiz step', () => {
+  it('starts on the hero step', () => {
     const s = initState();
-    expect(s.step).toBe('quiz-1');
+    expect(s.step).toBe('hero');
   });
 
   it('initializes all 5 quiz answer entries as empty', () => {
@@ -145,71 +145,69 @@ describe('getQuizStepNumber()', () => {
 /* ── Answer Toggling ────────────────────────── */
 
 describe('toggleAnswer()', () => {
-  it('selects an option (multi-type)', () => {
-    const s = stateOnStep('quiz-1'); // Q1 is multi
-    const result = toggleAnswer(s, 'q1', 'personal', { type: 'multi' });
-    expect(result.answers.q1!.selected).toEqual(['personal']);
+  it('selects an option (single-type)', () => {
+    const s = stateOnStep('quiz-1');
+    const result = toggleAnswer(s, 'q1', 'relaciones', { type: 'single' });
+    expect(result.answers.q1!.selected).toEqual(['relaciones']);
   });
 
-  it('adds multiple options (multi-type)', () => {
+  it('single-select replaces the previous selection', () => {
     let s = stateOnStep('quiz-1');
-    s = toggleAnswer(s, 'q1', 'personal', { type: 'multi' });
-    s = toggleAnswer(s, 'q1', 'profesional', { type: 'multi' });
-    expect(s.answers.q1!.selected).toEqual(['personal', 'profesional']);
+    s = toggleAnswer(s, 'q1', 'relaciones', { type: 'single' });
+    s = toggleAnswer(s, 'q1', 'trabajo', { type: 'single' });
+    expect(s.answers.q1!.selected).toEqual(['trabajo']);
   });
 
   it('deselects when toggling an already-selected option', () => {
     let s = stateOnStep('quiz-1');
-    s = toggleAnswer(s, 'q1', 'personal', { type: 'multi' });
-    s = toggleAnswer(s, 'q1', 'personal', { type: 'multi' });
+    s = toggleAnswer(s, 'q1', 'relaciones', { type: 'single' });
+    s = toggleAnswer(s, 'q1', 'relaciones', { type: 'single' });
     expect(s.answers.q1!.selected).toEqual([]);
   });
 
   it('single-select replaces the previous selection', () => {
     let s = stateOnStep('quiz-2'); // Q2 is single
-    s = toggleAnswer(s, 'q2', 'explorando', { type: 'single' });
-    s = toggleAnswer(s, 'q2', 'listo', { type: 'single' });
-    expect(s.answers.q2!.selected).toEqual(['listo']);
+    s = toggleAnswer(s, 'q2', 'comprender', { type: 'single' });
+    s = toggleAnswer(s, 'q2', 'accion', { type: 'single' });
+    expect(s.answers.q2!.selected).toEqual(['accion']);
   });
 
   it('single-select deselects on second click of the same option', () => {
     let s = stateOnStep('quiz-2');
-    s = toggleAnswer(s, 'q2', 'explorando', { type: 'single' });
-    s = toggleAnswer(s, 'q2', 'explorando', { type: 'single' });
+    s = toggleAnswer(s, 'q2', 'comprender', { type: 'single' });
+    s = toggleAnswer(s, 'q2', 'comprender', { type: 'single' });
     expect(s.answers.q2!.selected).toEqual([]);
   });
 
-  it('blocks 4th selection when maxSelections=3', () => {
-    let s = stateOnStep('quiz-3'); // Q3 is multi, max 3
-    s = toggleAnswer(s, 'q3', 'terapia', { type: 'multi', maxSelections: 3 });
-    s = toggleAnswer(s, 'q3', 'coaching', { type: 'multi', maxSelections: 3 });
-    s = toggleAnswer(s, 'q3', 'autoayuda', { type: 'multi', maxSelections: 3 });
+  it('keeps custom maxSelections behavior available for multi questions', () => {
+    let s = stateOnStep('quiz-3');
+    s = toggleAnswer(s, 'q3', 'a', { type: 'multi', maxSelections: 2 });
+    s = toggleAnswer(s, 'q3', 'b', { type: 'multi', maxSelections: 2 });
     const prev = s;
-    s = toggleAnswer(s, 'q3', 'meditacion', { type: 'multi', maxSelections: 3 });
-    // State must be unchanged
+    s = toggleAnswer(s, 'q3', 'c', { type: 'multi', maxSelections: 2 });
     expect(s.answers.q3!.selected).toEqual(prev.answers.q3!.selected);
   });
 
   it('clears otherText when deselecting "otro"', () => {
     let s = stateOnStep('quiz-1');
-    s = toggleAnswer(s, 'q1', 'otro', { type: 'multi' });
+    s = toggleAnswer(s, 'q1', 'otro', { type: 'single' });
     s = setOtherText(s, 'q1', 'my custom text');
     expect(s.answers.q1!.otherText).toBe('my custom text');
 
-    s = toggleAnswer(s, 'q1', 'otro', { type: 'multi' });
+    s = toggleAnswer(s, 'q1', 'otro', { type: 'single' });
     expect(s.answers.q1!.otherText).toBe('');
     expect(s.answers.q1!.selected).not.toContain('otro');
   });
 
   it('clears the error for the step on selection', () => {
     const s = { ...stateOnStep('quiz-1'), errors: { 'quiz-1': 'Seleccioná algo' } };
-    const result = toggleAnswer(s, 'q1', 'personal', { type: 'multi' });
+    const result = toggleAnswer(s, 'q1', 'relaciones', { type: 'single' });
     expect(result.errors['quiz-1']).toBe('');
   });
 
   it('returns state unchanged for unknown questionId', () => {
     const s = stateOnStep('quiz-1');
-    expect(toggleAnswer(s, 'nonexistent', 'x', { type: 'multi' })).toBe(s);
+    expect(toggleAnswer(s, 'nonexistent', 'x', { type: 'single' })).toBe(s);
   });
 });
 
@@ -218,7 +216,7 @@ describe('toggleAnswer()', () => {
 describe('setOtherText()', () => {
   it('sets otherText for a question', () => {
     let s = stateOnStep('quiz-1');
-    s = toggleAnswer(s, 'q1', 'otro', { type: 'multi' });
+    s = toggleAnswer(s, 'q1', 'otro', { type: 'single' });
     s = setOtherText(s, 'q1', 'Test text');
     expect(s.answers.q1!.otherText).toBe('Test text');
   });
@@ -289,7 +287,7 @@ describe('buildSubmission()', () => {
   it('builds a FunnelSubmission with correct slugs', () => {
     const s = stateOnStep('lead');
     s.lead = { fullName: 'Test', whatsapp: '123', email: '', consent: true };
-    s.answers.q1 = { selected: ['personal'], otherText: '' };
+    s.answers.q1 = { selected: ['relaciones'], otherText: '' };
 
     const sub = buildSubmission(s);
     expect(sub.academySlug).toBe('instituto-vision-accion');
@@ -306,22 +304,22 @@ describe('buildSubmission()', () => {
 
   it('maps all 5 quiz answers with type and selected', () => {
     const s = stateOnStep('lead');
-    s.answers.q1 = { selected: ['pareja'], otherText: '' };
+    s.answers.q1 = { selected: ['relaciones'], otherText: '' };
     s.answers.q2 = { selected: ['accion'], otherText: '' };
-    s.answers.q3 = { selected: ['terapia'], otherText: '' };
-    s.answers.q4 = { selected: ['virtual'], otherText: '' };
+    s.answers.q3 = { selected: ['coaching'], otherText: '' };
+    s.answers.q4 = { selected: ['online'], otherText: '' };
     s.answers.q5 = { selected: ['claridad'], otherText: '' };
 
     const sub = buildSubmission(s);
     expect(sub.answers).toHaveLength(5);
-    expect(sub.answers[0]).toEqual({
-      questionId: 'q1',
-      type: 'multi',
-      selected: ['pareja'],
-      otherText: undefined,
-    });
-    expect(sub.answers[1].type).toBe('single');
-    expect(sub.answers[2].type).toBe('single');
+      expect(sub.answers[0]).toEqual({
+        questionId: 'q1',
+        type: 'single',
+        selected: ['relaciones'],
+        otherText: undefined,
+      });
+      expect(sub.answers[1].type).toBe('single');
+      expect(sub.answers[2].type).toBe('single');
   });
 
   it('includes otherText when non-empty', () => {
@@ -334,7 +332,7 @@ describe('buildSubmission()', () => {
 
   it('omits otherText when empty string', () => {
     const s = stateOnStep('lead');
-    s.answers.q1 = { selected: ['personal'], otherText: '' };
+    s.answers.q1 = { selected: ['relaciones'], otherText: '' };
 
     const sub = buildSubmission(s);
     expect(sub.answers[0]!.otherText).toBeUndefined();

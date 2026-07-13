@@ -1,7 +1,7 @@
 ---
 // ThankYou — post-submission confirmation with WhatsApp CTA.
 // Rendered as the final consultation panel in the funnel.
-const whatsappMessage = 'Hola, quiero recibir orientación sobre el Método VIA. Vengo desde la web y me gustaría conversar sobre mi situación.';
+const whatsappMessage = 'Hola, quiero mi orientación personalizada. Ya completé el Mapa Inicial VIA® desde la web y me gustaría conversar sobre mi situación.';
 const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whatsappMessage)}`;
 ---
 
@@ -25,13 +25,16 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
       </div>
 
       <div class="thank-you-copy">
-        <p class="thank-you-kicker">Canal de consulta</p>
+        <p class="thank-you-kicker">Cuestionario completado</p>
         <h2 id="thank-you-heading" class="thank-you-heading" tabindex="-1">
-          Consulta por WhatsApp
+          ¡Gracias por completar tu Mapa Inicial VIA®!
         </h2>
 
         <p class="thank-you-body">
-          Si queres recibir orientacion personalizada, podes escribirnos para conversar sobre tu situacion y evaluar el proximo paso.
+          Tus respuestas nos acompañan a comprender mejor el momento que estás atravesando y a orientarte sobre el proceso de acompañamiento que mejor puede adaptarse a tus necesidades.
+        </p>
+        <p class="thank-you-body thank-you-body-secondary">
+          Recibimos tu cuestionario y tu información de contacto. El próximo paso es muy simple: vamos a comunicarnos con vos para conversar sobre tu situación, responder tus dudas y orientarte de manera personalizada.
         </p>
         <div class="thank-you-actions">
           <a
@@ -41,10 +44,10 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
             rel="noopener noreferrer"
             class="btn thank-you-cta focus-ring-gold"
           >
-            Escribir por WhatsApp
+            Quiero mi orientación personalizada
           </a>
           <p class="thank-you-note">
-            Orientacion personalizada para resolver tus dudas.
+            La orientación inicial tiene un carácter informativo y de acompañamiento. No constituye un diagnóstico ni reemplaza la atención médica, psicológica o psiquiátrica cuando esta sea necesaria.
           </p>
         </div>
       </div>
@@ -73,35 +76,48 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
 
 <style>
   .thank-you {
+    position: fixed;
+    inset: 0;
+    z-index: 80;
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 100dvh;
     padding: clamp(1.25rem, 3vw, 2.5rem);
     overflow: clip;
+    background:
+      radial-gradient(circle at top left, rgba(255, 255, 255, 0.75), transparent 42%),
+      linear-gradient(135deg, rgba(252, 249, 242, 0.98) 0%, rgba(245, 240, 229, 0.98) 50%, rgba(213, 221, 209, 0.92) 100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .thank-you[hidden] {
+    display: none !important;
   }
 
   .thank-you[data-transition-state='entering'],
   .thank-you[data-transition-state='active'],
   .thank-you[data-transition-state='exiting'] {
     transition:
-      opacity 280ms cubic-bezier(0.16, 1, 0.3, 1),
-      transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+      opacity 320ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .thank-you[data-transition-state='entering'] {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(18px) scale(0.985);
   }
 
   .thank-you[data-transition-state='active'] {
     opacity: 1;
     transform: translateY(0);
+    pointer-events: auto;
   }
 
   .thank-you[data-transition-state='exiting'] {
     opacity: 0;
-    transform: translateY(-8px);
+    transform: translateY(8px) scale(0.99);
   }
 
   .thank-you-content {
@@ -209,6 +225,7 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
     .thank-you {
       animation: none !important;
       transition: none !important;
+      transform: none !important;
     }
 
     .thank-you-cta {

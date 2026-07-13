@@ -81,7 +81,7 @@ export function initState(): FunnelState {
     answers[q.id] = { selected: [], otherText: '' };
   }
   return {
-    step: 'quiz-1',
+    step: 'hero',
     answers,
     lead: { fullName: '', whatsapp: '', email: '', consent: false },
     errors: {},

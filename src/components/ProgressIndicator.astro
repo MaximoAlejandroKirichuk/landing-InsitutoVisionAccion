@@ -1,5 +1,5 @@
 ---
-// ProgressIndicator — 5-dot step indicator for the quiz phase.
+// ProgressIndicator — 6-dot step indicator for the quiz phase plus final form step.
 // Presentational only; current step is set via data attribute by the client script.
 // Warm emotional palette: cream-deep inactive, sage-dark completed, gold current.
 // Honors prefers-reduced-motion.
@@ -13,7 +13,7 @@
     <span class="progress-label">Paso</span>
     <strong class="progress-current" data-progress-current>1</strong>
     <span class="progress-divider" aria-hidden="true">de</span>
-    <span class="progress-total" data-progress-total>5</span>
+    <span class="progress-total" data-progress-total>6</span>
   </p>
 
   <div class="progress-track" role="list" aria-hidden="true">
@@ -22,6 +22,7 @@
     <span class="progress-dot" data-progress-step="3" aria-current="false" aria-label="Paso 3"></span>
     <span class="progress-dot" data-progress-step="4" aria-current="false" aria-label="Paso 4"></span>
     <span class="progress-dot" data-progress-step="5" aria-current="false" aria-label="Paso 5"></span>
+    <span class="progress-dot" data-progress-step="6" aria-current="false" aria-label="Paso 6"></span>
   </div>
 </nav>
 

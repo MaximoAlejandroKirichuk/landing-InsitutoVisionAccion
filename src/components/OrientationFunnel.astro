@@ -2,7 +2,6 @@
 import Hero from './Hero.astro';
 import MethodVIA from './MethodVIA.astro';
 import QuizStep from './QuizStep.astro';
-import LeadForm from './LeadForm.astro';
 import ProcessJourney from './ProcessJourney.astro';
 import ThankYou from './ThankYou.astro';
 ---
@@ -21,10 +20,9 @@ import ThankYou from './ThankYou.astro';
     <Hero />
   </div>
 
-  <QuizStep />
   <MethodVIA />
-  <LeadForm />
   <ProcessJourney />
+  <QuizStep />
   <ThankYou />
 </main>
 
@@ -57,7 +55,6 @@ import ThankYou from './ThankYou.astro';
 
   const introEl = document.getElementById('funnel-step-intro')!;
   const quizEl = document.getElementById('funnel-step-quiz')!;
-  const leadEl = document.getElementById('funnel-step-lead')!;
   const thankYouEl = document.getElementById('funnel-step-thank-you')!;
   const root = document.getElementById('funnel-root')!;
   const announcer = document.getElementById('funnel-announcer')!;
@@ -79,8 +76,8 @@ import ThankYou from './ThankYou.astro';
     requestAnimationFrame(() => {
       const selector: Record<string, string> = {
         intro: '#hero-heading',
-        quiz: '#funnel-step-quiz [data-quiz-question][data-question-state="active"] .quiz-question',
-        lead: '#lead-heading',
+        quiz: '#funnel-step-quiz [data-quiz-panel][data-question-state="active"] .quiz-question',
+        lead: '#funnel-step-quiz [data-quiz-panel-id="lead"][data-question-state="active"] .lead-heading',
         'thank-you': '#thank-you-heading',
       };
       const heading = document.querySelector<HTMLElement>(selector[type]);
@@ -105,7 +102,7 @@ import ThankYou from './ThankYou.astro';
     }
 
     if (progressTotalEl) {
-      progressTotalEl.textContent = String(QUIZ_QUESTIONS.length);
+      progressTotalEl.textContent = String(QUIZ_QUESTIONS.length + 1);
     }
 
     const dots = document.querySelectorAll<HTMLElement>('.progress-dot');
@@ -138,54 +135,21 @@ import ThankYou from './ThankYou.astro';
     });
   }
 
-  function revealLeadSection(): void {
-    const behavior: ScrollBehavior = prefersReducedMotion ? 'auto' : 'smooth';
-
-    leadEl.scrollIntoView({
-      behavior,
-      block: 'start',
-      inline: 'nearest',
-    });
-  }
-
-  function revealThankYouSection(): void {
-    const behavior: ScrollBehavior = prefersReducedMotion ? 'auto' : 'smooth';
-
-    thankYouEl.scrollIntoView({
-      behavior,
-      block: 'start',
-      inline: 'nearest',
-    });
-  }
-
   function hideFollowUpPanels(): void {
-    setPanelState(leadEl, false);
     setPanelState(thankYouEl, false);
-  }
-
-  function showLeadPanel(options: { announce?: boolean; focus?: boolean; scroll?: boolean } = {}): void {
-    setPanelState(leadEl, true);
-    setPanelState(thankYouEl, false);
-
-    if (options.announce) {
-      announceStep('Formulario de contacto');
-    }
-
-    if (options.focus) {
-      focusHeading('lead');
-    }
-
-    if (options.scroll) {
-      revealLeadSection();
-    }
   }
 
   function showThankYouPanel(): void {
-    setPanelState(leadEl, false);
     setPanelState(thankYouEl, true);
-    announceStep('Envío completado, gracias por tu interés');
+    thankYouEl.dataset.transitionState = prefersReducedMotion ? 'active' : 'entering';
+    announceStep('Mapa Inicial VIA completado');
     focusHeading('thank-you');
-    revealThankYouSection();
+
+    if (!prefersReducedMotion) {
+      requestAnimationFrame(() => {
+        thankYouEl.dataset.transitionState = 'active';
+      });
+    }
   }
 
   function populateQuizStep(
@@ -204,7 +168,7 @@ import ThankYou from './ThankYou.astro';
           hasOther: question.hasOther ?? false,
           error,
           isFirstStep: stepNum === 1,
-          isLastStep: stepNum === 5,
+          isLastStep: stepNum === QUIZ_QUESTIONS.length,
         },
       }),
     );
@@ -228,7 +192,7 @@ import ThankYou from './ThankYou.astro';
     hideFollowUpPanels();
     showQuizStep(stepNum);
     if (announce && lastAnnouncedQuizStep !== stepNum) {
-      announceStep(`Pregunta ${stepNum} de 5`);
+      announceStep(`Paso ${stepNum} de ${QUIZ_QUESTIONS.length + 1}`);
       lastAnnouncedQuizStep = stepNum;
     }
     populateQuizStep(qId, question, answer, error, stepNum);
@@ -249,6 +213,8 @@ import ThankYou from './ThankYou.astro';
   /* ── Lead Rendering ──────────────────────── */
 
   function renderLeadStep(options: { announce?: boolean; focus?: boolean; scroll?: boolean } = {}): void {
+    hideFollowUpPanels();
+    updateProgress(QUIZ_QUESTIONS.length + 1);
     window.dispatchEvent(
       new CustomEvent('funnel:render-lead', {
         detail: {
@@ -263,7 +229,18 @@ import ThankYou from './ThankYou.astro';
       }),
     );
     lastAnnouncedQuizStep = null;
-    showLeadPanel(options);
+
+    if (options.announce) {
+      announceStep('Paso 6 de 6. Último paso, completá tus datos');
+    }
+
+    if (options.focus) {
+      focusHeading('lead');
+    }
+
+    if (options.scroll) {
+      revealQuizSection();
+    }
   }
 
   function goToQuiz1(): void {
