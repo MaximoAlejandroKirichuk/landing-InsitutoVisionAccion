@@ -4,22 +4,22 @@ import { describe, expect, it, vi, beforeEach } from 'vitest';
 /*  Hoisted mocks — must run before imports (which trigger `new`).    */
 /* ------------------------------------------------------------------ */
 const {
-  mockAppendToSheet,
+  mockPostToAppsScript,
   mockAllow,
   mockExtractClientIp,
 } = vi.hoisted(() => ({
-  mockAppendToSheet: vi.fn(),
+  mockPostToAppsScript: vi.fn(),
   mockAllow: vi.fn(),
   mockExtractClientIp: vi.fn(),
 }));
 
 /* ------------------------------------------------------------------ */
-/*  Mock Google Sheets so we never pull in googleapis during tests.    */
+/*  Mock Apps Script so we never pull in fetch during tests.          */
 /* ------------------------------------------------------------------ */
 
-vi.mock('./googleSheets', () => ({
-  appendFunnelSubmissionToSheet: (...args: unknown[]) =>
-    mockAppendToSheet(...args),
+vi.mock('./appsScript', () => ({
+  postSubmissionToAppsScript: (...args: unknown[]) =>
+    mockPostToAppsScript(...args),
 }));
 
 /* ------------------------------------------------------------------ */
@@ -93,7 +93,7 @@ describe('POST /api/funnel-submissions', () => {
     // Safe defaults for every test — override per test as needed.
     mockAllow.mockReturnValue(true);
     mockExtractClientIp.mockReturnValue('127.0.0.1');
-    mockAppendToSheet.mockResolvedValue(undefined);
+    mockPostToAppsScript.mockResolvedValue({ ok: true, status: 200 });
   });
 
   /* ---- 400: invalid JSON ---------------------------------------- */
@@ -138,7 +138,7 @@ describe('POST /api/funnel-submissions', () => {
     expect(body.error).toContain('Demasiados intentos');
   });
 
-  /* ---- 200: happy path (mocked Google Sheets) ------------------- */
+  /* ---- 200: happy path (mocked Apps Script) ------------------- */
 
   it('returns 200 with a submissionId on success', async () => {
     const response = await POST(
@@ -150,8 +150,26 @@ describe('POST /api/funnel-submissions', () => {
     expect(body).toHaveProperty('submissionId');
     expect(typeof body.submissionId).toBe('string');
 
-    // Verify the Google Sheets mock was actually called.
-    expect(mockAppendToSheet).toHaveBeenCalledOnce();
+    // Verify the Apps Script mock was actually called.
+    expect(mockPostToAppsScript).toHaveBeenCalledOnce();
+  });
+
+  /* ---- 500: Apps Script persistence failure ------------------- */
+
+  it('returns 500 when the Apps Script webhook fails', async () => {
+    mockPostToAppsScript.mockResolvedValue({
+      ok: false,
+      error: 'Apps Script returned HTTP 500',
+      status: 500,
+    });
+
+    const response = await POST(
+      mockContext({ request: buildRequest(makeValidPayload()), clientAddress: '127.0.0.1' }),
+    );
+    expect(response.status).toBe(500);
+
+    const body = await response.json();
+    expect(body.error).toBe('Unable to save submission.');
   });
 
   /* ---- 400: empty answers --------------------------------------- */
@@ -174,6 +192,20 @@ describe('POST /api/funnel-submissions', () => {
       mockContext({ request: buildRequest(payload), clientAddress: '127.0.0.1' }),
     );
     expect(response.status).toBe(400);
+  });
+
+  /* ---- Env forwarding to Apps Script -------------------------------- */
+
+  it('passes GOOGLE_APPS_SCRIPT_URL and GOOGLE_APPS_SCRIPT_SECRET from import.meta.env to postSubmissionToAppsScript', async () => {
+    await POST(
+      mockContext({ request: buildRequest(makeValidPayload()), clientAddress: '127.0.0.1' }),
+    );
+
+    expect(mockPostToAppsScript).toHaveBeenCalled();
+    const envArg = mockPostToAppsScript.mock.calls[0][2];
+    expect(envArg).toBeDefined();
+    expect(envArg).toHaveProperty('GOOGLE_APPS_SCRIPT_URL');
+    expect(envArg).toHaveProperty('GOOGLE_APPS_SCRIPT_SECRET');
   });
 
   /* ---- IP extraction integration --------------------------------- */

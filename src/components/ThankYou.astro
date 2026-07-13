@@ -49,6 +49,13 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
           >
             Quiero mi orientación personalizada
           </a>
+          <button
+            type="button"
+            id="thank-you-reset-button"
+            class="btn thank-you-reset focus-ring-gold"
+          >
+            Volver a empezar
+          </button>
           <p class="thank-you-note">
             La orientación inicial tiene un carácter informativo y de acompañamiento. No constituye un diagnóstico ni reemplaza la atención médica, psicológica o psiquiátrica cuando esta sea necesaria.
           </p>
@@ -63,6 +70,9 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
   const thankYouWhatsappLink = document.getElementById(
     'thank-you-whatsapp-link',
   ) as HTMLAnchorElement | null;
+  const thankYouResetButton = document.getElementById(
+    'thank-you-reset-button',
+  ) as HTMLButtonElement | null;
 
   thankYouWhatsappLink?.addEventListener('click', (event) => {
     if (!thankYouPanel || thankYouPanel.hidden || thankYouPanel.hasAttribute('inert')) {
@@ -74,6 +84,10 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
 
     event.preventDefault();
     window.location.assign(href);
+  });
+
+  thankYouResetButton?.addEventListener('click', () => {
+    window.dispatchEvent(new CustomEvent('funnel:restart'));
   });
 </script>
 
@@ -87,7 +101,11 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
     justify-content: center;
     min-height: 100dvh;
     padding: clamp(1.25rem, 3vw, 2.5rem);
-    overflow: clip;
+    padding-bottom: calc(clamp(1.25rem, 3vw, 2.5rem) + env(safe-area-inset-bottom));
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
     background:
       radial-gradient(circle at top left, rgba(255, 255, 255, 0.75), transparent 42%),
       linear-gradient(135deg, rgba(252, 249, 242, 0.98) 0%, rgba(245, 240, 229, 0.98) 50%, rgba(213, 221, 209, 0.92) 100%);
@@ -216,6 +234,26 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
     transform: translateY(1px);
   }
 
+  .thank-you-reset {
+    width: auto;
+    min-width: 220px;
+    padding: 0.88rem 1.35rem;
+    border-color: rgba(26, 39, 68, 0.16);
+    background: rgba(255, 255, 255, 0.74);
+    color: var(--via-night-blue);
+    box-shadow: 0 2px 10px rgba(26, 39, 68, 0.08);
+  }
+
+  .thank-you-reset:hover {
+    background: rgba(255, 255, 255, 0.92);
+    border-color: rgba(26, 39, 68, 0.24);
+    box-shadow: 0 4px 16px rgba(26, 39, 68, 0.12);
+  }
+
+  .thank-you-reset:active {
+    transform: translateY(1px);
+  }
+
   .thank-you-note {
     margin: 0;
     color: var(--via-gray-600);
@@ -248,9 +286,8 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
 
   @media (max-width: 640px) {
     .thank-you {
-      padding: 1.5rem 1rem 1.75rem;
+      padding: 2.25rem 1rem calc(1.75rem + env(safe-area-inset-bottom));
       align-items: flex-start;
-      padding-top: 2.25rem;
     }
 
     .thank-you-body {
@@ -269,6 +306,11 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
     }
 
     .thank-you-cta {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .thank-you-reset {
       width: 100%;
       min-width: 0;
     }

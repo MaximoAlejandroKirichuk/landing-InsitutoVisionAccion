@@ -140,6 +140,45 @@ import ThankYou from './ThankYou.astro';
     setPanelState(thankYouEl, false);
   }
 
+  function restartFunnel(): void {
+    try {
+      window.sessionStorage.removeItem(SUBMISSION_STORAGE_KEY);
+    } catch {
+      // Session storage is a resilience enhancement only.
+    }
+
+    state = initState();
+    root.dataset.step = state.step;
+    lastAnnouncedQuizStep = null;
+
+    hideFollowUpPanels();
+
+    const firstQuestion = QUIZ_QUESTIONS[0];
+    if (firstQuestion) {
+      window.dispatchEvent(
+        new CustomEvent('funnel:render-quiz', {
+          detail: {
+            questionId: firstQuestion.id,
+            selected: [],
+            otherText: '',
+            hasOther: Boolean(firstQuestion.hasOther),
+            error: '',
+            isFirstStep: true,
+            isLastStep: false,
+          },
+        }),
+      );
+    }
+
+    introEl.scrollIntoView({
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
+      block: 'start',
+      inline: 'nearest',
+    });
+    focusHeading('intro');
+    announceStep('Inicio del Mapa Inicial VIA');
+  }
+
   function showThankYouPanel(): void {
     setPanelState(thankYouEl, true);
     thankYouEl.dataset.transitionState = prefersReducedMotion ? 'active' : 'entering';
@@ -311,6 +350,10 @@ import ThankYou from './ThankYou.astro';
     }
 
     goToQuiz1();
+  });
+
+  window.addEventListener('funnel:restart', () => {
+    restartFunnel();
   });
 
   /* ── Event: Answer Selection ─────────────── */

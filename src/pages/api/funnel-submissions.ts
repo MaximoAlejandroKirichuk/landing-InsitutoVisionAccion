@@ -1,8 +1,7 @@
 import type { APIRoute } from 'astro';
 import { randomUUID } from 'node:crypto';
-import { appendFunnelSubmissionToSheet } from '../../lib/server/googleSheets';
+import { postSubmissionToAppsScript } from '../../lib/server/appsScript';
 import {
-  GoogleSheetsConfigError,
   validateFunnelSubmissionPayload,
 } from '../../lib/server/funnelSubmission';
 import { RateLimiter, extractClientIp } from '../../lib/server/rateLimiter';
@@ -49,26 +48,28 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   const submissionId = randomUUID();
 
   /* ── Persist ──────────────────────────── */
-  try {
-    await appendFunnelSubmissionToSheet(payloadResult.submission, submissionId);
+  const env = {
+    GOOGLE_APPS_SCRIPT_URL: import.meta.env.GOOGLE_APPS_SCRIPT_URL,
+    GOOGLE_APPS_SCRIPT_SECRET: import.meta.env.GOOGLE_APPS_SCRIPT_SECRET,
+  };
+
+  const persistResult = await postSubmissionToAppsScript(
+    payloadResult.submission,
+    submissionId,
+    env,
+  );
+
+  if (persistResult.ok) {
     return jsonResponse(200, { submissionId });
-  } catch (error) {
-    // Log the real cause server-side so we can diagnose.
-    console.error(
-      '[funnel-submissions] Failed to persist submission %s: %s',
-      submissionId,
-      error instanceof Error ? error.message : String(error),
-    );
-
-    if (error instanceof GoogleSheetsConfigError) {
-      // Configuration-specific: log it clearly but don't leak config details to the client.
-      console.error(
-        '[funnel-submissions] Google Sheets config error: %s',
-        error.message,
-      );
-    }
-
-    // Always return a generic failure to the caller.
-    return jsonResponse(500, { error: 'Unable to save submission.' });
   }
+
+  // Log the real cause server-side so we can diagnose.
+  console.error(
+    '[funnel-submissions] Failed to persist submission %s: %s',
+    submissionId,
+    persistResult.error,
+  );
+
+  // Always return a generic failure to the caller.
+  return jsonResponse(500, { error: 'Unable to save submission.' });
 };

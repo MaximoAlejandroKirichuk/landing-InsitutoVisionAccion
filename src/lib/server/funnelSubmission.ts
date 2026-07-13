@@ -1,24 +1,10 @@
 /**
  * Server-side helpers for the academy funnel submission.
- * Pure utilities are kept here so they can be tested without calling Google.
+ * Pure utilities are kept here so they can be tested without external calls.
  */
 
 import type { FunnelSubmission } from '../funnelState';
 import { QUIZ_QUESTIONS } from '../quizData';
-
-export interface GoogleSheetsConfigInput {
-  GOOGLE_SHEET_ID?: string;
-  GOOGLE_SERVICE_ACCOUNT_EMAIL?: string;
-  GOOGLE_PRIVATE_KEY?: string;
-  GOOGLE_SHEET_RANGE?: string;
-}
-
-export interface GoogleSheetsConfig {
-  sheetId: string;
-  serviceAccountEmail: string;
-  privateKey: string;
-  range: string;
-}
 
 export interface ValidateFunnelSubmissionResult {
   ok: true;
@@ -34,86 +20,8 @@ export type FunnelSubmissionValidationResult =
   | ValidateFunnelSubmissionResult
   | InvalidFunnelSubmissionResult;
 
-export interface GoogleSheetsConfigValidationResult {
-  ok: true;
-  config: GoogleSheetsConfig;
-}
-
-export interface InvalidGoogleSheetsConfigResult {
-  ok: false;
-  error: string;
-}
-
-export type GoogleSheetsConfigResult =
-  | GoogleSheetsConfigValidationResult
-  | InvalidGoogleSheetsConfigResult;
-
-const DEFAULT_RANGE = 'Leads!A:Z';
-const QUESTION_ORDER = ['q1', 'q2', 'q3', 'q4', 'q5'] as const;
-
 /** Canonical question IDs from the quiz data, for server-side completeness checks. */
 const CANONICAL_QUESTION_IDS = new Set(QUIZ_QUESTIONS.map((q) => q.id));
-
-export class GoogleSheetsConfigError extends Error {
-  constructor(message = 'Google Sheets integration is not configured.') {
-    super(message);
-    this.name = 'GoogleSheetsConfigError';
-  }
-}
-
-/**
- * Replaces escaped-newline notation with real newlines.
- * Environment variables often store `\n` as literal backslash-n.
- */
-export function normalizeGooglePrivateKey(privateKey: string): string {
-  return privateKey.trim().replace(/\\n/g, '\n');
-}
-
-/**
- * Tests whether a private key string is a well-formed PEM key.
- * Expects an already-normalized key (call `normalizeGooglePrivateKey` first).
- */
-export function validateGooglePrivateKey(privateKey: string): boolean {
-  return (
-    privateKey.includes('-----BEGIN PRIVATE KEY-----') &&
-    privateKey.includes('-----END PRIVATE KEY-----')
-  );
-}
-
-export function validateGoogleSheetsConfig(
-  env: GoogleSheetsConfigInput,
-): GoogleSheetsConfigResult {
-  const sheetId = env.GOOGLE_SHEET_ID?.trim() ?? '';
-  const serviceAccountEmail = env.GOOGLE_SERVICE_ACCOUNT_EMAIL?.trim() ?? '';
-  const privateKeyRaw = env.GOOGLE_PRIVATE_KEY?.trim() ?? '';
-  const range = env.GOOGLE_SHEET_RANGE?.trim() || DEFAULT_RANGE;
-
-  if (!sheetId || !serviceAccountEmail || !privateKeyRaw) {
-    return {
-      ok: false,
-      error: 'Google Sheets integration is not configured.',
-    };
-  }
-
-  const privateKey = normalizeGooglePrivateKey(privateKeyRaw);
-
-  if (!validateGooglePrivateKey(privateKey)) {
-    return {
-      ok: false,
-      error: 'Google Sheets private key is invalid.',
-    };
-  }
-
-  return {
-    ok: true,
-    config: {
-      sheetId,
-      serviceAccountEmail,
-      privateKey,
-      range,
-    },
-  };
-}
 
 export function validateFunnelSubmissionPayload(
   payload: unknown,
@@ -182,6 +90,61 @@ export function sanitizeSheetCell(value: string): string {
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+/** Expected Google Sheets columns for the Apps Script integration. */
+export const FUNNEL_ROW_HEADERS = [
+  'submission_id',
+  'submitted_at',
+  'academy_slug',
+  'funnel_slug',
+  'full_name',
+  'whatsapp',
+  'email',
+  'consent',
+  'user_agent',
+  'referrer',
+  'q1_area',
+  'q1_other',
+  'q2_current_situation',
+  'q3_previous_experience',
+  'q3_other',
+  'q4_preferred_modality',
+  'q5_desired_outcome',
+] as const;
+
+/**
+ * Builds a per-question option-id → display-text lookup from QUIZ_QUESTIONS.
+ * Lookup is per-question so duplicate option ids across questions
+ * (e.g. q2 and q5 both have a "comprender" id with different texts)
+ * resolve to the correct text for each question.
+ */
+function buildOptionTextLookup(): Map<string, Map<string, string>> {
+  const lookup = new Map<string, Map<string, string>>();
+  for (const q of QUIZ_QUESTIONS) {
+    const optionMap = new Map(q.options.map((o) => [o.id, o.text]));
+    lookup.set(q.id, optionMap);
+  }
+  return lookup;
+}
+
+const OPTION_TEXT_LOOKUP = buildOptionTextLookup();
+
+/**
+ * Resolves selected option IDs to their human-readable display text for a
+ * given question. Unknown IDs fall back to the raw ID after sanitization.
+ */
+function resolveAnswerValue(questionId: string, selectedIds: string[]): string {
+  const optionMap = OPTION_TEXT_LOOKUP.get(questionId);
+
+  return selectedIds
+    .map((id) => {
+      const text = optionMap?.get(id);
+      // Known ids are trusted quiz data; unknown ids get the raw id
+      // passed through sanitizeSheetCell for formula injection protection.
+      return sanitizeSheetCell(text ?? id);
+    })
+    .join(', ');
+}
+
 export function buildFunnelSubmissionRow(
   submission: FunnelSubmission,
   submissionId: string,
@@ -203,14 +166,24 @@ export function buildFunnelSubmissionRow(
     sanitizeSheetCell(submission.metadata.referrer ?? ''),
   ];
 
-  for (const questionId of QUESTION_ORDER) {
-    const answer = answersByQuestionId.get(questionId);
+  // Only questions with hasOther:true get a free-text column.
+  // From quizData: q1 and q3 have hasOther; q2, q4, q5 do not.
+  const answerMeta = QUIZ_QUESTIONS.map((q) => ({
+    id: q.id,
+    hasOther: q.hasOther ?? false,
+  }));
+
+  for (const { id, hasOther } of answerMeta) {
+    const answer = answersByQuestionId.get(id);
     row.push(
       answer
-        ? answer.selected.map(sanitizeSheetCell).join(', ')
+        ? resolveAnswerValue(answer.questionId, answer.selected)
         : '',
     );
-    row.push(sanitizeSheetCell(answer?.otherText?.trim() ?? ''));
+    if (hasOther) {
+      // otherText is user-entered free text — keep as-is after sanitization.
+      row.push(sanitizeSheetCell(answer?.otherText?.trim() ?? ''));
+    }
   }
 
   return row;

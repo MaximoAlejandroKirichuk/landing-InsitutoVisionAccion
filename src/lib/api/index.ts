@@ -1,24 +1,20 @@
 /**
  * VIA Orientation Funnel — Adapter entry point.
- * Selects the mock or real implementation based on whether
- * PUBLIC_FUNNEL_API_URL is set. UI code imports only this module.
+ * Exposes the real submission adapter. The adapter itself falls back to the
+ * local on-demand endpoint unless PUBLIC_FUNNEL_API_URL overrides it.
  */
 
 import type { FunnelSubmission, SubmissionResult } from './types';
-import { submitFunnelMock } from './mock';
 import { submitFunnelReal } from './real';
 
 /**
  * Active submission adapter.
- * When `PUBLIC_FUNNEL_API_URL` is set → real adapter (POST to URL).
- * When absent → mock adapter (600 ms delay, console log, no network).
+ * Always uses the real adapter so production keeps posting to the local API
+ * endpoint by default.
  */
 export const submitFunnel: (
   payload: FunnelSubmission,
 ) => Promise<SubmissionResult> =
-  typeof import.meta.env.PUBLIC_FUNNEL_API_URL === 'string' &&
-  (import.meta.env.PUBLIC_FUNNEL_API_URL as string).length > 0
-    ? submitFunnelReal
-    : submitFunnelMock;
+  submitFunnelReal;
 
 export type { FunnelSubmission, SubmissionResult };

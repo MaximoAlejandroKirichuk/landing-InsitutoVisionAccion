@@ -1,6 +1,7 @@
 /**
  * VIA Orientation Funnel — Real submission adapter.
- * POSTs the FunnelSubmission payload to PUBLIC_FUNNEL_API_URL.
+ * POSTs the FunnelSubmission payload to PUBLIC_FUNNEL_API_URL or the local
+ * on-demand endpoint when the public URL is not provided.
  * Uses a 10-second AbortController timeout.
  * All error paths resolve through the promise — never throws.
  */
@@ -14,7 +15,7 @@ export async function submitFunnelReal(
   const timeoutId = setTimeout(() => controller.abort(), 10_000);
 
   try {
-    const url = import.meta.env.PUBLIC_FUNNEL_API_URL as string;
+    const url = import.meta.env.PUBLIC_FUNNEL_API_URL || '/api/funnel-submissions';
 
     const response = await fetch(url, {
       method: 'POST',

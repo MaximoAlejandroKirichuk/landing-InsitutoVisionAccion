@@ -2,11 +2,8 @@ import { describe, expect, it } from 'vitest';
 import type { FunnelSubmission } from '../funnelState';
 import {
   buildFunnelSubmissionRow,
-  normalizeGooglePrivateKey,
   sanitizeSheetCell,
   validateFunnelSubmissionPayload,
-  validateGooglePrivateKey,
-  validateGoogleSheetsConfig,
 } from './funnelSubmission';
 
 function makeSubmission(overrides: Partial<FunnelSubmission> = {}): FunnelSubmission {
@@ -24,7 +21,7 @@ function makeSubmission(overrides: Partial<FunnelSubmission> = {}): FunnelSubmis
       { questionId: 'q2', type: 'single', selected: ['claridad'] },
       { questionId: 'q3', type: 'multi', selected: ['coaching', 'cursos'] },
       { questionId: 'q4', type: 'multi', selected: ['online'] },
-      { questionId: 'q5', type: 'single', selected: ['inicio'], otherText: '   ' },
+      { questionId: 'q5', type: 'single', selected: ['inicio'] },
     ],
     metadata: {
       submittedAt: '2026-07-13T12:34:56.000Z',
@@ -34,60 +31,6 @@ function makeSubmission(overrides: Partial<FunnelSubmission> = {}): FunnelSubmis
     ...overrides,
   };
 }
-
-/* ── normalizeGooglePrivateKey ───────────── */
-
-describe('normalizeGooglePrivateKey()', () => {
-  it('replaces escaped newlines with actual newlines', () => {
-    const key = '-----BEGIN PRIVATE KEY-----\\nabc\\ndef\\n-----END PRIVATE KEY-----';
-
-    expect(normalizeGooglePrivateKey(key)).toBe(
-      '-----BEGIN PRIVATE KEY-----\nabc\ndef\n-----END PRIVATE KEY-----',
-    );
-  });
-});
-
-/* ── validateGooglePrivateKey ────────────── */
-
-describe('validateGooglePrivateKey()', () => {
-  it('accepts a normalized PEM-formatted service account key', () => {
-    const key = normalizeGooglePrivateKey(
-      '-----BEGIN PRIVATE KEY-----\\nabc\\n-----END PRIVATE KEY-----',
-    );
-    expect(validateGooglePrivateKey(key)).toBe(true);
-  });
-
-  it('rejects malformed private keys', () => {
-    expect(validateGooglePrivateKey('not-a-key')).toBe(false);
-  });
-});
-
-/* ── validateGoogleSheetsConfig ──────────── */
-
-describe('validateGoogleSheetsConfig()', () => {
-  it('applies the default sheet range when not provided', () => {
-    const result = validateGoogleSheetsConfig({
-      GOOGLE_SHEET_ID: 'sheet-id',
-      GOOGLE_SERVICE_ACCOUNT_EMAIL: 'service@example.com',
-      GOOGLE_PRIVATE_KEY: '-----BEGIN PRIVATE KEY-----\\nabc\\n-----END PRIVATE KEY-----',
-    });
-
-    expect(result.ok).toBe(true);
-    if (result.ok) {
-      expect(result.config.range).toBe('Leads!A:Z');
-      expect(result.config.privateKey).toContain('\n');
-    }
-  });
-
-  it('rejects missing Google Sheets configuration', () => {
-    const result = validateGoogleSheetsConfig({});
-
-    expect(result.ok).toBe(false);
-    if (!result.ok) {
-      expect(result.error).toContain('not configured');
-    }
-  });
-});
 
 /* ── sanitizeSheetCell ───────────────────── */
 
@@ -153,23 +96,30 @@ describe('buildFunnelSubmissionRow()', () => {
       'true',
       'Vitest',
       'https://example.com/landing',
-      'relaciones',
+      'Relaciones y vínculos (pareja, familia, hijos, amistades).',
       '',
       'claridad',
+      'Coaching., Cursos o talleres de desarrollo personal.',
       '',
-      'coaching, cursos',
-      '',
-      'online',
-      '',
+      'Online.',
       'inicio',
-      '',
     ]);
   });
 
   it('trims otherText before writing it to the sheet row', () => {
-    const row = buildFunnelSubmissionRow(makeSubmission(), 'submission-123');
+    const sub = makeSubmission({
+      answers: [
+        { questionId: 'q1', type: 'single', selected: ['relaciones'], otherText: '' },
+        { questionId: 'q2', type: 'single', selected: ['claridad'] },
+        { questionId: 'q3', type: 'multi', selected: ['coaching'], otherText: '   ' },
+        { questionId: 'q4', type: 'multi', selected: ['online'] },
+        { questionId: 'q5', type: 'single', selected: ['inicio'] },
+      ],
+    });
+    const row = buildFunnelSubmissionRow(sub, 'submission-123');
 
-    expect(row[19]).toBe('');
+    // q3_other is at index 14 and should be empty after trimming whitespace-only input.
+    expect(row[14]).toBe('');
   });
 
   it('uses empty string when submittedAt is missing', () => {
@@ -228,14 +178,15 @@ describe('buildFunnelSubmissionRow()', () => {
       answers: [
         { questionId: 'q1', type: 'single', selected: ['safe'], otherText: '' },
         { questionId: 'q2', type: 'single', selected: ['safe'] },
-        { questionId: 'q3', type: 'multi', selected: ['safe'] },
+        { questionId: 'q3', type: 'multi', selected: ['safe'], otherText: '=CMD()' },
         { questionId: 'q4', type: 'multi', selected: ['safe'] },
-        { questionId: 'q5', type: 'single', selected: ['safe'], otherText: '=CMD()' },
+        { questionId: 'q5', type: 'single', selected: ['safe'] },
       ],
     });
     const row = buildFunnelSubmissionRow(sub, 's');
 
-    expect(row[19]).toBe("'=CMD()");
+    // q3_other is at index 14
+    expect(row[14]).toBe("'=CMD()");
   });
 
   it('sanitizes formula injection in joined multi-select labels', () => {
@@ -250,8 +201,8 @@ describe('buildFunnelSubmissionRow()', () => {
     });
     const row = buildFunnelSubmissionRow(sub, 's');
 
-    // Only the formula-triggering label is sanitized, not the whole joined string.
-    expect(row[14]).toBe("safe, '-EVIL()");
+    // q3_previous_experience is at index 13
+    expect(row[13]).toBe("safe, '-EVIL()");
   });
 
   it('does not sanitize server-generated values', () => {
