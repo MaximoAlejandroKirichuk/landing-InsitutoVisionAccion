@@ -1,3 +1,8 @@
+---
+const whatsappMessage = 'Hola, quiero recibir orientación sobre el Método VIA. Vengo desde la web y me gustaría conversar sobre mi situación.';
+const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whatsappMessage)}`;
+---
+
 <!doctype html>
 <html lang="es">
   <head>
@@ -12,6 +17,25 @@
   </head>
   <body>
     <slot />
+    <a
+      class="app-whatsapp-sticky focus-ring-cream"
+      href={whatsappUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Hablar por WhatsApp"
+    >
+      <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false" class="app-whatsapp-icon">
+        <path
+          fill="currentColor"
+          d="M19.11 17.34c-.28-.14-1.65-.81-1.91-.9-.26-.09-.45-.14-.64.14-.19.28-.73.9-.9 1.08-.17.19-.33.21-.61.07-.28-.14-1.17-.43-2.23-1.38-.82-.73-1.37-1.64-1.53-1.92-.16-.28-.02-.43.12-.57.12-.12.28-.33.42-.5.14-.17.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.56-.47-.48-.64-.49h-.54c-.19 0-.5.07-.76.36-.26.28-1 1-.99 2.43 0 1.43 1.04 2.8 1.18 2.99.14.19 2.04 3.11 5.03 4.36.71.31 1.27.49 1.7.62.71.23 1.36.2 1.87.12.57-.09 1.65-.67 1.89-1.31.23-.64.23-1.19.16-1.31-.07-.12-.26-.19-.54-.33Z"
+        />
+        <path
+          fill="currentColor"
+          d="M16.02 3.2c-6.98 0-12.64 5.66-12.64 12.64 0 2.22.58 4.39 1.68 6.31L3.2 28.8l6.82-1.79a12.58 12.58 0 0 0 6 1.53h.01c6.98 0 12.64-5.66 12.64-12.64 0-3.38-1.31-6.56-3.71-8.95A12.54 12.54 0 0 0 16.02 3.2Zm0 23.2h-.01a10.9 10.9 0 0 1-5.55-1.52l-.4-.24-4.05 1.06 1.08-3.95-.26-.41a10.93 10.93 0 0 1-1.67-5.83c0-6.02 4.89-10.92 10.91-10.92 2.92 0 5.66 1.14 7.72 3.2a10.84 10.84 0 0 1 3.19 7.72c0 6.02-4.89 10.91-10.91 10.91Z"
+        />
+      </svg>
+      <span class="sr-only">WhatsApp</span>
+    </a>
   </body>
 </html>
 

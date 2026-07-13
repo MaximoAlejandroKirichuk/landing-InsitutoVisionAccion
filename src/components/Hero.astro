@@ -62,15 +62,6 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
       />
     </div>
   </div>
-  <a
-    class="mobile-whatsapp-sticky focus-ring-cream"
-    href={whatsappUrl}
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Hablar por WhatsApp"
-  >
-    WhatsApp
-  </a>
 </section>
 
 <script>
@@ -195,10 +186,6 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
     box-shadow: 0 6px 18px rgba(26, 39, 68, 0.1);
   }
 
-  .mobile-whatsapp-sticky {
-    display: none;
-  }
-
   /* ── Right: illustration ─────────────────── */
   .hero-illustration {
     display: flex;
@@ -287,26 +274,7 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
 
   @media (max-width: 480px) {
     .hero {
-      padding: 1.25rem 1rem 4.6rem;
-    }
-
-    .mobile-whatsapp-sticky {
-      position: fixed;
-      left: 1rem;
-      right: 1rem;
-      bottom: calc(1rem + env(safe-area-inset-bottom));
-      z-index: 20;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 3.25rem;
-      border-radius: 999px;
-      background: var(--via-night-blue);
-      color: var(--via-white);
-      font-family: var(--ff-body);
-      font-weight: var(--fw-semibold);
-      text-decoration: none;
-      box-shadow: 0 12px 28px rgba(26, 39, 68, 0.22);
+      padding: 1.25rem 1rem 1rem;
     }
   }
 </style>

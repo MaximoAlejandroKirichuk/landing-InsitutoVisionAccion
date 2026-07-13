@@ -246,6 +246,47 @@ p {
   border-width: 0;
 }
 
+.app-whatsapp-sticky {
+  position: fixed;
+  right: 1rem;
+  bottom: calc(1rem + env(safe-area-inset-bottom));
+  z-index: 40;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border: 0;
+  border-radius: 50%;
+  background: #25d366;
+  color: #ffffff;
+  text-decoration: none;
+  box-shadow: 0 14px 32px rgba(37, 211, 102, 0.3);
+  overflow: hidden;
+}
+
+.app-whatsapp-sticky:hover {
+  background: #1ebe57;
+}
+
+.app-whatsapp-icon {
+  display: block;
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  color: currentColor;
+}
+
+@media (max-width: 767px) {
+  .app-whatsapp-sticky {
+    display: inline-flex;
+  }
+
+  body {
+    padding-bottom: 5.5rem;
+  }
+}
+
 /* ── Reduced Motion ─────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *,
