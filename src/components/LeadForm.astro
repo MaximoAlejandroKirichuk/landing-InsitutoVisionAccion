@@ -4,17 +4,24 @@
 // when it receives the `funnel:render-lead` custom event.
 // Field changes and submit are dispatched back to OrientationFunnel.astro.
 // Visual: sage-wash cream section with framed sage panel, night-blue/gold hierarchy.
+const whatsappMessage = 'Hola, quiero recibir orientación sobre el Método VIA. Vengo desde la web y me gustaría conversar sobre mi situación.';
+const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whatsappMessage)}`;
 ---
 
-<section id="funnel-step-lead" class="lead-step surface-sage-wash" hidden aria-labelledby="lead-heading">
+<section
+  id="funnel-step-lead"
+  class="lead-step surface-sage-wash"
+  hidden
+  aria-labelledby="lead-heading"
+>
   <div class="lead-frame frame-sage">
     <h2 id="lead-heading" class="lead-heading" tabindex="-1">
-      Último paso para recibir tu orientación personalizada.
+      Ya casi terminamos.
     </h2>
 
     <p class="lead-explain">
-      Con estos datos podremos entender mejor tu punto de partida y decirte cómo
-      el Método VIA® puede acompañarte de forma personalizada.
+      Ya completaste tu Mapa Inicial VIA®. Dejanos tus datos para enviarte tu
+      orientación personalizada. Si preferís hablar ahora, también podés seguir por WhatsApp.
     </p>
 
     <form id="lead-form" class="lead-form" novalidate>
@@ -110,8 +117,21 @@
         class="btn lead-submit-btn focus-ring-gold"
         type="submit"
       >
-        Recibir mi orientación
+        Recibir mi orientación personalizada
       </button>
+
+      <a
+        class="btn lead-whatsapp-btn focus-ring-cream"
+        href={whatsappUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Prefiero seguir por WhatsApp
+      </a>
+
+      <p class="lead-confidentiality">
+        ✔ Tu información será tratada con absoluta confidencialidad.
+      </p>
     </form>
   </div>
 </section>
@@ -262,6 +282,29 @@
     padding: 2rem;
   }
 
+  .lead-step[data-transition-state='entering'],
+  .lead-step[data-transition-state='active'],
+  .lead-step[data-transition-state='exiting'] {
+    transition:
+      opacity 280ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .lead-step[data-transition-state='entering'] {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  .lead-step[data-transition-state='active'] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .lead-step[data-transition-state='exiting'] {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
   .lead-frame {
     width: 100%;
     max-width: 580px;
@@ -407,8 +450,37 @@
     transform: none;
   }
 
+  .lead-whatsapp-btn {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.9rem 1.5rem;
+    background: var(--via-white);
+    color: var(--via-night-blue);
+    border-color: rgba(26, 39, 68, 0.22);
+    box-shadow: 0 2px 10px rgba(26, 39, 68, 0.07);
+  }
+
+  .lead-whatsapp-btn:hover {
+    background: rgba(183, 196, 177, 0.2);
+    border-color: var(--via-sage-dark);
+    box-shadow: 0 4px 16px rgba(26, 39, 68, 0.1);
+  }
+
+  .lead-confidentiality {
+    margin: 0.15rem 0 0;
+    text-align: center;
+    font-size: 0.86rem;
+    line-height: 1.45;
+    color: var(--via-gray-600);
+  }
+
   /* ── Reduced Motion ─────────────────────────── */
   @media (prefers-reduced-motion: reduce) {
+    .lead-step {
+      animation: none !important;
+      transition: none !important;
+    }
+
     .form-input,
     .lead-submit-btn {
       transition: none !important;

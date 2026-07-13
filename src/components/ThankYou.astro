@@ -1,58 +1,75 @@
 ---
 // ThankYou — post-submission confirmation with WhatsApp CTA.
-// Presentational only; rendered after successful submission.
-// Visual: warm sage-wash cream section, human-scene illustration, gold-accented CTA card.
-// Copy was lightly tightened for coherence while preserving the approved direction.
+// Rendered as the final consultation panel in the funnel.
+const whatsappMessage = 'Hola, quiero recibir orientación sobre el Método VIA. Vengo desde la web y me gustaría conversar sobre mi situación.';
+const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whatsappMessage)}`;
 ---
 
-<section id="funnel-step-thank-you" class="thank-you surface-sage-wash" hidden aria-labelledby="thank-you-heading">
+<section
+  id="funnel-step-thank-you"
+  class="thank-you surface-sage-wash"
+  hidden
+  aria-labelledby="thank-you-heading"
+>
   <div class="thank-you-content">
-    <!-- Brand illustration — final thank-you-scene.svg asset. -->
-    <div class="thank-you-illustration" aria-hidden="true">
-      <img
-        src="/images/funnel/thank-you-scene.svg"
-        alt=""
-        class="thank-you-img"
-        width="600"
-        height="400"
-        loading="lazy"
-      />
-    </div>
+    <div class="thank-you-intro">
+      <div class="thank-you-illustration" aria-hidden="true">
+        <img
+          src="/images/funnel/thank-you-scene.svg"
+          alt=""
+          class="thank-you-img"
+          width="600"
+          height="400"
+          loading="lazy"
+        />
+      </div>
 
-    <h2 id="thank-you-heading" class="thank-you-heading" tabindex="-1">
-      ¡Gracias por dar este primer paso!
-    </h2>
+      <div class="thank-you-copy">
+        <p class="thank-you-kicker">Canal de consulta</p>
+        <h2 id="thank-you-heading" class="thank-you-heading" tabindex="-1">
+          Consulta por WhatsApp
+        </h2>
 
-    <p class="thank-you-body">
-      Hoy empezaste a explorar una nueva posibilidad para tu desarrollo
-      personal y bienestar integral.
-    </p>
-
-    <div class="thank-you-card">
-      <h3 class="thank-you-card-heading">
-        Agendá tu primer encuentro de orientación sin cargo
-      </h3>
-      <p class="thank-you-card-text">
-        En este encuentro online y personalizado conversaremos sobre lo que hoy
-        te importa, responderemos tus dudas y te explicaremos cómo funciona el
-        Método VIA®.
-      </p>
-      <p class="thank-you-card-text">
-        Así vas a poder evaluar con claridad si este proceso es el adecuado para
-        vos.
-      </p>
-
-      <a
-        href="https://wa.me/5491126967602"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="btn thank-you-cta focus-ring-gold"
-      >
-        Agendar por WhatsApp
-      </a>
+        <p class="thank-you-body">
+          Si queres recibir orientacion personalizada, podes escribirnos para conversar sobre tu situacion y evaluar el proximo paso.
+        </p>
+        <div class="thank-you-actions">
+          <a
+            id="thank-you-whatsapp-link"
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn thank-you-cta focus-ring-gold"
+          >
+            Escribir por WhatsApp
+          </a>
+          <p class="thank-you-note">
+            Orientacion personalizada para resolver tus dudas.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
+<script>
+  const thankYouPanel = document.getElementById('funnel-step-thank-you');
+  const thankYouWhatsappLink = document.getElementById(
+    'thank-you-whatsapp-link',
+  ) as HTMLAnchorElement | null;
+
+  thankYouWhatsappLink?.addEventListener('click', (event) => {
+    if (!thankYouPanel || thankYouPanel.hidden || thankYouPanel.hasAttribute('inert')) {
+      return;
+    }
+
+    const href = thankYouWhatsappLink.href;
+    if (!href) return;
+
+    event.preventDefault();
+    window.location.assign(href);
+  });
+</script>
 
 <style>
   .thank-you {
@@ -64,17 +81,43 @@
     overflow: clip;
   }
 
+  .thank-you[data-transition-state='entering'],
+  .thank-you[data-transition-state='active'],
+  .thank-you[data-transition-state='exiting'] {
+    transition:
+      opacity 280ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .thank-you[data-transition-state='entering'] {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  .thank-you[data-transition-state='active'] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .thank-you[data-transition-state='exiting'] {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
   .thank-you-content {
     width: 100%;
-    max-width: 1080px;
+    max-width: 980px;
     display: grid;
-    grid-template-columns: minmax(0, 1.05fr);
+    gap: 1.75rem;
+  }
+
+  .thank-you-intro {
+    display: grid;
+    gap: 1rem;
     align-items: center;
-    gap: 1.25rem;
     text-align: center;
   }
 
-  /* ── Illustration ──────────────────────────── */
   .thank-you-illustration {
     margin-bottom: 0;
     justify-self: center;
@@ -83,64 +126,59 @@
   .thank-you-img {
     width: 100%;
     height: auto;
-    max-width: min(100%, 440px);
-    max-height: clamp(220px, 38vh, 380px);
+    max-width: min(100%, 360px);
+    max-height: clamp(220px, 34vh, 320px);
     object-fit: contain;
     border-radius: var(--via-scene-radius);
     box-shadow: var(--via-scene-shadow);
+    opacity: 0.92;
   }
 
-  /* ── Typography on cream background ────────── */
+  .thank-you-copy {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .thank-you-kicker {
+    margin: 0;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: none;
+    color: var(--via-rust, #b46430);
+  }
+
   .thank-you-heading {
-    font-size: clamp(1.5rem, 4.5vw, 2.25rem);
-    margin-bottom: 0.9rem;
+    font-family: inherit;
+    font-size: clamp(1.75rem, 4vw, 2.4rem);
+    font-weight: 600;
+    line-height: 1.12;
+    margin: 0;
     outline: none;
     color: var(--via-night-blue);
+    max-width: 12ch;
   }
 
   .thank-you-body {
-    font-size: 1.05rem;
-    line-height: 1.58;
-    color: var(--via-gray-600);
-    margin: 0 auto 1.5rem;
-    max-width: 52ch;
-  }
-
-  /* ── Card — white panel, gold accent border ── */
-  .thank-you-card {
-    background: var(--via-white);
-    border: 2px solid var(--via-gold);
-    border-radius: var(--radius-lg);
-    padding: clamp(1.4rem, 2.6vw, 1.9rem);
-    text-align: left;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 4px 24px rgba(26, 39, 68, 0.08);
-  }
-
-  .thank-you-card-heading {
-    font-family: var(--ff-heading);
-    font-size: 1.2rem;
-    margin-bottom: 0.9rem;
-    color: var(--via-night-blue);
-  }
-
-  .thank-you-card-text {
-    font-size: 0.925rem;
+    font-size: 1.02rem;
     line-height: 1.62;
     color: var(--via-gray-600);
-    margin-bottom: 0.7rem;
+    margin: 0;
+    max-width: 48ch;
   }
 
-  .thank-you-card-text:last-of-type {
-    margin-bottom: 0;
+  .thank-you-actions {
+    max-width: 420px;
+    margin: 0;
+    display: grid;
+    gap: 0.85rem;
+    justify-items: start;
   }
 
-  /* ── CTA — night-blue fill, gold hover ──────── */
   .thank-you-cta {
-    width: 100%;
+    width: auto;
+    min-width: 280px;
     font-size: 1rem;
-    padding: 0.95rem 1.75rem;
-    margin-top: 1.25rem;
+    padding: 0.95rem 1.5rem;
     text-align: center;
     background: var(--via-night-blue);
     color: var(--via-white);
@@ -159,8 +197,20 @@
     transform: translateY(1px);
   }
 
+  .thank-you-note {
+    margin: 0;
+    color: var(--via-gray-600);
+    font-size: 0.98rem;
+    line-height: 1.5;
+  }
+
   /* ── Reduced Motion ─────────────────────────── */
   @media (prefers-reduced-motion: reduce) {
+    .thank-you {
+      animation: none !important;
+      transition: none !important;
+    }
+
     .thank-you-cta {
       transition: none !important;
     }
@@ -181,24 +231,28 @@
 
     .thank-you-body {
       font-size: 0.98rem;
-    }
-
-    .thank-you-card {
-      padding: 1.35rem;
-    }
-
-    .thank-you-card-text {
-      font-size: 0.88rem;
+      margin: 0 auto;
     }
 
     .thank-you-img {
-      max-width: 300px;
-      max-height: 230px;
+      max-width: 260px;
+      max-height: 210px;
     }
+
+    .thank-you-actions {
+      margin: 0 auto;
+      justify-items: center;
+    }
+
+    .thank-you-cta {
+      width: 100%;
+      min-width: 0;
+    }
+
   }
 
   @media (min-width: 960px) {
-    .thank-you-content {
+    .thank-you-intro {
       grid-template-columns: minmax(0, 1fr) minmax(280px, 380px);
       column-gap: clamp(2rem, 4vw, 4rem);
       text-align: left;
@@ -213,8 +267,7 @@
     }
 
     .thank-you-heading,
-    .thank-you-body,
-    .thank-you-card {
+    .thank-you-body {
       grid-column: 1;
       justify-self: start;
     }
@@ -223,8 +276,11 @@
       margin-left: 0;
     }
 
-    .thank-you-card {
-      width: min(100%, 640px);
+    .thank-you-copy {
+      grid-column: 1;
+      justify-self: start;
+      text-align: left;
     }
   }
+
 </style>

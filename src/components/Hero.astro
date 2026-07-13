@@ -3,6 +3,8 @@
 // Cream-led background with restrained gold/night-blue accents.
 // Left-aligned copy in night-blue, right-side project-owned hero art.
 // CTA dispatches `funnel:advance` — functional behavior unchanged.
+const whatsappMessage = 'Hola, quiero recibir orientación sobre el Método VIA. Vengo desde la web y me gustaría conversar sobre mi situación.';
+const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whatsappMessage)}`;
 ---
 
 <section id="funnel-hero" class="hero gradient-hero">
@@ -10,21 +12,41 @@
     <!-- Left: text block -->
     <div class="hero-text">
       <h1 id="hero-heading" class="hero-headline" tabindex="-1">
-        Descubrí qué está frenando tu crecimiento y empezá un camino más claro.
+        Descubrí qué está frenando tu crecimiento y empezá a construir una vida con mayor claridad y propósito.
       </h1>
       <p class="hero-subtitle">
-        Cada persona llega con una necesidad distinta. Por eso el Método VIA® (Visión, Integración y Acción) propone un recorrido personalizado para ordenar lo que te pasa y avanzar con más claridad.
+        Cada persona vive una historia diferente.
       </p>
-      <button
-        id="hero-cta"
-        class="btn hero-cta focus-ring-gold"
-        type="button"
-        aria-label="Hacer el test gratuito"
-        aria-controls="funnel-step-quiz"
-      >
-        Hacer el test gratuito
-      </button>
-      <p class="hero-trust">Respuesta personalizada por WhatsApp.</p>
+      <p class="hero-subtitle hero-subtitle-secondary">
+        El Método VIA® (Visión, Integración y Acción) propone un recorrido personalizado para comprender qué está ocurriendo, ampliar la mirada y comenzar a diseñar nuevas posibilidades para tu vida.
+      </p>
+      <p class="hero-choice-copy">
+        Podés hacer el diagnóstico para ordenar tu situación o escribirnos directamente si querés orientación ahora.
+      </p>
+      <div class="hero-actions" aria-label="Opciones para recibir orientación">
+        <button
+          id="hero-cta"
+          class="btn hero-cta focus-ring-gold"
+          type="button"
+          aria-label="Comenzar el diagnóstico gratuito"
+          aria-controls="funnel-step-quiz"
+        >
+          Comenzar diagnóstico gratuito
+        </button>
+        <a
+          class="btn hero-whatsapp-cta focus-ring-cream"
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Hablar ahora por WhatsApp"
+        >
+          Hablar por WhatsApp
+        </a>
+      </div>
+      <div class="hero-trust" aria-label="Beneficios del diagnóstico">
+        <p>✔ Solo te llevará unos minutos.</p>
+        <p>✔ Si preferís hablar primero, WhatsApp está disponible desde el inicio.</p>
+      </div>
     </div>
 
     <!-- Right: finalized hero illustration -->
@@ -40,6 +62,15 @@
       />
     </div>
   </div>
+  <a
+    class="mobile-whatsapp-sticky focus-ring-cream"
+    href={whatsappUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Hablar por WhatsApp"
+  >
+    WhatsApp
+  </a>
 </section>
 
 <script>
@@ -88,16 +119,42 @@
   .hero-subtitle {
     font-size: 1rem;
     line-height: 1.62;
-    margin-bottom: 1.4rem;
+    margin-bottom: 0.6rem;
     color: var(--via-gray-600);
     max-width: 52ch;
   }
 
+  .hero-subtitle-secondary {
+    margin-bottom: 0.85rem;
+  }
+
+  .hero-choice-copy {
+    max-width: 48ch;
+    margin-bottom: 1.15rem;
+    font-size: 0.98rem;
+    line-height: 1.58;
+    color: var(--via-night-blue);
+    font-weight: var(--fw-semibold);
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
   .hero-trust {
-    margin-top: 0.6rem;
-    font-size: 0.9rem;
-    line-height: 1.4;
+    display: grid;
+    gap: 0.35rem;
+    margin-top: 0.75rem;
+    font-size: 0.92rem;
+    line-height: 1.45;
     color: var(--via-gray-600);
+  }
+
+  .hero-trust p {
+    margin: 0;
   }
 
   /* ── CTA — night-blue fill, gold hover ───── */
@@ -120,6 +177,26 @@
 
   .hero-cta:active {
     transform: translateY(1px);
+  }
+
+  .hero-whatsapp-cta {
+    background: var(--via-white);
+    color: var(--via-night-blue);
+    border-color: rgba(26, 39, 68, 0.22);
+    font-size: 0.98rem;
+    padding: 0.88rem 1.45rem;
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 14px rgba(26, 39, 68, 0.08);
+  }
+
+  .hero-whatsapp-cta:hover {
+    border-color: var(--via-sage-dark);
+    background: rgba(183, 196, 177, 0.2);
+    box-shadow: 0 6px 18px rgba(26, 39, 68, 0.1);
+  }
+
+  .mobile-whatsapp-sticky {
+    display: none;
   }
 
   /* ── Right: illustration ─────────────────── */
@@ -194,6 +271,15 @@
       max-width: 340px;
     }
 
+    .hero-actions {
+      width: 100%;
+    }
+
+    .hero-whatsapp-cta {
+      width: 100%;
+      max-width: 340px;
+    }
+
     .hero-trust {
       text-align: left;
     }
@@ -201,7 +287,26 @@
 
   @media (max-width: 480px) {
     .hero {
-      padding: 1.25rem 1rem 0.9rem;
+      padding: 1.25rem 1rem 4.6rem;
+    }
+
+    .mobile-whatsapp-sticky {
+      position: fixed;
+      left: 1rem;
+      right: 1rem;
+      bottom: calc(1rem + env(safe-area-inset-bottom));
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 3.25rem;
+      border-radius: 999px;
+      background: var(--via-night-blue);
+      color: var(--via-white);
+      font-family: var(--ff-body);
+      font-weight: var(--fw-semibold);
+      text-decoration: none;
+      box-shadow: 0 12px 28px rgba(26, 39, 68, 0.22);
     }
   }
 </style>
