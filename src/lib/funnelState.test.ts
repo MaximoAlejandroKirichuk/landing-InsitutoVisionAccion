@@ -188,6 +188,14 @@ describe('toggleAnswer()', () => {
     expect(s.answers.q3!.selected).toEqual(prev.answers.q3!.selected);
   });
 
+  it('allows multiple selections when a multi question has no maxSelections', () => {
+    let s = stateOnStep('quiz-3');
+    s = toggleAnswer(s, 'q3', 'coaching', { type: 'multi' });
+    s = toggleAnswer(s, 'q3', 'meditacion', { type: 'multi' });
+    s = toggleAnswer(s, 'q3', 'cursos', { type: 'multi' });
+    expect(s.answers.q3!.selected).toEqual(['coaching', 'meditacion', 'cursos']);
+  });
+
   it('clears otherText when deselecting "otro"', () => {
     let s = stateOnStep('quiz-1');
     s = toggleAnswer(s, 'q1', 'otro', { type: 'single' });
@@ -319,7 +327,7 @@ describe('buildSubmission()', () => {
         otherText: undefined,
       });
       expect(sub.answers[1].type).toBe('single');
-      expect(sub.answers[2].type).toBe('single');
+      expect(sub.answers[2].type).toBe('multi');
   });
 
   it('includes otherText when non-empty', () => {

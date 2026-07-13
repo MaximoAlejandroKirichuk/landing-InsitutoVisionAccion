@@ -48,6 +48,7 @@ import ThankYou from './ThankYou.astro';
 
   /* ── State ────────────────────────────────── */
 
+  const SUBMISSION_STORAGE_KEY = 'via:funnel:submitted';
   let state: FunnelState = initState();
   let lastAnnouncedQuizStep: number | null = null;
 
@@ -152,6 +153,33 @@ import ThankYou from './ThankYou.astro';
     }
   }
 
+  function hasPersistedSubmission(): boolean {
+    try {
+      return window.sessionStorage.getItem(SUBMISSION_STORAGE_KEY) === 'true';
+    } catch {
+      return false;
+    }
+  }
+
+  function persistSubmission(): void {
+    try {
+      window.sessionStorage.setItem(SUBMISSION_STORAGE_KEY, 'true');
+    } catch {
+      // Session storage is a resilience enhancement only.
+    }
+  }
+
+  function restoreSubmittedState(): void {
+    if (!hasPersistedSubmission()) return;
+
+    state = {
+      ...initState(),
+      step: 'thank-you',
+    };
+    root.dataset.step = state.step;
+    showThankYouPanel();
+  }
+
   function populateQuizStep(
     qId: string,
     question: (typeof QUIZ_QUESTIONS)[number],
@@ -246,19 +274,42 @@ import ThankYou from './ThankYou.astro';
   function goToQuiz1(): void {
     if (state.step === 'hero') {
       state = advanceTo(state, 'quiz-1');
+      root.dataset.step = state.step;
     }
 
     renderQuizStep(true, true);
   }
 
+  function ensureQuizStarted(): boolean {
+    if (state.step !== 'hero') return false;
+
+    state = advanceTo(state, 'quiz-1');
+    root.dataset.step = state.step;
+    renderQuizStep(false, false, false);
+    return true;
+  }
+
   introEl.dataset.transitionState = 'active';
   quizEl.dataset.transitionState = 'active';
   hideFollowUpPanels();
-  renderQuizStep(false, false, false);
+  restoreSubmittedState();
+
+  if (state.step !== 'thank-you') {
+    renderQuizStep(false, false, false);
+  }
+
+  window.addEventListener('pageshow', () => {
+    restoreSubmittedState();
+  });
 
   /* ── Event: Hero CTA ─────────────────────── */
 
   window.addEventListener('funnel:advance', () => {
+    if (hasPersistedSubmission()) {
+      restoreSubmittedState();
+      return;
+    }
+
     goToQuiz1();
   });
 
@@ -266,6 +317,8 @@ import ThankYou from './ThankYou.astro';
 
   window.addEventListener('funnel:select-answer', ((e: CustomEvent) => {
     const { optionId } = e.detail;
+
+    ensureQuizStarted();
 
     const qId = getQuestionId(state.step);
     if (!qId) return;
@@ -282,6 +335,8 @@ import ThankYou from './ThankYou.astro';
   window.addEventListener('funnel:other-text', ((e: CustomEvent) => {
     const { text } = e.detail;
 
+    ensureQuizStarted();
+
     const qId = getQuestionId(state.step);
     if (!qId) return;
 
@@ -292,6 +347,8 @@ import ThankYou from './ThankYou.astro';
   /* ── Event: Continue ─────────────────────── */
 
   window.addEventListener('funnel:continue', () => {
+    ensureQuizStarted();
+
     const qId = getQuestionId(state.step);
     if (!qId) return;
 
@@ -397,6 +454,7 @@ import ThankYou from './ThankYou.astro';
       state = setSubmitting(state, false);
       state = advanceTo(state, 'thank-you');
       root.dataset.step = state.step;
+      persistSubmission();
       showThankYouPanel();
     } else {
       state = setSubmitError(

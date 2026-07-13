@@ -1,7 +1,8 @@
 /**
  * VIA Orientation Funnel — Approved quiz data.
  * Behavioral rules:
- *   Q1-Q5 — single-select
+ *   Q1, Q2, Q4, Q5 — single-select
+ *   Q3 — multi-select without a selection cap
  *   Q1 and Q3 — allow "Otro/Otra" free-text
  * No scoring or category inference is performed.
  */
@@ -19,7 +20,7 @@ export interface QuizQuestion {
   text: string;
   supportText?: string;
   options: QuizOption[];
-  /** Maximum selections allowed (enforced for Q3). */
+  /** Maximum selections allowed for multi-select questions when needed. */
   maxSelections?: number;
   /** Whether selecting "Otro" shows a free-text input. */
   hasOther?: boolean;
@@ -46,11 +47,11 @@ export const QUIZ_QUESTIONS: QuizQuestion[] = [
       { id: 'relaciones', text: 'Relaciones y vínculos (pareja, familia, hijos, amistades).' },
       { id: 'trabajo', text: 'Trabajo, profesión o vocación.' },
       { id: 'bienestar-emocional', text: 'Bienestar emocional.' },
-      { id: 'desarrollo-personal', text: 'Desarrollo personal y propósito.' },
+      { id: 'desarrollo-personal', text: 'Desarrollo personal y propósito' },
       { id: 'economia', text: 'Economía y relación con el dinero.' },
       { id: 'salud', text: 'Salud y bienestar.' },
       { id: 'repeticiones', text: 'Siento que se repiten situaciones en mi vida.' },
-      { id: 'otro', text: 'Otra.' },
+      { id: 'otro', text: 'Otra' },
     ],
     hasOther: true,
     otherPlaceholder: 'Contanos qué otra área hoy necesita atención.',
@@ -69,7 +70,7 @@ export const QUIZ_QUESTIONS: QuizQuestion[] = [
   },
   {
     id: 'q3',
-    type: 'single',
+    type: 'multi',
     text: '¿Tuviste alguna experiencia previa en procesos de desarrollo personal o bienestar integral?',
     supportText: 'Te invitamos a responder con sinceridad. Cada respuesta nos acompaña a comprender mejor tu recorrido.',
     options: [

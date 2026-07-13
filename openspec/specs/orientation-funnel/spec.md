@@ -21,21 +21,14 @@ The system MUST render a split hero on cream with human-scene raster illustratio
 
 ### Requirement: Quiz Interaction Rules
 
-The system MUST render 5 quiz questions sequentially from the approved quiz data. Question rendering MUST enforce selection rules from that data: multi-select questions MUST allow multiple selections; Question 3 MUST enforce a maximum of 3 selections; Questions 1 and 3 MUST display a free-text "Otro" field when the "Otro" option is selected; single-select questions MUST deselect previous choices on new selection. No scoring or category inference SHALL be performed.
+The system MUST render 5 quiz questions sequentially from the approved quiz data. Question rendering MUST enforce selection rules from that data: Questions 1, 2, 4, and 5 are single-select; Question 3 is multi-select with no maximum; Questions 1 and 3 MUST display a free-text "Otro" field when the "Otro" option is selected; single-select questions MUST deselect previous choices on new selection. No scoring or category inference SHALL be performed.
 
-#### Scenario: Multi-select question with Otro
+#### Scenario: Single-select question with Otro
 
-- GIVEN the user is on Question 1 (multi-select)
+- GIVEN the user is on Question 1 (single-select)
 - WHEN the user selects "Otro"
 - THEN a free-text input appears below the options
 - AND the user MAY type custom text
-
-#### Scenario: Question 3 enforces max 3 selections
-
-- GIVEN the user is on Question 3 and has selected 3 options
-- WHEN the user attempts to select a 4th option
-- THEN the 4th selection SHALL NOT register
-- AND the previously selected 3 remain selected
 
 #### Scenario: Single-select deselects previous
 
@@ -43,6 +36,13 @@ The system MUST render 5 quiz questions sequentially from the approved quiz data
 - WHEN the user selects option B
 - THEN option A is deselected
 - AND only option B is selected
+
+#### Scenario: Question 3 allows multiple selections without a cap
+
+- GIVEN the user is on Question 3
+- WHEN the user selects multiple options
+- THEN all selected options remain selected
+- AND no maximum selection limit is enforced
 
 #### Scenario: Empty selection blocked
 

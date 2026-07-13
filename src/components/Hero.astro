@@ -17,14 +17,17 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
       <p class="hero-subtitle">
         Mapa Inicial VIA®
       </p>
-      <p class="hero-subtitle hero-subtitle-secondary">
-        Conocer dónde estás hoy es el primer paso para decidir hacia dónde querés ir.
-      </p>
-      <p class="hero-subtitle hero-subtitle-tertiary">
-        Respondé estas preguntas. Solo te llevará unos minutos. A partir de tus respuestas podremos ofrecerte una orientación inicial sobre el proceso de acompañamiento que mejor se adapte a tu momento actual.
-      </p>
-      <p class="hero-choice-copy">Primer encuentro de orientación</p>
-      <div class="hero-actions" aria-label="Opciones para recibir orientación">
+        <p class="hero-subtitle hero-subtitle-secondary">
+          Conocer dónde estás hoy es el primer paso para decidir hacia dónde querés ir.
+        </p>
+        <p class="hero-subtitle hero-subtitle-tertiary">
+          Respondé estas preguntas. Solo te llevará unos minutos.
+        </p>
+        <p class="hero-choice-copy">
+          A partir de tus respuestas podremos ofrecerte una orientación inicial sobre el proceso de acompañamiento que mejor se adapte a tu momento actual.
+        </p>
+        <p class="hero-whatsapp-copy">Si preferís conversar primero, escribinos por WhatsApp. Estamos para orientarte.</p>
+        <div class="hero-actions" aria-label="Opciones para recibir orientación">
         <button
           id="hero-cta"
           class="btn hero-cta focus-ring-gold"
@@ -121,8 +124,16 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
   }
 
   .hero-choice-copy {
-    max-width: 48ch;
+    max-width: 52ch;
     margin-bottom: 1.15rem;
+    font-size: 0.98rem;
+    line-height: 1.58;
+    color: var(--via-gray-600);
+  }
+
+  .hero-whatsapp-copy {
+    max-width: 52ch;
+    margin-bottom: 1rem;
     font-size: 0.98rem;
     line-height: 1.58;
     color: var(--via-night-blue);
