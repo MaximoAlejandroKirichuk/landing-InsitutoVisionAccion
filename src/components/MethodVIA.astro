@@ -14,13 +14,38 @@
     </h2>
 
     <div class="via-method-body">
-      <p>No partimos de soluciones iguales para todos.</p>
       <p>
-        Primero entendemos tu situación actual, lo que sentís y lo que querés cambiar. Después diseñamos un acompañamiento claro, personalizado y posible de sostener.
+        Cada persona tiene una historia diferente.
       </p>
-      <p class="via-method-keyline">Visión. Integración. Acción.</p>
       <p>
-        Un proceso pensado para transformar la comprensión en decisiones y las decisiones en acciones concretas.
+        Por eso no creemos en soluciones iguales para todos.
+      </p>
+      <p>
+        Primero buscamos comprender quién sos, qué estás viviendo y qué cambio deseás generar.
+      </p>
+      <p>
+        A partir de allí diseñamos un proceso personalizado, respetando tus tiempos, tus recursos y tus objetivos.
+      </p>
+
+      <div class="via-method-pillars" aria-label="Pilares del Método VIA">
+        <article class="via-method-pillar">
+          <h3>Visión</h3>
+          <p>Comprender lo que hoy está ocurriendo.</p>
+        </article>
+        <article class="via-method-pillar">
+          <h3>Integración</h3>
+          <p>Dar un nuevo sentido a la experiencia.</p>
+        </article>
+        <article class="via-method-pillar">
+          <h3>Acción</h3>
+          <p>Transformar esa comprensión en decisiones y acciones concretas.</p>
+        </article>
+      </div>
+
+      <p class="via-method-close">
+        Comprender para elegir.<br />
+        Elegir para actuar.<br />
+        Actuar para construir nuevas posibilidades.
       </p>
     </div>
   </div>
@@ -68,10 +93,36 @@
     max-width: none;
   }
 
-  .via-method-keyline {
+  .via-method-pillars {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.9rem;
+    margin: 0.45rem 0;
+    text-align: left;
+  }
+
+  .via-method-pillar {
+    padding: 0.95rem;
+    border: 1px solid rgba(183, 196, 177, 0.55);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.7);
+  }
+
+  .via-method-pillar h3 {
+    margin: 0 0 0.35rem;
     color: var(--via-night-blue);
-    font-weight: var(--fw-bold);
-    letter-spacing: 0.03em;
+    font-size: 1rem;
+  }
+
+  .via-method-pillar p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .via-method-close {
+    color: var(--via-night-blue);
+    font-weight: var(--fw-semibold);
   }
 
   @media (max-width: 640px) {
@@ -92,6 +143,10 @@
       font-size: 0.95rem;
       line-height: 1.65;
       text-align: left;
+    }
+
+    .via-method-pillars {
+      grid-template-columns: 1fr;
     }
 
     .via-method-heading {

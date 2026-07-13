@@ -66,7 +66,7 @@ describe('nextStep() / prevStep()', () => {
     expect(nextStep('quiz-4')).toBe('quiz-5');
   });
 
-  it('advances from quiz-5 to lead, lead to thank-you', () => {
+  it('advances from quiz-5 to lead and lead to thank-you', () => {
     expect(nextStep('quiz-5')).toBe('lead');
     expect(nextStep('lead')).toBe('thank-you');
   });
@@ -306,8 +306,8 @@ describe('buildSubmission()', () => {
 
   it('maps all 5 quiz answers with type and selected', () => {
     const s = stateOnStep('lead');
-    s.answers.q1 = { selected: ['personal'], otherText: '' };
-    s.answers.q2 = { selected: ['listo'], otherText: '' };
+    s.answers.q1 = { selected: ['pareja'], otherText: '' };
+    s.answers.q2 = { selected: ['accion'], otherText: '' };
     s.answers.q3 = { selected: ['terapia'], otherText: '' };
     s.answers.q4 = { selected: ['virtual'], otherText: '' };
     s.answers.q5 = { selected: ['claridad'], otherText: '' };
@@ -317,11 +317,11 @@ describe('buildSubmission()', () => {
     expect(sub.answers[0]).toEqual({
       questionId: 'q1',
       type: 'multi',
-      selected: ['personal'],
+      selected: ['pareja'],
       otherText: undefined,
     });
     expect(sub.answers[1].type).toBe('single');
-    expect(sub.answers[2].type).toBe('multi');
+    expect(sub.answers[2].type).toBe('single');
   });
 
   it('includes otherText when non-empty', () => {

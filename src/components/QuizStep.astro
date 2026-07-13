@@ -1,6 +1,14 @@
 ---
 import ProgressIndicator from './ProgressIndicator.astro';
 import { QUIZ_QUESTIONS } from '../lib/quizData';
+
+const SUPPORT_MESSAGES = [
+  'Elegí la opción que hoy resuene más con vos.',
+  'No existen respuestas correctas.',
+  'Respondé con honestidad.',
+  'Tomate unos segundos antes de elegir.',
+  'Elegí aquello que hoy sea más importante para vos.',
+];
 ---
 
 <section
@@ -10,13 +18,15 @@ import { QUIZ_QUESTIONS } from '../lib/quizData';
 >
   <div class="quiz-shell">
     <header class="quiz-intro">
-      <p class="quiz-kicker">Ejercicio de auto-escucha</p>
+      <p class="quiz-kicker">Inicio del diagnóstico</p>
       <h2 id="quiz-intro-heading" class="quiz-intro-heading">
-        ¿No sabés qué espacio necesitás hoy?
+        Mapa Inicial VIA®
       </h2>
       <p class="quiz-intro-body">
-        Tomate unos minutos para responder con honestidad a tu cuerpo y a tu sentir.
-        Te orientaremos hacia el formato de acompañamiento ideal para vos.
+        Respondé estas preguntas para comprender mejor el momento en el que te encontrás hoy.
+      </p>
+      <p class="quiz-intro-body quiz-intro-body-secondary">
+        A partir de tus respuestas podremos orientarte hacia el proceso de acompañamiento que mejor se adapte a tu realidad.
       </p>
     </header>
 
@@ -48,7 +58,7 @@ import { QUIZ_QUESTIONS } from '../lib/quizData';
                     {question.text}
                   </h3>
                   <p class="quiz-question-support">
-                    Conectá un segundo con tu cuerpo antes de elegir.
+                    {SUPPORT_MESSAGES[index % SUPPORT_MESSAGES.length]}
                   </p>
 
                   <div class="quiz-options" data-quiz-options>
@@ -317,6 +327,10 @@ import { QUIZ_QUESTIONS } from '../lib/quizData';
     color: var(--via-gray-600);
     font-size: clamp(0.98rem, 1.6vw, 1.08rem);
     line-height: 1.62;
+  }
+
+  .quiz-intro-body-secondary {
+    max-width: 40ch;
   }
 
   .quiz-card {

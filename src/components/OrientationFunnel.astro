@@ -3,11 +3,12 @@ import Hero from './Hero.astro';
 import MethodVIA from './MethodVIA.astro';
 import QuizStep from './QuizStep.astro';
 import LeadForm from './LeadForm.astro';
+import ProcessJourney from './ProcessJourney.astro';
 import ThankYou from './ThankYou.astro';
 ---
 
 <!--
-  OrientationFunnel — root wrapper for the 4-phase funnel.
+  OrientationFunnel — root wrapper for the funnel flow.
   Owns the step state machine and orchestrates client-side transitions.
   PR 1: hero only. PR 2: quiz engine with progress, validation, and step navigation.
   PR 3: lead form + thank-you + adapter wiring.
@@ -23,6 +24,7 @@ import ThankYou from './ThankYou.astro';
   <QuizStep />
   <MethodVIA />
   <LeadForm />
+  <ProcessJourney />
   <ThankYou />
 </main>
 
@@ -365,7 +367,7 @@ import ThankYou from './ThankYou.astro';
         inline: 'nearest',
       });
       focusHeading('intro');
-      announceStep('Página de inicio del test de orientación');
+      announceStep('Inicio del Mapa Inicial VIA');
     } else if (state.step.startsWith('quiz-')) {
       renderQuizStep(false, true);
     } else if (state.step === 'lead') {
