@@ -80,13 +80,49 @@ InstitutoVisionAccion/
 
 ## Environment
 
-To connect the real backend, define:
+To submit the funnel to the private Google Sheet, define:
 
 ```bash
-PUBLIC_FUNNEL_API_URL=https://your-api.example.com
+PUBLIC_FUNNEL_API_URL=/api/funnel-submissions
+GOOGLE_SHEET_ID=your-google-sheet-id
+GOOGLE_SERVICE_ACCOUNT_EMAIL=service-account@example.iam.gserviceaccount.com
+GOOGLE_PRIVATE_KEY=-----BEGIN PRIVATE KEY-----\nYOUR_PRIVATE_KEY_HERE\n-----END PRIVATE KEY-----
+GOOGLE_SHEET_RANGE=Leads!A:Z
 ```
 
-If the variable is missing, the app stays in mock mode.
+Setup steps:
+
+1. Enable the Google Sheets API in the Google Cloud project.
+2. Create a service account and download its private key.
+3. Share the target sheet with the service account email as an Editor.
+4. Put the values above in `.env` and keep the private key out of source control.
+   Use escaped `\n` line breaks for `GOOGLE_PRIVATE_KEY`.
+
+If `PUBLIC_FUNNEL_API_URL` is missing, the app stays in mock mode.
+
+### Rate limiting
+
+The API endpoint applies per-IP rate limiting (default: 5 requests per 10 min).
+In development and single-instance deployments the Node adapter's `clientAddress`
+(socket remote address) is used as the client identifier — this is the safest
+default and requires no extra configuration.
+
+When running behind a reverse proxy (nginx, Caddy, Traefik, etc.) that terminates
+TLS and forwards requests, the socket address becomes the proxy's IP. In that
+scenario set the environment variable:
+
+```
+TRUST_PROXY_HEADERS=true
+```
+
+This tells the rate limiter to read `x-forwarded-for` / `x-real-ip` **only**
+when you are certain your proxy strips or overwrites those headers. Without this
+opt-in, forwarded headers are ignored to prevent trivial IP spoofing.
+
+> [!WARNING]
+> Do NOT set `TRUST_PROXY_HEADERS=true` unless a trusted reverse proxy is
+> guaranteed to be in front of the Node process. Without a proxy that sanitises
+> these headers, any client can inject arbitrary IPs.
 
 ## Testing
 
