@@ -209,20 +209,20 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
             </div>
           </article>
         </div>
-      </div>
 
-      <nav class="quiz-nav">
-        <button id="quiz-btn-back" class="btn quiz-btn-back focus-ring-light" type="button" disabled>
-          Atrás
-        </button>
-        <button
-          id="quiz-btn-continue"
-          class="btn quiz-btn-continue focus-ring-gold"
-          type="button"
-        >
-          Siguiente
-        </button>
-      </nav>
+        <nav class="quiz-nav">
+          <button id="quiz-btn-back" class="btn quiz-btn-back focus-ring-light" type="button" disabled>
+            Atrás
+          </button>
+          <button
+            id="quiz-btn-continue"
+            class="btn quiz-btn-continue focus-ring-gold"
+            type="button"
+          >
+            Siguiente
+          </button>
+        </nav>
+      </div>
     </div>
   </div>
 </section>
@@ -509,9 +509,9 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
 <style>
   .quiz-step {
     position: relative;
-    width: min(100%, 980px);
-    margin: clamp(2rem, 5vw, 3.5rem) auto 0;
-    padding: 0 clamp(1rem, 3vw, 1.5rem) clamp(1.5rem, 3vw, 2rem);
+    width: min(100%, 1080px);
+    margin: clamp(1.5rem, 4vw, 2.75rem) auto 0;
+    padding: 0 clamp(1rem, 2.4vw, 1.5rem) clamp(1.25rem, 2.5vw, 1.75rem);
     border: 0;
     background: transparent;
     box-shadow: none;
@@ -520,16 +520,18 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
 
   .quiz-shell {
     display: grid;
-    gap: clamp(1.4rem, 3vw, 2rem);
+    justify-items: center;
+    gap: clamp(0.9rem, 1.8vw, 1.2rem);
   }
 
   .quiz-intro {
     display: grid;
-    justify-items: center;
-    gap: 0.85rem;
-    max-width: 680px;
-    margin: 0 auto;
-    text-align: center;
+    justify-items: start;
+    gap: 0.55rem;
+    width: 100%;
+    max-width: 760px;
+    margin: 0;
+    text-align: left;
   }
 
   .quiz-kicker {
@@ -542,39 +544,39 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
 
   .quiz-intro-heading {
     margin: 0;
-    max-width: 13ch;
+    max-width: 18ch;
     color: var(--via-night-blue);
-    font-size: clamp(1.85rem, 4.3vw, 3rem);
-    line-height: 1.02;
-    letter-spacing: -0.03em;
+    font-size: clamp(1.6rem, 3vw, 2.45rem);
+    line-height: 1.06;
+    letter-spacing: -0.028em;
   }
 
   .quiz-intro-body {
     margin: 0;
-    max-width: 33ch;
+    max-width: 50ch;
     color: var(--via-gray-600);
-    font-size: clamp(0.98rem, 1.6vw, 1.08rem);
-    line-height: 1.62;
+    font-size: clamp(0.95rem, 1.4vw, 1.03rem);
+    line-height: 1.58;
   }
 
   .quiz-intro-body-secondary {
-    max-width: 40ch;
+    max-width: 58ch;
   }
 
   .quiz-intro-body-tertiary {
-    max-width: 38ch;
+    max-width: 54ch;
     color: var(--via-night-blue);
     font-weight: var(--fw-semibold);
   }
 
   .quiz-card {
     display: grid;
-    gap: clamp(1.15rem, 2.4vw, 1.6rem);
+    gap: clamp(0.85rem, 1.8vw, 1.15rem);
     width: 100%;
-    max-width: 920px;
-    margin: 0 auto;
-    padding: clamp(1rem, 2.2vw, 1.55rem);
-    border-radius: 32px;
+    max-width: 980px;
+    margin: 0;
+    padding: clamp(1rem, 2vw, 1.35rem);
+    border-radius: 30px;
     border: 1px solid rgba(227, 219, 208, 0.95);
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(251, 247, 242, 0.96) 100%);
     box-shadow:
@@ -583,15 +585,15 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
   }
 
   .quiz-card-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.8rem;
   }
 
   .quiz-card-eyebrow {
     margin: 0;
-    font-size: 0.82rem;
+    font-size: 0.76rem;
     font-weight: var(--fw-bold);
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -600,7 +602,7 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
 
   .quiz-progress-wrap {
     width: 100%;
-    max-width: 210px;
+    max-width: 290px;
   }
 
   .quiz-progress-wrap :global(.progress) {
@@ -686,9 +688,9 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
   .quiz-question-copy {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     width: 100%;
-    padding: clamp(0.15rem, 0.8vw, 0.35rem) 0;
+    padding: 0;
   }
 
   .quiz-question-copy-lead {
@@ -698,30 +700,42 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
 
   .quiz-question {
     font-family: var(--ff-heading);
-    font-size: clamp(1.55rem, 2.7vw, 2.3rem);
-    text-align: center;
-    margin: 0 0 0.55rem;
-    max-width: 20ch;
+    font-size: clamp(1.2rem, 1.85vw, 1.7rem);
+    text-align: left;
+    margin: 0 0 0.45rem;
+    max-width: 24ch;
     outline: none;
     color: var(--via-night-blue);
-    line-height: 1.14;
+    line-height: 1.16;
   }
 
   .quiz-question-support {
-    margin: 0 0 1.1rem;
-    font-size: 0.92rem;
+    margin: 0 0 1rem;
+    font-size: 0.95rem;
     color: var(--via-rust, #9a5a39);
-    max-width: 58ch;
+    max-width: 56ch;
     line-height: 1.6;
-    text-align: center;
+    text-align: left;
   }
 
   .quiz-options {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: 0.75rem;
+    gap: 0.7rem;
     width: 100%;
-    margin-bottom: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+
+  @media (min-width: 860px) {
+    .quiz-options {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.8rem;
+    }
+
+    .quiz-option {
+      min-height: 68px;
+      align-items: flex-start;
+    }
   }
 
   .quiz-option {
@@ -730,15 +744,15 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
     justify-content: flex-start;
     width: 100%;
     gap: 1rem;
-    min-height: 68px;
-    padding: 0.95rem 1rem;
+    min-height: 60px;
+    padding: 0.88rem 0.98rem;
     font-family: var(--ff-body);
-    font-size: 0.98rem;
+    font-size: 0.96rem;
     text-align: left;
     color: #7b4b44;
     background: rgba(255, 255, 255, 0.68);
     border: 1px solid rgba(231, 222, 213, 0.96);
-    border-radius: 22px;
+    border-radius: 19px;
     box-shadow:
       0 8px 20px rgba(26, 39, 68, 0.03),
       inset 0 1px 0 rgba(255, 255, 255, 0.78);
@@ -803,7 +817,7 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
 
   .quiz-other {
     width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: 0.85rem;
   }
 
   .quiz-other-label {
@@ -854,6 +868,9 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
     justify-content: space-between;
     gap: 0.65rem;
     width: 100%;
+    margin-top: 0;
+    padding-top: 0.25rem;
+    border-top: 1px solid rgba(227, 219, 208, 0.72);
   }
 
   .quiz-btn-back {
@@ -871,7 +888,7 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
   }
 
   .quiz-btn-continue {
-    min-width: 168px;
+    min-width: 180px;
     background: rgba(240, 229, 229, 0.95);
     color: rgba(117, 91, 83, 0.88);
     border-color: rgba(234, 223, 223, 0.98);
@@ -1036,13 +1053,18 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
 
   @media (max-width: 640px) {
     .quiz-step {
-      margin-top: 2rem;
+      margin-top: 1.75rem;
       padding-inline: 0.85rem;
+    }
+
+    .quiz-shell {
+      gap: 0.95rem;
     }
 
     .quiz-intro {
       justify-items: start;
       text-align: left;
+      max-width: 100%;
     }
 
     .quiz-intro-heading,
@@ -1064,8 +1086,10 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
     }
 
     .quiz-card-top {
+      display: flex;
       flex-direction: column;
       align-items: flex-start;
+      gap: 0.65rem;
     }
 
     .quiz-progress-wrap {
@@ -1079,14 +1103,26 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
       justify-content: flex-start;
     }
 
+    .quiz-question {
+      font-size: clamp(1.18rem, 5.4vw, 1.45rem);
+      max-width: 100%;
+    }
+
+    .quiz-options {
+      grid-template-columns: 1fr;
+    }
+
     .quiz-option {
-      min-height: 76px;
-      padding: 1rem;
+      min-height: 70px;
+      padding: 0.92rem 1rem;
       font-size: 0.98rem;
     }
 
     .quiz-nav {
-      margin-top: 0.15rem;
+      flex-direction: column-reverse;
+      align-items: stretch;
+      margin-top: 0.1rem;
+      padding-top: 0.35rem;
     }
 
     .quiz-btn-continue {
