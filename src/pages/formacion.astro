@@ -1,0 +1,96 @@
+---
+import Emblem from '../components/Emblem.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
+
+const message = 'Hola, quisiera conocer el arancel y los pasos de inscripción para la formación en Bio Coaching Sistémico Integral.';
+const whatsapp = `https://wa.me/5491138105350?text=${encodeURIComponent(message)}`;
+const topics = [
+  ['Coaching sistémico e integral', 'Exploración de la escucha, las preguntas y los vínculos.'],
+  ['Constelaciones con Tarot', 'Uso simbólico de las cartas para reflexionar sobre vínculos e historias personales.'],
+  ['Biodescodificación', 'Presentación del enfoque y actividades de reflexión sobre creencias e historia familiar.'],
+  ['Hipnosis y terapias de vidas pasadas', 'Introducción a los enfoques que forman parte del recorrido.'],
+  ['Programación neurolingüística (PNL)', 'Exploración del lenguaje, las creencias y los patrones de comunicación.'],
+];
+const facts = [
+  ['Duración', '12 meses'],
+  ['Modalidad', 'En vivo por Google Meet'],
+  ['Días y horario', 'Lunes y miércoles, 20 h (Argentina)'],
+  ['Material', 'Material de estudio incluido'],
+];
+const questions = [
+  ['¿Cuándo empieza y cuánto cuesta?', 'Consultá por WhatsApp la próxima fecha de inicio, el arancel y las opciones de pago.'],
+  ['¿Cómo me inscribo?', 'Escribí al instituto por WhatsApp. Ahí podés consultar la disponibilidad y pedir los pasos para inscribirte.'],
+  ['¿Quién dicta las clases?', 'Romina está vinculada al material de Biodescodificación. El instituto puede confirmarte quién dicta cada parte de la próxima cursada.'],
+  ['¿Qué certificación se entrega?', 'El material de difusión menciona una certificación integral. Consultá al instituto por el nombre del certificado, quién lo emite y qué requisitos tiene.'],
+  ['¿La formación reemplaza la atención profesional?', 'La propuesta es educativa y de desarrollo personal. La formación no reemplaza la atención médica ni psicológica y no habilita por sí misma para ejercer una profesión de salud.'],
+];
+---
+<SiteLayout
+  title="Bio Coaching Sistémico Integral | Instituto Visión en Acción"
+  description="Conocé qué incluye la formación holística de 12 meses del Instituto Visión en Acción y consultá cómo inscribirte."
+  formation
+>
+  <section class="site-hero hero-formation">
+    <div class="wrap site-hero-grid">
+      <div class="hero-copy">
+        <h1>Bio Coaching<br />Sistémico Integral</h1>
+        <p>Una formación holística para explorar tu historia y conocer cinco enfoques de desarrollo personal y acompañamiento.</p>
+        <a class="button" href={whatsapp}>Consultar por WhatsApp</a>
+        <p class="cta-note">Pedí el arancel y los pasos de inscripción.</p>
+      </div>
+      <Emblem formation />
+    </div>
+  </section>
+  <div class="facts" id="cursada">
+    <dl class="wrap facts-grid">
+      {facts.map(([label, value]) => (
+        <div><dt>{label}</dt><dd>{value}</dd></div>
+      ))}
+    </dl>
+  </div>
+  <section class="wrap section split" id="para-quien">
+    <h2>¿Para quién es esta formación?</h2>
+    <div class="audience">
+      <div>
+        <h3>Si querés explorar tu propia historia</h3>
+        <p>Vas a encontrar actividades para reflexionar sobre tus vínculos, creencias e historias familiares.</p>
+      </div>
+      <div>
+        <h3>Si ya acompañás a otras personas</h3>
+        <p>Podés conocer enfoques que complementen tu práctica, dentro de los límites de tu formación profesional.</p>
+      </div>
+    </div>
+  </section>
+  <section class="band" id="programa">
+    <div class="wrap section split">
+      <div>
+        <h2>Qué vas a explorar</h2>
+        <p>Estos son los enfoques de la formación. Pedí al instituto el temario de la próxima cursada si querés conocer el detalle de cada bloque.</p>
+        <a class="text-link" href={whatsapp}>Consultar por WhatsApp</a>
+      </div>
+      <ul class="topic-list">
+        {topics.map(([title, description]) => (
+          <li><h3>{title}</h3><p>{description}</p></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+  <section class="wrap section split" id="preguntas">
+    <h2>Preguntas frecuentes</h2>
+    <div class="faq">
+      {questions.map(([question, answer]) => (
+        <details>
+          <summary>{question}</summary>
+          <p>{answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+  <section class="band band-dark">
+    <div class="wrap section invitation">
+      <h2>Consultá por la próxima cursada</h2>
+      <p>Pedí el arancel, el temario completo y los pasos de inscripción antes de decidir.</p>
+      <a class="button" href={whatsapp}>Consultar por WhatsApp</a>
+    </div>
+  </section>
+</SiteLayout>

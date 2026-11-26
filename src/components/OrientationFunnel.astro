@@ -13,7 +13,7 @@ import ThankYou from './ThankYou.astro';
   PR 3: lead form + thank-you + adapter wiring.
 -->
 
-<main id="funnel-root" data-step="hero">
+<div id="funnel-root" class="via-funnel" data-step="hero">
   <div id="funnel-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
   <div id="funnel-step-intro" class="funnel-panel funnel-panel-intro" data-transition-state="active">
@@ -24,7 +24,7 @@ import ThankYou from './ThankYou.astro';
   <ProcessJourney />
   <QuizStep />
   <ThankYou />
-</main>
+</div>
 
 <script>
   import {

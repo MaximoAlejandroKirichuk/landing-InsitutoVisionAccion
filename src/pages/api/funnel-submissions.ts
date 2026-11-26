@@ -48,9 +48,10 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   const submissionId = randomUUID();
 
   /* ── Persist ──────────────────────────── */
+  // Build-time values win; on Cloudflare Workers the secrets arrive at runtime via process.env (nodejs_compat).
   const env = {
-    GOOGLE_APPS_SCRIPT_URL: import.meta.env.GOOGLE_APPS_SCRIPT_URL,
-    GOOGLE_APPS_SCRIPT_SECRET: import.meta.env.GOOGLE_APPS_SCRIPT_SECRET,
+    GOOGLE_APPS_SCRIPT_URL: import.meta.env.GOOGLE_APPS_SCRIPT_URL ?? process.env.GOOGLE_APPS_SCRIPT_URL,
+    GOOGLE_APPS_SCRIPT_SECRET: import.meta.env.GOOGLE_APPS_SCRIPT_SECRET ?? process.env.GOOGLE_APPS_SCRIPT_SECRET,
   };
 
   const persistResult = await postSubmissionToAppsScript(

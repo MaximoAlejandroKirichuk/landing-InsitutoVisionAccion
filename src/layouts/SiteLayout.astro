@@ -1,0 +1,52 @@
+---
+import '../styles/site.css';
+
+interface Props {
+  title: string;
+  description: string;
+  formation?: boolean;
+}
+const { title, description, formation = false } = Astro.props;
+---
+<!doctype html>
+<html lang="es-AR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" href="/loto.svg" type="image/svg+xml" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip" href="#contenido">Ir al contenido</a>
+    <header class="site-header">
+      <div class="wrap nav-row">
+        <a class="brand" href="/" aria-label="Instituto Visión en Acción, inicio">
+          <img src="/loto.svg" alt="" width="39" height="31" />
+          <span><small>Instituto</small>Visión en Acción</span>
+        </a>
+        <nav aria-label={formation ? 'En esta página' : 'Principal'}>
+          {formation ? (
+            <>
+              <a href="#programa">Programa</a>
+              <a href="#preguntas">Preguntas</a>
+            </>
+          ) : (
+            <>
+              <a href="#instituto">El instituto</a>
+              <a href="#orientacion">Orientación</a>
+              <a href="/formacion/">Formación</a>
+            </>
+          )}
+        </nav>
+      </div>
+    </header>
+    <main id="contenido"><slot /></main>
+    <footer class="site-footer">
+      <div class="wrap footer-row">
+        <span>Instituto Visión en Acción</span>
+        {formation ? <a href="/">Volver al instituto</a> : <a href="/formacion/">Explorar la formación</a>}
+      </div>
+    </footer>
+  </body>
+</html>

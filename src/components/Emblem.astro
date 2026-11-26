@@ -1,0 +1,16 @@
+---
+interface Props { formation?: boolean }
+const { formation = false } = Astro.props;
+---
+<div class="emblem" aria-hidden="true">
+  <span class="orbit orbit-outer"></span>
+  <span class="orbit orbit-middle"></span>
+  <span class="orbit orbit-inner"></span>
+  <span class="axis axis-x"></span>
+  <span class="axis axis-y"></span>
+  <img src="/loto.svg" alt="" width="96" height="75" />
+  <span class="point point-top"></span>
+  <span class="point point-left"></span>
+  <span class="point point-right"></span>
+  <span class="emblem-caption">{formation ? 'Aprender · Integrar · Acompañar' : 'Ser para hacer, para tener'}</span>
+</div>

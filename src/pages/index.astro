@@ -1,8 +1,45 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Emblem from '../components/Emblem.astro';
 import OrientationFunnel from '../components/OrientationFunnel.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import '../styles/via-funnel.css';
 ---
-
-<Layout>
-  <OrientationFunnel />
-</Layout>
+<SiteLayout
+  title="Instituto Visión en Acción"
+  description="Conocé el Instituto Visión en Acción y su formación en Bio Coaching Sistémico Integral."
+>
+  <section class="site-hero">
+    <div class="wrap site-hero-grid">
+      <div class="hero-copy">
+        <h1>Instituto<br />Visión en Acción</h1>
+        <p>Un espacio de formación para explorar tu historia personal y conocer distintas maneras de acompañar a otras personas.</p>
+        <a class="button" href="/formacion/">Conocer la formación</a>
+      </div>
+      <Emblem />
+    </div>
+  </section>
+  <section class="wrap section split" id="instituto">
+    <h2>Una mirada que reúne distintos enfoques</h2>
+    <div>
+      <p>La propuesta del instituto reúne coaching sistémico, constelaciones con tarot, biodescodificación, hipnosis y programación neurolingüística en un mismo recorrido.</p>
+      <p>Está pensada tanto para quienes buscan un espacio de autoconocimiento como para quienes ya facilitan encuentros de desarrollo personal y quieren conocer otros enfoques.</p>
+    </div>
+  </section>
+  <section class="band">
+    <div class="wrap section split">
+      <h2>Quién está detrás</h2>
+      <div>
+        <p>Romina está vinculada al material de Biodescodificación de la formación. Podés contactar al instituto para conocer al equipo y saber quién acompaña cada parte del recorrido.</p>
+        <a class="text-link" href="/formacion/#preguntas">Ver preguntas sobre la formación</a>
+      </div>
+    </div>
+  </section>
+  <section id="orientacion" aria-label="Primer encuentro de orientación">
+    <OrientationFunnel />
+  </section>
+  <section class="wrap section invitation">
+    <h2>Explorá la formación en Bio Coaching Sistémico Integral</h2>
+    <p>Conocé los contenidos, cómo son las clases y cómo consultar por la próxima cursada.</p>
+    <a class="button button-dark" href="/formacion/">Conocer la formación</a>
+  </section>
+</SiteLayout>
