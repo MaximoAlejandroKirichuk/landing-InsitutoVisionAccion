@@ -6,37 +6,43 @@
    ═══════════════════════════════════════════════ */
 
 /* ── Fonts ──────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700;800&display=swap');
+@font-face {
+  font-family: Fraunces;
+  src: url("/fonts/fraunces.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
 
 /* ── Brand Tokens ───────────────────────────── */
 :where(.via-funnel) {
   /* ── Palette ───────────────────────────────── */
-  --via-cream: #FCF9F2;
-  --via-cream-deep: #F5F0E5;
-  --via-night-blue: #1A2744;
-  --via-night-blue-light: #253A5E;
-  --via-gold: #FFD700;
-  --via-gold-deep: #E6C200;
-  --via-sage: #B7C4B1;
-  --via-sage-dark: #8FA38A;
-  --via-sage-light: #D5DDD1;
+  --via-cream: #fbf7f1;
+  --via-cream-deep: #eee4f1;
+  --via-night-blue: #321a46;
+  --via-night-blue-light: #4d2c64;
+  --via-gold: #ecc984;
+  --via-gold-deep: #d9b366;
+  --via-sage: #d9cbdc;
+  --via-sage-dark: #a58fae;
+  --via-sage-light: #f3ecf5;
   --via-white: #ffffff;
   --via-black: #0F0F0F;
 
   /* ── Neutrals (cream-adapted warm grays) ───── */
-  --via-gray-50: #faf8f3;
-  --via-gray-100: #f5f2eb;
-  --via-gray-200: #ebe5d8;
-  --via-gray-300: #d9d1c0;
-  --via-gray-400: #b8ae9a;
-  --via-gray-500: #8c8270;
-  --via-gray-600: #635b4d;
-  --via-gray-700: #4a4439;
-  --via-gray-800: #332e26;
-  --via-gray-900: #1c1915;
+  --via-gray-50: #faf7f9;
+  --via-gray-100: #f4eef5;
+  --via-gray-200: #e6dbe8;
+  --via-gray-300: #d9cbdc;
+  --via-gray-400: #b5a3ba;
+  --via-gray-500: #85728c;
+  --via-gray-600: #5e4d66;
+  --via-gray-700: #4f3e57;
+  --via-gray-800: #3a2a44;
+  --via-gray-900: #24152f;
 
-  --ff-heading: 'Playfair Display', Georgia, serif;
-  --ff-body: 'Montserrat', system-ui, -apple-system, sans-serif;
+  --ff-heading: Fraunces, Georgia, serif;
+  --ff-body: system-ui, -apple-system, sans-serif;
 
   --fw-normal: 400;
   --fw-semibold: 600;
@@ -51,7 +57,7 @@
 
   /* ── Scene / Image Tokens ──────────────────── */
   --via-scene-radius: var(--radius-lg);
-  --via-scene-shadow: 0 4px 24px rgba(26, 39, 68, 0.08);
+  --via-scene-shadow: 0 4px 24px rgba(50, 26, 70, 0.08);
 }
 
 /* ── Surface Utilities ──────────────────────── */
@@ -81,13 +87,13 @@
 
 .gradient-hero {
   background:
-    radial-gradient(ellipse 80% 60% at 75% 50%, rgba(255, 215, 0, 0.06) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 80% 40%, rgba(26, 39, 68, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 60% at 75% 50%, rgba(236, 201, 132, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 40%, rgba(50, 26, 70, 0.03) 0%, transparent 50%),
     linear-gradient(180deg, var(--via-cream) 0%, var(--via-cream-deep) 100%);
 }
 
 .gradient-card-gold {
-  background: linear-gradient(135deg, var(--via-white) 0%, rgba(255, 215, 0, 0.05) 100%);
+  background: linear-gradient(135deg, var(--via-white) 0%, rgba(236, 201, 132, 0.05) 100%);
 }
 
 /* ── Frame / Panel Utilities ────────────────── */
@@ -95,14 +101,14 @@
   background: var(--via-white);
   border: 1px solid var(--via-gray-200);
   border-radius: var(--radius-lg);
-  box-shadow: 0 4px 24px rgba(26, 39, 68, 0.06);
+  box-shadow: 0 4px 24px rgba(50, 26, 70, 0.06);
 }
 
 .frame-sage {
   background: var(--via-white);
   border: 1px solid var(--via-sage);
   border-radius: var(--radius-lg);
-  box-shadow: 0 4px 24px rgba(26, 39, 68, 0.06);
+  box-shadow: 0 4px 24px rgba(50, 26, 70, 0.06);
 }
 
 /* ── Gold Accent Utilities ──────────────────── */
