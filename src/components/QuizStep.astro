@@ -18,14 +18,11 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
         Mapa Inicial VIA®
       </h2>
       <p class="quiz-intro-body">
-        Conocer dónde estás hoy es el primer paso para decidir hacia dónde querés ir.
+        Unas pocas preguntas, unos minutos. Con tus respuestas te damos una orientación inicial a tu medida.
       </p>
-      <p class="quiz-intro-body quiz-intro-body-secondary">
-        Respondé estas preguntas. Solo te llevará unos minutos. A partir de tus respuestas podremos ofrecerte una orientación inicial sobre el proceso de acompañamiento que mejor se adapte a tu momento actual.
-      </p>
-      <p class="quiz-intro-body quiz-intro-body-tertiary">
-        Si preferís conversar primero, escribinos por WhatsApp. Estamos para orientarte.
-      </p>
+      <a class="quiz-intro-whatsapp" href={whatsappUrl} target="_blank" rel="noopener">
+        ¿Preferís conversar primero? Escribinos por WhatsApp
+      </a>
     </header>
 
     <div class="quiz-card">
@@ -520,7 +517,7 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
 
   .quiz-shell {
     display: grid;
-    justify-items: center;
+    justify-items: stretch;
     gap: clamp(0.9rem, 1.8vw, 1.2rem);
   }
 
@@ -529,9 +526,15 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
     justify-items: start;
     gap: 0.55rem;
     width: 100%;
-    max-width: 760px;
     margin: 0;
     text-align: left;
+  }
+
+  .quiz-intro-whatsapp {
+    color: var(--via-night-blue);
+    font-weight: var(--fw-semibold);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
   }
 
   .quiz-kicker {
@@ -573,7 +576,6 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
     display: grid;
     gap: clamp(0.85rem, 1.8vw, 1.15rem);
     width: 100%;
-    max-width: 980px;
     margin: 0;
     padding: clamp(1rem, 2vw, 1.35rem);
     border-radius: 30px;

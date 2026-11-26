@@ -124,7 +124,8 @@ details p { padding-inline-end: 1.8rem; }
 }
 
 /* ── Topic cards and modals ─────────────────── */
-.topic-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 13rem), 1fr)); gap: .9rem; }
+.topic-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12.5rem), 1fr)); gap: .9rem; }
+.topic-grid > li { display: flex; }
 .topic-card {
   display: flex; flex-direction: column; justify-content: space-between; gap: 1.4rem;
   width: 100%; min-height: 9.5rem; padding: 1.3rem 1.25rem 1.15rem; text-align: start;
@@ -134,7 +135,7 @@ details p { padding-inline-end: 1.8rem; }
 }
 .topic-card:hover { translate: 0 -2px; box-shadow: var(--shadow); border-color: #c9b6ce; }
 .topic-card:active { translate: 0; }
-.topic-card-title { font: 550 1.3rem/1.2 var(--display); letter-spacing: -.01em; }
+.topic-card-title { font: 550 1.2rem/1.2 var(--display); letter-spacing: -.01em; overflow-wrap: break-word; }
 .topic-card-more { display: inline-flex; align-items: center; gap: .4rem; font-size: .9rem; font-weight: 600; color: var(--plum); }
 .topic-card-more::after { content: ""; width: .45rem; height: .45rem; border: solid currentColor; border-width: 2px 2px 0 0; rotate: 45deg; transition: translate .2s var(--ease-out); }
 .topic-card:hover .topic-card-more::after { translate: 3px 0; }
