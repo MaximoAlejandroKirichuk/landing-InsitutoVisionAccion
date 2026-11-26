@@ -1,6 +1,40 @@
 ---
 // ProcessJourney — always-visible editorial section that explains the process after the funnel area.
-// Keeps the narrative stable on the page instead of treating it like a stateful funnel step.
+// Split into small visual blocks (icon cards + chips) so the reader scans instead of reading lists.
+
+const clusters = [
+  {
+    id: 'bonds',
+    title: 'Vínculos',
+    summary: 'Cómo te relacionás con otros y con vos.',
+    topics: ['Pareja', 'Familia', 'Autoestima', 'Pertenencia'],
+  },
+  {
+    id: 'patterns',
+    title: 'Patrones internos',
+    summary: 'Lo que se repite y lo que sentís.',
+    topics: ['Patrones repetitivos', 'Miedos', 'Emociones', 'Identidad'],
+  },
+  {
+    id: 'direction',
+    title: 'Dirección',
+    summary: 'Hacia dónde querés ir.',
+    topics: ['Propósito', 'Dinero', 'Vocación', 'Decisiones'],
+  },
+];
+
+const featuredTools = ['Coaching', 'PNL', 'Constelaciones', 'Biodescodificación', 'Mindfulness'];
+const moreTools = [
+  'Memoria Celular',
+  'Hipnosis',
+  'Reiki',
+  'Tameana',
+  'Meditación',
+  'Visualizaciones guiadas',
+  'Gestión emocional',
+  'Reencuadre de creencias',
+  'Técnicas de autoconocimiento',
+];
 ---
 
 <section
@@ -10,101 +44,67 @@
   <div class="process-shell">
     <header class="process-header">
       <p class="process-kicker">Método VIA®</p>
-      <div class="process-header-grid">
-        <div class="process-intro">
-          <h2 id="process-journey-heading" class="process-heading" tabindex="-1">
-            Camino de Evolución Consciente
-          </h2>
-          <p class="process-subheading">
-            Comprender lo vivido para elegir con más claridad lo que querés construir ahora.
-          </p>
-        </div>
-
-        <p class="process-note" aria-label="Enfoque del proceso">
-          No buscamos cambiar quién sos; ampliamos la manera en que comprendés tu experiencia para tomar decisiones con más consciencia y libertad.
-        </p>
-      </div>
+      <h2 id="process-journey-heading" class="process-heading" tabindex="-1">
+        Camino de Evolución Consciente
+      </h2>
+      <p class="process-subheading">
+        No buscamos cambiar quién sos: ampliamos cómo comprendés lo vivido para elegir con más claridad.
+      </p>
     </header>
 
-    <div class="process-body">
-      <section class="process-section process-section-topics" aria-labelledby="process-topics-heading">
-        <div class="process-section-header">
-          <h3 id="process-topics-heading">Temas que suelen aparecer</h3>
-          <p>
-            Cada recorrido es singular, pero estos son algunos de los focos que suelen necesitar más comprensión, orden y dirección.
-          </p>
-        </div>
+    <div class="process-topics" aria-label="Temas que suelen aparecer">
+      {clusters.map((cluster) => (
+        <article class="process-card" aria-labelledby={`process-${cluster.id}`}>
+          <span class="process-icon" aria-hidden="true">
+            {cluster.id === 'bonds' && (
+              <svg viewBox="0 0 24 24"><circle cx="9" cy="12" r="5.5" /><circle cx="15" cy="12" r="5.5" /></svg>
+            )}
+            {cluster.id === 'patterns' && (
+              <svg viewBox="0 0 24 24"><path d="M12 12c0-1.4 1.1-2.5 2.5-2.5S17 10.6 17 12c0 2.8-2.2 5-5 5s-5-2.2-5-5c0-3.9 3.1-7 7-7 3.9 0 7 3.1 7 7" /></svg>
+            )}
+            {cluster.id === 'direction' && (
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" /><path d="m15.5 8.5-2.2 4.8-4.8 2.2 2.2-4.8z" /></svg>
+            )}
+          </span>
+          <h3 id={`process-${cluster.id}`}>{cluster.title}</h3>
+          <p>{cluster.summary}</p>
+          <ul class="process-chips">
+            {cluster.topics.map((topic) => <li>{topic}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
 
-        <div class="process-topic-clusters" aria-label="Temas del proceso">
-          <article class="process-cluster">
-            <h4>Vínculos</h4>
-            <ul>
-              <li>Relaciones de pareja</li>
-              <li>Vínculos familiares</li>
-              <li>Autoestima</li>
-              <li>Pertenencia y vínculos</li>
-            </ul>
-          </article>
-
-          <article class="process-cluster">
-            <h4>Patrones y recursos internos</h4>
-            <ul>
-              <li>Patrones repetitivos</li>
-              <li>Miedos e inseguridades</li>
-              <li>Gestión emocional</li>
-              <li>Identidad</li>
-            </ul>
-          </article>
-
-          <article class="process-cluster">
-            <h4>Dirección</h4>
-            <ul>
-              <li>Propósito de vida</li>
-              <li>Dinero y prosperidad</li>
-              <li>Trabajo y vocación</li>
-              <li>Toma de decisiones</li>
-            </ul>
-          </article>
-        </div>
+    <div class="process-pair">
+      <section class="process-goal" aria-labelledby="process-goal-heading">
+        <span class="process-icon process-icon-light" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" /><circle cx="12" cy="12" r="4.5" /><circle cx="12" cy="12" r="0.8" /></svg>
+        </span>
+        <h3 id="process-goal-heading">El objetivo</h3>
+        <p>Transformar lo que hoy vivís en decisiones con más coherencia y libertad.</p>
       </section>
 
-      <aside class="process-rail" aria-label="Recursos y objetivo del proceso">
-        <section class="process-rail-block process-section-outcome" aria-labelledby="process-outcome-heading">
-          <h3 id="process-outcome-heading">Objetivo del proceso</h3>
-          <p>
-            Favorecer una comprensión más profunda de vos, identificar recursos internos y transformar lo que hoy vivís en decisiones con más coherencia y libertad.
-          </p>
-        </section>
-
-        <section class="process-rail-block process-section-tools" aria-labelledby="process-tools-heading">
-          <h3 id="process-tools-heading">Recursos que pueden integrarse</h3>
-          <p>
-            Según cada caso, el profesional puede combinar herramientas de acompañamiento para sostener un proceso personalizado.
-          </p>
-
-          <ul class="process-tools-list">
-            <li>Coaching</li>
-            <li>Programación Neurolingüística</li>
-            <li>Constelaciones Familiares</li>
-            <li>Biodescodificación</li>
-            <li>Memoria Celular</li>
-            <li>Hipnosis</li>
-            <li>Reiki</li>
-            <li>Tameana</li>
-            <li>Mindfulness</li>
-            <li>Meditación</li>
-            <li>Visualizaciones guiadas</li>
-            <li>Gestión emocional</li>
-            <li>Reencuadre de creencias</li>
-            <li>Técnicas de autoconocimiento</li>
+      <section class="process-tools" aria-labelledby="process-tools-heading">
+        <span class="process-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 20c-4-2.5-6-5.5-6-9a6 6 0 0 1 6-6 6 6 0 0 1 6 6c0 3.5-2 6.5-6 9Z" /><path d="M12 9v11" /></svg>
+        </span>
+        <h3 id="process-tools-heading">Recursos que se combinan</h3>
+        <p>Cada proceso se arma a tu medida con herramientas como:</p>
+        <ul class="process-chips">
+          {featuredTools.map((tool) => <li>{tool}</li>)}
+        </ul>
+        <details class="process-more">
+          <summary>Ver los {featuredTools.length + moreTools.length} recursos</summary>
+          <ul class="process-chips">
+            {moreTools.map((tool) => <li>{tool}</li>)}
           </ul>
-        </section>
-
-        <p class="process-legal">
-          Aviso profesional: esta es una propuesta orientada al desarrollo personal. No constituye atención médica, psicológica ni psiquiátrica y no reemplaza tratamientos de salud.
-        </p>
-      </aside>
+        </details>
+      </section>
     </div>
+
+    <p class="process-legal">
+      Propuesta de desarrollo personal. No es atención médica, psicológica ni psiquiátrica y no reemplaza tratamientos de salud.
+    </p>
   </div>
 </section>
 
@@ -118,25 +118,10 @@
     max-width: 1180px;
     margin: 0 auto;
     display: grid;
-    gap: 1.75rem;
+    gap: clamp(1.5rem, 3vw, 2.25rem);
   }
 
   .process-header {
-    display: grid;
-    gap: 1rem;
-    padding-bottom: 1.25rem;
-    border-bottom: 1px solid rgba(211, 202, 189, 0.7);
-  }
-
-  .process-header-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 44rem) minmax(16rem, 22rem);
-    gap: clamp(1.25rem, 3vw, 2.25rem);
-    justify-content: space-between;
-    align-items: start;
-  }
-
-  .process-intro {
     display: grid;
     gap: 0.85rem;
     max-width: 44rem;
@@ -152,7 +137,6 @@
 
   .process-heading {
     margin: 0;
-    max-width: 12ch;
     font-size: clamp(2.25rem, 4.4vw, 4rem);
     line-height: 1.02;
     letter-spacing: -0.04em;
@@ -163,197 +147,149 @@
 
   .process-subheading {
     margin: 0;
-    max-width: 34ch;
+    max-width: 40ch;
     font-family: var(--ff-heading);
-    font-size: clamp(1.05rem, 2vw, 1.34rem);
-    line-height: 1.28;
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    line-height: 1.32;
     color: rgba(50, 26, 70, 0.78);
   }
 
-  .process-lead {
-    margin: 0;
-    max-width: 52ch;
-    font-size: 1rem;
-    line-height: 1.68;
-    color: var(--via-gray-600);
-  }
-
-  .process-note {
-    margin: 0;
-    max-width: 22rem;
-    padding-left: 1.1rem;
-    border-left: 1px solid rgba(180, 100, 48, 0.28);
-    font-size: 0.98rem;
-    line-height: 1.64;
-    color: rgba(50, 26, 70, 0.78);
-  }
-
-  .process-body {
+  .process-topics {
     display: grid;
-    grid-template-columns: minmax(0, 1.45fr) minmax(17rem, 0.78fr);
-    gap: clamp(1.75rem, 3.5vw, 3rem);
-    align-items: start;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
   }
 
-  .process-section {
+  .process-card,
+  .process-tools,
+  .process-goal {
     display: grid;
-    gap: 1.1rem;
+    align-content: start;
+    gap: 0.6rem;
+    padding: clamp(1.25rem, 2.4vw, 1.6rem);
+    border: 1px solid var(--line, #d9cbdc);
+    border-radius: var(--radius-lg, 0.75rem);
+    background: var(--paper, #fbf7f1);
+    transition: transform 0.35s var(--ease-out, ease), box-shadow 0.35s var(--ease-out, ease);
   }
 
-  .process-section-topics {
-    padding-right: clamp(0rem, 1vw, 0.75rem);
+  .process-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow, 0 18px 40px -22px rgba(50, 26, 70, 0.35));
   }
 
-  .process-section-header {
-    display: grid;
-    gap: 0.5rem;
-    max-width: 42ch;
+  .process-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 0.25rem;
+    border-radius: 999px;
+    background: var(--soft, #eee4f1);
+    color: var(--plum, #321a46);
   }
 
-  .process-section-header h3,
-  .process-rail h3 {
+  .process-icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .process-icon-light {
+    background: rgba(236, 201, 132, 0.16);
+    color: var(--gold, #ecc984);
+  }
+
+  .process-journey h3 {
     margin: 0;
-    color: var(--via-night-blue);
+    font-family: var(--display, var(--ff-heading));
+    font-size: 1.25rem;
+    font-weight: 550;
+    line-height: 1.2;
+    color: var(--ink, #24152f);
   }
 
-  .process-section-header h3 {
-    font-size: 1.08rem;
-  }
-
-  .process-section-header p,
-  .process-rail-block p,
-  .process-section-outcome p {
+  .process-card p,
+  .process-tools p {
     margin: 0;
     font-size: 0.94rem;
-    line-height: 1.65;
-    color: var(--via-gray-600);
+    line-height: 1.5;
+    color: var(--body, #4f3e57);
   }
 
-  .process-topic-clusters {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.25rem;
-    align-items: start;
-  }
-
-  .process-cluster:last-child {
-    grid-column: 1 / -1;
-    max-width: 24rem;
-  }
-
-  .process-cluster {
-    display: grid;
-    gap: 0.85rem;
-    padding-top: 0.85rem;
-    border-top: 1px solid rgba(211, 202, 189, 0.72);
-  }
-
-  .process-cluster h4 {
-    margin: 0;
-    font-size: 0.93rem;
-    letter-spacing: 0.02em;
-    color: rgba(50, 26, 70, 0.92);
-  }
-
-  .process-cluster ul,
-  .process-tools-list {
-    margin: 0;
+  .process-chips {
+    margin: 0.35rem 0 0;
     padding: 0;
     list-style: none;
-    display: grid;
-    gap: 0.55rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
   }
 
-  .process-cluster li,
-  .process-tools-list li {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 0.55rem;
-    align-items: start;
-    font-size: 0.94rem;
-    line-height: 1.55;
-    color: var(--via-night-blue);
-  }
-
-  .process-cluster li::before,
-  .process-tools-list li::before {
-    content: '';
-    width: 0.4rem;
-    height: 0.4rem;
+  .process-chips li {
+    padding: 0.3rem 0.7rem;
     border-radius: 999px;
-    margin-top: 0.5rem;
-    background: rgba(180, 100, 48, 0.7);
+    background: var(--soft, #eee4f1);
+    font-size: 0.82rem;
+    line-height: 1.3;
+    color: var(--plum, #321a46);
   }
 
-  .process-rail {
+  .process-pair {
     display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
     gap: 1rem;
-    padding-left: 1.25rem;
-    border-left: 1px solid rgba(211, 202, 189, 0.7);
   }
 
-  .process-rail-block {
-    display: grid;
-    gap: 0.75rem;
-    padding-top: 0.95rem;
-    border-top: 1px solid rgba(211, 202, 189, 0.72);
+  .process-goal {
+    border-color: transparent;
+    background: var(--plum, #321a46);
   }
 
-  .process-rail h3 {
-    font-size: 0.96rem;
+  .process-journey .process-goal h3 {
+    color: var(--gold, #ecc984);
   }
 
-  .process-tools-list {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0.42rem;
+  .process-goal p {
+    margin: 0;
+    max-width: 26ch;
+    font-family: var(--display, var(--ff-heading));
+    font-size: clamp(1.2rem, 2vw, 1.45rem);
+    line-height: 1.3;
+    color: #fff;
   }
 
-  .process-tools-list li {
+  .process-more summary {
+    width: fit-content;
+    margin-top: 0.25rem;
+    cursor: pointer;
     font-size: 0.86rem;
-    color: rgba(50, 26, 70, 0.82);
+    font-weight: 600;
+    color: var(--plum, #321a46);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
   }
 
-  .process-section-outcome {
-    padding-top: 0;
-    border-top: 0;
+  .process-more summary:focus-visible {
+    outline: 2px solid var(--plum, #321a46);
+    outline-offset: 3px;
+    border-radius: 2px;
   }
 
   .process-legal {
     margin: 0;
-    padding-top: 0.9rem;
-    border-top: 1px solid rgba(211, 202, 189, 0.6);
     font-size: 0.78rem;
-    line-height: 1.52;
+    line-height: 1.5;
     color: rgba(50, 26, 70, 0.58);
   }
 
   @media (max-width: 960px) {
-    .process-header-grid,
-    .process-body,
-    .process-topic-clusters {
-      grid-template-columns: 1fr;
-    }
-
-    .process-heading {
-      max-width: 16ch;
-    }
-
-    .process-note {
-      padding-left: 0;
-      border-left: 0;
-      padding-top: 0.9rem;
-      border-top: 1px solid rgba(180, 100, 48, 0.22);
-    }
-
-    .process-rail {
-      padding-left: 0;
-      border-left: 0;
-      padding-top: 1rem;
-      border-top: 1px solid rgba(211, 202, 189, 0.7);
-    }
-
-    .process-tools-list {
+    .process-topics,
+    .process-pair {
       grid-template-columns: 1fr;
     }
   }
@@ -363,41 +299,19 @@
       padding: 2rem 1rem 2.4rem;
     }
 
-    .process-shell {
-      gap: 1rem;
-    }
-
     .process-heading {
-      max-width: none;
       font-size: clamp(1.7rem, 9vw, 2.3rem);
       line-height: 1.04;
     }
 
-    .process-lead,
-    .process-subheading,
-    .process-section-header p,
-    .process-section-outcome p,
-    .process-note,
-    .process-legal {
-      font-size: 0.93rem;
-    }
-
     .process-subheading {
-      max-width: none;
-      line-height: 1.35;
+      font-size: 0.98rem;
     }
+  }
 
-    .process-topic-clusters {
-      gap: 1rem;
-    }
-
-    .process-cluster,
-    .process-rail-block {
-      padding-top: 0.85rem;
-    }
-
-    .process-tools-list {
-      gap: 0.35rem;
+  @media (prefers-reduced-motion: reduce) {
+    .process-card:hover {
+      transform: none;
     }
   }
 </style>
