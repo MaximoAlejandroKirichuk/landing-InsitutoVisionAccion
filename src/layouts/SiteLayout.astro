@@ -16,6 +16,8 @@ const { title, description, formation = false } = Astro.props;
     <meta name="description" content={description} />
     <link rel="icon" href="/loto.svg" type="image/svg+xml" />
     <title>{title}</title>
+    <!-- Reveal styles only apply once JS is known to run, so content never stays hidden without it. -->
+    <script is:inline>document.documentElement.classList.add('js');</script>
   </head>
   <body>
     <a class="skip" href="#contenido">Ir al contenido</a>
@@ -48,5 +50,50 @@ const { title, description, formation = false } = Astro.props;
         {formation ? <a href="/">Volver al instituto</a> : <a href="/formacion/">Explorar la formación</a>}
       </div>
     </footer>
+    <script>
+      // Scroll reveal: elements marked [data-reveal] (or children of [data-reveal-group]) ease in once.
+      const targets = document.querySelectorAll<HTMLElement>('[data-reveal], [data-reveal-group] > *');
+      document.querySelectorAll<HTMLElement>('[data-reveal-group]').forEach((group) => {
+        [...group.children].forEach((child, index) => {
+          (child as HTMLElement).style.setProperty('--reveal-delay', `${Math.min(index, 5) * 70}ms`);
+        });
+      });
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue;
+              entry.target.classList.add('is-revealed');
+              observer.unobserve(entry.target);
+            }
+          },
+          { rootMargin: '0px 0px -10% 0px', threshold: 0.12 },
+        );
+        targets.forEach((el) => observer.observe(el));
+      } else {
+        targets.forEach((el) => el.classList.add('is-revealed'));
+      }
+
+      // Modals: any [data-modal-open="id"] opens <dialog id="id">; close via button, Escape or backdrop click.
+      document.addEventListener('click', (event) => {
+        const target = event.target as HTMLElement;
+        const opener = target.closest<HTMLElement>('[data-modal-open]');
+        if (opener) {
+          const dialog = document.getElementById(opener.dataset.modalOpen ?? '');
+          if (dialog instanceof HTMLDialogElement) {
+            event.preventDefault();
+            dialog.showModal();
+          }
+          return;
+        }
+        const dialog = target.closest('dialog');
+        if (target.closest('[data-modal-close]') && dialog) {
+          dialog.close();
+        } else if (target instanceof HTMLDialogElement) {
+          // A click on the dialog element itself is a click on its backdrop.
+          target.close();
+        }
+      });
+    </script>
   </body>
 </html>

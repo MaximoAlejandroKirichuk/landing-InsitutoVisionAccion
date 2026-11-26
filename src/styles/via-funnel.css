@@ -49,9 +49,9 @@
   --fw-bold: 700;
   --fw-extrabold: 800;
 
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
+  --radius-sm: .3rem;
+  --radius-md: var(--radius, .4rem);
+  --radius-lg: .75rem;
 
   --transition-base: 200ms ease;
 
@@ -301,3 +301,29 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ── Site system alignment ────────────────────
+   The funnel shipped with its own container widths, gutters and heading sizes.
+   Inside the site these overrides put it on the same .wrap lines, gutter and
+   heading scale as the surrounding sections (tokens from site.css).
+   #funnel-root outranks the components' scoped selectors on purpose. */
+#funnel-root .hero { padding-inline: var(--gutter); min-height: auto; padding-block: clamp(3.5rem, 8vw, 6.5rem); }
+#funnel-root .hero-grid,
+#funnel-root .process-shell { max-width: var(--wrap); }
+#funnel-root .via-method,
+#funnel-root .process-journey { padding-inline: var(--gutter); }
+#funnel-root .via-method-card { max-width: var(--wrap); }
+#funnel-root .quiz-step { width: min(var(--wrap), 100% - 2 * var(--gutter)); padding-inline: 0; }
+
+#funnel-root :is(.hero-headline, .via-method-heading, .process-heading, .quiz-intro-heading) {
+  font-family: var(--display);
+  font-size: clamp(2rem, 3.9vw, 3.75rem);
+  font-weight: 550;
+  line-height: 1.06;
+  letter-spacing: -.025em;
+  text-wrap: balance;
+  color: var(--ink);
+}
+
+/* One button system: the funnel's primary button matches the site's dark button. */
+#funnel-root :is(.btn, .btn-primary) { border-radius: var(--radius); font-weight: 600; }

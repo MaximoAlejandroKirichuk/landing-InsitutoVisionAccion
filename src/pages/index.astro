@@ -1,6 +1,7 @@
 ---
 import Emblem from '../components/Emblem.astro';
 import OrientationFunnel from '../components/OrientationFunnel.astro';
+import TopicGrid from '../components/TopicGrid.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
 import '../styles/via-funnel.css';
 ---
@@ -18,15 +19,19 @@ import '../styles/via-funnel.css';
       <Emblem />
     </div>
   </section>
-  <section class="wrap section split" id="instituto">
+  <section class="wrap section split" id="instituto" data-reveal>
     <h2>Una mirada que reúne distintos enfoques</h2>
     <div>
       <p>La propuesta del instituto reúne coaching sistémico, constelaciones con tarot, biodescodificación, hipnosis y programación neurolingüística en un mismo recorrido.</p>
       <p>Está pensada tanto para quienes buscan un espacio de autoconocimiento como para quienes ya facilitan encuentros de desarrollo personal y quieren conocer otros enfoques.</p>
     </div>
   </section>
+  <section class="wrap section enfoques" id="enfoques">
+    <h2 data-reveal>Los cinco enfoques de la formación</h2>
+    <TopicGrid idPrefix="home-enfoque" />
+  </section>
   <section class="band">
-    <div class="wrap section split">
+    <div class="wrap section split" data-reveal>
       <h2>Quién está detrás</h2>
       <div>
         <p>Podés contactar al instituto para conocer al equipo y saber quién acompaña cada parte del recorrido.</p>
@@ -37,7 +42,7 @@ import '../styles/via-funnel.css';
   <section id="orientacion" aria-label="Primer encuentro de orientación">
     <OrientationFunnel />
   </section>
-  <section class="wrap section invitation">
+  <section class="wrap section invitation" data-reveal>
     <h2>Explorá la formación en Bio Coaching Sistémico Integral</h2>
     <p>Conocé los contenidos, cómo son las clases y cómo consultar por la próxima cursada.</p>
     <a class="button button-dark" href="/formacion/">Conocer la formación</a>

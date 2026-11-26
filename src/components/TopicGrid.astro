@@ -1,0 +1,40 @@
+---
+import { topics, topicInquiry } from '../data/formation';
+
+interface Props {
+  /** Prefix keeps dialog ids unique if the grid appears twice on a page. */
+  idPrefix?: string;
+}
+const { idPrefix = 'enfoque' } = Astro.props;
+---
+<ul class="topic-grid" data-reveal-group>
+  {topics.map((topic) => (
+    <li>
+      <button
+        type="button"
+        class="topic-card"
+        data-modal-open={`${idPrefix}-${topic.id}`}
+        aria-haspopup="dialog"
+      >
+        <span class="topic-card-title">{topic.title}</span>
+        <span class="topic-card-more">Ver el bloque</span>
+      </button>
+    </li>
+  ))}
+</ul>
+
+{topics.map((topic) => (
+  <dialog class="modal" id={`${idPrefix}-${topic.id}`} aria-labelledby={`${idPrefix}-${topic.id}-title`}>
+    <div class="modal-body">
+      <button type="button" class="modal-close" data-modal-close aria-label="Cerrar">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+          <path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+        </svg>
+      </button>
+      <h3 id={`${idPrefix}-${topic.id}-title`}>{topic.title}</h3>
+      <p>{topic.description}</p>
+      <p class="modal-note">Pedí el temario de este bloque y la fecha de la próxima cursada.</p>
+      <a class="button button-dark" href={topicInquiry(topic)}>Pedir el temario por WhatsApp</a>
+    </div>
+  </dialog>
+))}
