@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
 
-const page = (path) => readFileSync(new URL(`../dist/client/${path}`, import.meta.url), 'utf8');
+const page = (path) => readFileSync(new URL(`../dist/${path}`, import.meta.url), 'utf8');
 
 test('institutional home introduces the institute and leads to the training page', () => {
   const html = page('index.html');

@@ -39,7 +39,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   }
 
   const submissionId = randomUUID();
-  // Build-time values win; on Cloudflare Workers the secrets arrive at runtime via process.env (nodejs_compat).
+  // Build-time values win; otherwise read the runtime environment (Netlify functions expose it on process.env).
   const env = {
     GOOGLE_APPS_SCRIPT_URL: import.meta.env.GOOGLE_APPS_SCRIPT_URL ?? process.env.GOOGLE_APPS_SCRIPT_URL,
     GOOGLE_APPS_SCRIPT_SECRET: import.meta.env.GOOGLE_APPS_SCRIPT_SECRET ?? process.env.GOOGLE_APPS_SCRIPT_SECRET,
