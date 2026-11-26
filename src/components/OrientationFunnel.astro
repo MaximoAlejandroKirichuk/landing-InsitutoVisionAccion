@@ -29,6 +29,7 @@ import ThankYou from './ThankYou.astro';
 <script>
   import {
     initState,
+    recommendsFormation,
     type FunnelState,
     toggleAnswer,
     setOtherText,
@@ -180,6 +181,9 @@ import ThankYou from './ThankYou.astro';
   }
 
   function showThankYouPanel(): void {
+    // Suggest the training when the answers point to wanting tools or a learning path.
+    const formationTip = document.getElementById('thank-you-formation');
+    if (formationTip) formationTip.hidden = !recommendsFormation(state.answers);
     setPanelState(thankYouEl, true);
     thankYouEl.dataset.transitionState = prefersReducedMotion ? 'active' : 'entering';
     announceStep('Mapa Inicial VIA completado');

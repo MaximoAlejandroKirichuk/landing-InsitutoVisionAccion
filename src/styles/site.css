@@ -179,3 +179,49 @@ details p { padding-inline-end: 1.8rem; }
   .topic-grid { gap: .6rem; }
   .topic-card { min-height: auto; gap: .7rem; padding: 1rem 1.1rem; }
 }
+
+/* ── Training sales page ────────────────────── */
+.pain-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.pain-list li { position: relative; padding: 1.05rem 0 1.05rem 2rem; border-bottom: 1px solid var(--line); color: var(--ink); font-size: 1.08rem; }
+.pain-list li::before { content: ""; position: absolute; left: .2rem; top: 1.55rem; width: .55rem; height: .55rem; background: var(--gold); rotate: 45deg; }
+.pain-close { margin-top: 1.4rem; font-weight: 600; color: var(--ink); }
+
+.gain-grid, .quote-grid { list-style: none; margin: clamp(1.5rem, 3vw, 2.25rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: clamp(1.25rem, 3vw, 2.5rem); }
+.gain-grid li { padding-top: 1.1rem; border-top: 2px solid var(--gold); }
+.gain-grid h3 { margin-bottom: .55rem; }
+.quote-grid li { padding: 1.4rem; border: 1px solid var(--line); border-radius: var(--radius-lg); background: #fff; }
+
+.offer { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(1.5rem, 5vw, 4.5rem); align-items: start; }
+.offer > .button { grid-column: 1; justify-self: start; }
+.offer-list { margin: 0; display: grid; grid-row: span 2; border-top: 1px solid rgba(236, 201, 132, .35); }
+.offer-list > div { display: grid; grid-template-columns: 8rem 1fr; gap: 1rem; padding-block: 1rem; border-bottom: 1px solid rgba(236, 201, 132, .35); }
+.offer-list dt { color: #d9c7de; font-size: .9rem; }
+.offer-list dd { color: var(--paper); }
+@media (max-width: 40rem) {
+  .offer { grid-template-columns: minmax(0, 1fr); }
+  .offer-list { grid-row: auto; }
+  .offer > .button { width: 100%; }
+  .offer-list > div { grid-template-columns: 1fr; gap: .2rem; }
+}
+
+/* Content the institute still has to supply: impossible to miss on review links. */
+.pending { background: #fff1a6; color: #3d2f00; padding: .15em .4em; border-radius: .25rem; font-weight: 600; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+
+/* ── Lead form (modal) ──────────────────────── */
+.lead { display: grid; gap: .95rem; margin-top: 1.2rem; }
+.field { display: grid; gap: .35rem; font-size: .92rem; font-weight: 600; color: var(--ink); }
+.field small { font-weight: 400; color: var(--body); }
+.field input { font: inherit; font-weight: 400; min-height: 48px; padding: .6rem .8rem; border: 1px solid #cdbcd2; border-radius: var(--radius); background: #fff; color: var(--ink); }
+.field input:focus-visible { outline: 2px solid var(--plum); outline-offset: 1px; border-color: var(--plum); }
+.check { display: grid; grid-template-columns: auto 1fr; gap: .6rem; align-items: start; font-size: .85rem; color: var(--body); }
+.check input { width: 1.15rem; height: 1.15rem; margin-top: .15rem; accent-color: var(--plum); }
+.form-error { margin: 0; padding: .7rem .85rem; border-radius: var(--radius); background: #fbe9ec; color: #7a1c2e; font-size: .9rem; }
+.form-error a { font-weight: 600; }
+.lead .button { width: 100%; }
+.lead .button:disabled { opacity: .7; cursor: progress; }
+[data-lead-step="done"] .button { margin-top: .6rem; }
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1.6rem; }
+.hero-link { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; text-decoration-color: var(--gold); text-underline-offset: .3em; }
+.hero-link:hover { color: var(--gold); }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

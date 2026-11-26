@@ -56,6 +56,10 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
           >
             Volver a empezar
           </button>
+          <div id="thank-you-formation" class="thank-you-formation" hidden>
+            <p>Por lo que contaste, también puede interesarte nuestra formación en Bio Coaching Sistémico Integral.</p>
+            <a href="/formacion/">Conocer la formación</a>
+          </div>
           <p class="thank-you-note">
             La orientación inicial tiene un carácter informativo y de acompañamiento. No constituye un diagnóstico ni reemplaza la atención médica, psicológica o psiquiátrica cuando esta sea necesaria.
           </p>
@@ -92,6 +96,24 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
 </script>
 
 <style>
+  .thank-you-formation {
+    display: grid;
+    gap: .5rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--via-gold);
+    border-radius: var(--radius-md);
+    background: var(--via-white);
+  }
+
+  .thank-you-formation[hidden] {
+    display: none;
+  }
+
+  .thank-you-formation a {
+    font-weight: 600;
+    color: var(--via-night-blue);
+  }
+
   .thank-you {
     position: fixed;
     inset: 0;

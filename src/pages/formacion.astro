@@ -2,9 +2,20 @@
 import Emblem from '../components/Emblem.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
 import TopicGrid from '../components/TopicGrid.astro';
+import LeadModal from '../components/LeadModal.astro';
 import { inquiryMessage, whatsappUrl } from '../data/formation';
 
 const whatsapp = whatsappUrl(inquiryMessage);
+const pains = [
+  'Sentís que en tus vínculos se repiten los mismos patrones y querés entender de dónde vienen.',
+  'Ya acompañás a otras personas y buscás enfoques que complementen lo que hacés.',
+  'Hiciste talleres o cursos sueltos y te falta un recorrido que los integre.',
+];
+const gains = [
+  ['Un recorrido de 12 meses', 'Los cinco enfoques integrados en una misma formación, no como talleres sueltos.'],
+  ['Clases en vivo con tu grupo', 'Lunes y miércoles a las 20 h (Argentina), por Google Meet.'],
+  ['Material de estudio incluido', 'Para repasar cada bloque a tu ritmo entre clase y clase.'],
+];
 const facts = [
   ['Duración', '12 meses'],
   ['Modalidad', 'En vivo por Google Meet'],
@@ -12,8 +23,8 @@ const facts = [
   ['Material', 'Material de estudio incluido'],
 ];
 const questions = [
-  ['¿Cuándo empieza y cuánto cuesta?', 'Consultá por WhatsApp la próxima fecha de inicio, el arancel y las opciones de pago.'],
-  ['¿Cómo me inscribo?', 'Escribí al instituto por WhatsApp. Ahí podés consultar la disponibilidad y pedir los pasos para inscribirte.'],
+  ['¿Cuándo empieza y cuánto cuesta?', 'Dejá tus datos en «Reservar mi lugar» y te escribimos con la próxima fecha de inicio, el arancel y las opciones de pago.'],
+  ['¿Cómo me inscribo?', 'Tocá «Reservar mi lugar» y dejá tus datos. El instituto te contacta por WhatsApp con la disponibilidad y los pasos para inscribirte.'],
   ['¿Quién dicta las clases?', 'El instituto puede confirmarte quién dicta cada parte de la próxima cursada.'],
   ['¿Qué certificación se entrega?', 'El material de difusión menciona una certificación integral. Consultá al instituto por el nombre del certificado, quién lo emite y qué requisitos tiene.'],
   ['¿La formación reemplaza la atención profesional?', 'La propuesta es educativa y de desarrollo personal. La formación no reemplaza la atención médica ni psicológica y no habilita por sí misma para ejercer una profesión de salud.'],
@@ -21,16 +32,16 @@ const questions = [
 ---
 <SiteLayout
   title="Bio Coaching Sistémico Integral | Instituto Visión en Acción"
-  description="Conocé qué incluye la formación holística de 12 meses del Instituto Visión en Acción y consultá cómo inscribirte."
+  description="Formación de 12 meses en vivo que integra coaching sistémico, constelaciones con tarot, biodescodificación, hipnosis y PNL. Reservá tu lugar en la próxima cursada."
   formation
 >
   <section class="site-hero hero-formation">
     <div class="wrap site-hero-grid">
       <div class="hero-copy">
         <h1>Bio Coaching<br />Sistémico Integral</h1>
-        <p>Una formación holística para explorar tu historia y conocer cinco enfoques de desarrollo personal y acompañamiento.</p>
-        <a class="button" href={whatsapp}>Consultar por WhatsApp</a>
-        <p class="cta-note">Pedí el arancel y los pasos de inscripción.</p>
+        <p>En 12 meses conocés cinco enfoques de acompañamiento mientras trabajás tu propia historia. En vivo, en grupo y desde tu casa.</p>
+        <a class="button" href={whatsapp} data-modal-open="reservar">Reservar mi lugar</a>
+        <p class="cta-note">Te escribimos con la fecha de inicio y el arancel.</p>
       </div>
       <Emblem formation />
     </div>
@@ -44,25 +55,60 @@ const questions = [
   </div>
   <section class="wrap section split" id="para-quien" data-reveal>
     <h2>¿Para quién es esta formación?</h2>
-    <div class="audience">
-      <div>
-        <h3>Si querés explorar tu propia historia</h3>
-        <p>Vas a encontrar actividades para reflexionar sobre tus vínculos, creencias e historias familiares.</p>
-      </div>
-      <div>
-        <h3>Si ya acompañás a otras personas</h3>
-        <p>Podés conocer enfoques que complementen tu práctica, dentro de los límites de tu formación profesional.</p>
-      </div>
+    <div>
+      <ul class="pain-list">
+        {pains.map((pain) => <li>{pain}</li>)}
+      </ul>
+      <p class="pain-close">Si te reconocés en alguna, este recorrido está pensado para vos.</p>
     </div>
   </section>
   <section class="band" id="programa">
     <div class="wrap section split" data-reveal>
       <div>
-        <h2>Qué vas a explorar</h2>
-        <p>Estos son los enfoques de la formación. Pedí al instituto el temario de la próxima cursada si querés conocer el detalle de cada bloque.</p>
-        <a class="text-link" href={whatsapp}>Consultar por WhatsApp</a>
+        <h2>Cinco enfoques en un solo recorrido</h2>
+        <p>Cada bloque suma una mirada distinta sobre tu historia y sobre cómo acompañar a otras personas. Tocá cada enfoque para ver de qué se trata.</p>
+        <a class="button button-dark" href={whatsapp} data-modal-open="reservar">Reservar mi lugar</a>
       </div>
       <TopicGrid />
+    </div>
+  </section>
+  <section class="wrap section" id="incluye">
+    <h2 data-reveal>Qué incluye la formación</h2>
+    <ul class="gain-grid" data-reveal-group>
+      {gains.map(([title, text]) => (
+        <li><h3>{title}</h3><p>{text}</p></li>
+      ))}
+    </ul>
+  </section>
+  <section class="band" id="docentes">
+    <div class="wrap section split" data-reveal>
+      <h2>Quién dicta la formación</h2>
+      <div>
+        <p><mark class="pending">Pendiente: nombre, foto y breve presentación de quien dicta cada bloque.</mark></p>
+      </div>
+    </div>
+  </section>
+  <section class="wrap section" id="testimonios">
+    <h2 data-reveal>Lo que cuentan quienes la hicieron</h2>
+    <ul class="quote-grid" data-reveal-group>
+      <li><mark class="pending">Pendiente: testimonio real (texto, nombre y cohorte).</mark></li>
+      <li><mark class="pending">Pendiente: testimonio real (texto, nombre y cohorte).</mark></li>
+      <li><mark class="pending">Pendiente: testimonio real (texto, nombre y cohorte).</mark></li>
+    </ul>
+  </section>
+  <section class="band band-dark" id="oferta">
+    <div class="wrap section offer" data-reveal>
+      <div>
+        <h2>Próxima cursada</h2>
+        <p>Los cupos son por grupo. Dejá tus datos y te contactamos para confirmar tu lugar.</p>
+      </div>
+      <dl class="offer-list">
+        <div><dt>Inicio</dt><dd><mark class="pending">Pendiente: fecha</mark></dd></div>
+        <div><dt>Cupos</dt><dd><mark class="pending">Pendiente: cantidad</mark></dd></div>
+        <div><dt>Arancel</dt><dd><mark class="pending">Pendiente: precio y opciones de pago</mark></dd></div>
+        <div><dt>Modalidad</dt><dd>12 meses, en vivo por Google Meet</dd></div>
+      </dl>
+      <a class="button" href={whatsapp} data-modal-open="reservar">Reservar mi lugar</a>
     </div>
   </section>
   <section class="wrap section split" id="preguntas" data-reveal>
@@ -78,9 +124,10 @@ const questions = [
   </section>
   <section class="band band-dark">
     <div class="wrap section invitation" data-reveal>
-      <h2>Consultá por la próxima cursada</h2>
-      <p>Pedí el arancel, el temario completo y los pasos de inscripción antes de decidir.</p>
-      <a class="button" href={whatsapp}>Consultar por WhatsApp</a>
+      <h2>Empezá tu formación en la próxima cursada</h2>
+      <p>Dejá tus datos y te escribimos con la fecha de inicio, el arancel y los pasos de inscripción.</p>
+      <a class="button" href={whatsapp} data-modal-open="reservar">Reservar mi lugar</a>
     </div>
   </section>
+  <LeadModal />
 </SiteLayout>

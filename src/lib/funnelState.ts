@@ -42,7 +42,7 @@ export interface FunnelState {
 /** Frontend-owned submission payload (matches the adapter contract). */
 export interface FunnelSubmission {
   academySlug: 'instituto-vision-accion';
-  funnelSlug: 'via-orientation';
+  funnelSlug: 'via-orientation' | 'formacion-bio-coaching';
   contact: LeadData;
   answers: Array<{
     questionId: string;
@@ -236,4 +236,23 @@ function stepKey(questionId: string): string {
     q5: 'quiz-5',
   };
   return map[questionId] ?? questionId;
+}
+
+/* ── Training recommendation ───────────────── */
+
+/**
+ * Answers that point to wanting tools or a learning path rather than only a
+ * personal process. When any is selected, the thank-you step suggests the
+ * Bio Coaching Sistémico Integral training.
+ */
+const FORMATION_SIGNALS: Record<string, string[]> = {
+  q2: ['integrar-recursos'],
+  q3: ['coaching', 'constelaciones', 'cursos'],
+  q5: ['herramientas'],
+};
+
+export function recommendsFormation(answers: FunnelState['answers']): boolean {
+  return Object.entries(FORMATION_SIGNALS).some(([questionId, optionIds]) =>
+    (answers[questionId]?.selected ?? []).some((id) => optionIds.includes(id)),
+  );
 }

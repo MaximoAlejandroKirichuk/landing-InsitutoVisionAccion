@@ -1,0 +1,111 @@
+---
+// Lead capture for the training: saves the contact (same Apps Script sheet as the quiz),
+// then hands off to WhatsApp. Opened by any [data-modal-open="reservar"] on the page.
+import { inquiryMessage, whatsappUrl } from '../data/formation';
+
+const whatsapp = whatsappUrl(inquiryMessage);
+---
+<dialog class="modal" id="reservar" aria-labelledby="reservar-title">
+  <div class="modal-body">
+    <button type="button" class="modal-close" data-modal-close aria-label="Cerrar">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+        <path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+      </svg>
+    </button>
+
+    <div data-lead-step="form">
+      <h3 id="reservar-title">Reservá tu lugar en la próxima cursada</h3>
+      <p>Dejanos tus datos y te escribimos con la fecha de inicio, el arancel y los pasos de inscripción.</p>
+      <form class="lead" id="lead-form" novalidate>
+        <label class="field">
+          <span>Nombre y apellido</span>
+          <input name="fullName" autocomplete="name" required maxlength="200" />
+        </label>
+        <label class="field">
+          <span>WhatsApp</span>
+          <input name="whatsapp" type="tel" autocomplete="tel" inputmode="tel" required maxlength="200" />
+        </label>
+        <label class="field">
+          <span>Correo electrónico <small>(opcional)</small></span>
+          <input name="email" type="email" autocomplete="email" maxlength="200" />
+        </label>
+        <label class="check">
+          <input name="consent" type="checkbox" required />
+          <span>Acepto que Instituto Visión en Acción se contacte conmigo por WhatsApp, llamada o correo electrónico en relación con mi consulta.</span>
+        </label>
+        <p class="form-error" role="alert" data-lead-error hidden></p>
+        <button class="button button-dark" type="submit">Quiero reservar mi lugar</button>
+      </form>
+    </div>
+
+    <div data-lead-step="done" hidden tabindex="-1">
+      <h3>¡Listo! Ya tenemos tus datos</h3>
+      <p>Te vamos a escribir para contarte la fecha de inicio y el arancel. Si querés, podés escribirnos ahora por WhatsApp.</p>
+      <a class="button button-dark" href={whatsapp} target="_blank" rel="noopener">Escribir por WhatsApp</a>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const form = document.getElementById('lead-form') as HTMLFormElement | null;
+  const dialog = document.getElementById('reservar') as HTMLDialogElement | null;
+
+  if (form && dialog) {
+    const error = dialog.querySelector<HTMLElement>('[data-lead-error]')!;
+    const formStep = dialog.querySelector<HTMLElement>('[data-lead-step="form"]')!;
+    const doneStep = dialog.querySelector<HTMLElement>('[data-lead-step="done"]')!;
+    const submit = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    const whatsapp = doneStep.querySelector<HTMLAnchorElement>('a')!.href;
+
+    const showError = (message: string) => {
+      error.innerHTML = message;
+      error.hidden = false;
+    };
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      error.hidden = true;
+      const data = new FormData(form);
+      const contact = {
+        fullName: String(data.get('fullName') ?? '').trim(),
+        whatsapp: String(data.get('whatsapp') ?? '').trim(),
+        email: String(data.get('email') ?? '').trim(),
+        consent: data.get('consent') === 'on',
+      };
+
+      if (!contact.fullName || !contact.whatsapp) {
+        showError('Completá tu nombre y tu WhatsApp.');
+        return;
+      }
+      if (contact.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact.email)) {
+        showError('Revisá el correo electrónico o dejalo vacío.');
+        return;
+      }
+      if (!contact.consent) {
+        showError('Necesitamos tu aceptación para poder contactarte.');
+        return;
+      }
+
+      submit.disabled = true;
+      submit.textContent = 'Enviando…';
+      try {
+        const response = await fetch('/api/formation-leads', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ contact }),
+        });
+        if (!response.ok) throw new Error(String(response.status));
+        formStep.hidden = true;
+        doneStep.hidden = false;
+        doneStep.focus();
+      } catch {
+        showError(
+          `No pudimos guardar tus datos. Probá de nuevo o <a href="${whatsapp}" target="_blank" rel="noopener">escribinos por WhatsApp</a>.`,
+        );
+      } finally {
+        submit.disabled = false;
+        submit.textContent = 'Quiero reservar mi lugar';
+      }
+    });
+  }
+</script>

@@ -204,7 +204,7 @@ function isString(value: unknown): value is string {
   return typeof value === 'string';
 }
 
-function isContact(value: unknown): boolean {
+export function isContact(value: unknown): value is FunnelSubmission['contact'] {
   if (!isRecord(value)) return false;
 
   if (!isString(value.fullName) || !value.fullName.trim()) return false;
