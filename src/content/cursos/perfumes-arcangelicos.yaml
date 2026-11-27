@@ -1,0 +1,177 @@
+# Taller Perfumes Arcangélicos → https://sitio/perfumes-arcangelicos/
+# Fuente: institutovisionenaccion.com/cursos/taller-perfumes-arcangelicos/ (taller en PDF, $4.000, certificado de participación).
+# Le hablamos a Lorena (README → "A quién le hablamos"). Taller pago, sin promesas de resultado.
+# A confirmar con Fernanda: la ficha vieja dice instructor "Danie Rodriguez" y el recuadro dice Fernanda; acá figura Fernanda.
+
+nombre: Taller Perfumes Arcangélicos
+mostrarEnHome: false   # landing para anuncios
+orden: 40
+animacion: perfumes-arcangelicos
+
+seo:
+  titulo: Taller Perfumes Arcangélicos | Instituto Visión en Acción
+  descripcion: Aprendé a preparar tu propio perfume energético con aceites esenciales y esencias florales, cada uno alineado con un arcángel. Taller en PDF, a tu ritmo, con certificado de participación.
+
+tarjeta:
+  etiqueta: Taller en PDF · A tu ritmo
+  resumen: Prepará tu propio perfume con la energía de los arcángeles, paso a paso y en tu casa.
+  boton: Conocer el taller
+
+whatsapp:
+  mensaje: Hola, quiero el Taller Perfumes Arcangélicos. ¿Cómo hago el pago?
+
+hero:
+  bajada: Aprendé a preparar un perfume energético con aceites esenciales y esencias florales, alineado con la energía de un arcángel y con una intención que elegís vos.
+  datos:
+    - Taller en PDF
+    - A tu ritmo, sin horarios
+    - Certificado de participación
+  boton: Quiero el taller
+  nota: Es un taller pago. Te escribimos por WhatsApp para pasarte los datos de pago y enviarte el material.
+  linkSecundario:
+    texto: Qué vas a aprender
+    href: "#programa"
+
+gancho:
+  frase: Durante años cuidé de todos. Ahora quiero un momento que sea solo mío.
+  texto: "Hay días en que cargamos con todo y nos olvidamos de nosotras. Un ritual pequeño, hecho con tus manos y con una intención clara, puede ser ese momento para frenar, respirar y volver a vos. No hace falta saber de aromaterapia: el taller te guía paso a paso."
+
+cursada:
+  - etiqueta: Formato
+    valor: Taller en PDF descargable
+  - etiqueta: Horario
+    valor: Lo hacés cuando quieras, a tu ritmo
+  - etiqueta: Nivel
+    valor: Para todos los niveles, desde cero
+  - etiqueta: Al terminar
+    valor: Certificado de participación
+
+paraQuien:
+  titulo: ¿Para quién es este taller?
+  items:
+    - Querés regalarte un ritual propio, un momento del día que sea solo tuyo.
+    - Te atrae el mundo de los ángeles y querés acercarte a él de una forma simple y concreta.
+    - Te gustan los aromas y querés aprender a preparar algo con tus manos.
+    - Hacés Reiki, terapias holísticas o trabajás en bienestar y querés sumar perfumes energéticos a tus sesiones.
+    - Querés crear productos espirituales personalizados, para vos, para regalar o para ofrecer.
+  cierre: Si te reconocés en alguna, este taller está pensado para vos.
+
+programa:
+  titulo: Qué vas a aprender
+  texto: Tocá cada bloque para ver de qué se trata.
+  enfoques:
+    - id: conexion
+      icono: hipnosis
+      titulo: Conectar con los arcángeles a través del aroma
+      resumen: Cada perfume, alineado con la energía de un arcángel.
+      descripcion: Vas a conocer cómo se relaciona cada preparación con la frecuencia de un arcángel, para que tu perfume tenga un sentido y una intención desde el primer paso.
+    - id: intencion
+      icono: coaching
+      titulo: Elegir tu intención
+      resumen: Protección, amor, sanación o abundancia.
+      descripcion: Antes de preparar, elegís para qué querés tu perfume. Aprendés a crear uno personalizado según la intención que quieras acompañar en este momento de tu vida.
+    - id: esencias
+      icono: biodescodificacion
+      titulo: Las propiedades de cada esencia
+      resumen: Aceites esenciales, esencias florales y esencias sagradas.
+      descripcion: Conocés qué aporta cada esencia y cómo combinarlas para fortalecer la vibración de tu perfume.
+    - id: preparacion
+      icono: pnl
+      titulo: La preparación, paso a paso
+      resumen: De los frascos a tu perfume terminado.
+      descripcion: Una guía ordenada para preparar el perfume en tu casa, con aceites esenciales y esencias florales, sin necesidad de experiencia previa.
+    - id: activacion
+      icono: tarot
+      titulo: La activación energética
+      resumen: El momento de cargar tu perfume con intención.
+      descripcion: Aprendés a activar energéticamente el perfume para darle fuerza a tu intención, y cómo usarlo para elevar tu vibración, armonizar tu espacio y acompañar tus meditaciones.
+
+incluye:
+  titulo: Para qué podés usar tu perfume
+  items:
+    - titulo: En tu día a día
+      texto: Como un pequeño ritual para empezar la mañana con otra energía.
+    - titulo: En tu casa
+      texto: Para purificar y armonizar tus espacios.
+    - titulo: En tus prácticas
+      texto: Para acompañar la meditación y tus momentos espirituales.
+    - titulo: Como servicio
+      texto: Si querés, podés ofrecerlo en tus sesiones o como producto propio.
+
+carrusel:
+  titulo: Un ritual para empezar hoy
+  texto: Deslizá las placas. Es el mismo carrusel que compartimos en Instagram.
+  imagenes:
+    - src: /images/carruseles/perfumes-arcangelicos/1.webp
+      alt: "«Durante años cuidé de todos. Ahora quiero un momento que sea solo mío.»"
+    - src: /images/carruseles/perfumes-arcangelicos/2.webp
+      alt: "Un perfume puede ser más que un aroma. Puede ser un ritual: un momento del día para frenar, respirar y volver a vos."
+    - src: /images/carruseles/perfumes-arcangelicos/3.webp
+      alt: "Desde la tradición angélica, cada arcángel acompaña una intención. Protección, amor, sanación, abundancia."
+    - src: /images/carruseles/perfumes-arcangelicos/4.webp
+      alt: "Un ejercicio: elegí una intención para esta semana. Escribila en un papel y dejala donde la veas cada mañana."
+    - src: /images/carruseles/perfumes-arcangelicos/5.webp
+      alt: "Un ejercicio: antes de salir, tomá un aroma que te guste y respirá tres veces. Pensá en tu intención. Ese ya es tu primer ritual."
+    - src: /images/carruseles/perfumes-arcangelicos/6.webp
+      alt: "Taller Perfumes Arcangélicos: aprendé a preparar tu propio perfume energético, paso a paso, con aceites esenciales y esencias florales, alineado con un arcángel. No hace falta experiencia."
+    - src: /images/carruseles/perfumes-arcangelicos/7.webp
+      alt: "Qué recibís: el taller completo en PDF, a tu ritmo; elegir tu intención y activar tu perfume; certificado de participación. Es un taller pago: ARS 4.000."
+    - src: /images/carruseles/perfumes-arcangelicos/8.webp
+      alt: "Si hoy prepararas tu perfume, ¿qué intención le pondrías? Contame abajo con una palabra. Las leo todas. Soy Fernanda, de Visión en Acción."
+
+instituto:
+  titulo: Qué recibís
+  recibis:
+    - El taller completo en PDF descargable, para leer y volver a consultar cuando lo necesites.
+    - Acceso a la descarga por 30 días desde que te habilitamos el material.
+    - Certificado de participación al terminar.
+  encuentros: Lo hacés a tu ritmo, sin horarios. Si querés practicar en vivo y compartir con otras, tenés los encuentros de la membresía.
+  membresia: true
+
+docentes:
+  titulo: Quiénes te acompañan
+  personas:
+    - id: docente-fernanda
+      nombre: Fernanda Rodríguez
+      bio: Fundadora y directora del instituto, es formadora en desarrollo personal y en el área holística. Acompaña a quienes buscan reconectar con su energía a través de prácticas simples y cotidianas.
+      foto: /images/instructor-portrait.jpg
+      alt: Retrato de Fernanda Rodríguez
+      ancho: 673
+      alto: 1437
+    - id: docente-daniel
+      nombre: Daniel Alberto Rodríguez
+      bio: Formador del área holística del instituto. Su formación incluye tarot y oráculos, constelaciones familiares, biodescodificación, hipnosis y Reiki.
+      foto: /images/holistic-instructor-portrait.jpg
+      alt: Retrato de Daniel Alberto Rodríguez
+      ancho: 171
+      alto: 365
+      encuadre: 50% 12%
+
+oferta:
+  titulo: Llevate el taller hoy
+  destacado: Empezás cuando quieras
+  texto: Es un taller pago. Te escribimos por WhatsApp con los datos para el pago y te enviamos el PDF. Es una práctica holística complementaria, no reemplaza la atención médica ni psicológica.
+  precios:
+    - periodo: Taller Perfumes Arcangélicos (PDF)
+      valores: [ARS 4.000]
+
+preguntas:
+  - pregunta: ¿Necesito saber de aromaterapia?
+    respuesta: No. El taller es para todos los niveles y te guía paso a paso, desde elegir la intención hasta la activación del perfume.
+  - pregunta: ¿Cómo es el formato?
+    respuesta: Es un taller en PDF descargable. Lo hacés cuando quieras, sin horarios, y tenés 30 días para descargar el material.
+  - pregunta: ¿Cuánto cuesta?
+    respuesta: Es un taller pago de ARS 4.000. Te escribimos por WhatsApp para pasarte los datos de pago.
+  - pregunta: ¿Recibo certificado?
+    respuesta: Sí, al terminar recibís un certificado de participación del instituto.
+  - pregunta: ¿Puedo ofrecer los perfumes como servicio?
+    respuesta: Sí. Podés usarlo para tu crecimiento personal o sumarlo a tus sesiones y ofrecerlo como producto propio.
+
+cierre:
+  titulo: Un ritual hecho con tus manos, solo para vos.
+  texto: Dejá tus datos y te escribimos para enviarte el Taller Perfumes Arcangélicos.
+
+reserva:
+  titulo: Quiero el Taller Perfumes Arcangélicos
+  texto: Dejanos tus datos y te escribimos por WhatsApp con los datos de pago y el envío del PDF.
+  gracias: Te vamos a escribir para pasarte los datos de pago y enviarte el taller. Si querés, podés escribirnos ahora por WhatsApp.
