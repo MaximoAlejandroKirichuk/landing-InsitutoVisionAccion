@@ -2,7 +2,7 @@
 // Institutional home: what the institute does and its current offers. Each offer has its own landing page;
 // course cards come from src/content/cursos/ (mostrarEnHome), so a new course shows up here on its own.
 import { getCollection } from 'astro:content';
-import Emblem from '../components/Emblem.astro';
+import HeroOrbit from '../components/HeroOrbit.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
 
 const cursos = (await getCollection('cursos', ({ data }) => data.publicado && data.mostrarEnHome))
@@ -39,7 +39,7 @@ const propuestas = [
           <a class="hero-link" href="/metodo-via/">Hacé el Mapa Inicial VIA</a>
         </div>
       </div>
-      <Emblem />
+      <HeroOrbit />
     </div>
   </section>
 
@@ -71,7 +71,18 @@ const propuestas = [
   </section>
 
   <section class="wrap section split" id="fernanda" data-reveal>
-    <h2>Quién está detrás</h2>
+    <div>
+      <h2>Quién está detrás</h2>
+      <img
+        class="founder-portrait"
+        src="/images/instructor-portrait.jpg"
+        alt="Fernanda Rodríguez, fundadora del Instituto Visión en Acción"
+        width="673"
+        height="1437"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
     <div>
       <p><strong>Fernanda Rodríguez</strong> es fundadora, directora y formadora del Instituto Visión en Acción. Es coach de vida y facilitadora. El instituto nació con formaciones de coaching y, con el tiempo, sumó herramientas de desarrollo personal, emocional y sistémico.</p>
       <p><strong>Ser para hacer, para tener.</strong> Para Fernanda, el punto de partida es trabajar nuestras creencias, emociones y valores. Eso nos ayuda a elegir cómo actuar y acercarnos a lo que queremos construir.</p>
