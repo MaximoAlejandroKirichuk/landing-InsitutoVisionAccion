@@ -157,6 +157,20 @@ const bloque = c.instituto === false ? null : c.instituto;
     </section>
   )}
 
+  {c.carrusel && (
+    <section class="band" id="carrusel">
+      <div class="wrap section">
+        <h2 data-reveal>{c.carrusel.titulo}</h2>
+        {c.carrusel.texto && <p class="section-lead">{c.carrusel.texto}</p>}
+        <ol class="carrusel" aria-label={`Carrusel: ${c.carrusel.titulo}`} tabindex="0">
+          {c.carrusel.imagenes.map(({ src, alt }, i) => (
+            <li><img src={src} alt={alt} width="1080" height="1350" loading={i < 2 ? 'eager' : 'lazy'} decoding="async" /></li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  )}
+
   {bloque && (
     <section class="wrap section" id="como-es">
       <h2 data-reveal>{bloque.titulo ?? 'Cómo es estudiar en el Instituto'}</h2>
