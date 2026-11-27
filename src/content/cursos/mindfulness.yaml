@@ -78,6 +78,20 @@ programa:
       resumen: Una rutina breve que puedas sostener.
       descripcion: Armás tu propia práctica, corta y realista, para que el cuidado de vos misma deje de quedar para el final.
 
+# Carrusel de Instagram de este curso (mismas placas que se publican). Requiere el campo `carrusel` de la plantilla.
+carrusel:
+  titulo: La práctica de 5 minutos, para guardar
+  texto: Es el mismo carrusel que publicamos en Instagram. Deslizá y probala hoy.
+  imagenes:
+    - /images/carruseles/mindfulness/1.webp
+    - /images/carruseles/mindfulness/2.webp
+    - /images/carruseles/mindfulness/3.webp
+    - /images/carruseles/mindfulness/4.webp
+    - /images/carruseles/mindfulness/5.webp
+    - /images/carruseles/mindfulness/6.webp
+    - /images/carruseles/mindfulness/7.webp
+    - /images/carruseles/mindfulness/8.webp
+
 # Bloque común "Cómo es estudiar en el Instituto" (membresía, encuentros, qué recibís): ver src/data/instituto.ts.
 instituto:
   recibis:
