@@ -1,0 +1,251 @@
+---
+// Hero art for the Constelaciones Familiares landing.
+// A soft 3D "constellation": family figures standing on a lilac floor slowly find their place,
+// then a golden thread lights up the line that passes from grandmother to mother, to her, to daughter
+// and granddaughter. The floor turns gently like a breath. Pure CSS, no JS.
+// Under prefers-reduced-motion everything rests in its final, ordered state.
+
+// Positions on the floor (0–100). `from` is where each figure starts before it finds its place.
+const figuras = [
+  { id: 'bisabuela', x: 50, y: 12, from: [-14, -10], tono: 'ancestro', esc: 0.86 },
+  { id: 'abuelo', x: 24, y: 26, from: [-18, 12], tono: 'ancestro', esc: 0.9 },
+  { id: 'abuela', x: 42, y: 30, from: [16, -14], tono: 'linea', esc: 0.92 },
+  { id: 'papa', x: 76, y: 40, from: [14, 16], tono: 'ancestro', esc: 0.95 },
+  { id: 'mama', x: 32, y: 50, from: [-16, 10], tono: 'linea', esc: 0.97 },
+  { id: 'ella', x: 52, y: 64, from: [12, -16], tono: 'ella', esc: 1.06 },
+  { id: 'hija', x: 70, y: 76, from: [16, 10], tono: 'linea', esc: 0.94 },
+  { id: 'nieta', x: 52, y: 88, from: [-12, 14], tono: 'linea', esc: 0.74 },
+];
+
+// The maternal line, drawn as one golden thread on the floor.
+const linea = ['bisabuela', 'abuela', 'mama', 'ella', 'hija', 'nieta']
+  .map((id) => figuras.find((f) => f.id === id)!)
+  .map((f, i) => `${i ? 'L' : 'M'}${f.x} ${f.y}`)
+  .join(' ');
+---
+<div class="constelaciones" aria-hidden="true">
+  <span class="constelaciones-aura"></span>
+  <div class="constelaciones-escena">
+    <div class="constelaciones-piso">
+      <span class="constelaciones-anillo constelaciones-anillo-1"></span>
+      <span class="constelaciones-anillo constelaciones-anillo-2"></span>
+      <span class="constelaciones-anillo constelaciones-anillo-3"></span>
+      <svg class="constelaciones-hilos" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path class="constelaciones-hilo-base" d={linea} pathLength="100" />
+        <path class="constelaciones-hilo-luz" d={linea} pathLength="100" />
+      </svg>
+      {figuras.map((f, i) => (
+        <div
+          class={`constelaciones-lugar constelaciones-${f.tono}`}
+          style={`left:${f.x}%;top:${f.y}%;--dx:${f.from[0]}cqi;--dy:${f.from[1]}cqi;--i:${i};--esc:${f.esc}`}
+        >
+          <span class="constelaciones-sombra"></span>
+          <span class="constelaciones-figura">
+            <span class="constelaciones-halo"></span>
+            <span class="constelaciones-cabeza"></span>
+            <span class="constelaciones-cuerpo"></span>
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+  <span class="constelaciones-caption">Mirar · Comprender · Elegir distinto</span>
+</div>
+
+<style is:inline>
+  .constelaciones {
+    --oro: #ecc984;
+    --oro-hondo: #b8913f;
+    --lila: #d9c3d6;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    justify-self: center;
+    display: grid;
+    place-items: center;
+    isolation: isolate;
+    container-type: inline-size;
+  }
+  .constelaciones > * { grid-area: 1 / 1; }
+
+  .constelaciones-aura {
+    width: 94%;
+    aspect-ratio: 1;
+    z-index: -1;
+    border-radius: 48% 52% 50% 50% / 52% 48% 52% 48%;
+    background: radial-gradient(circle at 50% 56%, #d9c3d6aa 0%, #ae92a666 34%, #6d4f8533 60%, transparent 72%);
+    filter: blur(20px);
+    animation: constelaciones-respira 9s ease-in-out infinite;
+  }
+
+  .constelaciones-escena {
+    width: 100%;
+    aspect-ratio: 1;
+    perspective: 120cqi;
+    perspective-origin: 50% 30%;
+    display: grid;
+    place-items: center;
+  }
+
+  /* The floor: tilted back, turning slowly left and right like a breath. */
+  .constelaciones-piso {
+    position: relative;
+    width: 72%;
+    aspect-ratio: 1;
+    transform-style: preserve-3d;
+    transform: translateY(2%) rotateX(60deg) rotateZ(-14deg);
+    animation: constelaciones-gira 22s ease-in-out infinite;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fbf7f11f 0%, #d9c3d614 55%, transparent 70%);
+  }
+  .constelaciones-anillo {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    border-radius: 50%;
+    border: 1px solid #ecc98450;
+  }
+  .constelaciones-anillo-1 { width: 100%; height: 100%; border-color: #ecc98438; }
+  .constelaciones-anillo-2 { width: 72%; height: 72%; border-style: dashed; border-color: #d9c3d640; }
+  .constelaciones-anillo-3 { width: 40%; height: 40%; border-color: #ecc98430; }
+
+  .constelaciones-hilos { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .constelaciones-hilos path { fill: none; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+  .constelaciones-hilo-base {
+    stroke: #ecc9849e;
+    stroke-width: 2;
+    opacity: 0;
+    animation: constelaciones-aparece 2.4s 2.6s ease-in-out both;
+  }
+  .constelaciones-hilo-luz {
+    stroke: var(--oro);
+    stroke-width: 3;
+    opacity: 0;
+    animation: constelaciones-late 7s 6s ease-in-out infinite;
+  }
+
+  /* Each figure: a place on the floor that it slowly walks into. */
+  .constelaciones-lugar {
+    position: absolute;
+    width: 0;
+    height: 0;
+    transform-style: preserve-3d;
+    animation: constelaciones-ordena 2.6s calc(.25s + var(--i) * .18s) cubic-bezier(.3, .1, .2, 1) both;
+  }
+  .constelaciones-sombra {
+    position: absolute;
+    width: 9cqi;
+    height: 9cqi;
+    left: -4.5cqi;
+    top: -4.5cqi;
+    border-radius: 50%;
+    background: radial-gradient(circle, #1c0f2699 0%, transparent 70%);
+    transform: scale(var(--esc));
+  }
+  /* Stands upright, always facing the viewer while the floor turns. */
+  .constelaciones-figura {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 6.4cqi;
+    height: 15cqi;
+    display: grid;
+    justify-items: center;
+    align-content: end;
+    transform-origin: 50% 100%;
+    transform: translate(-50%, -100%) rotateX(-60deg) scale(var(--esc));
+  }
+  .constelaciones-cabeza {
+    width: 4.2cqi;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    margin-bottom: .5cqi;
+    background: radial-gradient(circle at 38% 32%, #fffdf9 0%, #eadbe8 55%, #b79bb8 100%);
+  }
+  .constelaciones-cuerpo {
+    width: 6.4cqi;
+    height: 9.4cqi;
+    border-radius: 3.2cqi 3.2cqi 1.2cqi 1.2cqi;
+    background: linear-gradient(160deg, #f6eef5 0%, #d6c0d6 48%, #9d7fa3 100%);
+  }
+  /* Opacity lives on the leaves: on .constelaciones-lugar it would flatten the standing figures onto the floor. */
+  .constelaciones-figura,
+  .constelaciones-sombra {
+    opacity: var(--op, 1);
+    animation: constelaciones-aparece 1.2s calc(.25s + var(--i) * .18s) ease-out both;
+  }
+  .constelaciones-ancestro { --op: .72; }
+  .constelaciones-figura { position: absolute; }
+  .constelaciones-halo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 22cqi;
+    aspect-ratio: 1;
+    translate: -50% -42%;
+    z-index: -1;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ecc984b3 0%, #ecc98440 35%, transparent 65%);
+    opacity: 0;
+  }
+  .constelaciones-linea .constelaciones-halo,
+  .constelaciones-ella .constelaciones-halo {
+    animation: constelaciones-ilumina 7s calc(6s + var(--i) * .55s) ease-in-out infinite;
+  }
+  .constelaciones-ella .constelaciones-halo { --base: .55; }
+  .constelaciones-ella .constelaciones-cabeza { background: radial-gradient(circle at 38% 32%, #fffaf0 0%, #f6e4bc 55%, #d2ad62 100%); }
+  .constelaciones-ella .constelaciones-cuerpo { background: linear-gradient(160deg, #fff6e2 0%, #ecd29a 50%, #b8913f 100%); }
+
+  .constelaciones-caption {
+    align-self: end;
+    margin-bottom: 1%;
+    font-size: .72rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: #ecc984cc;
+  }
+
+  @keyframes constelaciones-gira {
+    0%, 100% { transform: translateY(2%) rotateX(60deg) rotateZ(-14deg); }
+    50% { transform: translateY(2%) rotateX(60deg) rotateZ(14deg); }
+  }
+  @keyframes constelaciones-respira {
+    0%, 100% { transform: scale(.96); opacity: .85; }
+    50% { transform: scale(1.03); opacity: 1; }
+  }
+  @keyframes constelaciones-ordena {
+    from { transform: translate3d(var(--dx), var(--dy), 0); }
+    to { transform: none; }
+  }
+  @keyframes constelaciones-aparece {
+    from { opacity: 0; }
+    to { opacity: var(--op, 1); }
+  }
+  @keyframes constelaciones-late {
+    0%, 100% { opacity: 0; }
+    35% { opacity: .9; }
+    70% { opacity: 0; }
+  }
+  @keyframes constelaciones-ilumina {
+    0%, 30%, 100% { opacity: var(--base, 0); }
+    12% { opacity: 1; }
+  }
+
+  @media (max-width: 40rem) {
+    .constelaciones-caption { font-size: .62rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .constelaciones-aura,
+    .constelaciones-piso,
+    .constelaciones-lugar,
+    .constelaciones-hilo-base,
+    .constelaciones-hilo-luz,
+    .constelaciones-figura,
+    .constelaciones-sombra,
+    .constelaciones-halo { animation: none !important; }
+    .constelaciones-hilo-base { opacity: 1; }
+    .constelaciones-hilo-luz { opacity: .5; }
+    .constelaciones-ella .constelaciones-halo { opacity: .7; }
+  }
+</style>

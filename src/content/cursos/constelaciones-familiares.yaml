@@ -1,0 +1,119 @@
+# Sesión de Constelaciones Familiares → https://sitio/constelaciones-familiares/
+# Oferta para Lorena. Palabra clave de WhatsApp: CONSTELACIONES.
+# Fuente: institutovisionenaccion.com/visiones-magicas/ (sesiones individuales, agenda abierta, sin precio publicado).
+
+nombre: Sesión de Constelaciones Familiares
+orden: 3
+mostrarEnHome: false   # landing para anuncios
+animacion: constelaciones-familiares
+
+seo:
+  titulo: Constelaciones Familiares | Instituto Visión en Acción
+  descripcion: Sesión individual de Constelaciones Familiares para mirar tu historia familiar y entender qué se repite de madre a hija. Es una sesión paga, con agenda abierta.
+
+tarjeta:
+  etiqueta: Sesión individual · Agenda abierta
+  resumen: Un espacio para mirar tu historia familiar y entender qué se está repitiendo.
+  boton: Conocer la sesión
+
+whatsapp:
+  mensaje: Hola, escribo por CONSTELACIONES. Quisiera conocer el arancel y los horarios disponibles para una sesión de Constelaciones Familiares.
+
+hero:
+  bajada: Una mirada sistémica para entender lo que se repite en tu familia, de madre a hija, y empezar a elegir distinto.
+  datos:
+    - Sesión individual
+    - Agenda abierta
+    - Es una sesión paga
+  boton: Reservar mi sesión
+  nota: Te escribimos por WhatsApp con los horarios disponibles y el arancel.
+  linkSecundario:
+    texto: Qué se trabaja en la sesión
+    href: "#programa"
+
+gancho:
+  frase: Le hago a mi hija… lo mismo que me hizo mi mamá.
+  texto: Me lo dicen muchas mamás. No es falta de amor. Es una herida que pasa de madre a hija, hasta que alguien decide mirarla. Lo que no miramos de nuestra historia, se repite en la de nuestros hijos. El cambio no empieza por tus hijos. Empieza por vos.
+
+cursada:
+  - etiqueta: Modalidad
+    valor: Sesión individual
+  - etiqueta: Agenda
+    valor: Abierta, coordinamos el horario por WhatsApp
+  - etiqueta: Arancel
+    valor: Te pasamos el arancel por WhatsApp
+
+paraQuien:
+  titulo: ¿Para quién es esta sesión?
+  items:
+    - Te escuchaste decirle a tu hija una frase que te decía tu mamá, y te dolió.
+    - Te juraste que con tus hijos iba a ser distinto, y ves que algunas cosas se repiten igual.
+    - Sentís que entre vos y tus hijos hay una distancia que no sabés de dónde viene.
+    - Querés cortar la cadena empezando por vos, sin culpar a nadie.
+  cierre: Si te reconocés en alguna, esta sesión es un buen lugar para empezar.
+
+programa:
+  titulo: Qué podemos mirar en la sesión
+  texto: Cada historia es distinta. Estos son algunos de los temas que suelen aparecer. Tocá cada uno para ver de qué se trata.
+  enfoques:
+    - id: madre-hija
+      titulo: Lo que pasa de madre a hija
+      resumen: Mandatos, frases y silencios que se heredan.
+      descripcion: Muchas veces repetimos con nuestros hijos lo que vivimos con nuestra mamá, sin darnos cuenta. En la sesión miramos de dónde viene eso que se repite, para poder reconocerlo y elegir distinto.
+    - id: padres-hijos
+      titulo: Conflictos entre padres e hijos
+      resumen: La distancia que duele y no se entiende.
+      descripcion: Cuando un vínculo con un hijo o una hija se enfría, solemos buscar la causa en el presente. Desde la mirada sistémica, a veces la respuesta está más atrás, en la historia de la familia.
+    - id: lealtades
+      titulo: Lealtades y mandatos
+      resumen: Lo que cargás por amor a tu familia.
+      descripcion: Hay lealtades invisibles que nos llevan a repetir destinos, renuncias o formas de amar. Verlas no es culpar a nadie. Es darle a cada uno su lugar y quedarte con lo tuyo.
+    - id: culpa-limites
+      titulo: Culpa, sobrecarga y límites
+      resumen: Cuando sostenés a todos menos a vos.
+      descripcion: La culpa y la dificultad para poner límites suelen tener raíces familiares. En la sesión podemos mirar de dónde vienen y qué lugar ocupás vos en tu sistema familiar.
+    - id: patrones
+      titulo: Patrones que se repiten
+      resumen: Pareja, dinero, trabajo y decisiones.
+      descripcion: Situaciones que vuelven una y otra vez, en la pareja, con el dinero o en momentos de cambio. Mirarlas desde tu historia familiar ayuda a comprenderlas y abre nuevas posibilidades de acción.
+
+incluye:
+  titulo: Cómo es la sesión
+  items:
+    - titulo: Una sesión individual
+      texto: Un espacio solo para vos y tu historia, con agenda abierta para elegir el horario que te quede cómodo.
+    - titulo: Una mirada sistémica
+      texto: Miramos juntas tu historia familiar para entender qué se repite. El objetivo no es adivinar ni prometer resultados, sino ampliar la mirada.
+# Bloque "Cómo es estudiar en el Instituto", ajustado a una sesión individual.
+instituto:
+  recibis:
+    - Una sesión individual de Constelaciones Familiares, con agenda abierta.
+    - Un espacio para mirar tu historia familiar y entender qué se repite.
+    - Coordinación del horario y consultas por WhatsApp.
+  encuentros: Si después de la sesión querés seguir acompañada, los encuentros en vivo de la membresía son con Fernanda, lunes y jueves a las 19 h (Argentina).
+  membresia: true
+
+oferta:
+  titulo: Reservá tu sesión
+  destacado: Sesión individual · Agenda abierta
+
+preguntas:
+  - pregunta: ¿Cómo reservo mi sesión?
+    respuesta: Tocá «Reservar mi sesión» y dejá tus datos, o escribinos CONSTELACIONES por WhatsApp al 11 6677-0206 o al 11 5646-7222. Te respondemos con los horarios y el arancel.
+  - pregunta: ¿Tengo que saber algo antes?
+    respuesta: No. No hace falta ninguna experiencia previa ni preparar nada. Solo traer lo que te está pasando.
+  - pregunta: ¿Es para culpar a mi mamá o a mi familia?
+    respuesta: No. Mirar la historia familiar no es buscar culpables. Es entender de dónde viene lo que se repite, para poder elegir distinto.
+  - pregunta: ¿Me asegura que mi relación con mis hijos va a cambiar?
+    respuesta: No prometemos resultados. La sesión amplía la mirada sobre lo que estás atravesando y abre nuevas posibilidades de comprensión y acción. Lo que hagas con eso es tuyo.
+  - pregunta: ¿Reemplaza una terapia?
+    respuesta: No. Es una práctica complementaria y no reemplaza la atención médica ni psicológica.
+
+cierre:
+  titulo: Cortar la cadena empieza por mirarla
+  texto: Dejá tus datos y te escribimos con los horarios disponibles y el arancel de la sesión.
+
+reserva:
+  titulo: Reservá tu sesión de Constelaciones
+  texto: Dejanos tus datos y te escribimos por WhatsApp con los horarios disponibles y el arancel.
+  gracias: Te vamos a escribir con los horarios y el arancel. Si querés, podés escribirnos ahora por WhatsApp con la palabra CONSTELACIONES.
