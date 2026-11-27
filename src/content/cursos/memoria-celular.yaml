@@ -1,0 +1,151 @@
+# Sesiones de Memoria Celular → https://sitio/memoria-celular/
+# Fuente: institutovisionenaccion.com/visiones-magicas/ (sesiones individuales, agenda abierta, sin precio publicado).
+# Le hablamos a Lorena (README → "A quién le hablamos"). Sesión paga, sin promesas de resultado.
+
+nombre: Sesiones de Memoria Celular
+mostrarEnHome: false   # landing para anuncios
+orden: 30
+animacion: memoria-celular
+
+seo:
+  titulo: Sesiones de Memoria Celular | Instituto Visión en Acción
+  descripcion: Sesión individual para explorar lo que tu historia dejó registrado y mirar de dónde viene lo que se repite en tu familia. Agenda abierta. Escribinos por WhatsApp.
+
+tarjeta:
+  etiqueta: Sesión individual · Agenda abierta
+  resumen: Un espacio para explorar lo que tu historia dejó registrado y mirar de dónde viene lo que se repite.
+  boton: Conocer la sesión
+
+whatsapp:
+  mensaje: Hola, quisiera conocer el arancel y los horarios disponibles para una sesión de Memoria Celular.
+
+hero:
+  bajada: Explorar lo que tu historia dejó registrado. Un espacio individual para mirar las emociones y los patrones que sentís presentes hoy, y de dónde vienen.
+  datos:
+    - Sesión individual
+    - Agenda abierta
+    - Es una sesión paga
+  boton: Reservar mi sesión
+  nota: Te escribimos por WhatsApp para pasarte el arancel y coordinar el día.
+  linkSecundario:
+    texto: Qué se mira en la sesión
+    href: "#programa"
+
+gancho:
+  frase: Me duele ver que mis hijos repiten mis errores.
+  texto: A veces reaccionamos con una fuerza que no tiene que ver con lo que pasó hoy. Lo que no miramos de nuestra historia, se repite en la de nuestros hijos. No es falta de amor. Es una herida que pasa de madre a hija, hasta que alguien decide mirarla. Y el cambio no empieza por tus hijos. Empieza por vos.
+
+cursada:
+  - etiqueta: Formato
+    valor: Sesión individual, con agenda abierta
+  - etiqueta: Modalidad y horario
+    valor: Lo coordinamos con vos por WhatsApp
+  - etiqueta: Arancel
+    valor: Te lo pasamos por WhatsApp
+
+paraQuien:
+  titulo: ¿Para quién es esta sesión?
+  items:
+    - Ves que tus hijos repiten tus errores, y en eso reconocés algo que también viviste con tu mamá.
+    - Hay reacciones tuyas que te desbordan y después no entendés de dónde salieron.
+    - Te juraste que con tus hijos iba a ser distinto, y sentís que algo se sigue repitiendo.
+    - Ya entendiste mucho con la cabeza y querés mirarlo desde otro lugar.
+    - Decidiste empezar por vos, por tus hijos y por tus nietos.
+  cierre: Si te reconocés en alguna, esta sesión es un buen primer paso.
+
+programa:
+  titulo: Qué podemos mirar en la sesión
+  texto: Desde este enfoque, el cuerpo guarda memoria de lo que vivimos y de lo que vivieron antes que nosotras. Tocá cada bloque para ver de qué se trata.
+  enfoques:
+    - id: situaciones-que-se-repiten
+      icono: biodescodificacion
+      titulo: Situaciones que se repiten
+      resumen: Lo que vuelve a pasar, en vos y en tu familia.
+      descripcion: Esa historia que se repite de madre a hija, las mismas peleas, las mismas distancias. Miramos cuándo empezó y qué lugar ocupa hoy en tu vida.
+    - id: emociones-del-pasado
+      icono: hipnosis
+      titulo: Emociones asociadas a experiencias pasadas
+      resumen: Lo que sentís hoy, con raíz en otro momento.
+      descripcion: El enojo, la tristeza o el miedo que aparecen con una fuerza que no tiene que ver con lo que pasó hoy. Exploramos de dónde vienen, sin juzgarlos.
+    - id: creencias
+      icono: coaching
+      titulo: Creencias que hoy querés revisar
+      resumen: Lo que aprendiste a pensar de vos y de los vínculos.
+      descripcion: Frases que escuchaste de chica y que hoy siguen decidiendo por vos. Las miramos para que puedas elegir cuáles querés seguir sosteniendo.
+    - id: vinculos
+      icono: biodescodificacion
+      titulo: Vínculos o decisiones que generan malestar
+      resumen: Lo que duele en la relación con tus hijos, tu mamá o tu pareja.
+      descripcion: Cuando tu hija te busca y le ponés excusas, o cuando sentís que te alejan. Miramos qué se activa en vos en esos momentos.
+    - id: estancamiento
+      icono: hipnosis
+      titulo: Momentos de cambio o estancamiento
+      resumen: Cuando sentís que no avanzás o que algo tiene que cambiar.
+      descripcion: Una etapa nueva, un duelo, o la sensación de estar siempre en el mismo lugar. La sesión es un espacio para observarlo con calma.
+
+carrusel:
+  titulo: Un ejercicio para empezar hoy
+  texto: Deslizá las placas. Es el mismo carrusel que compartimos en Instagram.
+  imagenes:
+    - src: /images/carruseles/memoria-celular/1.webp
+      alt: "«Me duele ver que mis hijos repiten mis errores.»"
+    - src: /images/carruseles/memoria-celular/2.webp
+      alt: "A veces reaccionamos con una fuerza que no tiene que ver con lo que pasó hoy. Y después no entendemos de dónde salió."
+    - src: /images/carruseles/memoria-celular/3.webp
+      alt: "Desde este enfoque, el cuerpo guarda memoria. De lo que vivimos, y de lo que vivieron antes que nosotras."
+    - src: /images/carruseles/memoria-celular/4.webp
+      alt: "Un ejercicio: la próxima vez que algo te desborde, preguntate: ¿cuándo sentí esto por primera vez?"
+    - src: /images/carruseles/memoria-celular/5.webp
+      alt: "Un ejercicio: anotá lo que aparezca, sin juzgarlo. No hace falta entenderlo todo hoy. Es un punto de partida."
+    - src: /images/carruseles/memoria-celular/6.webp
+      alt: "Sesión de Memoria Celular: un espacio individual para mirar de dónde viene lo que se repite. Es una sesión paga; el arancel te lo paso por WhatsApp. No reemplaza la atención médica ni psicológica."
+    - src: /images/carruseles/memoria-celular/7.webp
+      alt: "Para quién es: para quien ve que algo se repite de madre a hija, para quien ya entendió mucho con la cabeza, para quien decidió empezar por ella."
+    - src: /images/carruseles/memoria-celular/8.webp
+      alt: "¿Te pasó reaccionar fuerte y después no entender por qué? Contame abajo: lo que se nombra, se puede mirar. Soy Fernanda, de Visión en Acción."
+
+instituto:              # bloque "Cómo es estudiar en el Instituto", ajustado a una sesión
+  titulo: Qué recibís y cómo seguir
+  recibis:
+    - Una sesión individual, solo para vos, para explorar con calma lo que tu historia dejó registrado.
+    - Día y horario coordinados por WhatsApp, según tu disponibilidad (agenda abierta).
+    - Una pregunta o una práctica simple para seguir observando en tu casa.
+  encuentros: Si después querés seguir acompañada, podés sumarte a los encuentros en vivo de la membresía. Es opcional.
+  membresia: true
+
+docentes:
+  titulo: Quién te acompaña
+  personas:
+    - id: docente-fernanda
+      nombre: Fernanda Rodríguez
+      bio: Fundadora y directora del instituto, es formadora en desarrollo personal y en el área holística. Su trabajo integra herramientas de autoconocimiento y de exploración de patrones personales y familiares.
+      foto: /images/instructor-portrait.jpg
+      alt: Retrato de Fernanda Rodríguez
+      ancho: 673
+      alto: 1437
+
+oferta:
+  titulo: Reservá tu sesión
+  destacado: Sesión individual · Agenda abierta
+  texto: Coordinamos el día y el horario por WhatsApp. Esta práctica es complementaria y no sustituye la atención médica, psicológica o psiquiátrica.
+
+preguntas:
+  - pregunta: ¿Qué es la Memoria Celular?
+    respuesta: Es un enfoque de exploración personal que parte de la idea de que el cuerpo guarda registro de lo que vivimos y de lo que vivieron antes que nosotras. En la sesión observamos experiencias, emociones y patrones que sentís presentes hoy.
+  - pregunta: ¿Va a cambiar la relación con mis hijos?
+    respuesta: No podemos prometerte cómo va a responder otra persona. Lo que sí podés hacer es mirar tu parte de la historia. La sesión es un espacio para vos.
+  - pregunta: ¿Cuánto cuesta?
+    respuesta: Es una sesión paga. Te pasamos el arancel por WhatsApp, junto con los horarios disponibles.
+  - pregunta: ¿Reemplaza una terapia o un tratamiento médico?
+    respuesta: No. Esta práctica es complementaria y no sustituye la atención médica, psicológica o psiquiátrica.
+  - pregunta: ¿Cómo reservo?
+    respuesta: Tocá «Reservar mi sesión» y dejá tus datos. Te escribimos por WhatsApp para coordinar el día.
+
+cierre:
+  titulo: El cambio no empieza por tus hijos. Empieza por vos.
+  texto: Dejá tus datos y te escribimos para coordinar tu sesión de Memoria Celular.
+
+reserva:
+  titulo: Reservá tu sesión de Memoria Celular
+  texto: Dejanos tus datos y te escribimos por WhatsApp con el arancel y los horarios disponibles.
+  gracias: Te vamos a escribir para pasarte el arancel y coordinar el día. Si querés, podés escribirnos ahora por WhatsApp.

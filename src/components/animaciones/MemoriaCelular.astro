@@ -1,0 +1,169 @@
+---
+// Hero art for /memoria-celular/: "células de luz" in 3D. Points of light drift loose, like scattered
+// memories, and slowly settle into one luminous, breathing cell with a warm nucleus; then they loosen
+// and settle again. Slow rotation, depth-based size and glow, lilac and gold from the site palette.
+// Plain canvas (no libraries), paused off-screen, DPR capped at 2, fewer points on phones.
+// Under prefers-reduced-motion it draws a single still frame of the settled cell.
+// No props (convention of src/components/animaciones/). Styles and script are is:inline so only this page loads them.
+---
+<div class="memoria-celular-art" aria-hidden="true">
+  <span class="memoria-celular-glow"></span>
+  <canvas class="memoria-celular-canvas" width="600" height="600"></canvas>
+  <span class="memoria-celular-caption">Lo que el cuerpo recuerda, se puede mirar</span>
+</div>
+
+<style is:inline>
+  .memoria-celular-art {
+    position: relative; width: 100%; aspect-ratio: 1; justify-self: center;
+    display: grid; place-items: center; isolation: isolate;
+  }
+  .memoria-celular-art > * { grid-area: 1 / 1; }
+  .memoria-celular-glow {
+    width: 78%; aspect-ratio: 1; border-radius: 50%; z-index: -1;
+    background: radial-gradient(circle, #b98fd655 0%, #7a4f9a33 40%, transparent 70%);
+    filter: blur(8px);
+    animation: memoria-celular-breathe 9s ease-in-out infinite;
+  }
+  .memoria-celular-canvas { width: 100%; height: 100%; display: block; }
+  .memoria-celular-caption {
+    align-self: end; margin-bottom: .2rem;
+    font: italic 400 .95rem/1.3 var(--display); color: #ecc984cc; letter-spacing: .02em; text-align: center;
+  }
+  @keyframes memoria-celular-breathe { 0%, 100% { scale: .92; opacity: .75; } 50% { scale: 1.06; opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .memoria-celular-glow { animation: none; } }
+  @media (max-width: 720px) { .memoria-celular-caption { font-size: .85rem; } }
+</style>
+
+<script is:inline>
+  (() => {
+  function start(root) {
+    const canvas = root.querySelector('canvas');
+    const ctx = canvas?.getContext('2d');
+    if (!canvas || !ctx) return;
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const small = matchMedia('(max-width: 720px)').matches;
+    const N = small ? 120 : 200;
+
+    // Each point has a loose "scattered" home and a home on the surface of the cell (Fibonacci sphere).
+    const pts = [];
+    const golden = Math.PI * (3 - Math.sqrt(5));
+    for (let i = 0; i < N; i++) {
+      const y = 1 - (i / (N - 1)) * 2;
+      const rad = Math.sqrt(1 - y * y);
+      const th = golden * i;
+      const u = Math.random() * 2 - 1, a = Math.random() * Math.PI * 2, d = 1.25 + Math.random() * 0.75;
+      const ru = Math.sqrt(1 - u * u);
+      pts.push({
+        cx: Math.cos(th) * rad, cy: y, cz: Math.sin(th) * rad,
+        sx: ru * Math.cos(a) * d, sy: u * d * 0.85, sz: ru * Math.sin(a) * d,
+        hue: Math.random(), ph: Math.random() * Math.PI * 2, r: 0.7 + Math.random() * 0.9,
+      });
+    }
+
+    let w = 0, h = 0, dpr = 1;
+    function resize() {
+      dpr = Math.min(devicePixelRatio || 1, 2);
+      const box = canvas.getBoundingClientRect();
+      w = box.width; h = box.height;
+      canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    resize();
+    new ResizeObserver(() => { resize(); if (reduced) draw(0); }).observe(canvas);
+
+    let tiltX = 0, tiltY = 0, tx = 0, ty = 0;
+    root.closest('section')?.addEventListener('pointermove', (e) => {
+      const b = root.getBoundingClientRect();
+      tx = ((e.clientY - b.top) / b.height - 0.5) * 0.35;
+      ty = ((e.clientX - b.left) / b.width - 0.5) * 0.5;
+    });
+
+    const ease = (x) => x * x * (3 - 2 * x);
+    // 0 = scattered, 1 = settled. Cycle of ~16 s: gather (5 s), rest breathing (7 s), loosen (4 s).
+    function gather(t) {
+      const c = (t / 1000) % 16;
+      if (c < 5) return ease(c / 5);
+      if (c < 12) return 1;
+      return 1 - ease((c - 12) / 4) * 0.85;
+    }
+
+    function draw(t) {
+      const k = reduced ? 1 : gather(t);
+      const breath = reduced ? 1 : 1 + Math.sin(t / 1430) * 0.045;
+      tiltX += (tx - tiltX) * 0.04; tiltY += (ty - tiltY) * 0.04;
+      const rotY = (reduced ? 0.6 : t / 9000) + tiltY, rotX = -0.32 + tiltX;
+      const cyR = Math.cos(rotY), syR = Math.sin(rotY), cxR = Math.cos(rotX), sxR = Math.sin(rotX);
+      const R = Math.min(w, h) * 0.3, cxS = w / 2, cyS = h * 0.47, cam = 3.2;
+
+      ctx.clearRect(0, 0, w, h);
+
+      // Nucleus: warm golden core that brightens as the cell settles.
+      const nucleus = ctx.createRadialGradient(cxS, cyS, 0, cxS, cyS, R * 0.55);
+      nucleus.addColorStop(0, `rgba(246, 222, 170, ${0.18 + 0.32 * k})`);
+      nucleus.addColorStop(0.45, `rgba(236, 201, 132, ${0.06 + 0.12 * k})`);
+      nucleus.addColorStop(1, 'rgba(236, 201, 132, 0)');
+      ctx.fillStyle = nucleus;
+      ctx.beginPath(); ctx.arc(cxS, cyS, R * 0.55, 0, Math.PI * 2); ctx.fill();
+
+      const proj = [];
+      for (const p of pts) {
+        const drift = reduced ? 0 : Math.sin(t / 2100 + p.ph) * 0.06 * (1 - k * 0.7);
+        let x = (p.sx + (p.cx * breath - p.sx) * k) + drift;
+        let y = (p.sy + (p.cy * breath - p.sy) * k) + drift * 0.6;
+        let z = p.sz + (p.cz * breath - p.sz) * k;
+        const x1 = x * cyR - z * syR; z = x * syR + z * cyR; x = x1;
+        const y1 = y * cxR - z * sxR; z = y * sxR + z * cxR; y = y1;
+        const s = cam / (cam + z);
+        proj.push({ x: cxS + x * R * s, y: cyS + y * R * s, z, s, p });
+      }
+      proj.sort((a, b) => b.z - a.z);
+
+      // Faint threads between near neighbours once settled: the "memory" weaving back together.
+      if (k > 0.55) {
+        ctx.lineWidth = 0.6;
+        const alpha = (k - 0.55) / 0.45;
+        for (let i = 0; i < proj.length; i += 2) {
+          const a = proj[i];
+          for (let j = i + 1; j < Math.min(proj.length, i + 14); j++) {
+            const b = proj[j];
+            const dx = a.x - b.x, dy = a.y - b.y, d2 = dx * dx + dy * dy, lim = (R * 0.28) ** 2;
+            if (d2 < lim) {
+              const front = (2 - (a.z + b.z) / 2) / 3;
+              ctx.strokeStyle = `rgba(214, 190, 232, ${0.16 * alpha * front * (1 - d2 / lim)})`;
+              ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+            }
+          }
+        }
+      }
+
+      for (const { x, y, z, s, p } of proj) {
+        const depth = Math.max(0, Math.min(1, (1.6 - z) / 3.2));
+        const twinkle = reduced ? 1 : 0.75 + 0.25 * Math.sin(t / 700 + p.ph * 3);
+        const size = (1.3 + p.r * 1.9) * s * (small ? 0.9 : 1);
+        const a = (0.25 + 0.75 * depth) * twinkle;
+        // Mostly lilac points, about one in four golden.
+        const [r, g, b] = p.hue > 0.74 ? [240, 211, 150] : [214 + p.hue * 20, 186 + p.hue * 20, 236];
+        const halo = ctx.createRadialGradient(x, y, 0, x, y, size * 4);
+        halo.addColorStop(0, `rgba(${r}, ${g}, ${b}, ${a * 0.55})`);
+        halo.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
+        ctx.fillStyle = halo;
+        ctx.beginPath(); ctx.arc(x, y, size * 4, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = `rgba(255, 249, 240, ${a})`;
+        ctx.beginPath(); ctx.arc(x, y, size * 0.7, 0, Math.PI * 2); ctx.fill();
+      }
+    }
+
+    if (reduced) { draw(0); return; }
+    let raf = 0, visible = false, t0 = performance.now();
+    const loop = (now) => { draw(now - t0); raf = requestAnimationFrame(loop); };
+    new IntersectionObserver(([entry]) => {
+      const on = entry.isIntersecting && !document.hidden;
+      if (on && !visible) raf = requestAnimationFrame(loop);
+      if (!on && visible) cancelAnimationFrame(raf);
+      visible = on;
+    }).observe(root);
+  }
+
+  document.querySelectorAll('.memoria-celular-art').forEach(start);
+  })();
+</script>
