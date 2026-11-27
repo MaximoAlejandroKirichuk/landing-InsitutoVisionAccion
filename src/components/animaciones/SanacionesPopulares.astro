@@ -1,0 +1,203 @@
+---
+// Hero art for /sanaciones-populares/: "hojas que flotan". Herb leaves (ruda, romero, menta, cedrón) drift
+// slowly upward in 3D around a warm golden light, as if rising from a cup of tea: they turn, catch the light
+// and fade at the top while new ones appear below. A few specks of gold float with them.
+// Plain canvas (no libraries), paused off-screen, DPR capped at 2, fewer leaves on phones.
+// Under prefers-reduced-motion it draws a single still frame.
+// No props (convention of src/components/animaciones/). Styles and script are is:inline so only this page loads them.
+---
+<div class="sanaciones-populares-art" aria-hidden="true">
+  <span class="sanaciones-populares-glow"></span>
+  <canvas class="sanaciones-populares-canvas" width="600" height="600"></canvas>
+  <span class="sanaciones-populares-caption">Lo que se cuenta, no se pierde</span>
+</div>
+
+<style is:inline>
+  .sanaciones-populares-art {
+    position: relative; width: 100%; aspect-ratio: 1; justify-self: center;
+    display: grid; place-items: center; isolation: isolate;
+  }
+  .sanaciones-populares-art > * { grid-area: 1 / 1; }
+  .sanaciones-populares-glow {
+    width: 70%; aspect-ratio: 1; border-radius: 50%; z-index: -1; translate: 0 12%;
+    background: radial-gradient(circle, #ecc98455 0%, #b98fd633 38%, transparent 70%);
+    filter: blur(10px);
+    animation: sanaciones-populares-breathe 10s ease-in-out infinite;
+  }
+  .sanaciones-populares-canvas { width: 100%; height: 100%; display: block; }
+  .sanaciones-populares-caption {
+    align-self: end; margin-bottom: .2rem;
+    font: italic 400 .95rem/1.3 var(--display); color: #ecc984cc; letter-spacing: .02em; text-align: center;
+  }
+  @keyframes sanaciones-populares-breathe { 0%, 100% { scale: .94; opacity: .75; } 50% { scale: 1.05; opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .sanaciones-populares-glow { animation: none; } }
+  @media (max-width: 720px) { .sanaciones-populares-caption { font-size: .85rem; } }
+</style>
+
+<script is:inline>
+  (() => {
+  function start(root) {
+    const canvas = root.querySelector('canvas');
+    const ctx = canvas?.getContext('2d');
+    if (!canvas || !ctx) return;
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const small = matchMedia('(max-width: 720px)').matches;
+    const LEAVES = small ? 16 : 24, SPECKS = small ? 26 : 40;
+
+    // Leaf shapes: [length, width ratio, colour]. Sage and lilac greens that sit well on violet.
+    const kinds = [
+      [1.0, 0.42, [168, 196, 150]],  // menta
+      [1.3, 0.22, [150, 182, 150]],  // romero / cedrón (long, thin)
+      [0.8, 0.55, [186, 204, 160]],  // ruda (round)
+      [1.1, 0.38, [206, 190, 226]],  // lilac petal-leaf
+    ];
+    const rnd = (a, b) => a + Math.random() * (b - a);
+    const leaves = Array.from({ length: LEAVES }, (_, i) => ({
+      life: i / LEAVES,                       // 0 bottom → 1 top, staggered
+      ang: rnd(0, Math.PI * 2), rad: rnd(0.25, 1), speed: rnd(0.75, 1.25),
+      spin: rnd(-1, 1), tilt: rnd(0, Math.PI * 2), roll: rnd(0, Math.PI * 2),
+      size: rnd(0.8, 1.25), kind: kinds[i % kinds.length], ph: rnd(0, 6.28),
+    }));
+    const specks = Array.from({ length: SPECKS }, () => ({
+      life: Math.random(), ang: rnd(0, 6.28), rad: rnd(0, 1.1), speed: rnd(0.5, 1), ph: rnd(0, 6.28),
+    }));
+
+    let w = 0, h = 0, dpr = 1;
+    function resize() {
+      dpr = Math.min(devicePixelRatio || 1, 2);
+      const box = canvas.getBoundingClientRect();
+      w = box.width; h = box.height;
+      canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    resize();
+    new ResizeObserver(() => { resize(); if (reduced) draw(0, 0); }).observe(canvas);
+
+    let tiltY = 0, ty = 0;
+    root.closest('section')?.addEventListener('pointermove', (e) => {
+      const b = root.getBoundingClientRect();
+      ty = ((e.clientX - b.left) / b.width - 0.5) * 0.6;
+    });
+
+    const CYCLE = 22; // seconds for a leaf to rise from the light to the top
+    const cam = 3;
+
+    // Position of something rising in a slow helix. life 0..1.
+    function place(life, ang, rad, t, ph) {
+      const a = ang + life * 2.4 + t * 0.00012 + tiltY;
+      const spread = 0.25 + 0.75 * Math.sin(Math.min(life, 0.9) / 0.9 * Math.PI * 0.5);
+      const r = rad * spread;
+      const x = Math.cos(a) * r + Math.sin(t / 2600 + ph) * 0.06;
+      const z = Math.sin(a) * r;
+      const y = 0.95 - life * 2.0;
+      const s = cam / (cam + z);
+      return { x, y, z, s };
+    }
+    const fade = (life) => Math.min(1, life / 0.12) * Math.min(1, (1 - life) / 0.25);
+
+    function leafPath(len, wid) {
+      ctx.beginPath();
+      ctx.moveTo(-len, 0);
+      ctx.bezierCurveTo(-len * 0.4, -wid * 1.3, len * 0.4, -wid * 1.1, len, 0);
+      ctx.bezierCurveTo(len * 0.4, wid * 1.1, -len * 0.4, wid * 1.3, -len, 0);
+      ctx.closePath();
+    }
+
+    function draw(t, dt) {
+      tiltY += (ty - tiltY) * 0.03;
+      const R = Math.min(w, h) * 0.36, cx = w / 2, cy = h * 0.5;
+      ctx.clearRect(0, 0, w, h);
+
+      // The warm source of light at the bottom, like the surface of a cup of tea.
+      const srcY = cy + R * 0.98;
+      const src = ctx.createRadialGradient(cx, srcY, 0, cx, srcY, R * 0.7);
+      const pulse = reduced ? 1 : 0.85 + 0.15 * Math.sin(t / 1700);
+      src.addColorStop(0, `rgba(246, 222, 170, ${0.55 * pulse})`);
+      src.addColorStop(0.35, `rgba(236, 201, 132, ${0.2 * pulse})`);
+      src.addColorStop(1, 'rgba(236, 201, 132, 0)');
+      ctx.fillStyle = src;
+      ctx.beginPath(); ctx.ellipse(cx, srcY, R * 0.7, R * 0.32, 0, 0, Math.PI * 2); ctx.fill();
+
+      // Two soft wisps of steam.
+      ctx.lineCap = 'round';
+      for (let k = 0; k < 2; k++) {
+        ctx.beginPath();
+        for (let i = 0; i <= 30; i++) {
+          const f = i / 30;
+          const x = cx + (k ? 1 : -1) * R * 0.12 + Math.sin(f * 5 + t / 1300 + k * 2) * R * 0.1 * f;
+          const y = srcY - f * R * 1.3;
+          i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+        }
+        ctx.strokeStyle = 'rgba(240, 229, 242, 0.05)';
+        ctx.lineWidth = R * 0.035; ctx.stroke();
+      }
+
+      const items = [];
+      for (const l of leaves) {
+        if (!reduced) l.life = (l.life + dt / 1000 / CYCLE * l.speed) % 1;
+        const p = place(l.life, l.ang, l.rad, t, l.ph);
+        items.push({ type: 'leaf', l, ...p });
+      }
+      for (const sp of specks) {
+        if (!reduced) sp.life = (sp.life + dt / 1000 / CYCLE * sp.speed * 1.3) % 1;
+        items.push({ type: 'speck', sp, ...place(sp.life, sp.ang, sp.rad, t, sp.ph) });
+      }
+      items.sort((a, b) => b.z - a.z);
+
+      for (const it of items) {
+        const X = cx + it.x * R * it.s, Y = cy + it.y * R * it.s;
+        const depth = Math.max(0.25, Math.min(1, (1.4 - it.z) / 2.2));
+        if (it.type === 'speck') {
+          const a = fade(it.sp.life) * depth * (reduced ? 0.8 : 0.6 + 0.4 * Math.sin(t / 500 + it.sp.ph * 4));
+          const g = ctx.createRadialGradient(X, Y, 0, X, Y, 6 * it.s);
+          g.addColorStop(0, `rgba(246, 222, 170, ${a})`);
+          g.addColorStop(1, 'rgba(246, 222, 170, 0)');
+          ctx.fillStyle = g; ctx.beginPath(); ctx.arc(X, Y, 6 * it.s, 0, Math.PI * 2); ctx.fill();
+          continue;
+        }
+        const l = it.l, [len0, wr, [r, g, b]] = l.kind;
+        const len = R * 0.13 * len0 * l.size * it.s, wid = len * wr;
+        // 3D turning: the leaf rotates in its plane and rolls around its spine (foreshortened width).
+        const rot = l.tilt + (reduced ? 0 : t / 5200 * l.spin);
+        const roll = Math.cos(l.roll + (reduced ? 0 : t / 3100 * (0.6 + Math.abs(l.spin))));
+        const face = Math.abs(roll);
+        const a = fade(l.life) * depth;
+        // Leaves catch the warm light more when they face it and are lower down.
+        const warm = Math.max(0, 1 - l.life * 1.3) * face;
+        const cr = Math.round(r + (246 - r) * warm * 0.45), cg = Math.round(g + (222 - g) * warm * 0.35), cb = Math.round(b + (170 - b) * warm * 0.4);
+        ctx.save();
+        ctx.translate(X, Y); ctx.rotate(rot); ctx.scale(1, Math.max(0.12, face));
+        leafPath(len, wid);
+        const grad = ctx.createLinearGradient(0, -wid, 0, wid);
+        grad.addColorStop(0, `rgba(${cr}, ${cg}, ${cb}, ${a * (roll > 0 ? 0.95 : 0.7)})`);
+        grad.addColorStop(1, `rgba(${Math.round(cr * 0.78)}, ${Math.round(cg * 0.78)}, ${Math.round(cb * 0.85)}, ${a * 0.85})`);
+        ctx.fillStyle = grad; ctx.fill();
+        ctx.strokeStyle = `rgba(236, 201, 132, ${a * 0.35})`; ctx.lineWidth = 0.8; ctx.stroke();
+        // Spine and a few veins.
+        ctx.beginPath(); ctx.moveTo(-len * 1.15, 0); ctx.lineTo(len * 0.9, 0);
+        for (let v = -0.5; v <= 0.5; v += 0.33) {
+          ctx.moveTo(len * v, 0); ctx.lineTo(len * (v + 0.28), -wid * 0.7);
+          ctx.moveTo(len * v, 0); ctx.lineTo(len * (v + 0.28), wid * 0.7);
+        }
+        ctx.strokeStyle = `rgba(251, 247, 241, ${a * 0.4})`; ctx.lineWidth = 0.7; ctx.stroke();
+        ctx.restore();
+      }
+    }
+
+    if (reduced) { draw(0, 0); return; }
+    let raf = 0, visible = false, last = 0, t0 = performance.now();
+    const loop = (now) => {
+      const dt = last ? Math.min(now - last, 50) : 16; last = now;
+      draw(now - t0, dt); raf = requestAnimationFrame(loop);
+    };
+    new IntersectionObserver(([entry]) => {
+      const on = entry.isIntersecting && !document.hidden;
+      if (on && !visible) { last = 0; raf = requestAnimationFrame(loop); }
+      if (!on && visible) cancelAnimationFrame(raf);
+      visible = on;
+    }).observe(root);
+  }
+
+  document.querySelectorAll('.sanaciones-populares-art').forEach(start);
+  })();
+</script>
