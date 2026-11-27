@@ -1,0 +1,178 @@
+---
+// Guía de Limpiezas Energéticas: the ebook opens and lets out its light; above the pages a small house
+// appears wrapped in a breathing aura, while a thread of smoke (a sahumo) rises slowly beside it.
+// The book is CSS 3D (cover and two pages turn on the spine); the detail is inline SVG. No JavaScript.
+// Under prefers-reduced-motion the book is shown open, with its light and detail, and still.
+---
+<div class="ebook-hogar" aria-hidden="true">
+  <span class="ebook-hogar-glow"></span>
+  <span class="ebook-hogar-shadow"></span>
+  <div class="ebook-hogar-scene">
+    <div class="ebook-hogar-book">
+      <span class="ebook-hogar-back"></span>
+      <span class="ebook-hogar-block"></span>
+      <span class="ebook-hogar-page ebook-hogar-right"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <span class="ebook-hogar-sheet ebook-hogar-sheet-2"><span class="ebook-hogar-sf"></span><span class="ebook-hogar-sb"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></span>
+      <span class="ebook-hogar-sheet ebook-hogar-sheet-1"><span class="ebook-hogar-sf"></span><span class="ebook-hogar-sb"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></span>
+      <div class="ebook-hogar-cover">
+        <div class="ebook-hogar-front">
+          <svg viewBox="0 0 40 40" class="ebook-hogar-icon"><path d="M8 22 L20 11 L32 22 M11 20 V33 H29 V20 M17 33 V26 H23 V33" /><path d="M5 36 C12 30 28 30 35 36" /></svg>
+          <span class="ebook-hogar-title">Limpiezas<br />energéticas</span>
+          <span class="ebook-hogar-sub">Guía práctica para el hogar y el aura</span>
+          <span class="ebook-hogar-brand">Visión en Acción</span>
+        </div>
+        <div class="ebook-hogar-inside"></div>
+      </div>
+    </div>
+  </div>
+  <span class="ebook-hogar-light"></span>
+  <div class="ebook-hogar-detail">
+    <svg viewBox="0 0 200 120" class="ebook-hogar-art">
+      <ellipse class="ebook-hogar-aura ebook-hogar-aura-2" cx="100" cy="66" rx="70" ry="46" />
+      <ellipse class="ebook-hogar-aura ebook-hogar-aura-1" cx="100" cy="66" rx="52" ry="36" />
+      <g class="ebook-hogar-house">
+        <path d="M70 66 L100 40 L130 66" />
+        <path d="M76 61 V96 H124 V61" />
+        <path d="M94 96 V78 H106 V96" />
+        <path d="M82 70 H90 V78 H82 Z M110 70 H118 V78 H110 Z" />
+        <path d="M116 52 V44 H122 V57" />
+      </g>
+    </svg>
+    <span class="ebook-hogar-smoke ebook-hogar-smoke-1"></span>
+    <span class="ebook-hogar-smoke ebook-hogar-smoke-2"></span>
+    <span class="ebook-hogar-smoke ebook-hogar-smoke-3"></span>
+  </div>
+</div>
+
+<style is:inline>
+  .ebook-hogar {
+    position: relative; width: 100%; aspect-ratio: 1; justify-self: center; isolation: isolate;
+    container-type: inline-size; perspective: 1200px; perspective-origin: 50% 20%;
+  }
+  .ebook-hogar-glow {
+    position: absolute; inset: 6% 8% 12%; z-index: -2; border-radius: 50%;
+    background: radial-gradient(circle at 50% 50%, #d9c3d699 0%, #ae92a655 34%, #6d4f8526 60%, transparent 74%);
+    filter: blur(22px);
+  }
+  .ebook-hogar-shadow {
+    position: absolute; left: 14%; right: 14%; bottom: 7%; height: 10%; z-index: -1; border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(10, 3, 18, .55) 0%, transparent 70%);
+  }
+  .ebook-hogar-scene { position: absolute; inset: 0; transform-style: preserve-3d; transform: rotateX(16deg) rotateY(-8deg); }
+
+  /* The spine is the book's left edge; open, the cover and pages lie to the left of it. */
+  .ebook-hogar-book {
+    position: absolute; left: 31%; top: 40%; width: 38%; height: 50%; transform-style: preserve-3d;
+    transform: translateX(0);
+  }
+  .ebook-hogar-book > * { position: absolute; inset: 0; border-radius: 2px 6px 6px 2px; transform-style: preserve-3d; transform-origin: left center; }
+  .ebook-hogar-back { background: #2a1638; transform: translateZ(-8px); box-shadow: 0 24px 34px -18px rgba(8, 2, 14, .9); }
+  .ebook-hogar-block { inset: 2% 1% 2% 0; background: repeating-linear-gradient(90deg, #efe4ec 0 1px, #fbf7f1 1px 3px); transform: translateZ(-4px); }
+  .ebook-hogar-page, .ebook-hogar-sf, .ebook-hogar-sb {
+    background: linear-gradient(90deg, #e6d9e2 0%, #fbf7f1 12%, #fffdf9 100%);
+    padding: 16% 12%; display: flex; flex-direction: column; gap: 6%;
+  }
+  .ebook-hogar-page { inset: 2% 1% 2% 0; transform: translateZ(-1px); }
+  .ebook-hogar-page i, .ebook-hogar-sb i { display: block; height: 2px; border-radius: 2px; background: #d9cbdc; }
+  .ebook-hogar-page i:nth-child(3n), .ebook-hogar-sb i:nth-child(2n) { width: 70%; }
+  .ebook-hogar-sheet { inset: 2% 1% 2% 0; }
+  .ebook-hogar-sf, .ebook-hogar-sb { position: absolute; inset: 0; border-radius: inherit; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+  .ebook-hogar-sb { transform: rotateY(180deg); background: linear-gradient(270deg, #e6d9e2 0%, #fbf7f1 12%, #fffdf9 100%); }
+  .ebook-hogar-sheet-2 { transform: translateZ(0); }
+  .ebook-hogar-sheet-1 { transform: translateZ(1px); }
+  .ebook-hogar-cover { transform: translateZ(3px); }
+  .ebook-hogar-front, .ebook-hogar-inside { position: absolute; inset: 0; border-radius: inherit; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+  .ebook-hogar-front {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4cqw; padding: 10% 9%;
+    text-align: center; color: var(--paper, #fbf7f1);
+    background:
+      radial-gradient(circle at 50% 30%, #ecc98426 0%, transparent 55%),
+      linear-gradient(160deg, #5a3474 0%, #3a2050 55%, #2a1638 100%);
+    box-shadow: inset 0 0 0 4px #3a2050, inset 0 0 0 5px #ecc98488, inset 6px 0 8px -4px rgba(0, 0, 0, .45);
+  }
+  .ebook-hogar-icon { width: 30%; fill: none; stroke: var(--gold, #ecc984); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+  .ebook-hogar-title { font-family: var(--display, Georgia, serif); font-size: 4.6cqw; line-height: 1.08; }
+  .ebook-hogar-sub { font-size: 1.9cqw; line-height: 1.35; color: #e6d6ea; }
+  .ebook-hogar-brand { font-size: 1.5cqw; letter-spacing: .16em; text-transform: uppercase; color: var(--gold, #ecc984); }
+  .ebook-hogar-inside { transform: rotateY(180deg); background: linear-gradient(270deg, #3a2050, #4a2a62); box-shadow: inset 0 0 0 5px #fbf7f1; }
+
+  /* Light that comes out of the open book, and the detail that floats above it. */
+  .ebook-hogar-light {
+    position: absolute; left: 22%; right: 22%; top: 6%; bottom: 40%; z-index: 1; border-radius: 50% 50% 40% 40%;
+    background:
+      radial-gradient(ellipse at 50% 100%, #fff6dfee 0%, #f3dfa888 22%, transparent 60%),
+      linear-gradient(to top, #fff3d466 0%, #ecc98422 50%, transparent 85%);
+    filter: blur(6px); transform-origin: 50% 100%; opacity: 0; transform: scaleY(.2);
+    mix-blend-mode: screen; pointer-events: none;
+  }
+  .ebook-hogar-detail { position: absolute; left: 10%; right: 10%; top: 4%; height: 40%; z-index: 2; opacity: 0; transform: translateY(18%) scale(.9); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    /* One reading every 14 s: rest, open, let the light out, rest open, close. */
+    .ebook-hogar-book { animation: ebook-hogar-shift 14s cubic-bezier(.45, .05, .25, 1) infinite both; }
+    .ebook-hogar-cover { animation: ebook-hogar-open 14s cubic-bezier(.45, .05, .25, 1) infinite both; }
+    .ebook-hogar-sheet-1 { --open: -172deg; animation: ebook-hogar-turn 14s cubic-bezier(.45, .05, .25, 1) .35s infinite both; }
+    .ebook-hogar-sheet-2 { --open: -166deg; animation: ebook-hogar-turn 14s cubic-bezier(.45, .05, .25, 1) .7s infinite both; }
+    .ebook-hogar-light { animation: ebook-hogar-light 14s ease-in-out infinite both; }
+    .ebook-hogar-detail { animation: ebook-hogar-detail 14s ease-in-out infinite both; }
+    .ebook-hogar-scene { animation: ebook-hogar-sway 20s ease-in-out infinite; }
+    .ebook-hogar-glow { animation: ebook-hogar-glow 7s ease-in-out infinite; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ebook-hogar-book { transform: translateX(50%); }
+    .ebook-hogar-cover { transform: translateZ(3px) rotateY(-178deg); }
+    .ebook-hogar-sheet-1 { transform: translateZ(1px) rotateY(-172deg); }
+    .ebook-hogar-sheet-2 { transform: rotateY(-166deg); }
+    .ebook-hogar-light { opacity: 1; transform: none; }
+    .ebook-hogar-detail { opacity: 1; transform: none; }
+  }
+  @keyframes ebook-hogar-shift {
+    0%, 8% { transform: translateX(0); }
+    24%, 80% { transform: translateX(50%); }
+    95%, 100% { transform: translateX(0); }
+  }
+  @keyframes ebook-hogar-open {
+    0%, 8% { transform: translateZ(3px) rotateY(0deg); }
+    24%, 80% { transform: translateZ(3px) rotateY(-178deg); }
+    94%, 100% { transform: translateZ(3px) rotateY(0deg); }
+  }
+  @keyframes ebook-hogar-turn {
+    0%, 8% { transform: rotateY(0deg); }
+    24%, 78% { transform: rotateY(var(--open)); }
+    92%, 100% { transform: rotateY(0deg); }
+  }
+  @keyframes ebook-hogar-light {
+    0%, 18% { opacity: 0; transform: scaleY(.2); }
+    32%, 76% { opacity: 1; transform: scaleY(1); }
+    88%, 100% { opacity: 0; transform: scaleY(.2); }
+  }
+  @keyframes ebook-hogar-detail {
+    0%, 24% { opacity: 0; transform: translateY(18%) scale(.9); }
+    38%, 74% { opacity: 1; transform: translateY(0) scale(1); }
+    86%, 100% { opacity: 0; transform: translateY(-6%) scale(1.02); }
+  }
+  @keyframes ebook-hogar-sway { 0%, 100% { transform: rotateX(16deg) rotateY(-8deg); } 50% { transform: rotateX(18deg) rotateY(4deg); } }
+  @keyframes ebook-hogar-glow { 0%, 100% { opacity: .8; scale: .96; } 50% { opacity: 1; scale: 1.03; } }
+
+  .ebook-hogar-art { width: 100%; height: 100%; overflow: visible; fill: none; stroke: #ecc984; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .ebook-hogar-house { filter: drop-shadow(0 0 5px #ecc98499); }
+  .ebook-hogar-house > path:nth-child(2) { fill: #fff6df1f; }
+  .ebook-hogar-aura { transform-box: fill-box; transform-origin: center; stroke: none; }
+  .ebook-hogar-aura-1 { fill: #f3dfa833; }
+  .ebook-hogar-aura-2 { fill: #d9c3d62e; }
+  .ebook-hogar-smoke { position: absolute; left: 20%; top: 52%; width: 16px; height: 16px; border-radius: 50%; background: radial-gradient(circle, #f2e9f2cc 0%, transparent 70%); opacity: 0; }
+  @media (prefers-reduced-motion: no-preference) {
+    .ebook-hogar-aura { animation: ebook-hogar-breathe 6s ease-in-out infinite; }
+    .ebook-hogar-aura-2 { animation-delay: .8s; }
+    .ebook-hogar-smoke { animation: ebook-hogar-rise 6s ease-out infinite; }
+    .ebook-hogar-smoke-2 { animation-delay: 2s; }
+    .ebook-hogar-smoke-3 { animation-delay: 4s; }
+  }
+  @media (prefers-reduced-motion: reduce) { .ebook-hogar-smoke-1 { opacity: .5; transform: translate(4px, -24px) scale(1.6); } }
+  @keyframes ebook-hogar-breathe { 0%, 100% { transform: scale(.94); opacity: .7; } 50% { transform: scale(1.06); opacity: 1; } }
+  @keyframes ebook-hogar-rise {
+    0% { opacity: 0; transform: translate(0, 0) scale(.6); }
+    25% { opacity: .7; }
+    100% { opacity: 0; transform: translate(12px, -80px) scale(2.4); }
+  }
+</style>

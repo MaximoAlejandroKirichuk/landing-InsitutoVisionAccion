@@ -1,0 +1,163 @@
+# Ebook Manual de Iniciación a la Ley de Atracción y la Manifestación → https://sitio/manual-ley-de-atraccion/
+# Fuente: institutovisionenaccion.com/producto/manual-de-iniciacion-a-la-ley-de-atraccion-y-la-manifestacion/
+#   (precio $4.000, antes $8.000; PDF con material de lectura y ejercicios; la ficha no dice páginas, índice ni autor).
+# Le hablamos a Lorena (README → "A quién le hablamos"). Ebook pago. No prometer resultados.
+
+nombre: Manual de Ley de Atracción y Manifestación
+mostrarEnHome: false   # landing para anuncios
+orden: 42
+animacion: manual-ley-de-atraccion
+
+seo:
+  titulo: Manual de Ley de Atracción y Manifestación (ebook) | Instituto Visión en Acción
+  descripcion: Ebook en PDF con las bases de la Ley de Atracción, técnicas de manifestación, scripting, tablero de visión y decretos diarios, con ejercicios prácticos. $4.000.
+
+tarjeta:
+  etiqueta: Ebook en PDF · $4.000
+  resumen: Las bases de la Ley de Atracción, con ejercicios para trabajar tu intención a tu ritmo.
+  boton: Conocer el manual
+
+whatsapp:
+  mensaje: Hola, quiero el Manual de Iniciación a la Ley de Atracción y la Manifestación en PDF. ¿Cómo hago el pago?
+
+hero:
+  bajada: Una guía digital para explorar las bases de la Ley de Atracción, técnicas de manifestación, scripting, tablero de visión y decretos diarios, con ejercicios para trabajar de manera práctica y a tu ritmo.
+  datos:
+    - Ebook en PDF
+    - Con ejercicios
+    - "Es pago: $4.000"
+  boton: Quiero el manual
+  nota: Te escribimos por WhatsApp con los datos para el pago y te enviamos el PDF.
+  linkSecundario:
+    texto: Qué contiene
+    href: "#programa"
+
+gancho:
+  frase: Siempre pedí por los demás. Ahora quiero aprender a pedir por mí.
+  texto: Muchas pasamos la vida pendientes de lo que necesitan los otros. Manifestar no es solo desear. Es aclarar qué querés y acompañarlo con acciones. Este manual es un punto de partida para empezar a ponerlo en palabras.
+
+cursada:
+  - etiqueta: Formato
+    valor: Ebook en PDF, con material de lectura y ejercicios
+  - etiqueta: Cómo lo recibís
+    valor: Te lo enviamos cuando se confirma el pago
+  - etiqueta: Precio
+    valor: $4.000
+
+paraQuien:
+  titulo: ¿Para quién es este manual?
+  items:
+    - Estás empezando a explorar tu conexión con la energía, la intención y el propósito.
+    - Escuchaste hablar de la Ley de Atracción y querés entender sus bases con calma.
+    - Querés ejercicios concretos, no solo teoría.
+    - Preferís ir a tu ritmo, desde tu casa.
+  cierre: Si te reconocés en alguna, este manual es un buen primer paso.
+
+programa:
+  titulo: Qué contiene el manual
+  texto: Tocá cada bloque para ver de qué se trata.
+  enfoques:
+    - id: bases
+      icono: coaching
+      titulo: Las bases de la Ley de Atracción
+      resumen: Qué es y desde dónde se la propone.
+      descripcion: Una introducción a la Ley de Atracción para entender sus ideas principales antes de pasar a la práctica.
+    - id: scripting
+      icono: pnl
+      titulo: Técnicas de manifestación y scripting
+      resumen: Escribir lo que querés, en presente.
+      descripcion: Técnicas de manifestación, entre ellas el scripting, una práctica de escritura para aclarar lo que querés como si ya estuviera pasando.
+    - id: tablero-de-vision
+      icono: tarot
+      titulo: Tablero de visión
+      resumen: Ponerle imágenes a tu intención.
+      descripcion: Cómo armar un tablero de visión para tener presente, todos los días, aquello que querés traer a tu vida.
+    - id: decretos
+      icono: hipnosis
+      titulo: Decretos diarios
+      resumen: Frases para empezar el día con intención.
+      descripcion: Decretos para repetir cada día y ejercicios prácticos para acompañar el proceso.
+
+incluye:
+  titulo: Qué recibís
+  items:
+    - titulo: El manual en PDF
+      texto: Para leer en el celular, en la computadora o imprimir.
+    - titulo: Material de lectura
+      texto: Las bases explicadas de forma simple.
+    - titulo: Ejercicios prácticos
+      texto: Para trabajar el tema de manera práctica y a tu propio ritmo.
+
+carrusel:
+  titulo: Un ejercicio para empezar hoy
+  texto: Deslizá las placas. Es el mismo carrusel que compartimos en Instagram.
+  imagenes:
+    - src: /images/carruseles/manual-ley-de-atraccion/1.webp
+      alt: "«Siempre pedí por los demás. Ahora quiero aprender a pedir por mí.»"
+    - src: /images/carruseles/manual-ley-de-atraccion/2.webp
+      alt: "Manifestar no es solo desear. Es aclarar qué querés y acompañarlo con acciones."
+    - src: /images/carruseles/manual-ley-de-atraccion/3.webp
+      alt: "Un ejercicio: Escribí tu deseo en presente, como si ya estuviera pasando. A esto se lo llama scripting."
+    - src: /images/carruseles/manual-ley-de-atraccion/4.webp
+      alt: "Un ejercicio: Después anotá un paso concreto que puedas dar esta semana. Uno solo, pequeño y posible."
+    - src: /images/carruseles/manual-ley-de-atraccion/5.webp
+      alt: "Releelo cada mañana. La claridad también es una práctica."
+    - src: /images/carruseles/manual-ley-de-atraccion/6.webp
+      alt: "Manual de Ley de Atracción: Las bases, scripting, tablero de visión y decretos diarios. Con ejercicios prácticos. Ebook en PDF. Es pago: $4.000."
+    - src: /images/carruseles/manual-ley-de-atraccion/7.webp
+      alt: "Para quién es: Para quien está empezando, para quien quiere trabajar su intención, para quien prefiere ir a su ritmo."
+    - src: /images/carruseles/manual-ley-de-atraccion/8.webp
+      alt: "¿Qué escribirías hoy en presente? Contame abajo. Soy Fernanda, de Visión en Acción."
+instituto:
+  titulo: Y si querés seguir acompañada
+  recibis:
+    - El Manual de Ley de Atracción en PDF, para leer a tu ritmo.
+    - El PDF por WhatsApp o email, cuando se confirma el pago.
+  encuentros: El manual no tiene encuentros en vivo. Si querés practicar con otras y consultar tus dudas, podés sumarte a la membresía. Es opcional.
+  membresia: true
+
+docentes:
+  titulo: Quién está detrás
+  personas:
+    - id: docente-fernanda
+      nombre: Fernanda Rodríguez
+      bio: Fundadora y directora del Instituto Visión en Acción, es formadora en desarrollo personal y en el área holística.
+      foto: /images/instructor-portrait.jpg
+      alt: Retrato de Fernanda Rodríguez
+      ancho: 673
+      alto: 1437
+    - id: docente-daniel
+      nombre: Daniel Alberto Rodríguez
+      bio: Formador del área holística del instituto. Su formación incluye tarot y oráculos, constelaciones familiares, biodescodificación, hipnosis y Reiki.
+      foto: /images/holistic-instructor-portrait.jpg
+      alt: Retrato de Daniel Alberto Rodríguez
+      ancho: 171
+      alto: 365
+      encuadre: 50% 12%
+
+oferta:
+  titulo: Llevate el manual
+  destacado: Ebook en PDF · Con ejercicios
+  texto: Es un ebook pago. Te escribimos por WhatsApp con los datos para el pago y te enviamos el PDF. Es un material de lectura y práctica personal y no garantiza resultados.
+  precios:
+    - periodo: Manual de Ley de Atracción (PDF)
+      valores: [ARS 4.000]
+
+preguntas:
+  - pregunta: ¿En qué formato viene?
+    respuesta: Es una guía digital en PDF, con material de lectura y ejercicios. La podés leer en el celular, en la computadora o imprimirla.
+  - pregunta: ¿Cómo lo recibo?
+    respuesta: Tocá «Quiero el manual» y dejá tus datos. Te escribimos por WhatsApp con los datos para el pago y, cuando se confirma, te enviamos el PDF.
+  - pregunta: ¿Me garantiza que voy a conseguir lo que quiero?
+    respuesta: No. Es un material para trabajar tu intención y tu claridad de manera práctica. Lo que pase depende de muchas cosas, y no podemos prometer resultados.
+  - pregunta: ¿Necesito experiencia?
+    respuesta: No. Está pensado para quien recién empieza a explorar la energía, la intención y el propósito.
+
+cierre:
+  titulo: Ponerlo en palabras ya es un paso.
+  texto: Dejá tus datos y te escribimos para enviarte el manual.
+
+reserva:
+  titulo: Quiero el Manual de Ley de Atracción
+  texto: Dejanos tus datos y te escribimos por WhatsApp con los datos para el pago. Cuando se confirma, te enviamos el PDF.
+  gracias: Te vamos a escribir para pasarte los datos del pago y enviarte el manual. Si querés, podés escribirnos ahora por WhatsApp.

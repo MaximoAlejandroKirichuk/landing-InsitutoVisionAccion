@@ -1,0 +1,158 @@
+# Ebook Guía Arcangélica → https://sitio/guia-arcangelica/
+# Fuente: institutovisionenaccion.com/producto/guia-arcangelica-energias-propositos-y-formas-de-invocacion/
+#   (precio $5.000, antes $10.000; la ficha no dice cantidad de páginas, índice, autor ni duración de acceso).
+# Le hablamos a Lorena (README → "A quién le hablamos"). Ebook pago, sin promesas de resultado.
+
+nombre: Guía Arcangélica
+mostrarEnHome: false   # landing para anuncios
+orden: 40
+animacion: guia-arcangelica
+
+seo:
+  titulo: Guía Arcangélica (ebook) | Instituto Visión en Acción
+  descripcion: Ebook en PDF con los principales arcángeles, sus atributos, colores y días, y cómo invocarlos con perfumes, oraciones y meditaciones. $5.000.
+
+tarjeta:
+  etiqueta: Ebook en PDF · $5.000
+  resumen: Los principales arcángeles y cómo invocarlos con perfumes, oraciones y meditaciones.
+  boton: Conocer la guía
+
+whatsapp:
+  mensaje: Hola, quiero la Guía Arcangélica en PDF. ¿Cómo hago el pago?
+
+hero:
+  bajada: Un recorrido por los principales arcángeles, sus atributos, colores y días, y las maneras de invocarlos a través de perfumes, oraciones y meditaciones.
+  datos:
+    - Ebook en PDF
+    - Lo leés a tu ritmo
+    - "Es pago: $5.000"
+  boton: Quiero la guía
+  nota: Te escribimos por WhatsApp con los datos para el pago y te enviamos el PDF.
+  linkSecundario:
+    texto: Qué contiene
+    href: "#programa"
+
+gancho:
+  frase: Hay noches en que necesito sentir que no estoy sola.
+  texto: Hay momentos en que buscamos algo que nos sostenga. En muchas tradiciones, los arcángeles son presencias que acompañan, y cada uno se asocia a una intención. Esta guía es una forma simple de empezar a conocerlos, a tu ritmo y desde tu casa.
+
+cursada:
+  - etiqueta: Formato
+    valor: Ebook en PDF, para leer en el celular o imprimir
+  - etiqueta: Cómo lo recibís
+    valor: Te lo enviamos cuando se confirma el pago
+  - etiqueta: Precio
+    valor: $5.000
+
+paraQuien:
+  titulo: ¿Para quién es esta guía?
+  items:
+    - Querés sentir acompañamiento espiritual en tu día a día.
+    - Ya trabajás con energía sutil y querés ordenar lo que sabés de los arcángeles.
+    - Te llaman los arcángeles, pero no sabés por dónde empezar.
+    - "Te gustan los rituales simples: una vela, un aroma, una oración."
+  cierre: Si te reconocés en alguna, esta guía es un buen primer paso.
+
+programa:
+  titulo: Qué contiene la guía
+  texto: Tocá cada bloque para ver de qué se trata.
+  enfoques:
+    - id: arcangeles
+      icono: hipnosis
+      titulo: Los principales arcángeles
+      resumen: Quién es cada uno y qué propósito se le asocia.
+      descripcion: Un recorrido por los principales arcángeles y sus atributos, para que puedas reconocer a cuál acudir según lo que estés necesitando.
+    - id: colores-y-dias
+      icono: tarot
+      titulo: Colores y días
+      resumen: El color y el día de la semana de cada arcángel.
+      descripcion: Cada arcángel se asocia a un color y a un día. Conocerlos te ayuda a elegir el momento y los elementos para conectar con cada uno.
+    - id: formas-de-invocacion
+      icono: coaching
+      titulo: Formas de invocación
+      resumen: Perfumes, oraciones y meditaciones.
+      descripcion: Las maneras de invocarlos que propone la guía, a través de perfumes, oraciones y meditaciones, con rituales simples para hacer en tu casa.
+
+incluye:
+  titulo: Qué recibís
+  items:
+    - titulo: La guía en PDF
+      texto: Para leer en el celular, en la computadora o imprimir.
+    - titulo: A tu ritmo
+      texto: "Sin horarios ni clases: la leés cuando puedas y volvés a ella cuando la necesites."
+    - titulo: Prácticas simples
+      texto: Perfumes, oraciones y meditaciones para sumar a tu rutina.
+
+carrusel:
+  titulo: Un ejercicio para empezar hoy
+  texto: Deslizá las placas. Es el mismo carrusel que compartimos en Instagram.
+  imagenes:
+    - src: /images/carruseles/guia-arcangelica/1.webp
+      alt: "«Hay noches en que necesito sentir que no estoy sola.»"
+    - src: /images/carruseles/guia-arcangelica/2.webp
+      alt: "En muchas tradiciones, los arcángeles son presencias que acompañan. Cada uno se asocia a una intención, un color y un día."
+    - src: /images/carruseles/guia-arcangelica/3.webp
+      alt: "Miguel se asocia a la protección. Rafael, a la sanación. Gabriel, a la comunicación. Uriel, a la claridad."
+    - src: /images/carruseles/guia-arcangelica/4.webp
+      alt: "Un ejercicio: Antes de dormir, prendé una vela y nombrá una intención. Una sola, en voz baja."
+    - src: /images/carruseles/guia-arcangelica/5.webp
+      alt: "No hace falta saberlo todo para empezar. Alcanza con un momento tranquilo y una intención clara."
+    - src: /images/carruseles/guia-arcangelica/6.webp
+      alt: "Guía Arcangélica: Los principales arcángeles, sus colores, sus días y cómo invocarlos. Con perfumes, oraciones y meditaciones. Ebook en PDF. Es pago: $5.000."
+    - src: /images/carruseles/guia-arcangelica/7.webp
+      alt: "Para quién es: Para quien quiere sentirse acompañada, para quien trabaja con energía sutil, para quien recién empieza."
+    - src: /images/carruseles/guia-arcangelica/8.webp
+      alt: "¿Con qué arcángel sentís más cercanía? Contame abajo. Soy Fernanda, de Visión en Acción."
+instituto:
+  titulo: Y si querés seguir acompañada
+  recibis:
+    - La Guía Arcangélica en PDF, para leer a tu ritmo.
+    - El PDF por WhatsApp o email, cuando se confirma el pago.
+  encuentros: La guía no tiene encuentros en vivo. Si querés practicar con otras y consultar tus dudas, podés sumarte a la membresía. Es opcional.
+  membresia: true
+
+docentes:
+  titulo: Quién está detrás
+  personas:
+    - id: docente-fernanda
+      nombre: Fernanda Rodríguez
+      bio: Fundadora y directora del Instituto Visión en Acción, es formadora en desarrollo personal y en el área holística.
+      foto: /images/instructor-portrait.jpg
+      alt: Retrato de Fernanda Rodríguez
+      ancho: 673
+      alto: 1437
+    - id: docente-daniel
+      nombre: Daniel Alberto Rodríguez
+      bio: Formador del área holística del instituto. Su formación incluye tarot y oráculos, constelaciones familiares, biodescodificación, hipnosis y Reiki.
+      foto: /images/holistic-instructor-portrait.jpg
+      alt: Retrato de Daniel Alberto Rodríguez
+      ancho: 171
+      alto: 365
+      encuadre: 50% 12%
+
+oferta:
+  titulo: Llevate la Guía Arcangélica
+  destacado: Ebook en PDF · Lo leés a tu ritmo
+  texto: Es un ebook pago. Te escribimos por WhatsApp con los datos para el pago y te enviamos el PDF. Es una práctica espiritual complementaria y no reemplaza la atención médica ni psicológica.
+  precios:
+    - periodo: Guía Arcangélica (PDF)
+      valores: [ARS 5.000]
+
+preguntas:
+  - pregunta: ¿En qué formato viene?
+    respuesta: Es un ebook en PDF. Lo podés leer en el celular, en la computadora o imprimirlo.
+  - pregunta: ¿Cómo lo recibo?
+    respuesta: Tocá «Quiero la guía» y dejá tus datos. Te escribimos por WhatsApp con los datos para el pago y, cuando se confirma, te enviamos el PDF.
+  - pregunta: ¿Necesito saber de arcángeles?
+    respuesta: No. La guía sirve tanto si recién empezás como si ya trabajás con energía sutil.
+  - pregunta: ¿Reemplaza una terapia o un tratamiento médico?
+    respuesta: No. Es una práctica espiritual complementaria y no sustituye la atención médica, psicológica o psiquiátrica.
+
+cierre:
+  titulo: Un momento tranquilo y una intención clara alcanzan para empezar.
+  texto: Dejá tus datos y te escribimos para enviarte la Guía Arcangélica.
+
+reserva:
+  titulo: Quiero la Guía Arcangélica
+  texto: Dejanos tus datos y te escribimos por WhatsApp con los datos para el pago. Cuando se confirma, te enviamos el PDF.
+  gracias: Te vamos a escribir para pasarte los datos del pago y enviarte la guía. Si querés, podés escribirnos ahora por WhatsApp.

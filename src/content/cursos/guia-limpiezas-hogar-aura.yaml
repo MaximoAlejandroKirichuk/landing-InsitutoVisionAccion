@@ -1,0 +1,163 @@
+# Ebook Guía Práctica de Limpiezas Energéticas para el Hogar y el Aura → https://sitio/guia-limpiezas-hogar-aura/
+# Fuente: institutovisionenaccion.com/producto/guia-practica-de-limpiezas-energeticas-para-el-hogar-y-el-aura/
+#   (precio $5.000, antes $10.000; la ficha no dice cantidad de páginas, índice, autor ni duración de acceso).
+# Le hablamos a Lorena (README → "A quién le hablamos"). Ebook pago, sin promesas de resultado.
+
+nombre: Guía de Limpiezas Energéticas
+mostrarEnHome: false   # landing para anuncios
+orden: 41
+animacion: guia-limpiezas-hogar-aura
+
+seo:
+  titulo: Guía de Limpiezas Energéticas para el Hogar y el Aura (ebook) | Instituto Visión en Acción
+  descripcion: Ebook en PDF para aprender paso a paso limpiezas energéticas con sahumos, baños de descarga, sal, velas y sonidos. Rituales simples para tu casa y tu energía. $5.000.
+
+tarjeta:
+  etiqueta: Ebook en PDF · $5.000
+  resumen: Rituales simples, paso a paso, para cuidar la energía de tu casa y la tuya.
+  boton: Conocer la guía
+
+whatsapp:
+  mensaje: Hola, quiero la Guía de Limpiezas Energéticas para el Hogar y el Aura en PDF. ¿Cómo hago el pago?
+
+hero:
+  bajada: Aprendé paso a paso a hacer limpiezas energéticas con sahumos, baños de descarga, sal, velas y sonidos. Rituales simples y accesibles para cuidar tu energía y la de tus espacios.
+  datos:
+    - Ebook en PDF
+    - Paso a paso
+    - "Es pago: $5.000"
+  boton: Quiero la guía
+  nota: Te escribimos por WhatsApp con los datos para el pago y te enviamos el PDF.
+  linkSecundario:
+    texto: Qué contiene
+    href: "#programa"
+
+gancho:
+  frase: Hay días en que mi casa se siente pesada. Y yo también.
+  texto: Desde lo energético, los espacios guardan lo que vivimos en ellos, y nosotras también. Un ritual simple, hecho con intención, puede ser un momento para renovar el aire de tu casa y darte un lugar a vos.
+
+cursada:
+  - etiqueta: Formato
+    valor: Ebook en PDF, para leer en el celular o imprimir
+  - etiqueta: Cómo lo recibís
+    valor: Te lo enviamos cuando se confirma el pago
+  - etiqueta: Precio
+    valor: $5.000
+
+paraQuien:
+  titulo: ¿Para quién es esta guía?
+  items:
+    - Sentís ambientes pesados en tu casa y no sabés cómo actuar.
+    - Recién empezás con lo energético y querés algo simple y paso a paso.
+    - Querés cuidar tu energía y la de tu familia con rituales accesibles.
+    - Te gusta tener un momento propio en la semana para ordenar y renovar.
+  cierre: Si te reconocés en alguna, esta guía es un buen primer paso.
+
+programa:
+  titulo: Qué contiene la guía
+  texto: Tocá cada bloque para ver de qué se trata.
+  enfoques:
+    - id: sahumos
+      icono: hipnosis
+      titulo: Sahumos
+      resumen: Cómo sahumar tu casa paso a paso.
+      descripcion: El uso del sahumo para limpiar los espacios, con una intención clara y un recorrido simple por cada ambiente.
+    - id: banos-de-descarga
+      icono: biodescodificacion
+      titulo: Baños de descarga
+      resumen: Para tu aura, después de días cargados.
+      descripcion: Baños de descarga para acompañar tu limpieza personal y cuidar tu propia energía.
+    - id: sal-y-velas
+      icono: tarot
+      titulo: Sal y velas
+      resumen: Elementos simples que ya tenés en casa.
+      descripcion: Cómo usar la sal y las velas en rituales accesibles para proteger tus espacios.
+    - id: sonidos
+      icono: coaching
+      titulo: Sonidos
+      resumen: El sonido como herramienta de limpieza.
+      descripcion: El uso de sonidos para mover la energía de un ambiente, como parte de los rituales de la guía.
+
+incluye:
+  titulo: Qué recibís
+  items:
+    - titulo: La guía en PDF
+      texto: Para leer en el celular, en la computadora o imprimir.
+    - titulo: Paso a paso
+      texto: Rituales simples y accesibles, pensados para quien recién empieza.
+    - titulo: Para tu casa y para vos
+      texto: Limpiezas para tus espacios y para tu aura.
+
+carrusel:
+  titulo: Un ejercicio para empezar hoy
+  texto: Deslizá las placas. Es el mismo carrusel que compartimos en Instagram.
+  imagenes:
+    - src: /images/carruseles/guia-limpiezas-hogar-aura/1.webp
+      alt: "«Hay días en que mi casa se siente pesada. Y yo también.»"
+    - src: /images/carruseles/guia-limpiezas-hogar-aura/2.webp
+      alt: "Desde lo energético, los espacios guardan lo que vivimos en ellos. Y nosotras también."
+    - src: /images/carruseles/guia-limpiezas-hogar-aura/3.webp
+      alt: "Un ritual simple: Abrí las ventanas y dejá que entre aire nuevo. Mientras tanto, ordená ese rincón que tenés pendiente."
+    - src: /images/carruseles/guia-limpiezas-hogar-aura/4.webp
+      alt: "Un ritual simple: Prendé una vela o un sahumo con una intención. Qué querés que entre en tu casa."
+    - src: /images/carruseles/guia-limpiezas-hogar-aura/5.webp
+      alt: "La intención es lo más importante. Repetirlo una vez por semana lo vuelve un momento para vos."
+    - src: /images/carruseles/guia-limpiezas-hogar-aura/6.webp
+      alt: "Guía de Limpiezas Energéticas: Paso a paso, con sahumos, baños de descarga, sal, velas y sonidos. Rituales simples para tu casa y tu aura. Ebook en PDF. Es pago: $5.000."
+    - src: /images/carruseles/guia-limpiezas-hogar-aura/7.webp
+      alt: "Para quién es: Para quien recién empieza, para quien siente ambientes pesados y no sabe cómo actuar, para quien quiere cuidar su energía y la de su casa."
+    - src: /images/carruseles/guia-limpiezas-hogar-aura/8.webp
+      alt: "¿Tenés algún ritual para tu casa? Compartilo abajo. Soy Fernanda, de Visión en Acción."
+instituto:
+  titulo: Y si querés seguir acompañada
+  recibis:
+    - La Guía de Limpiezas Energéticas en PDF, para leer a tu ritmo.
+    - El PDF por WhatsApp o email, cuando se confirma el pago.
+  encuentros: La guía no tiene encuentros en vivo. Si querés practicar con otras y consultar tus dudas, podés sumarte a la membresía. Es opcional.
+  membresia: true
+
+docentes:
+  titulo: Quién está detrás
+  personas:
+    - id: docente-fernanda
+      nombre: Fernanda Rodríguez
+      bio: Fundadora y directora del Instituto Visión en Acción, es formadora en desarrollo personal y en el área holística.
+      foto: /images/instructor-portrait.jpg
+      alt: Retrato de Fernanda Rodríguez
+      ancho: 673
+      alto: 1437
+    - id: docente-daniel
+      nombre: Daniel Alberto Rodríguez
+      bio: Formador del área holística del instituto. Su formación incluye tarot y oráculos, constelaciones familiares, biodescodificación, hipnosis y Reiki.
+      foto: /images/holistic-instructor-portrait.jpg
+      alt: Retrato de Daniel Alberto Rodríguez
+      ancho: 171
+      alto: 365
+      encuadre: 50% 12%
+
+oferta:
+  titulo: Llevate la guía
+  destacado: Ebook en PDF · Paso a paso
+  texto: Es un ebook pago. Te escribimos por WhatsApp con los datos para el pago y te enviamos el PDF. Es una práctica complementaria y no reemplaza la atención médica ni psicológica.
+  precios:
+    - periodo: Guía de Limpiezas Energéticas (PDF)
+      valores: [ARS 5.000]
+
+preguntas:
+  - pregunta: ¿En qué formato viene?
+    respuesta: Es un ebook en PDF. Lo podés leer en el celular, en la computadora o imprimirlo.
+  - pregunta: ¿Cómo lo recibo?
+    respuesta: Tocá «Quiero la guía» y dejá tus datos. Te escribimos por WhatsApp con los datos para el pago y, cuando se confirma, te enviamos el PDF.
+  - pregunta: ¿Necesito experiencia?
+    respuesta: No. La guía está pensada para quien recién empieza, con rituales simples y elementos que se consiguen fácil.
+  - pregunta: ¿Reemplaza una terapia o un tratamiento médico?
+    respuesta: No. Es una práctica complementaria y no sustituye la atención médica, psicológica o psiquiátrica.
+
+cierre:
+  titulo: Tu casa también es un lugar para cuidarte.
+  texto: Dejá tus datos y te escribimos para enviarte la guía.
+
+reserva:
+  titulo: Quiero la Guía de Limpiezas Energéticas
+  texto: Dejanos tus datos y te escribimos por WhatsApp con los datos para el pago. Cuando se confirma, te enviamos el PDF.
+  gracias: Te vamos a escribir para pasarte los datos del pago y enviarte la guía. Si querés, podés escribirnos ahora por WhatsApp.

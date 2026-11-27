@@ -1,0 +1,180 @@
+---
+// Guía Arcangélica: the ebook rests closed, opens slowly and lets out a column of warm light; a pair of
+// wings of light unfolds above the pages, with a soft halo, then everything settles back.
+// The book is CSS 3D (cover and two pages turn on the spine); the detail is inline SVG. No JavaScript.
+// Under prefers-reduced-motion the book is shown open, with its light and detail, and still.
+---
+<div class="ebook-arc" aria-hidden="true">
+  <span class="ebook-arc-glow"></span>
+  <span class="ebook-arc-shadow"></span>
+  <div class="ebook-arc-scene">
+    <div class="ebook-arc-book">
+      <span class="ebook-arc-back"></span>
+      <span class="ebook-arc-block"></span>
+      <span class="ebook-arc-page ebook-arc-right"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <span class="ebook-arc-sheet ebook-arc-sheet-2"><span class="ebook-arc-sf"></span><span class="ebook-arc-sb"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></span>
+      <span class="ebook-arc-sheet ebook-arc-sheet-1"><span class="ebook-arc-sf"></span><span class="ebook-arc-sb"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></span>
+      <div class="ebook-arc-cover">
+        <div class="ebook-arc-front">
+          <svg viewBox="0 0 40 40" class="ebook-arc-icon"><path d="M20 30 C14 24 8 22 3 23 C7 27 9 31 14 33 C9 33 6 35 4 38 C10 39 15 37 19 34 M20 30 C26 24 32 22 37 23 C33 27 31 31 26 33 C31 33 34 35 36 38 C30 39 25 37 21 34" /><circle cx="20" cy="12" r="5" /></svg>
+          <span class="ebook-arc-title">Guía<br />Arcangélica</span>
+          <span class="ebook-arc-sub">Energías, propósitos y formas de invocación</span>
+          <span class="ebook-arc-brand">Visión en Acción</span>
+        </div>
+        <div class="ebook-arc-inside"></div>
+      </div>
+    </div>
+  </div>
+  <span class="ebook-arc-light"></span>
+  <div class="ebook-arc-detail">
+    <svg viewBox="0 0 200 120" class="ebook-arc-art">
+      <ellipse class="ebook-arc-halo" cx="100" cy="22" rx="20" ry="6" />
+      <g class="ebook-arc-wing ebook-arc-wing-l">
+        <path d="M96 92 C80 60 52 40 14 36 C30 48 40 58 46 70 C34 66 22 68 12 74 C32 78 48 84 60 92 C50 92 40 96 32 104 C56 104 78 100 96 92 Z" />
+        <path d="M90 86 C72 64 50 52 30 48 M84 92 C66 80 46 76 28 76 M78 96 C64 94 52 96 42 100" />
+      </g>
+      <g class="ebook-arc-wing ebook-arc-wing-r">
+        <path d="M104 92 C120 60 148 40 186 36 C170 48 160 58 154 70 C166 66 178 68 188 74 C168 78 152 84 140 92 C150 92 160 96 168 104 C144 104 122 100 104 92 Z" />
+        <path d="M110 86 C128 64 150 52 170 48 M116 92 C134 80 154 76 172 76 M122 96 C136 94 148 96 158 100" />
+      </g>
+    </svg>
+    <span class="ebook-arc-feather ebook-arc-feather-1"></span>
+    <span class="ebook-arc-feather ebook-arc-feather-2"></span>
+  </div>
+</div>
+
+<style is:inline>
+  .ebook-arc {
+    position: relative; width: 100%; aspect-ratio: 1; justify-self: center; isolation: isolate;
+    container-type: inline-size; perspective: 1200px; perspective-origin: 50% 20%;
+  }
+  .ebook-arc-glow {
+    position: absolute; inset: 6% 8% 12%; z-index: -2; border-radius: 50%;
+    background: radial-gradient(circle at 50% 50%, #d9c3d699 0%, #ae92a655 34%, #6d4f8526 60%, transparent 74%);
+    filter: blur(22px);
+  }
+  .ebook-arc-shadow {
+    position: absolute; left: 14%; right: 14%; bottom: 7%; height: 10%; z-index: -1; border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(10, 3, 18, .55) 0%, transparent 70%);
+  }
+  .ebook-arc-scene { position: absolute; inset: 0; transform-style: preserve-3d; transform: rotateX(16deg) rotateY(-8deg); }
+
+  /* The spine is the book's left edge; open, the cover and pages lie to the left of it. */
+  .ebook-arc-book {
+    position: absolute; left: 31%; top: 40%; width: 38%; height: 50%; transform-style: preserve-3d;
+    transform: translateX(0);
+  }
+  .ebook-arc-book > * { position: absolute; inset: 0; border-radius: 2px 6px 6px 2px; transform-style: preserve-3d; transform-origin: left center; }
+  .ebook-arc-back { background: #2a1638; transform: translateZ(-8px); box-shadow: 0 24px 34px -18px rgba(8, 2, 14, .9); }
+  .ebook-arc-block { inset: 2% 1% 2% 0; background: repeating-linear-gradient(90deg, #efe4ec 0 1px, #fbf7f1 1px 3px); transform: translateZ(-4px); }
+  .ebook-arc-page, .ebook-arc-sf, .ebook-arc-sb {
+    background: linear-gradient(90deg, #e6d9e2 0%, #fbf7f1 12%, #fffdf9 100%);
+    padding: 16% 12%; display: flex; flex-direction: column; gap: 6%;
+  }
+  .ebook-arc-page { inset: 2% 1% 2% 0; transform: translateZ(-1px); }
+  .ebook-arc-page i, .ebook-arc-sb i { display: block; height: 2px; border-radius: 2px; background: #d9cbdc; }
+  .ebook-arc-page i:nth-child(3n), .ebook-arc-sb i:nth-child(2n) { width: 70%; }
+  .ebook-arc-sheet { inset: 2% 1% 2% 0; }
+  .ebook-arc-sf, .ebook-arc-sb { position: absolute; inset: 0; border-radius: inherit; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+  .ebook-arc-sb { transform: rotateY(180deg); background: linear-gradient(270deg, #e6d9e2 0%, #fbf7f1 12%, #fffdf9 100%); }
+  .ebook-arc-sheet-2 { transform: translateZ(0); }
+  .ebook-arc-sheet-1 { transform: translateZ(1px); }
+  .ebook-arc-cover { transform: translateZ(3px); }
+  .ebook-arc-front, .ebook-arc-inside { position: absolute; inset: 0; border-radius: inherit; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+  .ebook-arc-front {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4cqw; padding: 10% 9%;
+    text-align: center; color: var(--paper, #fbf7f1);
+    background:
+      radial-gradient(circle at 50% 30%, #ecc98426 0%, transparent 55%),
+      linear-gradient(160deg, #5a3474 0%, #3a2050 55%, #2a1638 100%);
+    box-shadow: inset 0 0 0 4px #3a2050, inset 0 0 0 5px #ecc98488, inset 6px 0 8px -4px rgba(0, 0, 0, .45);
+  }
+  .ebook-arc-icon { width: 30%; fill: none; stroke: var(--gold, #ecc984); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+  .ebook-arc-title { font-family: var(--display, Georgia, serif); font-size: 4.6cqw; line-height: 1.08; }
+  .ebook-arc-sub { font-size: 1.9cqw; line-height: 1.35; color: #e6d6ea; }
+  .ebook-arc-brand { font-size: 1.5cqw; letter-spacing: .16em; text-transform: uppercase; color: var(--gold, #ecc984); }
+  .ebook-arc-inside { transform: rotateY(180deg); background: linear-gradient(270deg, #3a2050, #4a2a62); box-shadow: inset 0 0 0 5px #fbf7f1; }
+
+  /* Light that comes out of the open book, and the detail that floats above it. */
+  .ebook-arc-light {
+    position: absolute; left: 22%; right: 22%; top: 6%; bottom: 40%; z-index: 1; border-radius: 50% 50% 40% 40%;
+    background:
+      radial-gradient(ellipse at 50% 100%, #fff6dfee 0%, #f3dfa888 22%, transparent 60%),
+      linear-gradient(to top, #fff3d466 0%, #ecc98422 50%, transparent 85%);
+    filter: blur(6px); transform-origin: 50% 100%; opacity: 0; transform: scaleY(.2);
+    mix-blend-mode: screen; pointer-events: none;
+  }
+  .ebook-arc-detail { position: absolute; left: 10%; right: 10%; top: 4%; height: 40%; z-index: 2; opacity: 0; transform: translateY(18%) scale(.9); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    /* One reading every 14 s: rest, open, let the light out, rest open, close. */
+    .ebook-arc-book { animation: ebook-arc-shift 14s cubic-bezier(.45, .05, .25, 1) infinite both; }
+    .ebook-arc-cover { animation: ebook-arc-open 14s cubic-bezier(.45, .05, .25, 1) infinite both; }
+    .ebook-arc-sheet-1 { --open: -172deg; animation: ebook-arc-turn 14s cubic-bezier(.45, .05, .25, 1) .35s infinite both; }
+    .ebook-arc-sheet-2 { --open: -166deg; animation: ebook-arc-turn 14s cubic-bezier(.45, .05, .25, 1) .7s infinite both; }
+    .ebook-arc-light { animation: ebook-arc-light 14s ease-in-out infinite both; }
+    .ebook-arc-detail { animation: ebook-arc-detail 14s ease-in-out infinite both; }
+    .ebook-arc-scene { animation: ebook-arc-sway 20s ease-in-out infinite; }
+    .ebook-arc-glow { animation: ebook-arc-glow 7s ease-in-out infinite; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ebook-arc-book { transform: translateX(50%); }
+    .ebook-arc-cover { transform: translateZ(3px) rotateY(-178deg); }
+    .ebook-arc-sheet-1 { transform: translateZ(1px) rotateY(-172deg); }
+    .ebook-arc-sheet-2 { transform: rotateY(-166deg); }
+    .ebook-arc-light { opacity: 1; transform: none; }
+    .ebook-arc-detail { opacity: 1; transform: none; }
+  }
+  @keyframes ebook-arc-shift {
+    0%, 8% { transform: translateX(0); }
+    24%, 80% { transform: translateX(50%); }
+    95%, 100% { transform: translateX(0); }
+  }
+  @keyframes ebook-arc-open {
+    0%, 8% { transform: translateZ(3px) rotateY(0deg); }
+    24%, 80% { transform: translateZ(3px) rotateY(-178deg); }
+    94%, 100% { transform: translateZ(3px) rotateY(0deg); }
+  }
+  @keyframes ebook-arc-turn {
+    0%, 8% { transform: rotateY(0deg); }
+    24%, 78% { transform: rotateY(var(--open)); }
+    92%, 100% { transform: rotateY(0deg); }
+  }
+  @keyframes ebook-arc-light {
+    0%, 18% { opacity: 0; transform: scaleY(.2); }
+    32%, 76% { opacity: 1; transform: scaleY(1); }
+    88%, 100% { opacity: 0; transform: scaleY(.2); }
+  }
+  @keyframes ebook-arc-detail {
+    0%, 24% { opacity: 0; transform: translateY(18%) scale(.9); }
+    38%, 74% { opacity: 1; transform: translateY(0) scale(1); }
+    86%, 100% { opacity: 0; transform: translateY(-6%) scale(1.02); }
+  }
+  @keyframes ebook-arc-sway { 0%, 100% { transform: rotateX(16deg) rotateY(-8deg); } 50% { transform: rotateX(18deg) rotateY(4deg); } }
+  @keyframes ebook-arc-glow { 0%, 100% { opacity: .8; scale: .96; } 50% { opacity: 1; scale: 1.03; } }
+
+  .ebook-arc-art { width: 100%; height: 100%; overflow: visible; fill: none; stroke: #ecc984; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 6px #ecc98499); }
+  .ebook-arc-wing > path:first-child { fill: #fff6df22; }
+  .ebook-arc-halo { stroke-width: 1.8; }
+  .ebook-arc-wing { transform-box: view-box; }
+  .ebook-arc-wing-l { transform-origin: 96px 92px; }
+  .ebook-arc-wing-r { transform-origin: 104px 92px; }
+  .ebook-arc-feather { position: absolute; width: 6px; height: 14px; border-radius: 50% 50% 50% 50% / 70% 70% 30% 30%; background: linear-gradient(#fff6df, #ecc984); opacity: 0; }
+  .ebook-arc-feather-1 { left: 24%; top: 62%; }
+  .ebook-arc-feather-2 { right: 26%; top: 54%; }
+  @media (prefers-reduced-motion: no-preference) {
+    .ebook-arc-wing-l { animation: ebook-arc-flap-l 7s ease-in-out infinite; }
+    .ebook-arc-wing-r { animation: ebook-arc-flap-r 7s ease-in-out infinite; }
+    .ebook-arc-feather { animation: ebook-arc-fall 14s ease-in-out infinite; }
+    .ebook-arc-feather-2 { animation-delay: 2.2s; }
+  }
+  @media (prefers-reduced-motion: reduce) { .ebook-arc-feather-1 { opacity: .6; } }
+  @keyframes ebook-arc-flap-l { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(5deg); } }
+  @keyframes ebook-arc-flap-r { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-5deg); } }
+  @keyframes ebook-arc-fall {
+    0%, 30% { opacity: 0; transform: translate(0, -30px) rotate(-20deg); }
+    45% { opacity: .8; }
+    75% { opacity: 0; transform: translate(14px, 20px) rotate(25deg); }
+    100% { opacity: 0; transform: translate(14px, 20px) rotate(25deg); }
+  }
+</style>
