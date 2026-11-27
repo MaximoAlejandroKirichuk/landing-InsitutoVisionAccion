@@ -1,0 +1,162 @@
+# Sesiones energéticas y espirituales → https://sitio/sesiones-energeticas/
+# Fuente: institutovisionenaccion.com/visiones-magicas/ ("Sesiones energéticas y espirituales personalizadas":
+# Reiki, Tameana, Radiestesia, Péndulo, Armonización energética). Individuales, sin precio, sin duración ni modalidad publicadas.
+# Le hablamos a Lorena (README → "A quién le hablamos"). Sesión paga, complementaria, sin promesas de resultado.
+
+nombre: Sesiones energéticas y espirituales
+mostrarEnHome: false   # landing para anuncios
+orden: 32
+animacion: sesiones-energeticas
+
+seo:
+  titulo: Sesiones energéticas y espirituales | Instituto Visión en Acción
+  descripcion: Sesión individual de Reiki, Tameana, Radiestesia, péndulo y armonización energética. Un espacio para bajar el ritmo y reencontrarte con vos. Es paga; te pasamos el arancel por WhatsApp.
+
+tarjeta:
+  etiqueta: Sesión individual · Reiki · Tameana · Radiestesia
+  resumen: Un espacio para bajar el ritmo, soltar lo que venís cargando y reencontrarte con vos.
+  boton: Conocer la sesión
+
+whatsapp:
+  mensaje: Hola, quisiera conocer el arancel y los horarios disponibles para una sesión energética.
+
+hero:
+  bajada: Reiki, Tameana, Radiestesia, péndulo y armonización energética. Un espacio individual para bajar el ritmo, escucharte y soltar un poco de lo que venís cargando.
+  datos:
+    - Sesión individual
+    - Agenda abierta
+    - Es una sesión paga
+  boton: Reservar mi sesión
+  nota: Te escribimos por WhatsApp para pasarte el arancel y coordinar el día.
+  linkSecundario:
+    texto: Qué herramientas usamos
+    href: "#programa"
+
+gancho:
+  frase: Siento que cargo con un peso que no es mío.
+  texto: Durante años sostuviste a todos. A tus hijos, a tu mamá, a tu casa. Y en el camino fuiste guardando cansancio, enojos y tristezas que nunca tuviste tiempo de mirar. No es debilidad. Es mucho tiempo cargando sola. Antes de poder dar, a veces hace falta parar y volver a vos.
+
+cursada:
+  - etiqueta: Formato
+    valor: Sesión individual, con agenda abierta
+  - etiqueta: Modalidad y horario
+    valor: Lo coordinamos con vos por WhatsApp
+  - etiqueta: Arancel
+    valor: Te lo pasamos por WhatsApp
+
+paraQuien:
+  titulo: ¿Para quién es esta sesión?
+  items:
+    - Sentís que cargás con un peso que no es solo tuyo, y que viene de lejos.
+    - Pasaste años cuidando a todos y casi nunca te diste un espacio para vos.
+    - Andás cansada, con la cabeza llena, y te cuesta encontrar un momento de calma.
+    - Te atraen las herramientas energéticas y querés vivirlas acompañada.
+    - Decidiste empezar por vos, por tus hijos y por tus nietos.
+  cierre: Si te reconocés en alguna, esta sesión es un buen primer paso.
+
+programa:
+  titulo: Las herramientas de la sesión
+  texto: En cada sesión elegimos juntas la herramienta que mejor acompaña tu momento. Tocá cada una para ver de qué se trata.
+  enfoques:
+    - id: reiki
+      icono: hipnosis
+      titulo: Reiki
+      resumen: Imposición de manos para relajarte y aquietar la mente.
+      descripcion: Es una práctica de origen japonés. Te recostás, vestida, y recibís la imposición de manos en un ambiente tranquilo. Muchas personas la viven como un momento de relajación profunda y de pausa.
+    - id: tameana
+      icono: generico
+      titulo: Tameana
+      resumen: Una práctica energética suave, para armonizar y equilibrar.
+      descripcion: Es una técnica de canalización energética que se recibe en calma, sin esfuerzo de tu parte. La usamos como un espacio de armonización y de encuentro con vos misma.
+    - id: radiestesia
+      icono: biodescodificacion
+      titulo: Radiestesia
+      resumen: Escuchar lo que se mueve en vos con instrumentos sencillos.
+      descripcion: La radiestesia trabaja con instrumentos como el péndulo para explorar cómo te sentís y qué necesitás en este momento. Es una herramienta de observación, no de diagnóstico.
+    - id: pendulo
+      icono: tarot
+      titulo: Péndulo
+      resumen: Preguntas simples, respuestas para observar con calma.
+      descripcion: Con el péndulo hacemos preguntas sobre lo que estás viviendo y miramos juntas lo que aparece. No adivina el futuro ni decide por vos; te ayuda a ponerle palabras a lo que sentís.
+    - id: armonizacion
+      icono: coaching
+      titulo: Armonización energética
+      resumen: Un cierre para salir más liviana de lo que llegaste.
+      descripcion: Es el momento de la sesión para soltar tensiones, ordenar la energía y volver a tu día con más calma. Te llevás una práctica simple para repetir en casa.
+
+carrusel:
+  titulo: Una pausa para empezar hoy
+  texto: Deslizá las placas. Es el mismo carrusel que compartimos en Instagram.
+  imagenes:
+    - src: /images/carruseles/sesiones-energeticas/1.webp
+      alt: "«Siento que cargo con un peso que no es mío.»"
+    - src: /images/carruseles/sesiones-energeticas/2.webp
+      alt: "Durante años sostuviste a todos. Y en el camino fuiste guardando lo que nunca tuviste tiempo de mirar."
+    - src: /images/carruseles/sesiones-energeticas/3.webp
+      alt: "No es debilidad. Es mucho tiempo cargando sola."
+    - src: /images/carruseles/sesiones-energeticas/4.webp
+      alt: "Una pausa de 1 minuto: apoyá una mano en el pecho y otra en la panza. Respirá lento, tres veces."
+    - src: /images/carruseles/sesiones-energeticas/5.webp
+      alt: "Con cada exhalación, preguntate: ¿qué de todo esto que cargo es mío? No hace falta responder hoy."
+    - src: /images/carruseles/sesiones-energeticas/6.webp
+      alt: "Sesiones energéticas: Reiki, Tameana, Radiestesia, péndulo y armonización. Un espacio individual para soltar y volver a vos. Es una sesión paga; el arancel te lo paso por WhatsApp. No reemplaza la atención médica ni psicológica."
+    - src: /images/carruseles/sesiones-energeticas/7.webp
+      alt: "Para quién es: para quien cuidó a todos y se olvidó de ella, para quien anda cansada y con la cabeza llena, para quien decidió empezar por ella."
+    - src: /images/carruseles/sesiones-energeticas/8.webp
+      alt: "¿Cuándo fue la última vez que te diste un rato solo para vos? Contame abajo. Soy Fernanda, de Visión en Acción."
+
+instituto:              # bloque "Cómo es estudiar en el Instituto", ajustado a una sesión
+  titulo: Qué recibís y cómo seguir
+  recibis:
+    - Una sesión individual, solo para vos, con la herramienta que elijamos juntas para tu momento.
+    - Día y horario coordinados por WhatsApp, según tu disponibilidad (agenda abierta).
+    - Una práctica simple para seguir cuidando tu energía en casa.
+  encuentros: Si después querés seguir acompañada, podés sumarte a los encuentros en vivo de la membresía. Es opcional.
+  membresia: true
+
+docentes:
+  titulo: Quiénes te acompañan
+  personas:
+    - id: docente-fernanda
+      nombre: Fernanda Rodríguez
+      bio: Fundadora y directora del instituto, es formadora en desarrollo personal y en el área holística. Trabaja con herramientas energéticas como el péndulo, los cristales y la armonización, y las integra con el autoconocimiento.
+      foto: /images/instructor-portrait.jpg
+      alt: Retrato de Fernanda Rodríguez
+      ancho: 673
+      alto: 1437
+    - id: docente-daniel
+      nombre: Daniel Alberto Rodríguez
+      bio: Formador del área holística del instituto. Su formación incluye tarot y oráculos, constelaciones familiares, biodescodificación, hipnosis y Reiki.
+      foto: /images/holistic-instructor-portrait.jpg
+      alt: Retrato de Daniel Alberto Rodríguez
+      ancho: 171
+      alto: 365
+      encuadre: 50% 12%
+
+oferta:
+  titulo: Reservá tu sesión
+  destacado: Sesión individual · Agenda abierta
+  texto: Coordinamos el día, el horario y la herramienta por WhatsApp. Esta práctica es complementaria y no sustituye la atención médica, psicológica o psiquiátrica.
+
+preguntas:
+  - pregunta: ¿Qué es una sesión energética?
+    respuesta: Es un espacio individual en el que usamos herramientas como el Reiki, la Tameana, la Radiestesia o el péndulo para acompañarte a bajar el ritmo, escucharte y armonizarte. Se recibe en calma, sin esfuerzo de tu parte.
+  - pregunta: ¿Tengo que elegir yo la herramienta?
+    respuesta: No hace falta. Nos contás cómo estás y elegimos juntas la que mejor acompaña tu momento. Si ya tenés una preferencia, también la tenemos en cuenta.
+  - pregunta: ¿Va a resolver lo que me pasa con mi familia?
+    respuesta: No podemos prometerte cómo va a responder otra persona ni un resultado puntual. La sesión es un espacio para vos, para soltar un poco de lo que venís cargando.
+  - pregunta: ¿Cuánto cuesta?
+    respuesta: Es una sesión paga. Te pasamos el arancel por WhatsApp, junto con los horarios disponibles.
+  - pregunta: ¿Reemplaza una terapia o un tratamiento médico?
+    respuesta: No. Esta práctica es complementaria y no sustituye la atención médica, psicológica o psiquiátrica. Si estás en tratamiento, seguí con él.
+  - pregunta: ¿Cómo reservo?
+    respuesta: Tocá «Reservar mi sesión» y dejá tus datos. Te escribimos por WhatsApp para coordinar el día.
+
+cierre:
+  titulo: Antes de poder dar, a veces hace falta volver a vos.
+  texto: Dejá tus datos y te escribimos para coordinar tu sesión energética.
+
+reserva:
+  titulo: Reservá tu sesión energética
+  texto: Dejanos tus datos y te escribimos por WhatsApp con el arancel y los horarios disponibles.
+  gracias: Te vamos a escribir para pasarte el arancel y coordinar el día. Si querés, podés escribirnos ahora por WhatsApp.
