@@ -1,9 +1,10 @@
 ---
+import { whatsappUrl as waUrl } from '../data/contacto';
 import ProgressIndicator from './ProgressIndicator.astro';
 import { QUIZ_QUESTIONS } from '../lib/quizData';
 
 const whatsappMessage = 'Hola, quiero recibir orientación sobre el Método VIA. Vengo desde la web y me gustaría conversar sobre mi situación.';
-const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whatsappMessage)}`;
+const whatsappUrl = waUrl(whatsappMessage);
 ---
 
 <section

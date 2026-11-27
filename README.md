@@ -39,6 +39,71 @@ Decide cambiar ella primero para cortar la cadena, y busca entender de dónde vi
 - El campo `gancho` de cada curso va con **la misma frase del anuncio** que lleva a esa página: así, quien llega desde el Reel
   reconoce enseguida que está en el lugar correcto.
 
+## Convenciones de las landings por curso
+
+Cada curso es **un YAML** (`src/content/cursos/<slug>.yaml`) y, si tiene animación, **un componente**
+(`src/components/animaciones/<Nombre>.astro`). Nada más: la plantilla `[curso].astro` es común a todos.
+
+### Animación del hero (`animacion:`)
+
+- En el YAML: `animacion: tarot` (o `coaching-ontologico`). Se busca en `src/components/animaciones/` el archivo
+  cuyo nombre coincide **sin importar mayúsculas ni guiones**: `tarot` → `Tarot.astro`,
+  `coaching-ontologico` → `CoachingOntologico.astro`. Si no existe, el build falla con el nombre del curso.
+- Reemplaza a `hero.imagen` y al emblema. Va en la columna derecha del hero, en un contenedor `.hero-animacion`
+  de hasta 30rem de ancho (21rem en celular), sobre el fondo violeta del hero. El componente no recibe props.
+- **Estilos y scripts siempre `is:inline`** (`<style is:inline>`, `<script is:inline>`) y con clases prefijadas
+  con el nombre de la animación (`.tarot-...`). Así cada página carga solo su animación: un `<style>` normal
+  se sumaría al CSS de todas las landings.
+- Estilo: bienestar, calma, elegante, paleta violeta y dorado del sitio (`--plum`, `--gold`, `--paper`). Nada "tech".
+  Solo `transform` y `opacity` animados; todo quieto con `prefers-reduced-motion: reduce` (la pose quieta tiene
+  que verse terminada). Sin librerías externas ni imágenes pesadas.
+
+### Bloque "Cómo es estudiar en el Instituto" (`instituto:`)
+
+Aparece solo en todas las landings, antes de la oferta, con tres tarjetas: **Qué recibís**, **Encuentros en vivo**
+y **Membresía** (textos por defecto en `src/data/instituto.ts`: membresía $20.000 / USD 20 por mes, lunes y jueves
+19 h, catálogo de clases y comunidad, sin certificado). Para cambiar los textos de un curso:
+
+```yaml
+instituto:
+  recibis: [Un PDF de 92 páginas, Una sesión de claridad de 20 minutos]
+  encuentros: Sin encuentros en vivo: lo hacés a tu ritmo.
+  membresia: true      # false = sin la tarjeta de membresía
+```
+
+`instituto: false` oculta el bloque entero (por ejemplo, en la landing de la propia membresía si se prefiere).
+
+### Carrusel (`carrusel:`, opcional)
+
+Las placas del carrusel de Instagram del curso, en una tira que se desliza (antes del bloque del instituto).
+Placas 1080x1350 en `public/images/carruseles/<slug>/1.webp`, `2.webp`, …
+
+```yaml
+carrusel:
+  titulo: Lo que contamos en Instagram
+  imagenes:
+    - { src: /images/carruseles/mindfulness/1.webp, alt: "Texto de la placa 1" }
+```
+
+### Precio
+
+Si el curso tiene precio publicado va en `oferta.precios`. Si no lo tiene, dejá `oferta` sin `precios` y la página
+dice sola: "Es una propuesta paga. Te pasamos el arancel y las formas de pago por WhatsApp."
+
+### WhatsApp
+
+Números oficiales en `src/data/contacto.ts`: **11 6677-0206** (todos los botones) y **11 5646-7222**
+(se muestran los dos en el pie). El 11 2696-7602 ya no es del instituto.
+
+### Tono
+
+- Propuestas emocionales/holísticas (constelaciones, memoria celular, hipnosis, mindfulness, tarot, membresía,
+  talleres holísticos, ebooks holísticos): le hablamos a **Lorena** (ver "A quién le hablamos").
+- Propuestas profesionales (coaching ontológico, coaching de vida, vivir del coaching, liderazgo ejecutivo,
+  gestión del tiempo): tono profesional, a quien quiere formarse, ejercer o liderar. Mismas reglas: sin promesas
+  de resultados, sin testimonios inventados, decir que es pago.
+- `mostrarEnHome: false` en las landings pensadas solo para anuncios.
+
 ## Campañas (Meta Ads) y la planilla de leads
 
 - Cada anuncio apunta a la URL de su curso con UTMs, por ejemplo

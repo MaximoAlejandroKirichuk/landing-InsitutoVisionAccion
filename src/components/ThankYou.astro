@@ -1,4 +1,5 @@
 ---
+import { whatsappUrl as waUrl } from '../data/contacto';
 import { getEntry } from 'astro:content';
 
 const formationName = (await getEntry('cursos', 'formacion'))?.data.nombre ?? 'Consultorio del Bienestar';
@@ -6,7 +7,7 @@ const formationName = (await getEntry('cursos', 'formacion'))?.data.nombre ?? 'C
 // ThankYou — post-submission confirmation with WhatsApp CTA.
 // Rendered as the final consultation panel in the funnel.
 const whatsappMessage = 'Hola, quiero mi orientación personalizada. Ya completé el Mapa Inicial VIA® desde la web y me gustaría conversar sobre mi situación.';
-const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whatsappMessage)}`;
+const whatsappUrl = waUrl(whatsappMessage);
 ---
 
 <section

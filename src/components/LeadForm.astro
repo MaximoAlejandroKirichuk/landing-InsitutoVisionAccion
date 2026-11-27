@@ -1,11 +1,12 @@
 ---
+import { whatsappUrl as waUrl } from '../data/contacto';
 // LeadForm — lead capture with required fields and consent checkbox.
 // Renders a structural shell. The client script populates content
 // when it receives the `funnel:render-lead` custom event.
 // Field changes and submit are dispatched back to OrientationFunnel.astro.
 // Visual: sage-wash cream section with framed sage panel, night-blue/gold hierarchy.
 const whatsappMessage = 'Hola, quiero recibir orientación sobre el Método VIA. Vengo desde la web y me gustaría conversar sobre mi situación.';
-const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whatsappMessage)}`;
+const whatsappUrl = waUrl(whatsappMessage);
 ---
 
 <section

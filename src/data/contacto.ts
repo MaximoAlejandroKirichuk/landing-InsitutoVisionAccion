@@ -1,9 +1,16 @@
 /**
  * Institute-wide contact data. Course content lives in src/content/cursos/*.yaml.
- * WhatsApp number still pending confirmation (11 2696-7602 vs 11 3810-5350): not changed here.
+ * Official numbers (institutovisionenaccion.com, nov 2026): 11 6677-0206 (main, used by every button)
+ * and 11 5646-7222 (Visiones Mágicas). 11 2696-7602 no longer belongs to the institute.
  */
-export const WHATSAPP_NUMBER = '5491138105350';
+export const WHATSAPP_NUMBER = '5491166770206';
 
-export function whatsappUrl(message: string): string {
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+/** Both official lines, shown wherever the site lists contact details. */
+export const WHATSAPP_LINEAS = [
+  { numero: '5491166770206', texto: '11 6677-0206' },
+  { numero: '5491156467222', texto: '11 5646-7222' },
+] as const;
+
+export function whatsappUrl(message: string, numero: string = WHATSAPP_NUMBER): string {
+  return `https://wa.me/${numero}?text=${encodeURIComponent(message)}`;
 }
