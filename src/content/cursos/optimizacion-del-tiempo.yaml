@@ -1,0 +1,170 @@
+# Curso Optimización y Planificación del Tiempo → https://sitio/optimizacion-del-tiempo/
+# Datos: ficha del curso en institutovisionenaccion.com/cursos/curso-optimizacion-y-planificacion-del-tiempo/
+# (categoría Liderazgo Ejecutivo): 8 módulos con material descargable y autotest, acceso online a tu ritmo,
+# certificado de participación, $16.000 (antes $24.000). Instructora: Fernanda Rodríguez.
+#
+# Público: no es Lorena. Profesionales, emprendedores, líderes, freelancers y personas con muchos roles
+# a quienes el día no les alcanza. Tono profesional y práctico. Es la única oferta concreta de Liderazgo Ejecutivo.
+# Palabra de WhatsApp para anuncios y Reel: TIEMPO.
+
+nombre: Optimización y Planificación del Tiempo
+orden: 12
+mostrarEnHome: false
+animacion: optimizacion-del-tiempo   # src/components/animaciones/OptimizacionDelTiempo.astro
+
+seo:
+  titulo: Curso Optimización y Planificación del Tiempo | Instituto Visión en Acción
+  descripcion: 8 módulos prácticos con material descargable y autotest para priorizar, planificar tu semana y dejar de apagar incendios. Online, a tu ritmo, con certificado de participación.
+
+tarjeta:
+  etiqueta: Curso online · 8 módulos
+  resumen: Priorizá, planificá tu semana y recuperá tiempo para lo importante.
+  boton: Conocer el curso
+
+whatsapp:
+  mensaje: Hola, quisiera inscribirme en el curso Optimización y Planificación del Tiempo. ¿Me cuentan cómo sigo?
+
+hero:
+  bajada: Un curso práctico para dejar de apagar incendios, ordenar tus prioridades y armar una semana que tenga lugar para lo que de verdad importa.
+  datos:
+    - 8 módulos
+    - Online, a tu ritmo
+    - Certificado de participación
+  nota: Es un curso pago. Te escribimos por WhatsApp para contarte cómo inscribirte.
+  linkSecundario:
+    texto: Ver los 8 módulos
+    href: "#programa"
+
+# La misma frase que usa el anuncio/Reel que trae a esta página.
+gancho:
+  frase: Trabajo todo el día apagando incendios… y lo importante sigue esperando.
+  texto: No es falta de esfuerzo ni de compromiso. Es que nadie nos enseñó a distinguir lo urgente de lo importante. Gestionar el tiempo es una habilidad, y se aprende.
+
+cursada:
+  - etiqueta: Modalidad
+    valor: Online, con material descargable y ejercicios en cada módulo
+  - etiqueta: Ritmo
+    valor: Empezás cuando quieras y avanzás a tu tiempo
+  - etiqueta: Evaluación
+    valor: Un autotest al final de cada módulo
+  - etiqueta: Certificado
+    valor: Certificado de participación del instituto
+
+paraQuien:
+  titulo: ¿Para quién es este curso?
+  items:
+    - Profesionales y emprendedores que sienten que el día no les alcanza.
+    - Líderes y mandos medios que pasan de reunión en reunión y no llegan a lo estratégico.
+    - Freelancers y personas que trabajan desde casa y necesitan una estructura propia.
+    - Personas con muchos roles (trabajo, familia, cuidados, proyectos) que quieren sostenerlos sin agotarse.
+    - Quien posterga lo importante y quiere un método concreto para empezar.
+  cierre: Si te reconocés en alguna, este curso está pensado para vos.
+
+programa:
+  titulo: Los 8 módulos
+  texto: Cada módulo trae material descargable, ejemplos y un autotest para fijar lo aprendido. Van del sentido del tiempo a un plan de acción tuyo. Tocá cada uno para ver qué incluye.
+  enfoques:
+    - id: valor-del-tiempo
+      icono: generico
+      titulo: 1. El significado y el valor del tiempo
+      resumen: Cómo percibís y usás tu tiempo hoy.
+      descripcion: Qué quiere decir administrar (y liderar) tu tiempo, cómo lo percibimos y por qué el equilibrio entre las áreas de tu vida es el punto de partida.
+    - id: importante-urgente
+      icono: generico
+      titulo: 2. Lo importante y lo urgente
+      resumen: La matriz del tiempo para decidir qué va primero.
+      descripcion: Los enfoques de gestión del tiempo, la matriz de cuadrantes para separar lo urgente de lo importante y por qué lo que sembrás hoy define lo que cosechás.
+    - id: mision-personal
+      icono: coaching
+      titulo: 3. Tu misión personal
+      resumen: Saber para qué, antes de organizar el cómo.
+      descripcion: Autoconocimiento, equilibrio entre tus roles y un modelo de agenda semanal construido alrededor de lo que te importa, con aportes del coaching ontológico.
+    - id: objetivos
+      icono: coaching
+      titulo: 4. Objetivos y metas
+      resumen: De la intención a un objetivo medible.
+      descripcion: Cómo formular objetivos, definir recursos y plazos, elegir indicadores de logro y pasarlos a actividades concretas en tu agenda.
+    - id: planificacion
+      icono: generico
+      titulo: 5. Planificación diaria y semanal
+      resumen: Tu agenda, tus herramientas y los ladrones de tiempo.
+      descripcion: Elegir tu agenda (digital o en papel), "descargar la mente", detectar los ladrones del tiempo y planificar la jornada con el flujo de trabajo de David Allen.
+    - id: reuniones
+      icono: coaching
+      titulo: 6. Reuniones eficaces
+      resumen: Menos reuniones eternas, más decisiones.
+      descripcion: Objetivo y orden del día, quién tiene que estar, logística, check-in y check-out, y qué le toca a quien lidera la reunión.
+    - id: crecimiento
+      icono: generico
+      titulo: 7. Planificar tu crecimiento
+      resumen: Un plan de acción que puedas sostener.
+      descripcion: Definir el objetivo, los recursos tangibles e intangibles, cómo hacer el seguimiento y qué ajustar cuando el plan se desvía.
+    - id: aplicacion
+      icono: generico
+      titulo: 8. Ejercicios y aplicación práctica
+      resumen: Bajar todo a tu semana real.
+      descripcion: La filosofía "slow down", el método ABCDE de Brian Tracy para priorizar y una evaluación personal de tus prioridades. Incluye herramientas adicionales de bonus.
+
+# Carrusel de Instagram del curso (placas en public/images/carruseles/optimizacion-del-tiempo/)
+carrusel:
+  titulo: Probá este ejercicio
+  texto: Es el mismo que compartimos en Instagram. Deslizá las placas.
+  imagenes:
+    - { src: /images/carruseles/optimizacion-del-tiempo/1.webp, alt: "«Trabajo todo el día apagando incendios… y lo importante sigue esperando.»" }
+    - { src: /images/carruseles/optimizacion-del-tiempo/2.webp, alt: "No es falta de esfuerzo. Lo urgente grita. Lo importante espera callado, hasta que también se vuelve urgente." }
+    - { src: /images/carruseles/optimizacion-del-tiempo/3.webp, alt: "Un ejercicio: anotá todo lo que hiciste ayer. Al lado de cada cosa, una letra: U si era urgente, I si era importante." }
+    - { src: /images/carruseles/optimizacion-del-tiempo/4.webp, alt: "Mirá cuántas I hay. No para culparte: para saber cuánto lugar le das hoy a lo que te hace avanzar." }
+    - { src: /images/carruseles/optimizacion-del-tiempo/5.webp, alt: "Para mañana: elegí una sola tarea importante y agendala como una reunión. Con hora de inicio y de fin." }
+    - { src: /images/carruseles/optimizacion-del-tiempo/6.webp, alt: "Optimización y Planificación del Tiempo: 8 módulos online, a tu ritmo. Material descargable, autotest en cada módulo y certificado de participación. Es pago: $16.000." }
+    - { src: /images/carruseles/optimizacion-del-tiempo/7.webp, alt: "Para quién es: profesionales y emprendedores, líderes y mandos medios, personas con muchos roles que quieren ordenar su semana." }
+    - { src: /images/carruseles/optimizacion-del-tiempo/8.webp, alt: "¿Cuántas I te salieron? Contámelo en los comentarios. Leo cada uno." }
+
+# Bloque automático "Cómo es estudiar en el Instituto" (membresía y encuentros: src/data/instituto.ts)
+instituto:
+  recibis:
+    - 8 módulos con contenido práctico, ejemplos y herramientas de planificación para descargar.
+    - Un autotest y ejercicios en cada módulo para fijar lo aprendido.
+    - Un bonus con herramientas adicionales.
+    - Certificado de participación del Instituto Visión en Acción.
+  encuentros: El curso es a tu ritmo, sin clases en vivo. Si querés compartir tus avances y traer tus dudas, sumate a los encuentros de la membresía.
+  membresia: true
+
+docentes:
+  titulo: Quién te acompaña
+  personas:
+    - id: docente-fernanda
+      nombre: Fernanda Rodríguez
+      bio: Fundadora y directora del Instituto Visión en Acción, formadora en coaching y liderazgo. El instituto también acompaña a líderes y equipos con coaching individual y grupal; si te interesa para tu organización, consultanos por WhatsApp.
+      foto: /images/instructor-portrait.jpg
+      alt: Retrato de Fernanda Rodríguez
+      ancho: 673
+      alto: 1437
+
+oferta:
+  titulo: Inscripción abierta
+  destacado: Empezás cuando quieras
+  texto: Es un curso pago. Te escribimos por WhatsApp con los datos para el pago y te habilitamos el acceso al material.
+  precios:
+    - periodo: Curso Optimización y Planificación del Tiempo
+      valores: [ARS 16.000]
+
+preguntas:
+  - pregunta: ¿Cómo me inscribo?
+    respuesta: Tocá «Reservar mi lugar» y dejá tus datos. Te escribimos por WhatsApp con los pasos para pagar y te habilitamos el acceso.
+  - pregunta: ¿Las clases son en vivo?
+    respuesta: No. El curso es online y a tu ritmo, con material descargable y un autotest por módulo. Si querés encuentros en vivo y comunidad, podés sumar la membresía.
+  - pregunta: ¿Cuánto tiempo me lleva?
+    respuesta: Depende de tu ritmo. Son 8 módulos pensados para leer y aplicar de a uno, mientras trabajás.
+  - pregunta: ¿Recibo un certificado?
+    respuesta: Sí, un certificado de participación del Instituto Visión en Acción. Es un certificado de formación privada no formal, no un título oficial.
+  - pregunta: ¿Sirve para mi equipo o mi empresa?
+    respuesta: El curso es individual. Si buscás algo para un equipo, el instituto ofrece coaching individual y grupal para líderes y equipos. Escribinos por WhatsApp y lo conversamos.
+
+cierre:
+  titulo: Tu semana puede empezar a ordenarse hoy
+  texto: Dejá tus datos y te escribimos por WhatsApp para contarte cómo inscribirte.
+
+reserva:
+  titulo: Quiero hacer el curso Optimización y Planificación del Tiempo
+  texto: Dejanos tus datos y te escribimos por WhatsApp con los pasos para inscribirte y empezar.
+  gracias: Te vamos a escribir para contarte cómo pagar y habilitarte el acceso. Si querés, podés escribirnos ahora por WhatsApp.
