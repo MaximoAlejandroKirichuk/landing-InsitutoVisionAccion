@@ -95,6 +95,14 @@ const cursos = defineCollection({
         precios: z.array(z.object({ periodo: texto, valores: z.array(texto).min(1) })).default([]),
       })
       .optional(),
+    /** (optional) Instagram carousel for this course: 1080x1350 slides in public/images/carruseles/<slug>/. */
+    carrusel: z
+      .object({
+        titulo: texto,
+        texto: texto.optional(),
+        imagenes: z.array(z.object({ src: texto, alt: texto })).min(1),
+      })
+      .optional(),
     /**
      * Standard block "Cómo es estudiar en el Instituto" (qué recibís · encuentros · membresía), shown on every
      * course by default with the texts in src/data/instituto.ts. Override any text here, or set `false` to hide it.
