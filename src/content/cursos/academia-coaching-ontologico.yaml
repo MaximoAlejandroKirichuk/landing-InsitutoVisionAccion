@@ -1,0 +1,142 @@
+# Academia de Coaching Ontológico → https://sitio/academia-coaching-ontologico/
+# Público distinto de Lorena: personas que quieren formarse como coach, reinventarse o sumar una herramienta
+# profesional. Fuentes: home de institutovisionenaccion.com ("Aprendizaje, escucha, comunicación, compromiso y
+# confianza") y las piezas de Canva "Nunca es tarde para reinventarte" y "Carrusel Academia de Coaching Ontológico".
+# Precio: Maximo pidió "te pasamos el arancel por WhatsApp" (la camada anterior fue en cuotas fijas mensuales).
+
+nombre: Academia de Coaching Ontológico
+orden: 3
+mostrarEnHome: false
+animacion: coaching-ontologico
+
+seo:
+  titulo: Academia de Coaching Ontológico | Instituto Visión en Acción
+  descripcion: Formación anual en Coaching Ontológico, online y en vivo, con tu camada, práctica de sesiones y el acompañamiento de Fernanda Rodríguez. Es paga; te pasamos el arancel por WhatsApp.
+
+tarjeta:
+  etiqueta: Formación anual · Por camadas
+  resumen: Formate como coach ontológico en un año, con un grupo, práctica real y acompañamiento.
+  boton: Conocer la Academia
+
+whatsapp:
+  mensaje: Hola, escribo por la palabra ACADEMIA. Quisiera conocer el arancel, la fecha de la próxima camada y cómo inscribirme en la Academia de Coaching Ontológico.
+
+hero:
+  bajada: Un año para formarte como coach, en un grupo que avanza con vos y con práctica desde el principio. Nunca es tarde para reinventarte.
+  datos:
+    - 12 meses
+    - Clases en vivo por Google Meet
+    - Cursada por camadas
+  boton: Reservar mi lugar
+  nota: Es una formación paga. Te escribimos por WhatsApp con el arancel y la fecha de la próxima camada.
+  linkSecundario:
+    texto: Ver qué vas a aprender
+    href: "#programa"
+
+gancho:
+  frase: Siento que todavía tengo mucho para dar.
+  texto: Tu experiencia de vida vale. El Coaching Ontológico te da un marco y herramientas para convertirla en una forma de acompañar a otras personas, y de rediseñar también tu propio camino.
+
+cursada:
+  - etiqueta: Duración
+    valor: 12 meses, por camadas
+  - etiqueta: Modalidad
+    valor: Online y en vivo por Google Meet
+  - etiqueta: Frecuencia
+    valor: Una clase por semana
+  - etiqueta: Acompañamiento
+    valor: Fernanda Rodríguez y tu camada
+
+paraQuien:
+  titulo: ¿Para quién es la Academia?
+  items:
+    - Sentís que tu trabajo actual ya no te representa y querés darle a tu experiencia un sentido nuevo.
+    - Te gusta escuchar y acompañar, y querés hacerlo con una formación seria detrás, no solo con intuición.
+    - Hiciste cursos cortos o leíste mucho sobre desarrollo personal, y te falta un recorrido largo con práctica real.
+    - Trabajás con personas o equipos (docencia, salud, recursos humanos, liderazgo) y querés sumar herramientas de conversación.
+    - Querés formarte acompañada o acompañado, con un grupo, y no estudiando sola o solo frente a un PDF.
+  cierre: Si te reconocés en alguna, la Academia está pensada para vos. Podés empezar desde cero.
+
+programa:
+  titulo: Cinco ejes para aprender a acompañar
+  texto: El Coaching Ontológico mira a la persona en tres dimensiones, lenguaje, emoción y cuerpo. La formación recorre estos ejes con teoría, ejercicios y práctica de sesiones. Tocá cada uno para ver de qué se trata.
+  enfoques:
+    - id: aprendizaje
+      icono: coaching
+      titulo: Aprendizaje
+      resumen: Cómo aprendemos y qué nos frena cuando queremos cambiar.
+      descripcion: Vas a explorar el aprendizaje como algo que se puede revisar, y cómo los juicios, las creencias y el miedo a no saber influyen en lo que una persona se permite intentar. Es la base para acompañar a otros en sus propios cambios.
+    - id: escucha
+      icono: coaching
+      titulo: Escucha
+      resumen: Escuchar más allá de las palabras.
+      descripcion: La escucha es la herramienta principal de un coach. Vas a practicar cómo escuchar lo que la otra persona dice, lo que no dice y la emoción que hay detrás, para hacer preguntas que abran posibilidades en lugar de dar consejos.
+    - id: comunicacion
+      icono: pnl
+      titulo: Comunicación
+      resumen: El lenguaje no solo describe, también crea.
+      descripcion: Vas a trabajar con los actos del lenguaje, como afirmaciones, juicios, pedidos y ofertas, y con la forma en que las conversaciones abren o cierran caminos en la vida personal y en los equipos.
+    - id: compromiso
+      icono: coaching
+      titulo: Compromiso
+      resumen: Promesas, acuerdos y responsabilidad.
+      descripcion: Cómo se construyen los compromisos, qué pasa cuando no se cumplen y cómo ayudar a una persona a pasar de la intención a la acción, con objetivos claros y acuerdos que pueda sostener.
+    - id: confianza
+      icono: coaching
+      titulo: Confianza
+      resumen: La base de cualquier vínculo y de cada sesión.
+      descripcion: La confianza en uno mismo y en los demás se puede trabajar. Vas a ver cómo se construye, cómo se repara y por qué es lo que hace posible una conversación de coaching.
+    - id: practica
+      icono: coaching
+      titulo: Práctica de sesiones
+      resumen: Practicás con tu camada desde el principio.
+      descripcion: A lo largo del año practicás conversaciones de coaching con tus compañeros, con devoluciones de Fernanda. Así ganás confianza para tus primeras sesiones con personas reales.
+
+docentes:
+  titulo: Quién te acompaña
+  personas:
+    - id: formadora-fernanda
+      nombre: Fernanda Rodríguez
+      bio: Coach ontológica y terapeuta, fundadora y directora del Instituto Visión en Acción. Acompaña a cada camada durante el año, en las clases y en la práctica.
+      foto: /images/instructor-portrait.jpg
+      alt: Retrato de Fernanda Rodríguez
+      ancho: 673
+      alto: 1437
+
+oferta:
+  titulo: Próxima camada
+  destacado: Cupos limitados por camada
+  texto: Se paga en cuotas mensuales durante el año. Escribinos ACADEMIA por WhatsApp y te contamos la fecha de inicio.
+
+preguntas:
+  - pregunta: ¿Cómo me inscribo?
+    respuesta: Tocá «Reservar mi lugar» y dejá tus datos, o escribinos ACADEMIA por WhatsApp al 11 6677-0206 o al 11 5646-7222. Te contamos el arancel, la fecha de la próxima camada y los pasos para inscribirte.
+  - pregunta: ¿Necesito experiencia previa?
+    respuesta: No. Podés empezar desde cero. También es una buena opción si ya acompañás personas o equipos y querés sumar herramientas de conversación.
+  - pregunta: ¿Qué pasa si no puedo asistir a una clase?
+    respuesta: Consultanos por WhatsApp cómo se recupera una clase en tu camada.
+  - pregunta: ¿Qué es la membresía y qué tiene que ver con la Academia?
+    respuesta: La membresía es aparte y opcional. Cuesta ARS 20.000 o USD 20 por mes e incluye dos encuentros en vivo por semana con Fernanda (lunes y jueves, 19 h, hora argentina), el catálogo de clases y la comunidad del Instituto. No incluye certificado.
+  - pregunta: ¿Quién emite el certificado?
+    respuesta: El Instituto Visión en Acción, al cumplir los requisitos de la formación. El Instituto está acreditado como Accredited Training Provider por IAOTH; eso no implica que cada curso esté acreditado directamente por IAOTH. Es un certificado de formación privada no formal.
+  - pregunta: ¿El coaching reemplaza una terapia?
+    respuesta: No. El coaching es una propuesta de aprendizaje y desarrollo personal y profesional. No reemplaza tratamientos médicos, psicológicos ni psiquiátricos.
+
+# Bloque "Cómo es estudiar en el Instituto": la Academia es en vivo, no con clases grabadas.
+instituto:
+  recibis:
+    - Una clase en vivo por semana durante 12 meses, por Google Meet.
+    - Tu camada, un grupo que empieza y avanza al mismo ritmo que vos.
+    - Práctica de sesiones a lo largo del año, con devoluciones de Fernanda.
+    - Certificado del Instituto al cumplir los requisitos de la formación.
+  encuentros: Cada semana te encontrás en vivo con tu camada y con Fernanda. Si además querés más espacios de práctica y comunidad, está la membresía.
+  membresia: true
+
+cierre:
+  titulo: Tu experiencia puede acompañar a otras personas
+  texto: Dejá tus datos y te escribimos con el arancel y la fecha de la próxima camada.
+
+reserva:
+  titulo: Reservá tu lugar en la próxima camada
+  texto: Dejanos tus datos y te escribimos por WhatsApp con el arancel, la fecha de inicio y los pasos de inscripción.
+  gracias: Te vamos a escribir con el arancel y la fecha de la próxima camada. Si querés, escribinos ahora ACADEMIA por WhatsApp.
