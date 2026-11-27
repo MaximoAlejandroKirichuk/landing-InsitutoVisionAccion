@@ -442,3 +442,9 @@ blockquote { margin: 1.4rem 0 0; padding-inline-start: 1.1rem; border-inline-sta
 .estudiar-membresia { background: var(--soft) !important; }
 .estudiar-precio { font-weight: 600; color: var(--plum); }
 .offer-whatsapp { max-width: 32ch; }
+
+/* ── Course carousel: the Instagram slides, swipeable (scroll-snap, no library) ── */
+.carrusel { list-style: none; margin: clamp(1.2rem, 3vw, 2rem) 0 0; padding: 0 0 .8rem; display: grid; grid-auto-flow: column; grid-auto-columns: min(78%, 20rem); gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: thin; }
+.carrusel > li { scroll-snap-align: start; }
+.carrusel img { display: block; width: 100%; height: auto; aspect-ratio: 1080 / 1350; object-fit: cover; border-radius: var(--radius-lg); box-shadow: var(--shadow); background: var(--paper); }
+.carrusel:focus-visible { outline: 2px solid var(--plum); outline-offset: 4px; }
