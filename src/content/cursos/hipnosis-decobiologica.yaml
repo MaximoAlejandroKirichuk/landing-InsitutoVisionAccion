@@ -1,0 +1,134 @@
+# Sesiones de Hipnosis Decobiológica → https://sitio/hipnosis-decobiologica/
+# Fuente: institutovisionenaccion.com/visiones-magicas/ (sección "Sesiones de Hipnosis Decobiológica").
+# Palabra clave de los Reels y anuncios: HIPNOSIS.
+# A confirmar con Fernanda: quién da las sesiones, duración, si son online o presenciales, y el arancel.
+
+nombre: Sesiones de Hipnosis Decobiológica
+orden: 20
+mostrarEnHome: false   # landing para anuncios
+animacion: hipnosis-decobiologica
+
+seo:
+  titulo: Hipnosis Decobiológica | Instituto Visión en Acción
+  descripcion: Sesiones individuales para explorar, en un estado de relajación profunda, las emociones y los patrones que se repiten en tu historia. Agenda abierta.
+
+tarjeta:
+  etiqueta: Sesión individual · Agenda abierta
+  resumen: Un espacio en calma para mirar de dónde vienen las emociones y los patrones que se repiten en tu historia.
+  boton: Conocer las sesiones
+
+whatsapp:
+  mensaje: Hola, escribo por HIPNOSIS. Quisiera conocer el arancel y los horarios disponibles para una sesión de Hipnosis Decobiológica.
+
+hero:
+  bajada: Un espacio individual para explorar, en un estado de relajación profunda, de dónde vienen las emociones y los patrones que se repiten en tu historia.
+  datos:
+    - Sesión individual
+    - Agenda abierta
+    - Arancel por WhatsApp
+  boton: Reservar mi sesión
+  nota: Es una sesión paga. Te escribimos por WhatsApp con el arancel y los horarios disponibles.
+  linkSecundario:
+    texto: Qué se trabaja
+    href: "#programa"
+
+# La misma frase que usa el Reel/anuncio de HIPNOSIS. Ver README → "A quién le hablamos".
+gancho:
+  frase: Es el mismo rechazo que sentí con mi mamá.
+  texto: Hay reacciones que no elegimos. Aparecen solas, como si vinieran de antes. No es falta de amor. Es una historia que pasa de madre a hija, hasta que alguien decide mirarla. Y mirarla empieza por vos.
+
+cursada:
+  - etiqueta: Formato
+    valor: Sesiones individuales
+  - etiqueta: Agenda
+    valor: Abierta, coordinamos el día por WhatsApp
+
+paraQuien:
+  titulo: ¿Para quién son estas sesiones?
+  items:
+    - Notás que algunas formas de reaccionar se repiten en tu vida, y a veces también en la de tus hijos.
+    - Hay experiencias del pasado, con tu mamá o con tu familia, que te gustaría mirar desde otro lugar.
+    - Sentís emociones o miedos que no terminás de entender de dónde vienen.
+    - Querés empezar por vos, a tu ritmo, en un espacio individual y cuidado.
+  cierre: Si te reconocés en alguna, esta sesión está pensada para vos.
+
+programa:
+  titulo: Qué podés observar en una sesión
+  texto: La propuesta busca favorecer la observación, la reflexión y el autoconocimiento, respetando siempre tu proceso. Tocá cada tema para ver de qué se trata.
+  enfoques:
+    - id: patrones
+      icono: hipnosis
+      titulo: Patrones repetitivos
+      resumen: Lo que vuelve a pasar, aunque no lo elijas.
+      descripcion: Situaciones, vínculos o formas de reaccionar que se repiten en tu vida. En la sesión podés observarlos con calma para entender desde dónde aparecen.
+    - id: creencias
+      icono: hipnosis
+      titulo: Creencias e interpretaciones
+      resumen: Las ideas que heredaste sin darte cuenta.
+      descripcion: Frases y mandatos que escuchaste de chica y que siguen guiando cómo mirás a tu familia y a vos misma.
+    - id: pasado
+      icono: hipnosis
+      titulo: Experiencias significativas del pasado
+      resumen: Mirar lo vivido desde otra perspectiva.
+      descripcion: Momentos de tu historia que todavía pesan. La sesión propone volver a mirarlos desde un lugar más sereno.
+    - id: emociones
+      icono: hipnosis
+      titulo: Emociones asociadas
+      resumen: Qué sentís y en qué situaciones aparece.
+      descripcion: Enojo, tristeza o distancia que se activan en ciertas situaciones. Observarlas ayuda a reconocer de dónde vienen.
+    - id: miedos
+      icono: hipnosis
+      titulo: Miedos o dificultades
+      resumen: Lo que querés comprender mejor.
+      descripcion: Miedos o dificultades que te frenan y que deseás comprender, sin juzgarte.
+    - id: recursos
+      icono: hipnosis
+      titulo: Recursos personales
+      resumen: Nuevas formas de mirar lo que estás atravesando.
+      descripcion: Además de lo que duele, la sesión ayuda a reconocer los recursos que ya tenés para atravesar este momento.
+
+incluye:
+  titulo: Cómo es el proceso
+  items:
+    - titulo: Nos escribís
+      texto: Dejás tus datos o nos escribís HIPNOSIS por WhatsApp. Te pasamos el arancel y los horarios disponibles.
+    - titulo: Tu sesión individual
+      texto: Un espacio solo para vos, guiado hacia un estado de relajación profunda, a tu ritmo.
+    - titulo: Un momento para integrar
+      texto: Al terminar, hay un espacio para poner en palabras lo que observaste.
+
+oferta:
+  titulo: Arancel
+  destacado: Agenda abierta · Sesiones individuales
+  texto: Junto con el arancel, te contamos los horarios disponibles.
+
+# Bloque "Cómo es estudiar en el Instituto", ajustado a una sesión individual.
+instituto:
+  titulo: Después de tu sesión
+  recibis:
+    - Una sesión individual, solo para vos, guiada a tu ritmo.
+    - Un momento al final para poner en palabras lo que observaste.
+    - Coordinación del día y el horario por WhatsApp.
+  encuentros: Si querés seguir acompañada, la membresía suma dos encuentros en vivo por semana con Fernanda, lunes y jueves a las 19 h, con una comunidad para compartir el camino.
+  membresia: true
+
+preguntas:
+  - pregunta: ¿Es como la hipnosis de los shows?
+    respuesta: No. Es un espacio de exploración personal, en un estado de relajación y acompañada, que respeta siempre tu proceso.
+  - pregunta: ¿Reemplaza una terapia o un tratamiento médico?
+    respuesta: No. Es una práctica complementaria y no sustituye tratamientos médicos, psicológicos o psiquiátricos.
+  - pregunta: ¿Va a cambiar la relación con mis hijos?
+    respuesta: Nadie puede prometerte cómo va a responder otra persona. Lo que sí ofrece la sesión es un espacio para mirar tu parte de la historia, con calma y sin juzgarte.
+  - pregunta: ¿Cuánto cuesta?
+    respuesta: Es una sesión paga. Te pasamos el arancel por WhatsApp.
+  - pregunta: ¿Cómo reservo?
+    respuesta: Tocá «Reservar mi sesión» y dejá tus datos, o escribinos HIPNOSIS por WhatsApp. Te contactamos para coordinar el día.
+
+cierre:
+  titulo: Tu historia merece ser mirada con calma
+  texto: Dejá tus datos y te escribimos para coordinar tu sesión.
+
+reserva:
+  titulo: Reservá tu sesión de Hipnosis Decobiológica
+  texto: Dejanos tus datos y te escribimos por WhatsApp con el arancel y los horarios disponibles.
+  gracias: Te vamos a escribir con el arancel y los horarios disponibles. Si querés, podés escribirnos ahora por WhatsApp.
