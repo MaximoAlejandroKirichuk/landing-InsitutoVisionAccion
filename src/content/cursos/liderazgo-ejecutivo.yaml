@@ -1,0 +1,166 @@
+# Liderazgo Ejecutivo → https://sitio/liderazgo-ejecutivo/
+# Datos: página /liderazgo-ejetuvo/ del sitio viejo (institutovisionenaccion.com): propuesta B2B para líderes,
+# mandos medios y equipos. Áreas: coaching ejecutivo y de equipos, comunicación, oratoria, negociación, ventas,
+# OKR, storytelling e inteligencia emocional. No publica programa, duración, modalidad ni precio: la landing
+# ofrece coaching individual o grupal a medida y la acción es pedir una consulta por WhatsApp.
+# Quién la da: el sitio no lo dice; por indicación de Maximo (27/11) figuran Fernanda y Daniel.
+#
+# Público: no es Lorena. Líderes, mandos medios, dueños de pymes, RR. HH. y equipos. Tono profesional.
+# Palabra de WhatsApp para anuncios y Reel: LIDERAZGO.
+
+nombre: Liderazgo Ejecutivo
+orden: 13
+mostrarEnHome: true
+planilla: liderazgo-ejecutivo
+animacion: liderazgo-ejecutivo   # src/components/animaciones/LiderazgoEjecutivo.astro
+
+seo:
+  titulo: Liderazgo Ejecutivo · Coaching para líderes y equipos | Instituto Visión en Acción
+  descripcion: Coaching ejecutivo individual y coaching de equipos para líderes, mandos medios y organizaciones. Comunicación, oratoria, negociación, OKR, storytelling e inteligencia emocional, a la medida de tu equipo.
+
+tarjeta:
+  etiqueta: Para líderes y empresas
+  resumen: Coaching individual y de equipos para liderar, comunicar y avanzar en la misma dirección.
+  boton: Conocer la propuesta
+
+whatsapp:
+  mensaje: Hola, quisiera consultar por Liderazgo Ejecutivo (coaching para líderes y equipos). ¿Me cuentan cómo trabajan?
+
+hero:
+  bajada: Coaching ejecutivo individual y coaching de equipos para líderes, mandos medios y organizaciones que quieren comunicar mejor, decidir con claridad y avanzar juntos hacia los mismos objetivos.
+  datos:
+    - Individual o grupal
+    - Online
+    - A medida de tu equipo
+  boton: Pedir una consulta
+  nota: Es una propuesta paga. Primero conversamos qué necesita tu equipo y después te pasamos una propuesta por WhatsApp.
+  linkSecundario:
+    texto: Ver las áreas de trabajo
+    href: "#programa"
+
+# La misma frase que usa el anuncio/Reel que trae a esta página.
+gancho:
+  frase: Tengo un equipo que trabaja muchísimo… pero no tira para el mismo lado.
+  texto: Casi nunca es falta de talento ni de ganas. Suele faltar una conversación pendiente, un objetivo que no todos entienden igual o un líder que no tiene espacio para pensar. Eso se puede trabajar.
+
+cursada:
+  - etiqueta: Formato
+    valor: Coaching ejecutivo individual o coaching grupal para equipos
+  - etiqueta: Modalidad
+    valor: Online, con encuentros en vivo
+  - etiqueta: Programa
+    valor: Se arma a partir de los objetivos de la persona o del equipo
+  - etiqueta: Primer paso
+    valor: Una conversación para entender qué necesitás
+
+paraQuien:
+  titulo: ¿Para quién es?
+  items:
+    - Líderes y gerentes que quieren tener más claridad para decidir y delegar.
+    - Mandos medios que acaban de asumir un equipo y quieren hacerlo bien desde el principio.
+    - Dueños de pymes y emprendedores que lideran a otros por primera vez.
+    - Equipos que necesitan mejorar cómo se comunican, cómo se coordinan y cómo se ponen objetivos.
+    - Áreas de Recursos Humanos que buscan acompañamiento para sus líderes.
+  cierre: Si te reconocés en alguna, escribinos y vemos juntos si es lo que tu equipo necesita.
+
+programa:
+  titulo: Áreas de trabajo
+  texto: Cada proceso combina las áreas que hagan falta según el objetivo. Tocá cada una para ver qué trabajamos.
+  enfoques:
+    - id: coaching-ejecutivo
+      icono: coaching
+      titulo: Coaching ejecutivo
+      resumen: Un espacio individual para quien lidera.
+      descripcion: Sesiones uno a uno para revisar cómo liderás, ordenar prioridades, prepararte para decisiones difíciles y desarrollar tu propio estilo de liderazgo.
+    - id: coaching-de-equipos
+      icono: coaching
+      titulo: Coaching de equipos
+      resumen: El equipo completo, trabajando sobre cómo trabaja.
+      descripcion: Encuentros grupales para alinear roles y expectativas, mejorar la coordinación, destrabar conflictos y construir acuerdos que el equipo pueda sostener.
+    - id: comunicacion-oratoria
+      icono: generico
+      titulo: Comunicación y oratoria
+      resumen: Decir lo que hay que decir, con claridad.
+      descripcion: Conversaciones difíciles, feedback, escucha y presentaciones en público. Herramientas para comunicar con claridad en reuniones, frente al equipo o ante clientes.
+    - id: negociacion-ventas
+      icono: generico
+      titulo: Negociación y ventas
+      resumen: Acuerdos que funcionen para las dos partes.
+      descripcion: Cómo prepararse para una negociación, escuchar lo que el otro necesita y conversar de valor y de precio sin incomodidad.
+    - id: okr
+      icono: generico
+      titulo: Objetivos y OKR
+      resumen: Que todos sepan hacia dónde van.
+      descripcion: Definir objetivos claros y resultados clave medibles, bajarlos a cada área y hacer un seguimiento que sirva para decidir, no solo para reportar.
+    - id: storytelling
+      icono: generico
+      titulo: Storytelling
+      resumen: Contar el proyecto para que se entienda y se recuerde.
+      descripcion: Cómo transmitir una visión, un cambio o una propuesta con una historia clara, para tu equipo, tus clientes o una presentación.
+    - id: inteligencia-emocional
+      icono: coaching
+      titulo: Inteligencia emocional
+      resumen: Liderar también es gestionar lo que se siente.
+      descripcion: Reconocer las propias emociones y las del equipo, manejar la presión y el conflicto, y sostener conversaciones con calma cuando hay tensión.
+
+docentes:
+  titulo: Quién te acompaña
+  personas:
+    - id: docente-fernanda
+      nombre: Fernanda Rodríguez
+      bio: Fundadora y directora del Instituto Visión en Acción, formadora en coaching y liderazgo. Acompaña a líderes y equipos en procesos de coaching individual y grupal.
+      foto: /images/instructor-portrait.jpg
+      alt: Retrato de Fernanda Rodríguez
+      ancho: 673
+      alto: 1437
+    - id: docente-daniel
+      nombre: Daniel Alberto Rodríguez
+      bio: Formador del Instituto Visión en Acción. Acompaña junto a Fernanda los procesos del instituto.
+      foto: /images/holistic-instructor-portrait.jpg
+      alt: Retrato de Daniel Alberto Rodríguez
+      ancho: 171
+      alto: 365
+      encuadre: 50% 12%
+
+# Carrusel de Instagram (placas en public/images/carruseles/liderazgo-ejecutivo/)
+carrusel:
+  titulo: Probá este ejercicio con tu equipo
+  texto: Es el mismo que compartimos en Instagram. Deslizá las placas.
+  imagenes:
+    - { src: /images/carruseles/liderazgo-ejecutivo/1.webp, alt: "«Tengo un equipo que trabaja muchísimo… pero no tira para el mismo lado.»" }
+    - { src: /images/carruseles/liderazgo-ejecutivo/2.webp, alt: "Casi nunca es falta de ganas. Muchas veces cada persona tiene en la cabeza un objetivo distinto, y nadie lo dijo en voz alta." }
+    - { src: /images/carruseles/liderazgo-ejecutivo/3.webp, alt: "Un ejercicio: en la próxima reunión, pedí que cada persona escriba en un papel cuál es el objetivo más importante del equipo este mes." }
+    - { src: /images/carruseles/liderazgo-ejecutivo/4.webp, alt: "Leanlos en voz alta. Si aparecen respuestas distintas, no es un problema: es el punto de partida." }
+    - { src: /images/carruseles/liderazgo-ejecutivo/5.webp, alt: "Antes de cerrar, acuerden una sola frase entre todos. Escribila donde el equipo la vea." }
+    - { src: /images/carruseles/liderazgo-ejecutivo/6.webp, alt: "Liderazgo Ejecutivo: coaching individual para líderes y coaching grupal para equipos, a medida. Es pago: el arancel te lo paso por WhatsApp." }
+    - { src: /images/carruseles/liderazgo-ejecutivo/7.webp, alt: "Para quién es: líderes y gerentes, mandos medios con equipo nuevo, dueños de pymes y equipos que quieren coordinarse mejor." }
+    - { src: /images/carruseles/liderazgo-ejecutivo/8.webp, alt: "¿Cuántas respuestas distintas te salieron? Contámelo en los comentarios. Leo cada uno." }
+
+# Es un servicio para líderes y equipos, no un curso: el bloque "Cómo es estudiar en el Instituto" no aplica.
+instituto: false
+
+oferta:
+  titulo: Conversemos sobre tu equipo
+  destacado: Coaching individual o grupal, a medida
+  texto: Es una propuesta paga. Primero conversamos sobre tu situación y tus objetivos; con eso te pasamos por WhatsApp una propuesta con formato, frecuencia y arancel.
+
+preguntas:
+  - pregunta: ¿Cómo empiezo?
+    respuesta: Tocá «Pedir una consulta» y dejá tus datos. Te escribimos por WhatsApp para entender qué necesitás y armar una propuesta.
+  - pregunta: ¿Es para una persona o para un equipo?
+    respuesta: Para las dos cosas. Puede ser coaching ejecutivo individual para quien lidera, o coaching grupal para un equipo completo.
+  - pregunta: ¿Cuánto dura un proceso?
+    respuesta: Depende del objetivo y de si es individual o grupal. Lo definimos juntos en la primera conversación, antes de empezar.
+  - pregunta: ¿Cuánto cuesta?
+    respuesta: Es una propuesta paga y el arancel depende del formato. Te lo pasamos por WhatsApp junto con la propuesta.
+  - pregunta: ¿Hay algo para empezar solo, a mi ritmo?
+    respuesta: Sí. El curso online Optimización y Planificación del Tiempo es parte del área de liderazgo y lo hacés a tu ritmo. Si te interesa, escribinos y te pasamos el enlace.
+
+cierre:
+  titulo: Un equipo alineado empieza con una conversación
+  texto: Dejá tus datos y te escribimos por WhatsApp para conocer a tu equipo y contarte cómo trabajamos.
+
+reserva:
+  titulo: Quiero consultar por Liderazgo Ejecutivo
+  texto: Dejanos tus datos y te escribimos por WhatsApp para conversar sobre tu equipo y tus objetivos.
+  gracias: Te vamos a escribir para conocer tu situación y pasarte una propuesta. Si querés, podés escribirnos ahora por WhatsApp.
