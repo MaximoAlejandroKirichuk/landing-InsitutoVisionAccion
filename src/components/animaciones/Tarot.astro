@@ -1,0 +1,155 @@
+---
+// Tarot hero art: a calm reading in 3D. The deck rests on a softly lit table, three cards rise out of it,
+// open into a spread and turn face up (El Sol, La Luna, La Estrella, drawn in gold line like a Marseille deck),
+// rest for a while and go back to the deck. Pure CSS 3D, no JavaScript.
+// Under prefers-reduced-motion the spread is shown already open and still.
+const cartas = [
+  { id: 'sol', numero: 'XIX', nombre: 'EL SOL' },
+  { id: 'luna', numero: 'XVIII', nombre: 'LA LUNA' },
+  { id: 'estrella', numero: 'XVII', nombre: 'LA ESTRELLA' },
+];
+---
+<div class="tarot" aria-hidden="true">
+  <span class="tarot-glow"></span>
+  <span class="tarot-table"></span>
+  <div class="tarot-scene">
+    <span class="tarot-deck"></span>
+    <span class="tarot-deck"></span>
+    <span class="tarot-deck"></span>
+    {cartas.map((carta, i) => (
+      <div class={`tarot-card tarot-card-${i + 1}`}>
+        <div class="tarot-face tarot-front">
+          <span class="tarot-num">{carta.numero}</span>
+          <svg viewBox="0 0 70 80" class="tarot-art">
+            {carta.id === 'sol' && (
+              <g>
+                <circle cx="35" cy="34" r="13" />
+                <circle cx="35" cy="34" r="8.5" />
+                {Array.from({ length: 16 }, (_, k) => {
+                  const a = (k * Math.PI) / 8;
+                  const r1 = 16, r2 = k % 2 ? 21 : 25;
+                  return <line x1={35 + r1 * Math.cos(a)} y1={34 + r1 * Math.sin(a)} x2={35 + r2 * Math.cos(a)} y2={34 + r2 * Math.sin(a)} />;
+                })}
+                <path d="M14 72 Q35 64 56 72" />
+                <path d="M26 72 v-8 M44 72 v-8" />
+              </g>
+            )}
+            {carta.id === 'luna' && (
+              <g>
+                <path d="M41 14 a17 17 0 1 0 0 34 a13 13 0 1 1 0 -34 z" />
+                <path d="M12 56 h9 v-12 h-9 z M49 56 h9 v-12 h-9 z" />
+                <path d="M10 70 Q22 63 35 70 T60 70" />
+                <path d="M16 76 Q28 70 40 76 T64 76" />
+                <circle cx="20" cy="22" r="1.2" class="tarot-dot" />
+                <circle cx="54" cy="30" r="1.2" class="tarot-dot" />
+              </g>
+            )}
+            {carta.id === 'estrella' && (
+              <g>
+                <path d="M35 8 L39 23 L54 24 L42 33 L46 48 L35 39 L24 48 L28 33 L16 24 L31 23 Z" />
+                <path d="M14 12 l1.6 4 4 1.6 -4 1.6 -1.6 4 -1.6 -4 -4 -1.6 4 -1.6 z M57 44 l1.2 3 3 1.2 -3 1.2 -1.2 3 -1.2 -3 -3 -1.2 3 -1.2 z M13 42 l1 2.4 2.4 1 -2.4 1 -1 2.4 -1 -2.4 -2.4 -1 2.4 -1 z" />
+                <path d="M22 72 Q24 58 35 56 Q46 58 48 72" />
+                <path d="M10 76 Q35 68 60 76" />
+              </g>
+            )}
+          </svg>
+          <span class="tarot-name">{carta.nombre}</span>
+        </div>
+        <div class="tarot-face tarot-back"><span></span></div>
+      </div>
+    ))}
+  </div>
+  <span class="tarot-spark tarot-spark-1"></span>
+  <span class="tarot-spark tarot-spark-2"></span>
+  <span class="tarot-spark tarot-spark-3"></span>
+</div>
+
+<style is:inline>
+  .tarot {
+    --card-w: 23%;
+    position: relative; width: 100%; aspect-ratio: 1; justify-self: center; isolation: isolate;
+    perspective: 1100px; perspective-origin: 50% 30%;
+  }
+  .tarot-glow {
+    position: absolute; inset: 4% 6% 10%; z-index: -2; border-radius: 50%;
+    background: radial-gradient(circle at 50% 42%, #d9c3d6aa 0%, #ae92a666 32%, #6d4f8533 58%, transparent 72%);
+    filter: blur(22px);
+  }
+  .tarot-table {
+    position: absolute; left: 6%; right: 6%; bottom: 2%; height: 26%; z-index: -1; border-radius: 50%;
+    background: radial-gradient(ellipse at 50% 40%, #ecc98426 0%, #ae92a61f 45%, transparent 70%);
+    border: 1px solid #ecc98433;
+  }
+  .tarot-scene { position: absolute; inset: 0; transform-style: preserve-3d; transform: rotateX(10deg); }
+
+  /* Cards share the deck position; each one carries its spread position in --x, --y, --r. */
+  .tarot-deck, .tarot-card {
+    position: absolute; left: calc(50% - var(--card-w) / 2); top: 56%; width: var(--card-w); aspect-ratio: 7 / 12;
+    border-radius: .55rem;
+  }
+  .tarot-deck {
+    background: linear-gradient(160deg, #4a2a62, #2a1638);
+    box-shadow: inset 0 0 0 1px #ecc98466, 0 14px 24px -12px rgba(8, 2, 14, .8);
+  }
+  .tarot-deck:nth-child(1) { transform: translate3d(5px, 6px, -6px); opacity: .7; }
+  .tarot-deck:nth-child(2) { transform: translate3d(2.5px, 3px, -3px); opacity: .85; }
+  .tarot-card { transform-style: preserve-3d; transform: translate3d(0, 0, 2px) rotateY(180deg); }
+  .tarot-card-1 { --x: -112%; --y: -104%; --r: -9deg; }
+  .tarot-card-2 { --x: 0%; --y: -118%; --r: 0deg; }
+  .tarot-card-3 { --x: 112%; --y: -104%; --r: 9deg; }
+
+  .tarot-face {
+    position: absolute; inset: 0; border-radius: inherit; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    box-shadow: 0 18px 28px -14px rgba(8, 2, 14, .75);
+  }
+  .tarot-front {
+    display: grid; grid-template-rows: auto 1fr auto; justify-items: center; padding: 8% 7%;
+    background: radial-gradient(circle at 50% 35%, #fffdf9 0%, var(--paper, #fbf7f1) 60%, #efe4ec 100%);
+    box-shadow: inset 0 0 0 3px #fbf7f1, inset 0 0 0 4px #c9a45c, 0 18px 28px -14px rgba(8, 2, 14, .75);
+    color: #8c6a2c;
+  }
+  .tarot-num, .tarot-name { font-family: var(--display, Georgia, serif); line-height: 1; letter-spacing: .06em; }
+  .tarot-num { font-size: clamp(.5rem, 1.5vw, .72rem); }
+  .tarot-name { font-size: clamp(.36rem, 1.05vw, .52rem); white-space: nowrap; }
+  .tarot-art { width: 100%; height: 100%; fill: none; stroke: #b08a3e; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .tarot-art .tarot-dot { fill: #b08a3e; stroke: none; }
+  .tarot-back {
+    transform: rotateY(180deg); display: grid; place-items: center;
+    background:
+      radial-gradient(circle at 50% 50%, #ecc98430 0%, transparent 46%),
+      repeating-linear-gradient(45deg, #ecc98414 0 2px, transparent 2px 9px),
+      linear-gradient(160deg, #4a2a62, #2a1638);
+    box-shadow: inset 0 0 0 3px #3a2050, inset 0 0 0 4px #ecc98488, 0 18px 28px -14px rgba(8, 2, 14, .75);
+  }
+  .tarot-back span { width: 34%; aspect-ratio: 1; rotate: 45deg; border: 1px solid #ecc984aa; box-shadow: 0 0 0 5px #2f193f, 0 0 0 6px #ecc98455; }
+
+  .tarot-spark { position: absolute; width: 5px; aspect-ratio: 1; border-radius: 50%; background: var(--gold, #ecc984); box-shadow: 0 0 10px 2px #ecc98488; opacity: .5; }
+  .tarot-spark-1 { top: 10%; left: 16%; }
+  .tarot-spark-2 { top: 6%; right: 22%; }
+  .tarot-spark-3 { top: 46%; right: 8%; width: 4px; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    /* One reading every 16 s: deal (staggered), turn face up, rest, gather back. */
+    .tarot-card { animation: tarot-read 16s cubic-bezier(.45, .05, .25, 1) infinite both; }
+    .tarot-card-2 { animation-delay: .7s; }
+    .tarot-card-3 { animation-delay: 1.4s; }
+    .tarot-scene { animation: tarot-sway 22s ease-in-out infinite; }
+    .tarot-glow { animation: tarot-candle 6s ease-in-out infinite; }
+    .tarot-spark { animation: tarot-twinkle 5s ease-in-out infinite; }
+    .tarot-spark-2 { animation-delay: 1.7s; }
+    .tarot-spark-3 { animation-delay: 3.1s; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tarot-card { transform: translate3d(var(--x), var(--y), 0) rotateZ(var(--r)) rotateY(0deg); }
+  }
+  @keyframes tarot-read {
+    0%, 6% { transform: translate3d(0, 0, 2px) rotateZ(0deg) rotateY(180deg); }
+    22% { transform: translate3d(var(--x), var(--y), 60px) rotateZ(var(--r)) rotateY(180deg); }
+    34%, 76% { transform: translate3d(var(--x), var(--y), 0) rotateZ(var(--r)) rotateY(0deg); }
+    86% { transform: translate3d(var(--x), var(--y), 40px) rotateZ(var(--r)) rotateY(180deg); }
+    97%, 100% { transform: translate3d(0, 0, 2px) rotateZ(0deg) rotateY(180deg); }
+  }
+  @keyframes tarot-sway { 0%, 100% { transform: rotateX(10deg) rotateY(-7deg); } 50% { transform: rotateX(12deg) rotateY(7deg); } }
+  @keyframes tarot-candle { 0%, 100% { opacity: .8; scale: .96; } 50% { opacity: 1; scale: 1.03; } }
+  @keyframes tarot-twinkle { 0%, 100% { opacity: .15; scale: .7; } 50% { opacity: .9; scale: 1.15; } }
+</style>
