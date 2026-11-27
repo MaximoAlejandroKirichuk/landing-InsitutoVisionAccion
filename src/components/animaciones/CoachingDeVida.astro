@@ -1,0 +1,113 @@
+---
+// Coaching de Vida hero art: a path that opens toward a rising sun. The scene sits on a tilted plane
+// (CSS 3D) that sways very slowly; the path lights up stone by stone while a small figure walks it.
+// Pure SVG + CSS (only transform and opacity animate), no JS. Everything holds still under prefers-reduced-motion.
+---
+<div class="coaching-de-vida" aria-hidden="true">
+  <div class="coaching-de-vida-escena">
+    <svg viewBox="0 0 400 440" role="presentation" focusable="false">
+      <defs>
+        <linearGradient id="coaching-de-vida-cielo" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#3b2150" />
+          <stop offset=".55" stop-color="#6d4f85" />
+          <stop offset="1" stop-color="#d9c3d6" />
+        </linearGradient>
+        <radialGradient id="coaching-de-vida-sol" cx=".5" cy=".5" r=".5">
+          <stop offset="0" stop-color="#fbe7b6" />
+          <stop offset=".55" stop-color="#ecc984" />
+          <stop offset="1" stop-color="#ecc984" stop-opacity="0" />
+        </radialGradient>
+        <linearGradient id="coaching-de-vida-camino" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0" stop-color="#fbf7f1" />
+          <stop offset="1" stop-color="#f3e3c4" stop-opacity=".85" />
+        </linearGradient>
+        <clipPath id="coaching-de-vida-arco">
+          <path d="M20 440 V200 A180 180 0 0 1 380 200 V440 Z" />
+        </clipPath>
+      </defs>
+
+      <g clip-path="url(#coaching-de-vida-arco)">
+        <rect width="400" height="440" fill="url(#coaching-de-vida-cielo)" />
+        <g class="coaching-de-vida-sol">
+          <circle cx="200" cy="232" r="120" fill="url(#coaching-de-vida-sol)" opacity=".55" />
+          <circle cx="200" cy="232" r="38" fill="#f6dca0" />
+        </g>
+        <g class="coaching-de-vida-luces" fill="#fbe7b6">
+          <circle cx="92" cy="150" r="1.6" /><circle cx="300" cy="118" r="1.3" />
+          <circle cx="250" cy="176" r="1.1" /><circle cx="140" cy="96" r="1.2" />
+          <circle cx="330" cy="190" r="1.5" />
+        </g>
+        <path class="coaching-de-vida-loma coaching-de-vida-loma-1" d="M-20 250 C60 214 120 226 190 240 C260 252 320 210 420 232 V440 H-20 Z" fill="#8e6fa0" />
+        <path class="coaching-de-vida-loma coaching-de-vida-loma-2" d="M-20 286 C80 250 150 262 210 270 C290 280 340 252 420 266 V440 H-20 Z" fill="#5b3b72" />
+        <path d="M-20 330 C70 300 150 312 220 318 C300 326 350 304 420 312 V440 H-20 Z" fill="#432757" />
+
+        <path class="coaching-de-vida-camino" d="M104 440 C170 404 268 378 228 330 C196 296 182 270 197 246 L203 246 C200 270 216 292 246 328 C300 380 248 410 300 440 Z" fill="url(#coaching-de-vida-camino)" />
+        <path class="coaching-de-vida-guia" pathLength="1" d="M200 440 C208 404 250 376 237 330 C206 296 196 270 200 246" fill="none" stroke="#b8913f" stroke-width="2" stroke-linecap="round" stroke-dasharray=".02 .03" />
+
+        <g class="coaching-de-vida-piedras" fill="#ecc984">
+          <circle cx="204" cy="424" r="4.2" style="--i:0" />
+          <circle cx="224" cy="392" r="3.6" style="--i:1" />
+          <circle cx="240" cy="358" r="3" style="--i:2" />
+          <circle cx="226" cy="320" r="2.5" style="--i:3" />
+          <circle cx="207" cy="290" r="2" style="--i:4" />
+          <circle cx="200" cy="264" r="1.6" style="--i:5" />
+        </g>
+
+        <g class="coaching-de-vida-caminante">
+          <g fill="#21112d">
+            <circle cx="0" cy="-26" r="4.6" />
+            <path d="M-4.5 -20 Q0 -22 4.5 -20 L5.5 -6 Q0 -4 -5.5 -6 Z" />
+            <path class="coaching-de-vida-pierna coaching-de-vida-pierna-a" d="M-2.6 -7 L-3.4 0" stroke="#21112d" stroke-width="2.6" stroke-linecap="round" />
+            <path class="coaching-de-vida-pierna coaching-de-vida-pierna-b" d="M2.6 -7 L3.4 0" stroke="#21112d" stroke-width="2.6" stroke-linecap="round" />
+          </g>
+        </g>
+      </g>
+      <path d="M20 440 V200 A180 180 0 0 1 380 200 V440" fill="none" stroke="#ecc984" stroke-opacity=".55" stroke-width="1.2" />
+    </svg>
+  </div>
+  <span class="coaching-de-vida-caption">Un paso a la vez</span>
+</div>
+
+<style is:inline>
+  .coaching-de-vida { position: relative; width: min(100%, 27rem); justify-self: center; display: grid; justify-items: center; gap: .8rem; perspective: 900px; }
+  .coaching-de-vida-escena { width: 100%; transform-style: preserve-3d; transform: rotateX(6deg); filter: drop-shadow(0 28px 40px #321a4633); }
+  .coaching-de-vida svg { display: block; width: 100%; height: auto; }
+  .coaching-de-vida-caption { color: var(--gold, #b8913f); font-size: clamp(.7rem, 1.15vw, .86rem); letter-spacing: .04em; }
+
+  /* Reduced motion / first paint: the walker stands halfway, every stone lit. */
+  .coaching-de-vida-caminante { transform: translate(236px, 336px) scale(.62); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .coaching-de-vida-escena { animation: coaching-de-vida-balanceo 18s ease-in-out infinite; }
+    .coaching-de-vida-sol { animation: coaching-de-vida-amanecer 14s ease-in-out infinite alternate; }
+    .coaching-de-vida-luces circle { animation: coaching-de-vida-titila 5s ease-in-out infinite; }
+    .coaching-de-vida-luces circle:nth-child(2n) { animation-delay: -2.5s; }
+    .coaching-de-vida-loma-1 { animation: coaching-de-vida-deriva 22s ease-in-out infinite alternate; }
+    .coaching-de-vida-loma-2 { animation: coaching-de-vida-deriva 16s ease-in-out infinite alternate-reverse; }
+    .coaching-de-vida-guia { animation: coaching-de-vida-abrir 14s ease-in-out infinite; }
+    .coaching-de-vida-piedras circle { opacity: .25; animation: coaching-de-vida-encender 14s ease-in-out infinite; animation-delay: calc(var(--i) * 1.6s); }
+    .coaching-de-vida-caminante { animation: coaching-de-vida-andar 14s ease-in-out infinite; }
+    .coaching-de-vida-pierna { transform-box: fill-box; transform-origin: 50% 0; animation: coaching-de-vida-paso .9s ease-in-out infinite alternate; }
+    .coaching-de-vida-pierna-b { animation-direction: alternate-reverse; }
+  }
+
+  @keyframes coaching-de-vida-balanceo { 0%, 100% { transform: rotateX(6deg) rotateY(-5deg); } 50% { transform: rotateX(4deg) rotateY(5deg); } }
+  @keyframes coaching-de-vida-amanecer { from { transform: translateY(14px); opacity: .85; } to { transform: translateY(-6px); opacity: 1; } }
+  @keyframes coaching-de-vida-titila { 0%, 100% { opacity: .3; } 50% { opacity: 1; } }
+  @keyframes coaching-de-vida-deriva { from { transform: translateX(-6px); } to { transform: translateX(6px); } }
+  @keyframes coaching-de-vida-abrir { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
+  @keyframes coaching-de-vida-encender { 0%, 100% { opacity: .25; } 12%, 60% { opacity: 1; } }
+  @keyframes coaching-de-vida-andar {
+    0% { transform: translate(203px, 430px) scale(1); opacity: 0; }
+    6% { opacity: 1; }
+    22% { transform: translate(222px, 396px) scale(.86); }
+    42% { transform: translate(239px, 360px) scale(.7); }
+    62% { transform: translate(225px, 322px) scale(.54); }
+    80% { transform: translate(206px, 290px) scale(.4); opacity: 1; }
+    94% { transform: translate(200px, 262px) scale(.3); opacity: 0; }
+    100% { transform: translate(200px, 262px) scale(.3); opacity: 0; }
+  }
+  @keyframes coaching-de-vida-paso { from { transform: rotate(-14deg); } to { transform: rotate(14deg); } }
+
+  @media (max-width: 40rem) { .coaching-de-vida { width: min(84%, 19rem); } }
+</style>
