@@ -1,0 +1,155 @@
+# Curso Coaching de Vida → https://sitio/coaching-de-vida/
+# Datos: home de institutovisionenaccion.com ("Formación en Coaching de Vida": desarrollo personal, objetivos,
+# hábitos, valores y emociones) y carruseles del instituto (10 lecciones PDF, examen sin costo, $50.000 / USD 50).
+#
+# Público: no es Lorena. Mujer de 40 a 60 que pasó años ocupándose de los demás (hijos, casa, trabajo),
+# hoy siente que vive en automático y quiere herramientas de coaching para su vida (y a veces para acompañar a otros).
+# Tono: profesional y práctico, de coaching (objetivos, hábitos, valores), sin la herida madre-hija.
+
+nombre: Coaching de Vida
+orden: 3
+mostrarEnHome: false
+animacion: coaching-de-vida   # src/components/animaciones/CoachingDeVida.astro
+
+seo:
+  titulo: Curso Coaching de Vida | Instituto Visión en Acción
+  descripcion: 10 lecciones en PDF con guía de ejercicios para volver a preguntarte qué querés y dar el primer paso. A tu ritmo, con examen sin costo y certificado del instituto.
+
+tarjeta:
+  etiqueta: Curso · 10 lecciones a tu ritmo
+  resumen: Volvé a preguntarte qué querés para vos y convertilo en pasos concretos.
+  boton: Conocer el curso
+
+whatsapp:
+  mensaje: Hola, quisiera inscribirme en el curso Coaching de Vida. ¿Me cuentan cómo sigo?
+
+hero:
+  bajada: Un curso para dejar de vivir en automático, volver a preguntarte qué querés y darle forma, un paso a la vez.
+  datos:
+    - 10 lecciones
+    - A tu ritmo
+    - Certificado del instituto
+  nota: Es un curso pago. Te escribimos por WhatsApp para contarte cómo inscribirte.
+  linkSecundario:
+    texto: Ver qué vas a trabajar
+    href: "#programa"
+
+# La misma frase que usa el anuncio/Reel que trae a esta página.
+gancho:
+  frase: Pasé años ocupándome de todos… y hoy no sé qué quiero para mí.
+  texto: No es que no tengas deseos. Es que hace mucho nadie te pregunta por ellos, ni siquiera vos. Ponerles palabras es el primer paso, y eso se aprende.
+
+cursada:
+  - etiqueta: Modalidad
+    valor: Lecciones en PDF con guía de ejercicios
+  - etiqueta: Ritmo
+    valor: Empezás cuando quieras y avanzás a tu tiempo
+  - etiqueta: Certificado
+    valor: Examen sin costo y certificado del instituto
+  - etiqueta: Consultas
+    valor: Por WhatsApp o email mientras hacés el curso
+
+paraQuien:
+  titulo: ¿Para quién es este curso?
+  items:
+    - Sentís que tu semana se te va en lo que hay que hacer y casi nada en lo que querés hacer.
+    - Tus hijos crecieron o tu rutina cambió, y te preguntás qué sigue para vos.
+    - Sabés muy bien lo que no querés, pero te cuesta ponerle palabras a lo que sí.
+    - Empezás proyectos con ganas y los dejás a mitad de camino.
+    - Querés herramientas concretas de coaching para tu vida, aunque nunca hayas hecho un curso.
+    - Te interesa el coaching y querés una primera formación antes de acompañar a otras personas.
+  cierre: Si te reconocés en alguna, este curso está pensado para vos.
+
+programa:
+  titulo: Qué vas a trabajar
+  texto: Diez lecciones que van de mirarte a moverte. Cada una trae ejercicios para hacer en tu casa, con tus tiempos. Tocá cada bloque para ver de qué se trata.
+  enfoques:
+    - id: donde-estoy
+      icono: coaching
+      titulo: Dónde estoy hoy
+      resumen: Una foto honesta de tu vida, sin juzgarte.
+      descripcion: Ejercicios para mirar cómo están hoy las distintas áreas de tu vida (vínculos, trabajo, salud, tiempo para vos) y reconocer qué te da energía y qué te la quita.
+    - id: valores
+      icono: coaching
+      titulo: Lo que de verdad te importa
+      resumen: Tus valores como brújula para elegir.
+      descripcion: Vas a identificar tus valores y a revisar si tus días se parecen a ellos. Cuando sabés qué te importa, decir que sí y decir que no se vuelve más fácil.
+    - id: emociones
+      icono: coaching
+      titulo: Emociones y creencias
+      resumen: Qué te frena cuando querés cambiar algo.
+      descripcion: Vas a reconocer las emociones y las frases internas ("ya es tarde", "eso no es para mí") que aparecen cuando querés hacer algo distinto, y a practicar otras maneras de mirarlas.
+    - id: objetivos
+      icono: coaching
+      titulo: De un deseo a un objetivo
+      resumen: Ponerle palabras claras a lo que querés.
+      descripcion: Herramientas de coaching para convertir un "me gustaría" en un objetivo concreto, posible y tuyo, con pasos que podés empezar esta misma semana.
+    - id: habitos
+      icono: coaching
+      titulo: Hábitos y constancia
+      resumen: Sostener lo que empezás.
+      descripcion: Cómo armar pequeños hábitos que se mantengan en el tiempo, qué hacer cuando te desviás y cómo medir tu avance sin exigirte de más.
+
+# Carrusel de Instagram del curso (placas en public/images/carruseles/coaching-de-vida/)
+carrusel:
+  titulo: Probá este ejercicio
+  texto: Es el mismo que compartimos en Instagram. Deslizá las placas.
+  imagenes:
+    - { src: /images/carruseles/coaching-de-vida/1.webp, alt: "«Pasé años ocupándome de todos… y hoy no sé qué quiero para mí.»" }
+    - { src: /images/carruseles/coaching-de-vida/2.webp, alt: "Me lo dicen muchas mujeres. No es que no tengas deseos. Hace mucho que nadie te pregunta por ellos, ni siquiera vos." }
+    - { src: /images/carruseles/coaching-de-vida/3.webp, alt: "Un ejercicio: escribí tres cosas que hiciste esta semana porque querías, no porque debías." }
+    - { src: /images/carruseles/coaching-de-vida/4.webp, alt: "Ahora mirá esa lista. Ahí hay pistas de lo que te importa. Si te costó llenarla, eso también es un dato." }
+    - { src: /images/carruseles/coaching-de-vida/5.webp, alt: "Del deseo al paso: elegí una y pensá qué pequeña acción podés hacer mañana. Tan chica que no puedas decirle que no." }
+    - { src: /images/carruseles/coaching-de-vida/6.webp, alt: "Curso Coaching de Vida: 10 lecciones en PDF con guía de ejercicios, a tu ritmo. Es pago: $50.000 (USD 50). Examen sin costo y certificado del instituto." }
+    - { src: /images/carruseles/coaching-de-vida/7.webp, alt: "No lo hacés sola: lunes y jueves a las 19 hs nos encontramos en vivo. Es la membresía de la comunidad: $20.000 (USD 20) por mes, aparte del curso." }
+    - { src: /images/carruseles/coaching-de-vida/8.webp, alt: "¿Qué escribiste en tu lista? Contámelo en los comentarios. Leo cada uno." }
+
+# Bloque automático "Cómo es estudiar en el Instituto" (membresía y encuentros: src/data/instituto.ts)
+instituto:
+  recibis:
+    - 10 lecciones en PDF para leer, descargar y volver a consultar cuando lo necesites.
+    - Una guía de ejercicios con actividades prácticas y ejemplos en cada lección.
+    - Consultas por WhatsApp o email mientras hacés el curso.
+    - Examen sin costo y certificado del Instituto Visión en Acción. Acreditación externa opcional (Cámara Argentina de Formadores u OIEP), con arancel aparte.
+  encuentros: El curso es a tu ritmo, sin clases en vivo. Si querés practicar en grupo y traer tus dudas, sumate a los encuentros de la membresía.
+  membresia: true
+
+docentes:
+  titulo: Quién te acompaña
+  personas:
+    - id: docente-fernanda
+      nombre: Fernanda Rodríguez
+      bio: Fundadora y directora del Instituto Visión en Acción, formadora en coaching y desarrollo personal. Escribió este curso para que puedas trabajar en tu vida con herramientas simples, a tu ritmo.
+      foto: /images/instructor-portrait.jpg
+      alt: Retrato de Fernanda Rodríguez
+      ancho: 673
+      alto: 1437
+
+oferta:
+  titulo: Inscripción abierta
+  destacado: Empezás cuando quieras
+  texto: Es un curso pago. Te escribimos por WhatsApp con los datos para el pago (transferencia en Argentina, PayPal desde el exterior) y te habilitamos el material.
+  precios:
+    - periodo: Curso Coaching de Vida
+      valores: [ARS 50.000 en Argentina, USD 50 desde el exterior]
+
+preguntas:
+  - pregunta: ¿Cómo me inscribo?
+    respuesta: Tocá «Reservar mi lugar» y dejá tus datos. Te escribimos por WhatsApp con los pasos para pagar y te habilitamos el material.
+  - pregunta: ¿Necesito experiencia previa?
+    respuesta: No. El curso está pensado para empezar desde cero, con lecciones simples y ejercicios guiados.
+  - pregunta: ¿Las clases son en vivo?
+    respuesta: No. El curso es autoguiado, con lecciones en PDF que avanzás a tu ritmo y consultas por WhatsApp o email. Si querés encuentros en vivo y comunidad, podés sumar la membresía.
+  - pregunta: ¿Recibo un certificado?
+    respuesta: Sí. Al terminar rendís un examen sin costo y recibís el certificado del Instituto Visión en Acción. Si querés, podés sumar una acreditación externa (Cámara Argentina de Formadores u OIEP), que es opcional y tiene un arancel aparte. Son certificados de formación privada no formal, no títulos oficiales.
+  - pregunta: ¿El curso reemplaza una terapia?
+    respuesta: No. Es una propuesta educativa y de desarrollo personal. No reemplaza la atención médica ni psicológica.
+
+cierre:
+  titulo: Tu próximo paso puede empezar hoy
+  texto: Dejá tus datos y te escribimos por WhatsApp para contarte cómo inscribirte.
+
+reserva:
+  titulo: Quiero hacer el curso Coaching de Vida
+  texto: Dejanos tus datos y te escribimos por WhatsApp con los pasos para inscribirte y empezar.
+  gracias: Te vamos a escribir para contarte cómo pagar y habilitarte el material. Si querés, podés escribirnos ahora por WhatsApp.
