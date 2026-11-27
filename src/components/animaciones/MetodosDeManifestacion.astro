@@ -1,0 +1,202 @@
+---
+// Hero art for /metodos-de-manifestacion/: "la intención que se enciende". Twenty points of light (one per
+// method) float around a candle in slow 3D, then spiral in and condense into its flame, which lights up
+// and breathes; the glow opens, a few sparks rise, and after a long rest the lights loosen and gather again.
+// Plain canvas (no libraries), paused off-screen, DPR capped at 2, lighter on phones.
+// Under prefers-reduced-motion it draws one still frame: the candle lit, the lights resting around it.
+// No props (convention of src/components/animaciones/). Styles and script are is:inline so only this page loads them.
+---
+<div class="metodos-de-manifestacion-art" aria-hidden="true">
+  <span class="metodos-de-manifestacion-glow"></span>
+  <canvas class="metodos-de-manifestacion-canvas" width="600" height="600"></canvas>
+  <span class="metodos-de-manifestacion-caption">Lo que nombrás con intención, se enciende</span>
+</div>
+
+<style is:inline>
+  .metodos-de-manifestacion-art {
+    position: relative; width: 100%; aspect-ratio: 1; justify-self: center;
+    display: grid; place-items: center; isolation: isolate;
+  }
+  .metodos-de-manifestacion-art > * { grid-area: 1 / 1; }
+  .metodos-de-manifestacion-glow {
+    width: 70%; aspect-ratio: 1; border-radius: 50%; z-index: -1; translate: 0 -6%;
+    background: radial-gradient(circle, #ecc98433 0%, #b98fd633 38%, transparent 70%);
+    filter: blur(10px);
+    animation: metodos-de-manifestacion-breathe 8s ease-in-out infinite;
+  }
+  .metodos-de-manifestacion-canvas { width: 100%; height: 100%; display: block; }
+  .metodos-de-manifestacion-caption {
+    align-self: end; margin-bottom: .2rem;
+    font: italic 400 .95rem/1.3 var(--display); color: #ecc984cc; letter-spacing: .02em; text-align: center;
+  }
+  @keyframes metodos-de-manifestacion-breathe { 0%, 100% { scale: .92; opacity: .7; } 50% { scale: 1.06; opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .metodos-de-manifestacion-glow { animation: none; } }
+  @media (max-width: 720px) { .metodos-de-manifestacion-caption { font-size: .85rem; } }
+</style>
+
+<script is:inline>
+  (() => {
+  function start(root) {
+    const canvas = root.querySelector('canvas');
+    const ctx = canvas?.getContext('2d');
+    if (!canvas || !ctx) return;
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const small = matchMedia('(max-width: 720px)').matches;
+
+    // 20 lights, one per method, on a tilted ring of slightly different radii and heights.
+    const lights = Array.from({ length: 20 }, (_, i) => ({
+      a: (i / 20) * Math.PI * 2 + Math.random() * 0.2,
+      r: 0.85 + Math.random() * 0.45,
+      y: -0.15 - Math.random() * 0.9,
+      ph: Math.random() * Math.PI * 2,
+      gold: i % 3 === 0,
+      size: 0.8 + Math.random() * 0.7,
+    }));
+    // Small sparks that rise from the flame once it is lit.
+    const sparks = Array.from({ length: small ? 10 : 16 }, () => ({
+      ph: Math.random(), x: (Math.random() - 0.5) * 0.5, sp: 0.6 + Math.random() * 0.8,
+    }));
+
+    let w = 0, h = 0, dpr = 1;
+    function resize() {
+      dpr = Math.min(devicePixelRatio || 1, 2);
+      const box = canvas.getBoundingClientRect();
+      w = box.width; h = box.height;
+      canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    resize();
+    new ResizeObserver(() => { resize(); if (reduced) draw(0); }).observe(canvas);
+
+    const ease = (x) => x * x * (3 - 2 * x);
+    const clamp = (x) => Math.max(0, Math.min(1, x));
+    // Cycle of 18 s: float (0-4), gather into the flame (4-8), lit and resting (8-15), loosen (15-18).
+    function phase(t) {
+      const c = (t / 1000) % 18;
+      const gather = c < 4 ? 0 : c < 8 ? ease((c - 4) / 4) : c < 15 ? 1 : 1 - ease((c - 15) / 3);
+      const lit = c < 6.5 ? 0 : c < 8.5 ? ease((c - 6.5) / 2) : c < 16 ? 1 : 1 - ease((c - 16) / 2) * 0.75;
+      return { gather, lit: Math.max(lit, 0.25) };
+    }
+
+    function draw(t) {
+      const { gather, lit } = reduced ? { gather: 0, lit: 1 } : phase(t);
+      const S = Math.min(w, h);
+      const cx = w / 2, base = h * 0.8;
+      const candleW = S * 0.15, candleH = S * 0.3;
+      const top = base - candleH;
+      const flameX = cx, flameY = top - S * 0.075;
+      const rot = reduced ? 0.4 : t / 7000;
+
+      ctx.clearRect(0, 0, w, h);
+
+      // Warm halo of the flame.
+      const halo = ctx.createRadialGradient(flameX, flameY, 0, flameX, flameY, S * 0.42);
+      halo.addColorStop(0, `rgba(246, 222, 170, ${0.32 * lit})`);
+      halo.addColorStop(0.35, `rgba(236, 201, 132, ${0.1 * lit})`);
+      halo.addColorStop(1, 'rgba(185, 143, 214, 0)');
+      ctx.fillStyle = halo;
+      ctx.fillRect(0, 0, w, h);
+
+      // Project the lights; those behind the candle are drawn before it.
+      const proj = lights.map((p) => {
+        const bob = reduced ? 0 : Math.sin(t / 1800 + p.ph) * 0.06;
+        const ang = p.a + rot + gather * 2.4;
+        const r = p.r * (1 - gather);
+        let x = Math.cos(ang) * r, z = Math.sin(ang) * r;
+        let y = p.y + bob;
+        y = y + (-0.0 - y) * gather; // move to flame height (y = 0 is the flame)
+        const s = 3 / (3 + z);
+        return { x: flameX + x * S * 0.36 * s, y: flameY + y * S * 0.3 * s - z * S * 0.05, z, s, p };
+      });
+      const lightDot = ({ x, y, z, s, p }) => {
+        const depth = clamp((1.4 - z) / 2.8);
+        const tw = reduced ? 1 : 0.75 + 0.25 * Math.sin(t / 650 + p.ph * 3);
+        const a = (0.35 + 0.65 * depth) * tw * (1 - gather * 0.85);
+        if (a < 0.02) return;
+        const size = (2 + p.size * 2) * s * (small ? 0.9 : 1);
+        const [r, g, b] = p.gold ? [240, 211, 150] : [218, 194, 238];
+        const gl = ctx.createRadialGradient(x, y, 0, x, y, size * 4.5);
+        gl.addColorStop(0, `rgba(${r}, ${g}, ${b}, ${a * 0.55})`);
+        gl.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
+        ctx.fillStyle = gl;
+        ctx.beginPath(); ctx.arc(x, y, size * 4.5, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = `rgba(255, 249, 240, ${a})`;
+        ctx.beginPath(); ctx.arc(x, y, size * 0.7, 0, Math.PI * 2); ctx.fill();
+      };
+      proj.filter((q) => q.z > 0).forEach(lightDot);
+
+      // Candle: cream body with soft side shading, a gold band and an elliptical top (simple 3D cylinder).
+      const body = ctx.createLinearGradient(cx - candleW / 2, 0, cx + candleW / 2, 0);
+      body.addColorStop(0, '#cdbbd6');
+      body.addColorStop(0.35, '#fbf7f1');
+      body.addColorStop(0.7, '#efe4ee');
+      body.addColorStop(1, '#a98fb8');
+      ctx.fillStyle = body;
+      ctx.beginPath();
+      ctx.moveTo(cx - candleW / 2, top);
+      ctx.lineTo(cx - candleW / 2, base);
+      ctx.ellipse(cx, base, candleW / 2, candleW * 0.16, 0, Math.PI, 0, true);
+      ctx.lineTo(cx + candleW / 2, top);
+      ctx.closePath();
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(236, 201, 132, 0.75)';
+      ctx.lineWidth = Math.max(1, S * 0.004);
+      ctx.beginPath(); ctx.ellipse(cx, base - candleH * 0.22, candleW / 2, candleW * 0.16, 0, 0, Math.PI); ctx.stroke();
+      const topGrad = ctx.createRadialGradient(cx, top, 0, cx, top, candleW / 2);
+      topGrad.addColorStop(0, `rgba(255, 236, 196, ${0.6 + 0.4 * lit})`);
+      topGrad.addColorStop(1, '#e6d9e8');
+      ctx.fillStyle = topGrad;
+      ctx.beginPath(); ctx.ellipse(cx, top, candleW / 2, candleW * 0.16, 0, 0, Math.PI * 2); ctx.fill();
+      // Wick.
+      ctx.strokeStyle = '#4d2c64';
+      ctx.lineWidth = Math.max(1.2, S * 0.005);
+      ctx.beginPath(); ctx.moveTo(cx, top); ctx.quadraticCurveTo(cx + S * 0.004, top - S * 0.02, cx - S * 0.002, top - S * 0.03); ctx.stroke();
+
+      // Flame: a teardrop that grows with `lit` and sways gently.
+      const sway = reduced ? 0 : Math.sin(t / 420) * 0.06 + Math.sin(t / 1130) * 0.04;
+      const fh = S * 0.13 * (0.25 + 0.75 * lit) * (reduced ? 1 : 1 + Math.sin(t / 300) * 0.03);
+      const fw = S * 0.045 * (0.4 + 0.6 * lit);
+      const fy = top - S * 0.028;
+      const tipX = cx + sway * fh;
+      const flame = ctx.createRadialGradient(cx, fy - fh * 0.3, 0, cx, fy - fh * 0.35, fh * 0.75);
+      flame.addColorStop(0, `rgba(255, 252, 240, ${0.95 * lit + 0.05})`);
+      flame.addColorStop(0.4, `rgba(246, 222, 170, ${0.85 * lit})`);
+      flame.addColorStop(0.8, `rgba(236, 201, 132, ${0.4 * lit})`);
+      flame.addColorStop(1, 'rgba(185, 143, 214, 0)');
+      ctx.fillStyle = flame;
+      ctx.beginPath();
+      ctx.moveTo(cx - fw, fy);
+      ctx.bezierCurveTo(cx - fw, fy - fh * 0.55, tipX - fw * 0.2, fy - fh * 0.8, tipX, fy - fh);
+      ctx.bezierCurveTo(tipX + fw * 0.2, fy - fh * 0.8, cx + fw, fy - fh * 0.55, cx + fw, fy);
+      ctx.bezierCurveTo(cx + fw, fy + fw * 0.9, cx - fw, fy + fw * 0.9, cx - fw, fy);
+      ctx.fill();
+
+      // Sparks rising from the lit flame.
+      if (!reduced && lit > 0.6) {
+        for (const sp of sparks) {
+          const k = (t / 1000 * 0.25 * sp.sp + sp.ph) % 1;
+          const x = cx + sp.x * S * 0.12 + Math.sin(k * 6 + sp.ph * 9) * S * 0.015;
+          const y = fy - fh - k * S * 0.32;
+          const a = (1 - k) * (lit - 0.6) / 0.4 * 0.7;
+          ctx.fillStyle = `rgba(246, 222, 170, ${a})`;
+          ctx.beginPath(); ctx.arc(x, y, S * 0.004 * (1 - k * 0.5), 0, Math.PI * 2); ctx.fill();
+        }
+      }
+
+      proj.filter((q) => q.z <= 0).forEach(lightDot);
+    }
+
+    if (reduced) { draw(0); return; }
+    let raf = 0, visible = false, t0 = performance.now();
+    const loop = (now) => { draw(now - t0); raf = requestAnimationFrame(loop); };
+    new IntersectionObserver(([entry]) => {
+      const on = entry.isIntersecting && !document.hidden;
+      if (on && !visible) raf = requestAnimationFrame(loop);
+      if (!on && visible) cancelAnimationFrame(raf);
+      visible = on;
+    }).observe(root);
+  }
+
+  document.querySelectorAll('.metodos-de-manifestacion-art').forEach(start);
+  })();
+</script>

@@ -1,0 +1,164 @@
+# Taller holístico 20 Métodos de Manifestación → https://sitio/metodos-de-manifestacion/
+# Fuente: tienda de institutovisionenaccion.com (taller en PDF, acceso 30 días, $6.000) y el Manual de
+# Ley de Atracción de la misma tienda. El sitio no publica el listado de los 20 métodos: el programa de abajo
+# describe los tipos de práctica en general. Confirmar con Fernanda y ajustar.
+# Le hablamos a Lorena (README → "A quién le hablamos"). Taller pago, sin promesas de dinero, amor ni salud.
+
+nombre: Taller 20 Métodos de Manifestación
+mostrarEnHome: false   # landing para anuncios
+orden: 40
+animacion: metodos-de-manifestacion
+
+seo:
+  titulo: Taller 20 Métodos de Manifestación | Instituto Visión en Acción
+  descripcion: Taller holístico en PDF con 20 prácticas de intención para aclarar qué querés y acompañarlo con pasos concretos. A tu ritmo, acceso por 30 días. $6.000.
+
+tarjeta:
+  etiqueta: Taller en PDF · A tu ritmo
+  resumen: Veinte prácticas de intención para aclarar qué querés y quedarte con las que te sirven.
+  boton: Conocer el taller
+
+whatsapp:
+  mensaje: Hola, quisiera hacer el taller 20 Métodos de Manifestación. ¿Cómo lo compro?
+
+hero:
+  bajada: Veinte prácticas sencillas para dejar de pedir en general y empezar a poner en palabras lo que querés para vos, con un paso concreto detrás de cada deseo.
+  datos:
+    - Taller en PDF
+    - Acceso por 30 días
+    - Es pago · $6.000
+  boton: Quiero el taller
+  nota: Te escribimos por WhatsApp para pasarte el medio de pago y el acceso.
+  linkSecundario:
+    texto: Qué prácticas incluye
+    href: "#programa"
+
+gancho:
+  frase: Siempre pido por mis hijos. Nunca me pregunté qué quiero yo.
+  texto: Muchas pasamos la vida sosteniendo a los demás y dejamos lo nuestro para después. Manifestar no es solo desear ni esperar que algo cambie afuera. Es aclarar qué querés, decirlo en voz alta y acompañarlo con una acción. Y eso también se practica.
+
+cursada:
+  - etiqueta: Formato
+    valor: Taller en PDF con ejercicios, para hacer a tu ritmo
+  - etiqueta: Acceso
+    valor: 30 días desde la compra
+  - etiqueta: Arancel
+    valor: $6.000, pago único
+
+paraQuien:
+  titulo: ¿Para quién es este taller?
+  items:
+    - Te diste cuenta de que siempre pedís por los demás y casi nunca por vos.
+    - Sentís que deseás mucho, pero no sabés bien por dónde empezar.
+    - Querés probar distintas prácticas de intención y quedarte con las que te hacen bien.
+    - Te gustan los rituales simples, que se pueden hacer en casa y en pocos minutos.
+    - Estás empezando a explorar tu conexión con la energía, la intención y el propósito.
+  cierre: Si te reconocés en alguna, este taller es una buena forma de empezar.
+
+programa:
+  titulo: Qué tipo de prácticas vas a encontrar
+  texto: Son veinte métodos distintos, agrupados en cinco caminos. No hace falta hacerlos todos. Tocá cada bloque para ver de qué se trata.
+  enfoques:
+    - id: escritura
+      icono: coaching
+      titulo: La palabra escrita
+      resumen: Poner en papel lo que querés, con claridad.
+      descripcion: Prácticas de escritura en presente, cartas y listas de intención. Escribir ordena, y muchas veces recién ahí descubrimos qué deseamos de verdad.
+    - id: visualizacion
+      icono: hipnosis
+      titulo: Visualización e imagen
+      resumen: Ver con los ojos cerrados lo que todavía no está.
+      descripcion: Ejercicios de visualización guiada y de tablero de visión, para darle forma a tu intención y volver a ella cada día.
+    - id: voz
+      icono: generico
+      titulo: La voz y las afirmaciones
+      resumen: Decirlo en voz alta, todos los días.
+      descripcion: Afirmaciones y decretos diarios para nombrar lo que querés con tus propias palabras. Lo que se nombra, se empieza a mirar.
+    - id: rituales
+      icono: tarot
+      titulo: Rituales simples
+      resumen: Gestos pequeños para marcar un comienzo.
+      descripcion: Velas, ciclos de la luna, gratitud y otros rituales sencillos para hacer en casa. Un momento tuyo, con intención.
+    - id: accion
+      icono: biodescodificacion
+      titulo: Del deseo a la acción
+      resumen: Un paso concreto detrás de cada intención.
+      descripcion: Prácticas para bajar el deseo a tierra, con lo que podés hacer esta semana para acercarte. La intención se sostiene con hechos.
+
+carrusel:
+  titulo: Un ejercicio para empezar hoy
+  texto: Deslizá las placas. Es el mismo carrusel que compartimos en Instagram.
+  imagenes:
+    - src: /images/carruseles/metodos-de-manifestacion/1.webp
+      alt: "«Siempre pido por mis hijos. Nunca me pregunté qué quiero yo.»"
+    - src: /images/carruseles/metodos-de-manifestacion/2.webp
+      alt: "Manifestar no es solo desear. Es aclarar qué querés y acompañarlo con una acción."
+    - src: /images/carruseles/metodos-de-manifestacion/3.webp
+      alt: "Un ejercicio: escribí un deseo tuyo, solo tuyo, en presente. Como si ya estuviera pasando."
+    - src: /images/carruseles/metodos-de-manifestacion/4.webp
+      alt: "Debajo, anotá un paso concreto que puedas dar esta semana para acercarte."
+    - src: /images/carruseles/metodos-de-manifestacion/5.webp
+      alt: "Releelo cada mañana. La claridad también es una práctica."
+    - src: /images/carruseles/metodos-de-manifestacion/6.webp
+      alt: "Taller 20 Métodos de Manifestación: veinte prácticas en PDF, a tu ritmo, con acceso por 30 días. Es pago: $6.000."
+    - src: /images/carruseles/metodos-de-manifestacion/7.webp
+      alt: "Para quién es: para quien siempre pide por los demás y quiere empezar a pedir por ella."
+    - src: /images/carruseles/metodos-de-manifestacion/8.webp
+      alt: "¿Qué escribirías hoy, en presente, solo para vos? Contame abajo. Soy Fernanda, de Visión en Acción."
+
+instituto:              # bloque "Cómo es estudiar en el Instituto", ajustado a un taller en PDF
+  titulo: Qué recibís y cómo seguir
+  recibis:
+    - PDF con los 20 métodos y sus ejercicios.
+    - Acceso a la descarga por 30 días.
+    - Ejercicios prácticos para cada método, para hacer en casa.
+  encuentros: Lo hacés a tu ritmo, sin horarios. Si querés practicar en vivo, tenés los encuentros de la membresía.
+  membresia: true
+
+docentes:
+  titulo: Quiénes te acompañan
+  personas:
+    - id: docente-fernanda
+      nombre: Fernanda Rodríguez
+      bio: Fundadora y directora del instituto, es formadora en desarrollo personal y en el área holística. Acompaña a mujeres que quieren conocerse y elegir con más claridad.
+      foto: /images/instructor-portrait.jpg
+      alt: Retrato de Fernanda Rodríguez
+      ancho: 673
+      alto: 1437
+    - id: docente-daniel
+      nombre: Daniel Alberto Rodríguez
+      bio: Formador del área holística del instituto. Su formación incluye tarot y oráculos, constelaciones familiares, biodescodificación, hipnosis y Reiki.
+      foto: /images/holistic-instructor-portrait.jpg
+      alt: Retrato de Daniel Alberto Rodríguez
+      ancho: 171
+      alto: 365
+      encuadre: 50% 12%
+
+oferta:
+  titulo: Llevate el taller
+  destacado: Taller en PDF · Acceso por 30 días
+  texto: Pago único. Te escribimos por WhatsApp con el medio de pago y te enviamos el acceso. Si querés seguir profundizando, en la tienda también está el Manual de Iniciación a la Ley de Atracción y la Manifestación ($4.000).
+  precios:
+    - periodo: Arancel
+      valores: [$6.000 en Argentina]
+
+preguntas:
+  - pregunta: ¿Qué es manifestar?
+    respuesta: Es una práctica de intención. Consiste en aclarar qué querés, ponerlo en palabras y acompañarlo con acciones concretas. No es magia ni una garantía de resultados.
+  - pregunta: ¿Tengo que hacer los 20 métodos?
+    respuesta: No. La idea es que pruebes distintas prácticas y te quedes con las que te hacen bien y podés sostener.
+  - pregunta: ¿Necesito experiencia previa?
+    respuesta: No. Está pensado para quienes están empezando a explorar la intención y el propósito.
+  - pregunta: ¿Cuánto cuesta y cómo lo recibo?
+    respuesta: Es pago, $6.000 en un único pago. Te escribimos por WhatsApp con el medio de pago y te enviamos el acceso al PDF por 30 días.
+  - pregunta: ¿Reemplaza una terapia o un tratamiento médico?
+    respuesta: No. Es una práctica de desarrollo personal y no sustituye la atención médica, psicológica o psiquiátrica.
+
+cierre:
+  titulo: Lo tuyo también merece ser pedido.
+  texto: Dejá tus datos y te escribimos para enviarte el taller 20 Métodos de Manifestación.
+
+reserva:
+  titulo: Quiero el taller 20 Métodos de Manifestación
+  texto: Dejanos tus datos y te escribimos por WhatsApp con el medio de pago y el acceso.
+  gracias: Te vamos a escribir para pasarte el medio de pago y el acceso al taller. Si querés, podés escribirnos ahora por WhatsApp.
