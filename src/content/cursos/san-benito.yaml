@@ -1,0 +1,163 @@
+# Taller Poderes de San Benito → https://sitio/san-benito/
+# Fuente: institutovisionenaccion.com/cursos/taller-los-poderes-milagrosos-de-san-benito/ (taller descargable,
+# $6.000 con precio anterior $10.000, certificado de participación, técnicas para la vida diaria, protección y paz)
+# y la tienda del instituto (material PDF con acceso por 30 días). El sitio no publica temario ni cantidad de páginas.
+#
+# Público: mujeres de fe que llevan la medalla, muchas veces Lorena. Tono calmo: protección y paz como práctica
+# personal de fe. Sin "milagros" ni promesas de resultado. Es pago.
+
+nombre: Taller Poderes de San Benito
+orden: 40
+mostrarEnHome: false   # landing para anuncios
+animacion: san-benito  # src/components/animaciones/SanBenito.astro
+
+seo:
+  titulo: Taller Poderes de San Benito | Instituto Visión en Acción
+  descripcion: Conocé la historia y el sentido de la medalla de San Benito, y prácticas simples de protección y calma para tu día. Taller descargable en PDF, a tu ritmo, con certificado de participación.
+
+tarjeta:
+  etiqueta: Taller · Material descargable
+  resumen: La historia y el sentido de la medalla de San Benito, y prácticas simples de protección y calma.
+  boton: Conocer el taller
+
+whatsapp:
+  mensaje: Hola, quisiera el taller Poderes de San Benito. ¿Me cuentan cómo sigo?
+
+hero:
+  bajada: Un taller para conocer la historia y el sentido de la medalla de San Benito, y llevar su protección a tu día con prácticas simples, a tu ritmo.
+  datos:
+    - Material en PDF
+    - A tu ritmo
+    - Certificado de participación
+  boton: Quiero el taller
+  nota: Es un taller pago. Te escribimos por WhatsApp para pasarte el medio de pago y enviarte el material.
+  linkSecundario:
+    texto: Qué vas a conocer
+    href: "#programa"
+
+# La misma frase que usa el carrusel y el Reel que traen a esta página.
+gancho:
+  frase: Llevo la medalla de San Benito desde hace años… y nunca supe qué significa.
+  texto: A muchas nos la regaló una madre o una abuela, y la llevamos cerca sin saber leerla. Cada letra y cada imagen de la medalla tiene un sentido. Conocerlo cambia la forma de llevarla, y la convierte en un momento de calma y de fe en medio del día.
+
+cursada:
+  - etiqueta: Formato
+    valor: Taller en PDF, descargable desde el primer momento
+  - etiqueta: Acceso
+    valor: Descargás el material y lo tenés por 30 días
+  - etiqueta: Ritmo
+    valor: Lo leés y practicás cuando quieras, sin horarios
+  - etiqueta: Certificado
+    valor: Certificado de participación al finalizar
+
+paraQuien:
+  titulo: ¿Para quién es este taller?
+  items:
+    - Llevás la medalla de San Benito, o la tenés en tu casa, y querés saber qué dice.
+    - Te la regaló alguien querido y querés entender la tradición que te dejó.
+    - Estás atravesando un momento difícil y buscás un espacio de fe que te dé calma.
+    - Querés prácticas simples de protección para tu casa y tu día, sin complicarte.
+    - Te interesa la espiritualidad y querés empezar por algo concreto y cercano.
+  cierre: Si te reconocés en alguna, este taller está pensado para vos.
+
+programa:
+  titulo: Qué vas a conocer
+  texto: Un material breve y claro para leer con calma y volver a él cuando lo necesites. Tocá cada bloque para ver de qué se trata.
+  enfoques:
+    - id: historia
+      icono: coaching
+      titulo: Quién fue San Benito
+      resumen: La historia detrás de la medalla.
+      descripcion: Su vida y por qué, siglos después, tantas familias lo siguen tomando como guía en los momentos difíciles.
+    - id: medalla
+      icono: hipnosis
+      titulo: Cómo leer tu medalla
+      resumen: Las letras y las imágenes, una por una.
+      descripcion: La cruz, las iniciales que la rodean y las frases en latín que forman. Vas a poder mirar tu medalla y reconocer qué dice cada parte.
+    - id: proteccion
+      icono: biodescodificacion
+      titulo: Protección para tu casa y tu día
+      resumen: Prácticas simples para la vida diaria.
+      descripcion: Técnicas fáciles de aplicar, pensadas para incorporar la protección de San Benito a tu rutina, a tu casa y a los tuyos.
+    - id: calma
+      icono: hipnosis
+      titulo: Un momento de paz
+      resumen: La fe como pausa en medio del día.
+      descripcion: Cómo usar la medalla y la oración como un recordatorio para frenar, respirar y volver a tu centro cuando el día pesa.
+
+carrusel:
+  titulo: Cómo leer tu medalla
+  texto: Deslizá las placas. Es el mismo carrusel que compartimos en Instagram.
+  imagenes:
+    - src: /images/carruseles/san-benito/1.webp
+      alt: "«Llevo la medalla de San Benito desde hace años… y nunca supe qué significa.»"
+    - src: /images/carruseles/san-benito/2.webp
+      alt: "La medalla no es solo un adorno. Cada letra y cada imagen tiene un sentido."
+    - src: /images/carruseles/san-benito/3.webp
+      alt: "En la cruz: C S S M L, «la santa cruz sea mi luz». Y N D S M D, «que el dragón no sea mi guía»."
+    - src: /images/carruseles/san-benito/4.webp
+      alt: "Arriba, la palabra PAX: paz. Las letras del borde forman una oración de protección."
+    - src: /images/carruseles/san-benito/5.webp
+      alt: "Un ejercicio: tomá tu medalla, buscá la palabra PAX y respirá tres veces antes de seguir con tu día."
+    - src: /images/carruseles/san-benito/6.webp
+      alt: "Taller Poderes de San Benito: material en PDF, a tu ritmo, con certificado de participación. Es pago: $6.000."
+    - src: /images/carruseles/san-benito/7.webp
+      alt: "Para quién es: para quien lleva la medalla y quiere entenderla, para quien la recibió de alguien querido, para quien busca un momento de calma y fe."
+    - src: /images/carruseles/san-benito/8.webp
+      alt: "¿Quién te dio tu medalla de San Benito? Contámelo en los comentarios. Soy Fernanda, de Visión en Acción."
+
+instituto:              # ajustado a un taller en PDF autogestionado
+  recibis:
+    - PDF descargable
+    - Acceso a la descarga por 30 días
+    - Certificado de participación
+  encuentros: Lo hacés a tu ritmo, sin horarios. Si querés practicar en vivo, tenés los encuentros de la membresía.
+  membresia: true
+
+docentes:
+  titulo: Quiénes te acompañan
+  personas:
+    - id: docente-fernanda
+      nombre: Fernanda Rodríguez
+      bio: Fundadora y directora del instituto, es formadora en desarrollo personal y en el área holística.
+      foto: /images/instructor-portrait.jpg
+      alt: Retrato de Fernanda Rodríguez
+      ancho: 673
+      alto: 1437
+    - id: docente-daniel
+      nombre: Daniel Alberto Rodríguez
+      bio: Formador del área holística del instituto. Su formación incluye tarot y oráculos, constelaciones familiares, biodescodificación, hipnosis y Reiki.
+      foto: /images/holistic-instructor-portrait.jpg
+      alt: Retrato de Daniel Alberto Rodríguez
+      ancho: 171
+      alto: 365
+      encuadre: 50% 12%
+
+oferta:
+  titulo: Llevalo hoy
+  destacado: Acceso inmediato al material
+  texto: Es un taller pago. Te escribimos por WhatsApp con el medio de pago y te enviamos el material para descargar.
+  precios:
+    - periodo: Taller Poderes de San Benito
+      valores: [ARS 6.000]
+
+preguntas:
+  - pregunta: ¿Cómo recibo el material?
+    respuesta: Después del pago te enviamos el acceso para descargar el PDF. Lo tenés disponible por 30 días; te conviene guardarlo en tu teléfono o computadora.
+  - pregunta: ¿Necesito tener la medalla?
+    respuesta: No es necesario. Si la tenés, te va a servir tenerla a mano mientras leés, para reconocer cada parte.
+  - pregunta: ¿Tiene horarios o clases en vivo?
+    respuesta: No. Es material para leer y practicar a tu ritmo. Si querés compartir en vivo, podés sumarte a los encuentros de la membresía.
+  - pregunta: ¿Recibo certificado?
+    respuesta: Sí, al finalizar recibís un certificado de participación del instituto.
+  - pregunta: ¿Reemplaza una ayuda profesional?
+    respuesta: No. Es una práctica personal de fe y bienestar, y no reemplaza la atención médica ni psicológica.
+
+cierre:
+  titulo: Que tu medalla sea también un momento de paz.
+  texto: Dejá tus datos y te escribimos por WhatsApp para enviarte el taller.
+
+reserva:
+  titulo: Quiero el taller Poderes de San Benito
+  texto: Dejanos tus datos y te escribimos por WhatsApp con el medio de pago y el material.
+  gracias: Te vamos a escribir para pasarte el medio de pago y enviarte el taller. Si querés, podés escribirnos ahora por WhatsApp.

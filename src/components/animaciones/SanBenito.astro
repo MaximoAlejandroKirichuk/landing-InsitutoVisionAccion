@@ -1,0 +1,135 @@
+---
+// Hero art for /san-benito/: the medal of San Benito in 3D. A golden medal turns slowly on itself, floating,
+// inside a soft halo of light with fine rays. Front: the cross with C S S M L / N D S M D, C S P B in the corners,
+// PAX on top and the prayer initials on the rim. Back: a simple cross and book with CRUX SANCTI PATRIS BENEDICTI.
+// The edge is a stack of thin discs so it shows thickness while turning. Pure CSS 3D, no JavaScript.
+// Only transform and opacity are animated. Under prefers-reduced-motion it shows the front, still, slightly tilted.
+const vertical = ['C', 'S', 'S', 'M', 'L'];
+const horizontal = ['N', 'D', 'S', 'M', 'D'];
+const edges = [-4, -3, -2, -1, 0, 1, 2, 3, 4];
+---
+<div class="san-benito-art" aria-hidden="true">
+  <span class="san-benito-glow"></span>
+  <svg class="san-benito-rays" viewBox="0 0 200 200">
+    {Array.from({ length: 36 }, (_, k) => {
+      const a = (k * Math.PI) / 18;
+      const r1 = 62, r2 = k % 2 ? 84 : 96;
+      return <line x1={100 + r1 * Math.cos(a)} y1={100 + r1 * Math.sin(a)} x2={100 + r2 * Math.cos(a)} y2={100 + r2 * Math.sin(a)} />;
+    })}
+  </svg>
+  <div class="san-benito-float">
+    <div class="san-benito-medal">
+      {edges.map((z) => <span class="san-benito-edge" style={`--z:${z}px`}></span>)}
+
+      <div class="san-benito-face san-benito-front">
+        <svg viewBox="0 0 200 200">
+          <defs>
+            <path id="san-benito-rim-front" d="M100 100 m-81 0 a81 81 0 1 1 162 0 a81 81 0 1 1 -162 0" />
+          </defs>
+          <circle cx="100" cy="100" r="94" class="san-benito-line" />
+          <circle cx="100" cy="100" r="72" class="san-benito-line" />
+          <text class="san-benito-rim"><textPath href="#san-benito-rim-front" startOffset="2%">V R S N S M V  ✠  S M Q L I V B  ✠</textPath></text>
+          <text x="100" y="45" class="san-benito-pax">PAX</text>
+          <rect x="91" y="50" width="18" height="110" rx="2" class="san-benito-cross" />
+          <rect x="45" y="91" width="110" height="18" rx="2" class="san-benito-cross" />
+          {vertical.map((l, i) => <text x="100" y={62 + i * 22} class="san-benito-letter">{l}</text>)}
+          {horizontal.map((l, i) => i === 2 ? null : <text x={56 + i * 22} y="104" class="san-benito-letter">{l}</text>)}
+          <text x="70" y="78" class="san-benito-corner">C</text>
+          <text x="130" y="78" class="san-benito-corner">S</text>
+          <text x="70" y="136" class="san-benito-corner">P</text>
+          <text x="130" y="136" class="san-benito-corner">B</text>
+        </svg>
+        <span class="san-benito-sheen"></span>
+      </div>
+
+      <div class="san-benito-face san-benito-back">
+        <svg viewBox="0 0 200 200">
+          <defs>
+            <path id="san-benito-rim-back" d="M100 100 m-81 0 a81 81 0 1 1 162 0 a81 81 0 1 1 -162 0" />
+          </defs>
+          <circle cx="100" cy="100" r="94" class="san-benito-line" />
+          <circle cx="100" cy="100" r="72" class="san-benito-line" />
+          <text class="san-benito-rim"><textPath href="#san-benito-rim-back" startOffset="4%">CRUX SANCTI PATRIS BENEDICTI  ✠</textPath></text>
+          <path class="san-benito-line" d="M100 48 V128 M84 66 H116" />
+          <path class="san-benito-line" d="M70 132 Q100 122 130 132 V150 Q100 140 70 150 Z M100 125 V145" />
+          <circle cx="100" cy="100" r="40" class="san-benito-line san-benito-thin" />
+        </svg>
+        <span class="san-benito-sheen"></span>
+      </div>
+    </div>
+  </div>
+  <span class="san-benito-caption">Protección y calma, un día a la vez</span>
+</div>
+
+<style is:inline>
+  .san-benito-art {
+    position: relative; width: 100%; aspect-ratio: 1; justify-self: center;
+    display: grid; place-items: center; isolation: isolate; perspective: 1000px;
+  }
+  .san-benito-art > * { grid-area: 1 / 1; }
+  .san-benito-glow {
+    width: 84%; aspect-ratio: 1; border-radius: 50%; z-index: -2;
+    background: radial-gradient(circle, #f3dca066 0%, #b98fd644 34%, #7a4f9a26 56%, transparent 72%);
+    filter: blur(10px);
+    animation: san-benito-breathe 10s ease-in-out infinite;
+  }
+  .san-benito-rays {
+    width: 96%; z-index: -1; opacity: .55;
+    animation: san-benito-spin 90s linear infinite;
+  }
+  .san-benito-rays line { stroke: #ecc984; stroke-width: .5; stroke-linecap: round; opacity: .6; }
+  .san-benito-float { width: 54%; aspect-ratio: 1; transform-style: preserve-3d; animation: san-benito-float 9s ease-in-out infinite; }
+  .san-benito-medal {
+    position: relative; width: 100%; height: 100%; transform-style: preserve-3d;
+    animation: san-benito-turn 28s cubic-bezier(.45, .05, .55, .95) infinite;
+  }
+  .san-benito-edge {
+    position: absolute; inset: 0; border-radius: 50%;
+    background: linear-gradient(90deg, #7d5720, #c99a45 45%, #8a6224);
+    transform: translateZ(var(--z));
+  }
+  .san-benito-face {
+    position: absolute; inset: 0; border-radius: 50%; overflow: hidden;
+    backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    background: radial-gradient(circle at 36% 30%, #fbecc4 0%, #ecc984 28%, #c99a45 62%, #8a6224 100%);
+    box-shadow: inset 0 0 0 2px #fff3d066, inset 0 -10px 24px #6b4a1a55, 0 24px 40px -18px rgba(10, 3, 18, .85);
+  }
+  .san-benito-front { transform: translateZ(5px); }
+  .san-benito-back { transform: rotateY(180deg) translateZ(5px); }
+  .san-benito-face svg { width: 100%; height: 100%; display: block; }
+  .san-benito-line { fill: none; stroke: #6b4a1a; stroke-width: 1.6; stroke-linejoin: round; }
+  .san-benito-thin { stroke-width: .8; opacity: .6; }
+  .san-benito-cross { fill: #b8913f; stroke: #6b4a1a; stroke-width: 1.2; }
+  .san-benito-rim { font: 600 11px/1 Georgia, serif; fill: #5a3d14; letter-spacing: 1px; }
+  .san-benito-pax { font: 700 14px/1 Georgia, serif; fill: #5a3d14; text-anchor: middle; letter-spacing: 2px; }
+  .san-benito-letter { font: 700 12px/1 Georgia, serif; fill: #4a3010; text-anchor: middle; }
+  .san-benito-corner { font: 700 15px/1 Georgia, serif; fill: #5a3d14; text-anchor: middle; }
+  .san-benito-sheen {
+    position: absolute; inset: -20% -60%; opacity: .55;
+    background: linear-gradient(105deg, transparent 40%, #fff7e0aa 50%, transparent 60%);
+    animation: san-benito-sheen 7s ease-in-out infinite;
+  }
+  .san-benito-caption {
+    align-self: end; margin-bottom: .2rem;
+    font: italic 400 .95rem/1.3 var(--display); color: #ecc984cc; letter-spacing: .02em; text-align: center;
+  }
+
+  @keyframes san-benito-turn {
+    0% { transform: rotateX(8deg) rotateY(-18deg); }
+    35% { transform: rotateX(8deg) rotateY(18deg); }
+    50% { transform: rotateX(8deg) rotateY(180deg); }
+    85% { transform: rotateX(8deg) rotateY(216deg); }
+    100% { transform: rotateX(8deg) rotateY(342deg); }
+  }
+  @keyframes san-benito-float { 0%, 100% { transform: translateY(-2%); } 50% { transform: translateY(2.5%); } }
+  @keyframes san-benito-breathe { 0%, 100% { transform: scale(.92); opacity: .75; } 50% { transform: scale(1.06); opacity: 1; } }
+  @keyframes san-benito-spin { to { transform: rotate(360deg); } }
+  @keyframes san-benito-sheen { 0%, 55% { transform: translateX(-60%); } 85%, 100% { transform: translateX(60%); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .san-benito-glow, .san-benito-rays, .san-benito-float, .san-benito-sheen { animation: none; }
+    .san-benito-medal { animation: none; transform: rotateX(8deg) rotateY(-14deg); }
+    .san-benito-sheen { opacity: 0; }
+  }
+  @media (max-width: 720px) { .san-benito-caption { font-size: .85rem; } .san-benito-float { width: 58%; } }
+</style>
