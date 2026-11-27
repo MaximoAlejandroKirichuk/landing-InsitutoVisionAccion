@@ -1,0 +1,209 @@
+---
+// Hero art for /limpiezas-energeticas/: "humo que limpia". A sahumerio rests in a small clay holder between
+// two candles. Its smoke rises as a soft 3D ribbon of particles that turns slowly, curls and opens into a
+// wide halo of light as it reaches the top, like a room being cleared. Candle flames sway gently.
+// Plain canvas (no libraries), paused off-screen, DPR capped at 2, fewer particles on phones.
+// Under prefers-reduced-motion it draws one still, finished frame (smoke already risen, flames at rest).
+// No props (convention of src/components/animaciones/). Styles and script are is:inline so only this page loads them.
+---
+<div class="limpiezas-art" aria-hidden="true">
+  <span class="limpiezas-glow"></span>
+  <canvas class="limpiezas-canvas" width="600" height="600"></canvas>
+  <span class="limpiezas-caption">Abrir las ventanas, encender una intención</span>
+</div>
+
+<style is:inline>
+  .limpiezas-art {
+    position: relative; width: 100%; aspect-ratio: 1; justify-self: center;
+    display: grid; place-items: center; isolation: isolate;
+  }
+  .limpiezas-art > * { grid-area: 1 / 1; }
+  .limpiezas-glow {
+    width: 70%; aspect-ratio: 1; border-radius: 50%; z-index: -1; align-self: end; margin-bottom: 4%;
+    background: radial-gradient(circle, #ecc98440 0%, #b98fd633 38%, transparent 70%);
+    filter: blur(10px);
+    animation: limpiezas-breathe 8s ease-in-out infinite;
+  }
+  .limpiezas-canvas { width: 100%; height: 100%; display: block; }
+  .limpiezas-caption {
+    align-self: end; margin-bottom: .2rem;
+    font: italic 400 .95rem/1.3 var(--display); color: #ecc984cc; letter-spacing: .02em; text-align: center;
+  }
+  @keyframes limpiezas-breathe { 0%, 100% { scale: .94; opacity: .7; } 50% { scale: 1.05; opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .limpiezas-glow { animation: none; } }
+  @media (max-width: 720px) { .limpiezas-caption { font-size: .85rem; } }
+</style>
+
+<script is:inline>
+  (() => {
+  function start(root) {
+    const canvas = root.querySelector('canvas');
+    const ctx = canvas?.getContext('2d');
+    if (!canvas || !ctx) return;
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const small = matchMedia('(max-width: 720px)').matches;
+    const N = small ? 150 : 260;
+    const LIFE = 9000; // ms a particle takes to rise from the ember to the top
+
+    // Each particle lives on the smoke column: it is born at the ember and rises, following a slow
+    // helical path that widens with height. Staggered birth times keep the column continuous.
+    const parts = [];
+    for (let i = 0; i < N; i++) {
+      parts.push({
+        off: (i / N) * LIFE,
+        ph: Math.random() * Math.PI * 2,
+        sp: 0.7 + Math.random() * 0.6,
+        spread: 0.5 + Math.random() * 0.9,
+        r: 0.6 + Math.random() * 1.1,
+        gold: Math.random() > 0.8,
+      });
+    }
+
+    let w = 0, h = 0, dpr = 1;
+    function resize() {
+      dpr = Math.min(devicePixelRatio || 1, 2);
+      const box = canvas.getBoundingClientRect();
+      w = box.width; h = box.height;
+      canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    resize();
+    new ResizeObserver(() => { resize(); if (reduced) drawStill(); }).observe(canvas);
+
+    let tiltY = 0, ty = 0;
+    root.closest('section')?.addEventListener('pointermove', (e) => {
+      const b = root.getBoundingClientRect();
+      ty = ((e.clientX - b.left) / b.width - 0.5) * 0.6;
+    });
+
+    function candle(x, base, height, width, t, seed) {
+      // Wax body with a soft vertical gradient.
+      const top = base - height;
+      const g = ctx.createLinearGradient(x - width / 2, 0, x + width / 2, 0);
+      g.addColorStop(0, '#d9c7de'); g.addColorStop(0.45, '#fbf7f1'); g.addColorStop(1, '#bfa6c8');
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.roundRect(x - width / 2, top, width, height, [width * 0.18, width * 0.18, 3, 3]);
+      ctx.fill();
+      // Wick
+      ctx.strokeStyle = '#4b3550'; ctx.lineWidth = 1.4;
+      ctx.beginPath(); ctx.moveTo(x, top); ctx.lineTo(x, top - width * 0.18); ctx.stroke();
+      // Flame: gentle sway and breathing, never flicker-fast.
+      const sway = reduced ? 0 : Math.sin(t / 900 + seed) * 0.12 + Math.sin(t / 370 + seed * 2) * 0.04;
+      const fl = reduced ? 1 : 1 + Math.sin(t / 620 + seed) * 0.07;
+      const fh = width * 0.95 * fl, fw = width * 0.32;
+      const fy = top - width * 0.16;
+      const halo = ctx.createRadialGradient(x, fy - fh * 0.4, 0, x, fy - fh * 0.4, fh * 2.6);
+      halo.addColorStop(0, 'rgba(246, 222, 170, 0.45)');
+      halo.addColorStop(1, 'rgba(246, 222, 170, 0)');
+      ctx.fillStyle = halo;
+      ctx.beginPath(); ctx.arc(x, fy - fh * 0.4, fh * 2.6, 0, Math.PI * 2); ctx.fill();
+      ctx.save();
+      ctx.translate(x, fy); ctx.rotate(sway);
+      const fg = ctx.createLinearGradient(0, 0, 0, -fh);
+      fg.addColorStop(0, '#f6deaa'); fg.addColorStop(0.5, '#ecc984'); fg.addColorStop(1, 'rgba(255, 246, 225, 0.9)');
+      ctx.fillStyle = fg;
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.bezierCurveTo(fw, -fh * 0.2, fw * 0.5, -fh * 0.7, 0, -fh);
+      ctx.bezierCurveTo(-fw * 0.5, -fh * 0.7, -fw, -fh * 0.2, 0, 0);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function scene(t) {
+      const S = Math.min(w, h);
+      const cx = w / 2, floor = h * 0.86;
+      ctx.clearRect(0, 0, w, h);
+
+      // Floor shadow
+      const sh = ctx.createRadialGradient(cx, floor, 0, cx, floor, S * 0.38);
+      sh.addColorStop(0, 'rgba(20, 8, 28, 0.35)'); sh.addColorStop(1, 'rgba(20, 8, 28, 0)');
+      ctx.fillStyle = sh;
+      ctx.beginPath(); ctx.ellipse(cx, floor, S * 0.38, S * 0.05, 0, 0, Math.PI * 2); ctx.fill();
+
+      // Candles, one each side, slightly different heights
+      candle(cx - S * 0.25, floor, S * 0.2, S * 0.075, t, 0.4);
+      candle(cx + S * 0.27, floor, S * 0.15, S * 0.07, t, 2.1);
+
+      // Clay holder (small bowl) and the sahumerio stick leaning slightly
+      const bw = S * 0.13, bh = S * 0.045;
+      const bg = ctx.createLinearGradient(cx - bw, 0, cx + bw, 0);
+      bg.addColorStop(0, '#6b4a78'); bg.addColorStop(0.5, '#9a74a8'); bg.addColorStop(1, '#5a3b66');
+      ctx.fillStyle = bg;
+      ctx.beginPath();
+      ctx.ellipse(cx, floor - bh, bw, bh * 0.45, 0, Math.PI, 0, true);
+      ctx.quadraticCurveTo(cx + bw * 0.8, floor, cx, floor);
+      ctx.quadraticCurveTo(cx - bw * 0.8, floor, cx - bw, floor - bh);
+      ctx.fill();
+      ctx.fillStyle = '#3d2647';
+      ctx.beginPath(); ctx.ellipse(cx, floor - bh, bw, bh * 0.42, 0, 0, Math.PI * 2); ctx.fill();
+
+      const stickLen = S * 0.3, lean = 0.12;
+      const sx0 = cx, sy0 = floor - bh;
+      const ex = sx0 + Math.sin(lean) * stickLen, ey = sy0 - Math.cos(lean) * stickLen;
+      ctx.strokeStyle = '#8a6a2c'; ctx.lineWidth = Math.max(2, S * 0.008); ctx.lineCap = 'round';
+      ctx.beginPath(); ctx.moveTo(sx0, sy0); ctx.lineTo(ex, ey); ctx.stroke();
+      ctx.strokeStyle = '#5a3b2a'; ctx.lineWidth = Math.max(3, S * 0.012);
+      ctx.beginPath(); ctx.moveTo(sx0 + Math.sin(lean) * stickLen * 0.35, sy0 - Math.cos(lean) * stickLen * 0.35); ctx.lineTo(ex, ey); ctx.stroke();
+
+      // Ember
+      const pulse = reduced ? 1 : 0.8 + 0.2 * Math.sin(t / 800);
+      const em = ctx.createRadialGradient(ex, ey, 0, ex, ey, S * 0.03);
+      em.addColorStop(0, `rgba(255, 214, 150, ${0.95 * pulse})`);
+      em.addColorStop(1, 'rgba(236, 160, 100, 0)');
+      ctx.fillStyle = em;
+      ctx.beginPath(); ctx.arc(ex, ey, S * 0.03, 0, Math.PI * 2); ctx.fill();
+
+      // Smoke: helical ribbon in 3D, turning slowly, widening and opening into a halo at the top.
+      tiltY += (ty - tiltY) * 0.04;
+      const rot = t / 7000 + tiltY;
+      const topY = h * 0.06, cam = 3;
+      const proj = [];
+      for (const p of parts) {
+        const life = ((t * p.sp + p.off) % LIFE) / LIFE; // 0 at the ember, 1 at the top
+        const rise = life;
+        const radius = (0.02 + rise * rise * 0.42) * p.spread;
+        const ang = p.ph + rise * 5.5 + rot;
+        let x = Math.cos(ang) * radius + Math.sin(rise * 6 + p.ph) * 0.03 * rise;
+        let z = Math.sin(ang) * radius;
+        const s = cam / (cam + z);
+        const px = ex + x * S * s;
+        const py = ey - rise * (ey - topY);
+        const fade = Math.sin(Math.PI * Math.min(1, life * 1.15)) * (life < 0.04 ? life / 0.04 : 1);
+        proj.push({ px, py, z, s, life, fade, p });
+      }
+      proj.sort((a, b) => b.z - a.z);
+      for (const { px, py, s, life, fade, p } of proj) {
+        if (fade <= 0) continue;
+        const size = (S * 0.006 + life * S * 0.05) * p.r * s;
+        const a = fade * (0.16 - life * 0.08) * (small ? 1.1 : 1);
+        const [r, g, b] = p.gold ? [240, 211, 150] : [222, 204, 236];
+        const grad = ctx.createRadialGradient(px, py, 0, px, py, size);
+        grad.addColorStop(0, `rgba(${r}, ${g}, ${b}, ${a})`);
+        grad.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
+        ctx.fillStyle = grad;
+        ctx.beginPath(); ctx.arc(px, py, size, 0, Math.PI * 2); ctx.fill();
+        // A tiny bright core for the golden sparks only
+        if (p.gold && life > 0.15) {
+          ctx.fillStyle = `rgba(250, 230, 185, ${fade * 0.7})`;
+          ctx.beginPath(); ctx.arc(px, py, Math.max(0.8, S * 0.0035 * s), 0, Math.PI * 2); ctx.fill();
+        }
+      }
+    }
+
+    function drawStill() { scene(4200); }
+
+    if (reduced) { drawStill(); return; }
+
+    let visible = true, raf = 0;
+    const loop = (t) => { scene(t); raf = visible ? requestAnimationFrame(loop) : 0; };
+    new IntersectionObserver(([e]) => {
+      visible = e.isIntersecting;
+      if (visible && !raf) raf = requestAnimationFrame(loop);
+    }).observe(root);
+    raf = requestAnimationFrame(loop);
+  }
+  document.querySelectorAll('.limpiezas-art').forEach(start);
+  })();
+</script>

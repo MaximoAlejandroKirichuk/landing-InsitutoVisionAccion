@@ -1,0 +1,164 @@
+# Taller de Limpiezas Energéticas y Rituales → https://sitio/limpiezas-energeticas/
+# Fuente: institutovisionenaccion.com/cursos/taller-de-limpiezas-energeticas-y-rituales-... (PDF descargable,
+# $6.000, certificado de participación) y la regla general del sitio (30 días para descargar el material).
+# Le hablamos a Lorena. Sin promesas de abundancia, empleo ni resultados.
+# Pendiente de confirmar: quién lo dicta (la página dice Daniel Rodríguez en el texto y Fernanda en el encabezado).
+
+nombre: Taller de Limpiezas Energéticas y Rituales
+mostrarEnHome: false   # landing para anuncios
+orden: 40
+animacion: limpiezas-energeticas
+
+seo:
+  titulo: Taller de Limpiezas Energéticas y Rituales | Instituto Visión en Acción
+  descripcion: Rituales simples de limpieza energética para tu casa y para vos, con sahumos, sal, velas e intención. Taller en PDF, a tu ritmo. $6.000.
+
+tarjeta:
+  etiqueta: Taller holístico · PDF a tu ritmo
+  resumen: Rituales simples para renovar la energía de tu casa y hacerte un momento para vos.
+  boton: Conocer el taller
+
+whatsapp:
+  mensaje: Hola, quisiera inscribirme en el Taller de Limpiezas Energéticas y Rituales.
+
+hero:
+  bajada: Rituales simples para limpiar la energía de tu casa y la tuya, con sahumos, sal, velas e intención. Para hacer a tu ritmo, cuando lo necesites.
+  datos:
+    - Taller en PDF descargable
+    - A tu ritmo
+    - "Es pago: $6.000"
+  boton: Quiero el taller
+  nota: Te escribimos por WhatsApp para pasarte las formas de pago y habilitarte el acceso.
+  linkSecundario:
+    texto: Qué vas a aprender
+    href: "#programa"
+
+gancho:
+  frase: Después de cada discusión, siento la casa pesada.
+  texto: Hay días en que el ambiente queda cargado, aunque nadie diga nada. Desde lo energético, los espacios también guardan lo que vivimos en ellos. Un ritual simple, hecho con intención, es una forma de cerrar ese momento y volver a empezar. Y de hacerte un lugar para vos.
+
+cursada:
+  - etiqueta: Formato
+    valor: Material en PDF descargable
+  - etiqueta: Cuándo
+    valor: Cuando quieras, a tu ritmo
+  - etiqueta: Acceso
+    valor: 30 días para descargar el material
+
+paraQuien:
+  titulo: ¿Para quién es este taller?
+  items:
+    - Sentís el ambiente de tu casa pesado y no sabés por dónde empezar.
+    - Después de una discusión o de una visita difícil, querés cerrar el momento y renovar el espacio.
+    - Estás atravesando un cambio, una pérdida o una etapa en la que sentís que nada se mueve.
+    - Te gustan los rituales y querés aprenderlos bien, paso a paso.
+    - Ya practicás meditación, tarot o reiki y querés sumar herramientas.
+  cierre: Si te reconocés en alguna, este taller es un buen comienzo.
+
+programa:
+  titulo: Qué vas a aprender
+  texto: Herramientas prácticas y fáciles de aplicar en tu día a día. Tocá cada bloque para ver de qué se trata.
+  enfoques:
+    - id: limpieza-del-hogar
+      icono: hipnosis
+      titulo: Limpieza energética de tu casa
+      resumen: Para cuando el ambiente se siente cargado.
+      descripcion: Rituales simples de limpieza para tus espacios, con elementos que tenés a mano. Cómo prepararte, en qué orden hacerlos y cómo cerrarlos.
+    - id: limpieza-personal
+      icono: biodescodificacion
+      titulo: Tu propia energía
+      resumen: Un momento para vos, después de un día difícil.
+      descripcion: Prácticas para soltar lo que cargaste en el día y volver a tu centro. Un ritual también es una forma de cuidarte.
+    - id: apertura-de-caminos
+      icono: coaching
+      titulo: Rituales de apertura de caminos
+      resumen: Para acompañar un cambio o un nuevo comienzo.
+      descripcion: Rituales tradicionales que se usan para acompañar etapas nuevas, búsquedas y decisiones. Son una práctica simbólica para poner en marcha tu intención.
+    - id: abundancia
+      icono: tarot
+      titulo: Rituales de abundancia y prosperidad
+      resumen: Para enfocar tu intención en lo que querés que entre.
+      descripcion: Rituales para trabajar la intención de prosperidad. Te acompañan a mirar qué querés sembrar; no reemplazan las acciones concretas ni garantizan resultados.
+    - id: intencion
+      icono: pnl
+      titulo: La intención, lo más importante
+      resumen: Qué querés que entre en tu casa y en tu vida.
+      descripcion: Un ritual sin intención es un gesto vacío. Vas a aprender a ponerle palabras a lo que buscás y a repetirlo hasta que se vuelva un momento propio.
+
+carrusel:
+  titulo: Un ritual para empezar hoy
+  texto: Deslizá las placas. Es el mismo carrusel que compartimos en Instagram.
+  imagenes:
+    - src: /images/carruseles/limpiezas-energeticas/1.webp
+      alt: "«Después de cada discusión, siento la casa pesada.»"
+    - src: /images/carruseles/limpiezas-energeticas/2.webp
+      alt: "Desde lo energético, los espacios también guardan lo que vivimos en ellos. Aunque nadie diga nada."
+    - src: /images/carruseles/limpiezas-energeticas/3.webp
+      alt: "Un ritual simple: abrí las ventanas y dejá entrar aire y luz unos minutos."
+    - src: /images/carruseles/limpiezas-energeticas/4.webp
+      alt: "Un ritual simple: ordená un solo rincón y prendé una vela con una intención."
+    - src: /images/carruseles/limpiezas-energeticas/5.webp
+      alt: "La intención es lo más importante: decí en voz alta qué querés que entre en tu casa."
+    - src: /images/carruseles/limpiezas-energeticas/6.webp
+      alt: "Taller de Limpiezas Energéticas y Rituales: material en PDF para hacer a tu ritmo, con certificado de participación. Es pago: $6.000."
+    - src: /images/carruseles/limpiezas-energeticas/7.webp
+      alt: "Para quién es: para quien siente su casa pesada, para quien atraviesa un cambio, para quien quiere un momento para ella."
+    - src: /images/carruseles/limpiezas-energeticas/8.webp
+      alt: "¿Tenés algún ritual para tu casa? Contalo en comentarios: lo que funciona para una, puede ayudar a otra. Soy Fernanda, de Visión en Acción."
+
+instituto:
+  titulo: Qué recibís y cómo seguir
+  recibis:
+    - PDF descargable
+    - Acceso a la descarga por 30 días
+    - Certificado de participación
+  encuentros: Lo hacés a tu ritmo, sin horarios. Si querés practicar en vivo, tenés los encuentros de la membresía.
+  membresia: true
+
+docentes:
+  titulo: Quiénes te acompañan
+  personas:
+    - id: docente-fernanda
+      nombre: Fernanda Rodríguez
+      bio: Fundadora y directora del instituto, es formadora en desarrollo personal y en el área holística.
+      foto: /images/instructor-portrait.jpg
+      alt: Retrato de Fernanda Rodríguez
+      ancho: 673
+      alto: 1437
+    - id: docente-daniel
+      nombre: Daniel Alberto Rodríguez
+      bio: Formador del área holística del instituto. Su formación incluye tarot y oráculos, constelaciones familiares, biodescodificación, hipnosis y Reiki.
+      foto: /images/holistic-instructor-portrait.jpg
+      alt: Retrato de Daniel Alberto Rodríguez
+      ancho: 171
+      alto: 365
+      encuadre: 50% 12%
+
+oferta:
+  titulo: Llevate el taller hoy
+  destacado: PDF descargable · A tu ritmo · Certificado de participación
+  texto: Pagás una sola vez y descargás el material. Además, en la tienda está la «Guía Práctica de Limpiezas Energéticas para el Hogar y el Aura» ($5.000), con sahumos, baños de descarga, sal, velas y sonidos. Es una práctica complementaria; no reemplaza la atención médica ni psicológica.
+  precios:
+    - periodo: Taller completo
+      valores: [ARS 6.000]
+
+preguntas:
+  - pregunta: ¿Cómo es el taller?
+    respuesta: Es un material en PDF que descargás y hacés a tu ritmo, sin horarios. Incluye certificado de participación.
+  - pregunta: ¿Cuánto tiempo tengo para descargarlo?
+    respuesta: Una vez habilitado el acceso, tenés 30 días para entrar a la plataforma y descargar el material. Después es tuyo.
+  - pregunta: ¿Necesito experiencia previa?
+    respuesta: No. Los rituales son simples y están explicados paso a paso, con elementos que tenés en casa o conseguís fácil.
+  - pregunta: ¿Los rituales garantizan resultados?
+    respuesta: No. Son prácticas simbólicas y de bienestar que te ayudan a poner en marcha una intención y a cuidar tus espacios. No reemplazan la atención médica ni psicológica.
+  - pregunta: ¿Cómo lo compro?
+    respuesta: Tocá «Quiero el taller» y dejá tus datos. Te escribimos por WhatsApp con las formas de pago.
+
+cierre:
+  titulo: Tu casa también puede volver a respirar.
+  texto: Dejá tus datos y te escribimos para pasarte el taller de Limpiezas Energéticas y Rituales.
+
+reserva:
+  titulo: Quiero el Taller de Limpiezas Energéticas
+  texto: Dejanos tus datos y te escribimos por WhatsApp con las formas de pago y el acceso.
+  gracias: Te vamos a escribir para pasarte las formas de pago y habilitarte el material. Si querés, podés escribirnos ahora por WhatsApp.
