@@ -1,0 +1,128 @@
+# Formación en Tarot de Marsella → https://sitio/tarot/
+# Fuentes: home de institutovisionenaccion.com ("Formación en Tarot de Marsella. Incluye herramientas de Coaching
+# y Mindfulness para fortalecer tu escucha, tu presencia") y los carruseles de Canva "Curso de Tarot" y
+# "Tarot: qué es y qué no es". Precio, cantidad de clases y certificado: A CONFIRMAR con Fernanda.
+# Palabra clave de los anuncios y Reels: TAROT.
+
+nombre: Formación en Tarot de Marsella
+orden: 3
+mostrarEnHome: false   # landing para anuncios
+animacion: tarot
+
+seo:
+  titulo: Formación en Tarot de Marsella | Instituto Visión en Acción
+  descripcion: Aprendé Tarot de Marsella desde cero, a tu ritmo, como un lenguaje de símbolos para mirar tu historia. Clases grabadas, encuentro de práctica en vivo con Fernanda y comunidad.
+
+tarjeta:
+  etiqueta: Formación · Desde cero, a tu ritmo
+  resumen: Aprendé a leer el Tarot de Marsella como un lenguaje de símbolos para mirar tu propia historia.
+  boton: Conocer la formación
+
+whatsapp:
+  mensaje: Hola, quisiera conocer el arancel y los pasos de inscripción para la Formación en Tarot de Marsella. TAROT
+
+hero:
+  bajada: Aprendé a leer las cartas desde cero, a tu ritmo, como un lenguaje de símbolos para mirar tu historia con otros ojos.
+  datos:
+    - Desde cero
+    - Clases grabadas
+    - Práctica en vivo con Fernanda
+  nota: Es una formación paga. Te escribimos por WhatsApp con el arancel y cómo inscribirte.
+  linkSecundario:
+    texto: Qué vas a aprender
+    href: "#programa"
+
+# Frase de Lorena: la MISMA que abre el Reel y el carrusel de Tarot.
+gancho:
+  frase: Quiero entender por qué en mi familia se repite siempre lo mismo.
+  texto: Lo que no miramos de nuestra historia, vuelve a aparecer. Las cartas no adivinan el futuro ni deciden por vos. Son un espejo de símbolos que te ayuda a hacerte mejores preguntas. Y el cambio empieza por ahí, por vos.
+
+cursada:
+  - etiqueta: Modalidad
+    valor: Online, clases grabadas a tu ritmo
+  - etiqueta: Práctica en vivo
+    valor: Un encuentro grupal por mes con Fernanda
+  - etiqueta: Nivel
+    valor: Desde cero, sin conocimientos previos
+  - etiqueta: Arancel
+    valor: Te lo pasamos por WhatsApp
+
+paraQuien:
+  titulo: ¿Para quién es esta formación?
+  items:
+    - Sentís que en tu familia se repiten las mismas historias y querés una herramienta para mirarlas con calma.
+    - Siempre te atrajo el tarot, pero no sabés por dónde empezar y no querés aprender con cartas sueltas.
+    - Buscás un espacio para vos, después de años de ocuparte de todos los demás.
+    - Querés aprender con orden y práctica, acompañada, a tu propio ritmo.
+  cierre: Si te reconocés en alguna, esta formación está pensada para vos. No hace falta saber nada de antes.
+
+programa:
+  titulo: Qué vas a aprender
+  texto: Un recorrido ordenado, de la primera carta a la primera lectura completa. Tocá cada bloque para ver de qué se trata. El temario completo te lo pasamos por WhatsApp.
+  enfoques:
+    - id: arcanos-mayores
+      icono: tarot
+      titulo: Los 22 Arcanos Mayores
+      resumen: El corazón del Tarot de Marsella, carta por carta.
+      descripcion: Conocés cada Arcano Mayor, sus símbolos, sus colores y lo que suele representar. Aprendés a mirarlos como etapas de un camino, no como sentencias.
+    - id: arcanos-menores
+      icono: tarot
+      titulo: Los Arcanos Menores
+      resumen: Los cuatro palos y la vida de todos los días.
+      descripcion: Copas, Espadas, Oros y Bastos. Cómo se relacionan con los vínculos, los pensamientos, lo material y la energía para hacer.
+    - id: tiradas
+      icono: generico
+      titulo: Tiradas y lectura
+      resumen: De la carta suelta a una lectura con sentido.
+      descripcion: Practicás tiradas sencillas y aprendés a unir las cartas en una historia. Leés para vos primero, con calma y con práctica guiada.
+    - id: escucha-presencia
+      icono: coaching
+      titulo: Escucha y presencia
+      resumen: Herramientas de coaching y mindfulness aplicadas al tarot.
+      descripcion: La formación suma herramientas de coaching y mindfulness para fortalecer tu escucha y tu presencia. Aprendés a hacer preguntas abiertas y a leer desde la calma, no desde el miedo.
+
+# Bloque común "Cómo es estudiar en el Instituto" (membresía, encuentros, qué recibís): ver README.
+instituto:
+  recibis:
+    - Clases grabadas para mirar a tu ritmo, las veces que quieras.
+    - Herramientas de coaching y mindfulness para leer con escucha y presencia.
+    - Práctica guiada de tiradas, de la carta suelta a la lectura completa.
+  encuentros: Un encuentro en vivo grupal por mes con Fernanda, para practicar tiradas y consultar tus dudas.
+  membresia: true
+
+docentes:
+  titulo: Quién te acompaña
+  personas:
+    - id: docente-fernanda
+      nombre: Fernanda Rodríguez
+      bio: Fundadora, directora y formadora del Instituto Visión en Acción. Es coach de vida y facilitadora. En los encuentros en vivo practica con vos, carta por carta, y responde tus dudas.
+      foto: /images/instructor-portrait.jpg
+      alt: Retrato de Fernanda Rodríguez
+      ancho: 673
+      alto: 1437
+
+oferta:
+  titulo: Empezá tu formación en Tarot
+  destacado: Empezás cuando quieras, desde cero
+  texto: Si además querés acompañamiento todas las semanas, podés sumar la Membresía Visión en Acción.
+
+preguntas:
+  - pregunta: ¿Necesito saber algo de tarot?
+    respuesta: No. La formación empieza desde cero, con la primera carta. Solo necesitás ganas de aprender y un mazo de Tarot de Marsella.
+  - pregunta: ¿El tarot sirve para adivinar el futuro?
+    respuesta: No, y tampoco reemplaza un tratamiento médico o psicológico. Acá lo aprendemos como un lenguaje de símbolos que te ayuda a reflexionar y a hacerte mejores preguntas.
+  - pregunta: ¿Cómo son las clases?
+    respuesta: Son clases grabadas que mirás a tu ritmo, más un encuentro grupal en vivo por mes con Fernanda para practicar.
+  - pregunta: ¿Cuánto cuesta y cómo me inscribo?
+    respuesta: Es una formación paga. Tocá «Reservar mi lugar» y dejá tus datos, o escribinos TAROT por WhatsApp, y te pasamos el arancel y los pasos para inscribirte.
+  - pregunta: ¿Entrega certificado?
+    respuesta: Consultanos por WhatsApp. El instituto está acreditado como Accredited Training Provider por IAOTH; esa acreditación es del instituto, no de cada curso.
+
+cierre:
+  titulo: Tu primera carta te está esperando
+  texto: Dejá tus datos y te escribimos por WhatsApp con el arancel y los pasos para empezar.
+
+reserva:
+  titulo: Quiero aprender Tarot de Marsella
+  texto: Dejanos tus datos y te escribimos por WhatsApp con el arancel, cómo son las clases y los pasos de inscripción.
+  gracias: Te vamos a escribir por WhatsApp con el arancel y cómo empezar. Si querés, podés escribirnos ahora.
