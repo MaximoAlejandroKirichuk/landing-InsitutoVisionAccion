@@ -1,0 +1,199 @@
+---
+// Mindfulness hero art: a woman meditating in lotus pose, breathing.
+// One breath = 10 s (4 s in, 6 s out): the chest rises, a warm light grows at the heart,
+// ripples open on the floor as she exhales and the caption follows ("Inhalá" / "Exhalá").
+// Depth comes from CSS 3D layers (aura behind, floor tilted, light motes in front) and a slow sway;
+// with a mouse the scene tilts gently toward the pointer.
+// Pure SVG + CSS, plus a tiny pointer script. Everything holds still under prefers-reduced-motion.
+---
+<div class="mindfulness" aria-hidden="true">
+  <div class="mindfulness-scene">
+    <span class="mindfulness-aura"></span>
+    <div class="mindfulness-floor">
+      <span class="mindfulness-ripple"></span>
+      <span class="mindfulness-ripple"></span>
+      <span class="mindfulness-ripple"></span>
+      <span class="mindfulness-disc"></span>
+    </div>
+
+    <svg class="mindfulness-figure" viewBox="0 0 400 400" width="400" height="400" focusable="false">
+      <defs>
+        <linearGradient id="mindfulness-body" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#f3e6ef" />
+          <stop offset=".55" stop-color="#cdb2c9" />
+          <stop offset="1" stop-color="#9a7ba0" />
+        </linearGradient>
+        <linearGradient id="mindfulness-legs" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#bfa1bf" />
+          <stop offset="1" stop-color="#7d5f88" />
+        </linearGradient>
+        <radialGradient id="mindfulness-shade" cx=".3" cy=".25" r=".9">
+          <stop offset="0" stop-color="#fff" stop-opacity=".55" />
+          <stop offset=".5" stop-color="#fff" stop-opacity="0" />
+        </radialGradient>
+        <radialGradient id="mindfulness-heart" cx=".5" cy=".5" r=".5">
+          <stop offset="0" stop-color="#fff7e4" />
+          <stop offset=".35" stop-color="#ecc984" stop-opacity=".85" />
+          <stop offset="1" stop-color="#ecc984" stop-opacity="0" />
+        </radialGradient>
+      </defs>
+
+      <!-- crossed legs -->
+      <g class="mindfulness-legs">
+        <path fill="url(#mindfulness-legs)" d="M200 250c40-2 90 10 100 34 4 14-16 22-50 20-22-1-38-6-50-10-12 4-28 9-50 10-34 2-54-6-50-20 10-24 60-36 100-34Z" />
+        <path fill="none" stroke="#f3e6ef" stroke-opacity=".45" stroke-width="2" stroke-linecap="round" d="M146 290c26-9 80-9 108 4" />
+        <path fill="url(#mindfulness-shade)" d="M200 250c40-2 90 10 100 34 4 14-16 22-50 20-22-1-38-6-50-10-12 4-28 9-50 10-34 2-54-6-50-20 10-24 60-36 100-34Z" />
+      </g>
+
+      <!-- upper body: breathes -->
+      <g class="mindfulness-upper">
+        <g class="mindfulness-arms" fill="none" stroke="url(#mindfulness-body)" stroke-width="17" stroke-linecap="round">
+          <path d="M160 170c-12 26-20 52-18 74 2 18-8 32-16 40" />
+          <path d="M240 170c12 26 20 52 18 74-2 18 8 32 16 40" />
+        </g>
+        <path class="mindfulness-torso" fill="url(#mindfulness-body)" d="M200 146c22 0 40 6 46 20 4 12-8 48-14 86h-64c-6-38-18-74-14-86 6-14 24-20 46-20Z" />
+        <path fill="url(#mindfulness-shade)" d="M200 146c22 0 40 6 46 20 4 12-8 48-14 86h-64c-6-38-18-74-14-86 6-14 24-20 46-20Z" />
+        <circle class="mindfulness-heart" cx="200" cy="192" r="44" fill="url(#mindfulness-heart)" />
+        <rect x="191" y="132" width="18" height="18" rx="8" fill="#e6d4e3" />
+        <g class="mindfulness-head">
+          <circle cx="200" cy="93" r="11" fill="#cdb2c9" />
+          <circle cx="200" cy="118" r="24" fill="url(#mindfulness-body)" />
+          <circle cx="200" cy="118" r="24" fill="url(#mindfulness-shade)" />
+          <!-- closed eyes -->
+          <path fill="none" stroke="#7d5f88" stroke-width="1.6" stroke-linecap="round" d="M188 120q4 3 8 0M204 120q4 3 8 0" />
+        </g>
+      </g>
+      <circle cx="124" cy="286" r="8.5" fill="#f3e6ef" />
+      <circle cx="276" cy="286" r="8.5" fill="#f3e6ef" />
+    </svg>
+
+    <div class="mindfulness-motes">
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+  <p class="mindfulness-caption"><span class="mindfulness-in">Inhalá</span><span class="mindfulness-out">Exhalá</span></p>
+</div>
+
+<script is:inline>
+{
+  // Gentle 3D tilt toward the pointer (desktop only, never under reduced motion).
+  const stage = document.querySelector('.mindfulness');
+  const fine = matchMedia('(pointer: fine)').matches;
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (stage && fine && !calm) {
+    let frame = 0;
+    window.addEventListener('pointermove', (event) => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const box = stage.getBoundingClientRect();
+        const x = (event.clientX - (box.left + box.width / 2)) / window.innerWidth;
+        const y = (event.clientY - (box.top + box.height / 2)) / window.innerHeight;
+        stage.style.setProperty('--tilt-y', `${(x * 14).toFixed(2)}deg`);
+        stage.style.setProperty('--tilt-x', `${(-y * 10).toFixed(2)}deg`);
+      });
+    }, { passive: true });
+  }
+}
+</script>
+
+<style is:inline>
+  .mindfulness {
+    --tilt-x: 0deg; --tilt-y: 0deg;
+    position: relative; width: 100%; aspect-ratio: 1; justify-self: center;
+    perspective: 1100px; isolation: isolate;
+  }
+  .mindfulness-scene {
+    position: absolute; inset: 0; transform-style: preserve-3d;
+    transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+    transition: transform .9s var(--ease-out, ease-out);
+  }
+  .mindfulness-scene > * { position: absolute; }
+
+  .mindfulness-aura {
+    inset: 4%; border-radius: 47% 53% 50% 50% / 52% 48% 52% 48%;
+    background: radial-gradient(circle at 50% 46%, #e7d3e4d9 0%, #b597b380 32%, #6d4f8545 58%, transparent 72%);
+    filter: blur(20px); transform: translateZ(-90px) scale(1.1);
+  }
+
+  .mindfulness-floor {
+    left: 8%; right: 8%; bottom: 7%; aspect-ratio: 1;
+    display: grid; place-items: center; transform-style: preserve-3d;
+    transform: translateY(25%) rotateX(76deg);
+  }
+  .mindfulness-floor > * { grid-area: 1 / 1; border-radius: 50%; }
+  .mindfulness-disc {
+    width: 64%; aspect-ratio: 1;
+    background: radial-gradient(circle, #ecc98440 0%, #8f6fa033 45%, transparent 70%);
+    box-shadow: 0 0 0 1px #ecc98440;
+  }
+  .mindfulness-ripple { width: 64%; aspect-ratio: 1; border: 2px solid #ecc98480; opacity: 0; }
+
+  .mindfulness-figure {
+    inset: 6% 10% 12%; width: 80%; height: auto; overflow: visible;
+    transform: translateZ(40px);
+    filter: drop-shadow(0 26px 30px rgba(8, 2, 14, .45));
+  }
+  .mindfulness-upper, .mindfulness-head, .mindfulness-heart { transform-box: fill-box; }
+  .mindfulness-upper { transform-origin: 50% 100%; }
+  .mindfulness-head { transform-origin: 50% 100%; }
+  .mindfulness-heart { transform-origin: 50% 50%; opacity: .55; }
+
+  .mindfulness-motes { inset: 0; transform: translateZ(110px); pointer-events: none; }
+  .mindfulness-motes span {
+    position: absolute; width: .42rem; aspect-ratio: 1; border-radius: 50%;
+    background: radial-gradient(circle, #fff7e4 0%, #ecc984 55%, transparent 72%);
+    opacity: 0;
+  }
+  .mindfulness-motes span:nth-child(1) { left: 22%; top: 62%; }
+  .mindfulness-motes span:nth-child(2) { left: 74%; top: 58%; width: .3rem; }
+  .mindfulness-motes span:nth-child(3) { left: 36%; top: 72%; width: .26rem; }
+  .mindfulness-motes span:nth-child(4) { left: 64%; top: 70%; }
+  .mindfulness-motes span:nth-child(5) { left: 14%; top: 44%; width: .3rem; }
+  .mindfulness-motes span:nth-child(6) { left: 84%; top: 40%; width: .26rem; }
+
+  .mindfulness-caption {
+    position: absolute; left: 0; right: 0; bottom: -1.2rem; margin: 0; height: 1.6em;
+    display: grid; justify-items: center;
+    font-family: var(--display, serif); font-style: italic; font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+    color: var(--gold, #ecc984); letter-spacing: .06em;
+  }
+  .mindfulness-caption > span { grid-area: 1 / 1; }
+  .mindfulness-out { opacity: 0; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .mindfulness-scene { animation: mindfulness-sway 22s ease-in-out infinite; }
+    .mindfulness-scene:is(:hover, :focus-within) { animation-play-state: paused; }
+    .mindfulness-aura { animation: mindfulness-aura 10s ease-in-out infinite; }
+    .mindfulness-upper { animation: mindfulness-chest 10s ease-in-out infinite; }
+    .mindfulness-head { animation: mindfulness-head 10s ease-in-out infinite; }
+    .mindfulness-heart { animation: mindfulness-heart 10s ease-in-out infinite; }
+    .mindfulness-ripple { animation: mindfulness-ripple 10s cubic-bezier(.22, .6, .36, 1) infinite; }
+    .mindfulness-ripple:nth-child(2) { animation-delay: 1s; }
+    .mindfulness-ripple:nth-child(3) { animation-delay: 2s; }
+    .mindfulness-motes span { animation: mindfulness-rise 10s ease-in-out infinite; }
+    .mindfulness-motes span:nth-child(2) { animation-delay: -2s; }
+    .mindfulness-motes span:nth-child(3) { animation-delay: -4s; }
+    .mindfulness-motes span:nth-child(4) { animation-delay: -6s; }
+    .mindfulness-motes span:nth-child(5) { animation-delay: -8s; animation-duration: 14s; }
+    .mindfulness-motes span:nth-child(6) { animation-delay: -3s; animation-duration: 14s; }
+    .mindfulness-in { animation: mindfulness-in 10s ease-in-out infinite; }
+    .mindfulness-out { animation: mindfulness-out 10s ease-in-out infinite; }
+  }
+
+  /* The scene sways a little when nobody moves the mouse; the pointer tilt adds on top. */
+  @keyframes mindfulness-sway {
+    0%, 100% { transform: rotateX(calc(var(--tilt-x) + 4deg)) rotateY(calc(var(--tilt-y) - 7deg)); }
+    50% { transform: rotateX(calc(var(--tilt-x) + 2deg)) rotateY(calc(var(--tilt-y) + 7deg)); }
+  }
+  /* 0–40 % inhale (4 s), 40–100 % exhale (6 s). */
+  @keyframes mindfulness-chest { 0%, 100% { transform: scale(1, 1); } 40% { transform: scale(1.025, 1.045); } }
+  @keyframes mindfulness-head { 0%, 100% { transform: translateY(0); } 40% { transform: translateY(-3px); } }
+  @keyframes mindfulness-heart { 0%, 100% { transform: scale(.6); opacity: .35; } 40% { transform: scale(1.25); opacity: 1; } }
+  @keyframes mindfulness-aura { 0%, 100% { scale: .92; opacity: .7; } 40% { scale: 1.06; opacity: 1; } }
+  @keyframes mindfulness-ripple { 0%, 38% { scale: 1; opacity: 0; } 48% { opacity: .9; } 100% { scale: 1.75; opacity: 0; } }
+  @keyframes mindfulness-rise { 0% { translate: 0 0; opacity: 0; } 25% { opacity: .9; } 100% { translate: 0 -9rem; opacity: 0; } }
+  @keyframes mindfulness-in { 0%, 34% { opacity: 1; } 42%, 96% { opacity: 0; } 100% { opacity: 1; } }
+  @keyframes mindfulness-out { 0%, 36% { opacity: 0; } 44%, 92% { opacity: 1; } 100% { opacity: 0; } }
+
+  @media (max-width: 40rem) { .mindfulness { margin-bottom: 1.5rem; } }
+</style>
