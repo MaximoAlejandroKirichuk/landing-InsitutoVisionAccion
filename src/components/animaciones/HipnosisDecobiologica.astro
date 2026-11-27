@@ -1,0 +1,134 @@
+---
+// Hero art for the Hipnosis Decobiológica landing: a calm descent inward.
+// Soft lilac rings drift slowly toward the viewer through a 3D tunnel, a thin spiral of light turns very slowly
+// and a warm light in the center breathes at a resting pace (5 s in, 5 s out). No fast spin, no flicker:
+// it should feel like relaxing, not like a hypnotist's wheel. Pure CSS + inline SVG, no JS.
+// Under prefers-reduced-motion everything holds still in its resting position.
+const rings = Array.from({ length: 8 }, (_, i) => i);
+---
+<div class="hipnosis-decobiologica" aria-hidden="true">
+  <span class="hipnosis-decobiologica-glow"></span>
+  <div class="hipnosis-decobiologica-scene">
+    <div class="hipnosis-decobiologica-tunnel">
+      {rings.map((i) => <span class="hipnosis-decobiologica-ring" style={`--i:${i}`}></span>)}
+    </div>
+  </div>
+  <svg class="hipnosis-decobiologica-spiral" viewBox="0 0 400 400" width="400" height="400" focusable="false">
+    <defs>
+      <radialGradient id="hipnosis-decobiologica-spiral-fade" cx="50%" cy="50%" r="50%">
+        <stop offset="0" stop-color="#f6e6b8" stop-opacity=".95" />
+        <stop offset=".55" stop-color="#d8bdf0" stop-opacity=".6" />
+        <stop offset="1" stop-color="#b996e0" stop-opacity="0" />
+      </radialGradient>
+    </defs>
+    <path d="M204.0 200.0L204.9 200.7L205.6 201.6L206.2 202.8L206.5 204.1L206.6 205.5L206.4 207.1L205.8 208.7L205.0 210.2L203.8 211.7L202.3 213.0L200.5 214.1L198.4 215.0L196.1 215.5L193.7 215.7L191.1 215.4L188.5 214.8L185.9 213.7L183.3 212.1L181.0 210.1L178.9 207.7L177.2 204.9L175.8 201.7L174.9 198.2L174.5 194.6L174.6 190.8L175.3 186.9L176.6 183.0L178.6 179.3L181.1 175.8L184.2 172.6L187.8 169.8L191.9 167.5L196.4 165.8L201.2 164.7L206.3 164.3L211.5 164.6L216.7 165.8L221.8 167.7L226.7 170.3L231.3 173.7L235.4 177.9L239.0 182.6L241.9 188.0L244.1 193.8L245.5 200.0L245.9 206.5L245.5 213.0L244.1 219.6L241.7 226.0L238.4 232.2L234.1 237.9L229.0 243.0L223.2 247.5L216.6 251.1L209.5 253.9L201.9 255.6L194.1 256.2L186.1 255.7L178.1 254.1L170.4 251.3L162.9 247.4L156.0 242.5L149.8 236.5L144.4 229.6L140.0 221.9L136.6 213.5L134.4 204.6L133.5 195.3L133.9 185.9L135.6 176.6L138.7 167.4L143.1 158.6L148.7 150.5L155.6 143.1L163.4 136.7L172.3 131.4L181.9 127.3L192.1 124.5L202.7 123.2L213.5 123.5L224.3 125.2L234.9 128.5L245.0 133.3L254.5 139.5L263.1 147.1L270.6 155.9L276.9 165.8L281.8 176.5L285.2 188.0L286.9 200.0L287.0 212.2L285.3 224.5L281.9 236.5L276.9 248.0L270.1 258.8L261.9 268.7L252.2 277.4L241.3 284.8L229.4 290.6L216.7 294.7L203.4 297.0L189.8 297.5L176.1 296.0L162.6 292.6L149.6 287.3L137.4 280.1L126.2 271.3L116.2 260.9L107.8 249.0L101.0 236.0L96.0 222.1L93.0 207.5L92.1 192.5L93.3 177.3L96.7 162.4L102.1 147.9L109.5 134.3L118.9 121.7L130.0 110.4L142.7 100.8L156.7 92.9L171.8 87.0L187.7 83.3L204.1 81.8L220.7 82.6L237.1 85.8L253.1 91.2L268.2 98.9L282.2 108.7L294.8 120.4L305.8 133.9L314.8 148.9L321.7 165.1L326.2 182.3L328.4 200.0L328.1 218.0L325.2 235.9L319.8 253.4L312.0 270.0L301.9 285.5L289.6 299.5L275.4 311.8L259.5 322.0L242.2 330.0L223.9 335.5L204.8 338.5L185.4 338.7L166.0 336.2L147.1 331.0L128.9 323.2L111.9 312.8L96.4 300.1L82.7 285.2L71.2 268.5L62.0 250.2L55.5 230.7L51.7 210.4L50.8 189.6L52.8 168.7L57.7 148.2L65.5 128.5L76.0 109.9L89.1 92.9L104.5 77.8L122.0 64.9L141.2 54.5L161.8 46.8L183.4 42.1L205.6 40.4L227.9 41.8L249.9 46.3L271.2 53.9L291.4 64.5L310.0 77.9L326.6 93.8L340.9 111.9L352.7 132.0L361.5 153.7L367.3 176.5L369.9 200.0L369.1 223.8L365.1 247.3L357.7 270.2L347.2 292.0L333.7 312.2L317.4 330.4L298.6 346.2L277.7 359.3L255.1 369.4" fill="none" stroke="url(#hipnosis-decobiologica-spiral-fade)" stroke-width="1.6" stroke-linecap="round" />
+  </svg>
+  <span class="hipnosis-decobiologica-core"></span>
+  <span class="hipnosis-decobiologica-caption">Respirá. Todo empieza en calma.</span>
+</div>
+
+<style is:inline>
+  .hipnosis-decobiologica {
+    --lilac: 216, 189, 240;
+    --gold-rgb: 236, 201, 132;
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+  }
+  .hipnosis-decobiologica > * { grid-area: 1 / 1; }
+
+  .hipnosis-decobiologica-glow {
+    width: 92%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(var(--lilac), .32) 0%, rgba(var(--lilac), .12) 38%, transparent 70%);
+    filter: blur(6px);
+    animation: hipnosis-decobiologica-breathe 10s ease-in-out infinite;
+  }
+
+  .hipnosis-decobiologica-scene {
+    width: 100%;
+    height: 100%;
+    perspective: 520px;
+    perspective-origin: 50% 46%;
+    -webkit-mask-image: radial-gradient(circle, #000 52%, transparent 71%);
+    mask-image: radial-gradient(circle, #000 52%, transparent 71%);
+  }
+  .hipnosis-decobiologica-tunnel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transform: rotateX(14deg);
+    animation: hipnosis-decobiologica-turn 90s linear infinite;
+  }
+  .hipnosis-decobiologica-ring {
+    position: absolute;
+    inset: 22%;
+    border-radius: 50%;
+    border: 1.5px solid rgba(var(--lilac), .7);
+    box-shadow: 0 0 18px rgba(var(--lilac), .35), inset 0 0 14px rgba(var(--lilac), .2);
+    transform: translateZ(-460px);
+    opacity: 0;
+    animation: hipnosis-decobiologica-drift 24s linear infinite;
+    animation-delay: calc(var(--i) * -3s);
+  }
+  .hipnosis-decobiologica-ring:nth-child(3n) { border-color: rgba(var(--gold-rgb), .55); box-shadow: 0 0 18px rgba(var(--gold-rgb), .25); }
+
+  .hipnosis-decobiologica-spiral {
+    width: 74%;
+    height: auto;
+    opacity: .55;
+    mix-blend-mode: screen;
+    animation: hipnosis-decobiologica-spin 120s linear infinite reverse;
+  }
+
+  .hipnosis-decobiologica-core {
+    width: 15%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle at 45% 40%, #fff7e2 0%, rgba(var(--gold-rgb), .95) 32%, rgba(var(--lilac), .5) 62%, transparent 72%);
+    box-shadow: 0 0 40px 10px rgba(var(--gold-rgb), .28), 0 0 90px 30px rgba(var(--lilac), .18);
+    animation: hipnosis-decobiologica-breathe 10s ease-in-out infinite;
+  }
+
+  .hipnosis-decobiologica-caption {
+    align-self: end;
+    margin-bottom: 3%;
+    font-family: var(--display, Georgia, serif);
+    font-style: italic;
+    font-size: clamp(.8rem, 1.4vw, 1rem);
+    letter-spacing: .02em;
+    color: rgba(251, 247, 241, .82);
+    animation: hipnosis-decobiologica-caption 10s ease-in-out infinite;
+  }
+
+  @keyframes hipnosis-decobiologica-drift {
+    0%   { transform: translateZ(-460px); opacity: 0; }
+    20%  { opacity: .9; }
+    75%  { opacity: .6; }
+    100% { transform: translateZ(210px); opacity: 0; }
+  }
+  @keyframes hipnosis-decobiologica-turn { to { transform: rotateX(14deg) rotateZ(360deg); } }
+  @keyframes hipnosis-decobiologica-spin { to { transform: rotate(360deg); } }
+  @keyframes hipnosis-decobiologica-breathe {
+    0%, 100% { transform: scale(.9); opacity: .82; }
+    50%      { transform: scale(1.08); opacity: 1; }
+  }
+  @keyframes hipnosis-decobiologica-caption {
+    0%, 100% { opacity: .55; }
+    50%      { opacity: .95; }
+  }
+
+  @media (max-width: 720px) {
+    .hipnosis-decobiologica-ring { box-shadow: 0 0 10px rgba(var(--lilac), .3); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hipnosis-decobiologica *, .hipnosis-decobiologica *::before, .hipnosis-decobiologica *::after { animation: none !important; }
+    .hipnosis-decobiologica-ring { opacity: calc(.85 - var(--i) * .09); transform: translateZ(calc(var(--i) * -60px + 120px)); }
+  }
+</style>
