@@ -1,0 +1,155 @@
+# Ebook Conocerte para Elegir → https://sitio/conocerte-para-elegir/
+# Fuente: institutovisionenaccion.com/cursos/conocerte-para-elegir/ (nov 2026): ebook PDF de 5 capítulos de
+# Fernanda Rodríguez, lecturas guiadas, ejercicios de reflexión y journaling, metas; autogestionado;
+# $15.000; 30 días corridos para descargar; incluye 1 sesión individual de coaching de 30 min online
+# (con reserva, sujeta a agenda y cupos mensuales). La página no publica títulos de capítulos ni cantidad de páginas.
+#
+# Público: mujer de 45 a 60 que vive entre la culpa por lo que pasó y la preocupación por lo que viene, y que
+# siempre eligió en función de los demás. Toca a Lorena (culpa con los hijos) sin la herida madre-hija:
+# es un producto de autoconocimiento y coaching, de entrada, a precio bajo.
+
+nombre: Conocerte para Elegir
+orden: 40
+mostrarEnHome: false   # landing para anuncios
+animacion: conocerte-para-elegir   # src/components/animaciones/ConocerteParaElegir.astro
+
+seo:
+  titulo: Ebook Conocerte para Elegir | Instituto Visión en Acción
+  descripcion: Ebook en PDF de 5 capítulos con lecturas guiadas, ejercicios y journaling, más una sesión individual de coaching de 30 minutos. $15.000.
+
+tarjeta:
+  etiqueta: Ebook PDF · 5 capítulos + sesión de coaching
+  resumen: Un camino de autoconocimiento para dejar de vivir entre la culpa y la preocupación, y empezar a elegir.
+  boton: Conocer el ebook
+
+whatsapp:
+  mensaje: Hola, quiero el ebook Conocerte para Elegir. ¿Me cuentan cómo lo compro?
+
+hero:
+  bajada: Un ebook para mirarte con calma, entender qué te frena y volver a elegir desde vos. Con ejercicios para escribir y una sesión de coaching individual incluida.
+  datos:
+    - Ebook PDF · 5 capítulos
+    - Sesión de coaching de 30 min incluida
+    - $15.000
+  boton: Quiero el ebook
+  nota: Es un producto pago. Te escribimos por WhatsApp con los datos para el pago y te habilitamos la descarga.
+  linkSecundario:
+    texto: Ver qué trae el ebook
+    href: "#programa"
+
+gancho:
+  frase: Vivo entre la culpa por lo que hice y el miedo por lo que viene.
+  texto: Y en el medio se va el presente. No es que no sepas elegir. Es que muchas decisiones las tomás cargando el pasado o anticipando lo peor. Conocerte es el primer paso para elegir distinto, y se puede empezar con papel y lápiz.
+
+cursada:
+  - etiqueta: Formato
+    valor: Ebook digital en PDF, para descargar
+  - etiqueta: Ritmo
+    valor: Autogestionado, sin fechas ni horarios fijos
+  - etiqueta: Acompañamiento
+    valor: Una sesión individual de coaching de 30 minutos, online
+  - etiqueta: Acceso
+    valor: 30 días corridos para descargarlo; después es tuyo
+
+paraQuien:
+  titulo: ¿Para quién es este ebook?
+  items:
+    - Te cuesta estar en el presente porque la cabeza se te va a lo que pasó o a lo que podría pasar.
+    - Siempre elegiste pensando en los demás, y hoy no tenés tan claro qué querés vos.
+    - Hay frases que te repetís («ya es tarde», «no me lo merezco») y querés saber de dónde vienen.
+    - Te hace bien escribir, o querés probar, y buscás ejercicios guiados.
+    - Querés empezar a trabajar en vos con algo simple, a tu ritmo y a un precio accesible.
+  cierre: Si te reconocés en alguna, este material es un buen comienzo.
+
+programa:
+  titulo: Qué vas a encontrar en el ebook
+  texto: Cinco capítulos con lecturas guiadas, ejercicios de reflexión y propuestas de escritura consciente. Tocá cada bloque para ver de qué se trata.
+  enfoques:
+    - id: autoconocimiento
+      icono: coaching
+      titulo: Autoconocimiento
+      resumen: Mirarte con honestidad y sin juzgarte.
+      descripcion: Lecturas y ejercicios para reconocer cómo estás hoy, qué te importa y qué te quita energía. El punto de partida de todo lo demás.
+    - id: culpa-y-preocupacion
+      icono: hipnosis
+      titulo: Entre el pasado y el futuro
+      resumen: La culpa y la preocupación, mirándolas de frente.
+      descripcion: Vas a reconocer cómo la culpa por lo que pasó y la preocupación por lo que viene influyen en lo que hacés hoy, y a practicar volver al presente.
+    - id: creencias
+      icono: pnl
+      titulo: Creencias y pensamientos
+      resumen: Las frases que deciden por vos.
+      descripcion: Guías para identificar creencias y patrones que condicionan tu forma de vivir, con herramientas de coaching, PNL e inteligencia emocional para revisarlas.
+    - id: journaling
+      icono: coaching
+      titulo: Escritura consciente
+      resumen: El papel como espacio para pensar.
+      descripcion: Propuestas de journaling para ordenar lo que sentís, ponerle palabras y verlo con más claridad. También incluye prácticas de mindfulness.
+    - id: decisiones
+      icono: coaching
+      titulo: Propósito, metas y hábitos
+      resumen: De lo que descubriste a lo que elegís.
+      descripcion: Ejercicios para definir metas personales, tomar decisiones desde lo que te importa y sostenerlas con hábitos y liderazgo personal.
+
+carrusel:
+  titulo: Un ejercicio para empezar hoy
+  texto: Deslizá las placas. Es el mismo carrusel que compartimos en Instagram.
+  imagenes:
+    - { src: /images/carruseles/conocerte-para-elegir/1.webp, alt: "«Vivo entre la culpa por lo que hice y el miedo por lo que viene.»" }
+    - { src: /images/carruseles/conocerte-para-elegir/2.webp, alt: "Me lo dicen muchas mujeres. La cabeza se va al pasado o al futuro, y el presente se nos escapa." }
+    - { src: /images/carruseles/conocerte-para-elegir/3.webp, alt: "Un ejercicio: tomá una hoja y dividila en dos. A la izquierda, lo que te pesa de ayer. A la derecha, lo que te preocupa de mañana." }
+    - { src: /images/carruseles/conocerte-para-elegir/4.webp, alt: "Un ejercicio: abajo, escribí una sola cosa que sí depende de vos hoy. Solo una. Ahí empieza a aparecer tu elección." }
+    - { src: /images/carruseles/conocerte-para-elegir/5.webp, alt: "Conocerte no es egoísmo. Es la base para elegir mejor, también por los que querés." }
+    - { src: /images/carruseles/conocerte-para-elegir/6.webp, alt: "Conocerte para Elegir: un ebook en PDF de 5 capítulos, con ejercicios y journaling. Incluye una sesión de coaching de 30 minutos conmigo. Es pago: $15.000." }
+    - { src: /images/carruseles/conocerte-para-elegir/7.webp, alt: "Para quién es: para quien siempre eligió por los demás, para quien quiere volver al presente, para quien busca empezar por algo simple, a su ritmo." }
+    - { src: /images/carruseles/conocerte-para-elegir/8.webp, alt: "¿Qué escribiste en la línea de abajo? Contámelo en los comentarios, leo cada uno. Soy Fernanda, de Visión en Acción." }
+
+instituto:
+  titulo: Qué recibís y cómo seguir
+  recibis:
+    - El ebook Conocerte para Elegir en PDF, con 5 capítulos de lecturas guiadas.
+    - Ejercicios de reflexión y propuestas de escritura consciente (journaling) en cada capítulo.
+    - Una sesión individual de coaching de 30 minutos, online y sin costo adicional (con reserva previa, según agenda y cupos del mes).
+    - 30 días corridos para descargarlo. Lo que descargás queda para vos.
+  encuentros: El ebook es para hacer a tu ritmo. Si después querés seguir acompañada y en comunidad, podés sumarte a los encuentros en vivo de la membresía. Es opcional.
+  membresia: true
+
+docentes:
+  titulo: Quién lo escribió
+  personas:
+    - id: docente-fernanda
+      nombre: Fernanda Rodríguez
+      bio: Fundadora y directora del Instituto Visión en Acción, formadora en coaching y desarrollo personal. Escribió este ebook y es quien te acompaña en la sesión de coaching.
+      foto: /images/instructor-portrait.jpg
+      alt: Retrato de Fernanda Rodríguez
+      ancho: 673
+      alto: 1437
+
+oferta:
+  titulo: Conseguí tu ebook
+  destacado: Descarga inmediata al habilitarte · Sesión de coaching incluida
+  texto: Es un producto pago. Te escribimos por WhatsApp con los datos para el pago, te habilitamos la descarga y coordinamos tu sesión de coaching.
+  precios:
+    - periodo: Ebook + sesión de coaching de 30 min
+      valores: [$15.000 en Argentina]
+
+preguntas:
+  - pregunta: ¿Cómo lo compro?
+    respuesta: Tocá «Quiero el ebook» y dejá tus datos. Te escribimos por WhatsApp con los datos para el pago y te habilitamos la descarga.
+  - pregunta: ¿Cuánto tiempo tengo para descargarlo?
+    respuesta: 30 días corridos desde que te habilitamos el acceso. Lo que descargues queda para tu uso personal; pasado ese plazo, la descarga desde la plataforma se cierra.
+  - pregunta: ¿Cómo es la sesión de coaching?
+    respuesta: Es una sesión individual de 30 minutos, online y sin costo adicional, una por persona. Se reserva con anticipación y depende de la agenda y de los cupos del mes.
+  - pregunta: ¿Necesito experiencia previa?
+    respuesta: No. Está pensado para empezar desde cero, con lecturas simples y ejercicios guiados.
+  - pregunta: ¿Reemplaza una terapia?
+    respuesta: No. Es un material de desarrollo personal. No reemplaza la atención médica ni psicológica.
+
+cierre:
+  titulo: El presente es donde se elige
+  texto: Dejá tus datos y te escribimos por WhatsApp para que empieces con tu ebook.
+
+reserva:
+  titulo: Quiero el ebook Conocerte para Elegir
+  texto: Dejanos tus datos y te escribimos por WhatsApp con los datos para el pago y la descarga.
+  gracias: Te vamos a escribir para pasarte los datos de pago y habilitarte la descarga. Si querés, podés escribirnos ahora por WhatsApp.
