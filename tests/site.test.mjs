@@ -23,9 +23,11 @@ test('the formation hero introduces the integrated training and keeps the reserv
   }
   assert.match(hero, /data-modal-open="reservar"[^>]*>Reservar mi lugar<\/a>/);
   assert.match(hero, /href="#docentes">Conocer a los formadores<\/a>/);
-  assert.match(hero, /class="formation-hero-art" aria-hidden="true">\s*<span class="formation-hero-sphere"><\/span>/);
-  assert.match(hero, /class="formation-hero-sculpture" src="\/images\/formation-sculpture-base\.webp"[^>]*alt=""/);
-  assert.match(hero, /srcset="\/images\/formation-sculpture-base-mobile\.webp 480w, \/images\/formation-sculpture-base\.webp 960w"/);
+  // The hero shows its own 3D animation (three generations in a circle of light) instead of the sculpture.
+  assert.match(hero, /class="hero-animacion" aria-hidden="true">\s*<div class="cb" aria-hidden="true">/);
+  for (const figure of ['abuela', 'madre', 'hija']) assert.match(hero, new RegExp(`cb-spot-${figure}`));
+  assert.doesNotMatch(hero, /formation-hero-sculpture/);
+  assert.match(html, /@media \(prefers-reduced-motion: reduce\)[^}]*\.cb \*/);
   assert.doesNotMatch(hero, /formation-paths\.svg/);
   assert.doesNotMatch(hero, /class="emblem"|favicon\.svg/);
 });

@@ -17,6 +17,9 @@ tarjeta:
 whatsapp:
   mensaje: Hola, quisiera conocer el arancel y los pasos de inscripción para la formación Consultorio del Bienestar.
 
+# Animación del hero: src/components/animaciones/ConsultorioBienestar.astro (tres generaciones en un círculo de luz).
+animacion: consultorio-bienestar
+
 hero:
   bajada: Aprendé a integrar cinco enfoques de acompañamiento mientras explorás tu propia historia.
   datos:
@@ -27,10 +30,6 @@ hero:
   linkSecundario:
     texto: Conocer a los formadores
     href: "#docentes"
-  imagen:
-    src: /images/formation-sculpture-base.webp
-    srcMobile: /images/formation-sculpture-base-mobile.webp
-    esfera: true
 
 # Frase de la clienta ideal (Lorena), la misma que usa el anuncio. Ver README → "A quién le hablamos".
 gancho:
