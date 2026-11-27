@@ -73,6 +73,18 @@ instituto:
 
 `instituto: false` oculta el bloque entero (por ejemplo, en la landing de la propia membresía si se prefiere).
 
+### Carrusel (`carrusel:`, opcional)
+
+Las placas del carrusel de Instagram del curso, en una tira que se desliza (antes del bloque del instituto).
+Placas 1080x1350 en `public/images/carruseles/<slug>/1.webp`, `2.webp`, …
+
+```yaml
+carrusel:
+  titulo: Lo que contamos en Instagram
+  imagenes:
+    - { src: /images/carruseles/mindfulness/1.webp, alt: "Texto de la placa 1" }
+```
+
 ### Precio
 
 Si el curso tiene precio publicado va en `oferta.precios`. Si no lo tiene, dejá `oferta` sin `precios` y la página
