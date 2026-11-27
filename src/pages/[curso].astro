@@ -1,0 +1,194 @@
+---
+// Course landing template: one page per file in src/content/cursos/ (formacion.yaml → /formacion/).
+// Built to receive ad traffic: no navigation menu, one action ("Reservar mi lugar") repeated along the page.
+import { getCollection, type CollectionEntry } from 'astro:content';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import TopicGrid from '../components/TopicGrid.astro';
+import LeadModal from '../components/LeadModal.astro';
+import Emblem from '../components/Emblem.astro';
+import { whatsappUrl } from '../data/contacto';
+
+export async function getStaticPaths() {
+  const cursos = await getCollection('cursos', ({ data }) => data.publicado);
+  return cursos.map((curso) => ({ params: { curso: curso.id }, props: { curso } }));
+}
+
+interface Props { curso: CollectionEntry<'cursos'> }
+const { curso } = Astro.props;
+const c = curso.data;
+const whatsapp = whatsappUrl(c.whatsapp.mensaje);
+const cta = c.hero.boton;
+---
+<SiteLayout title={c.seo.titulo ?? `${c.nombre} | Instituto Visión en Acción`} description={c.seo.descripcion} landing>
+  <section class="site-hero hero-formation">
+    <div class="wrap site-hero-grid">
+      <div class="hero-copy">
+        <h1>{c.nombre}</h1>
+        <p>{c.hero.bajada}</p>
+        {c.hero.datos.length > 0 && (
+          <ul class="formation-hero-facts" role="list">
+            {c.hero.datos.map((dato) => <li>{dato}</li>)}
+          </ul>
+        )}
+        <div class="hero-actions">
+          <a class="button" href={whatsapp} data-modal-open="reservar">{cta}</a>
+          {c.hero.linkSecundario && <a class="hero-link" href={c.hero.linkSecundario.href}>{c.hero.linkSecundario.texto}</a>}
+        </div>
+        {c.hero.nota && <p class="cta-note">{c.hero.nota}</p>}
+      </div>
+      {c.hero.imagen ? (
+        <div class="formation-hero-art" aria-hidden="true">
+          {c.hero.imagen.esfera && <span class="formation-hero-sphere"></span>}
+          <img
+            class="formation-hero-sculpture"
+            src={c.hero.imagen.src}
+            srcset={c.hero.imagen.srcMobile ? `${c.hero.imagen.srcMobile} 480w, ${c.hero.imagen.src} 960w` : undefined}
+            sizes={c.hero.imagen.srcMobile ? '(max-width: 720px) 18rem, 28rem' : undefined}
+            alt=""
+            width="960"
+            height="960"
+          />
+        </div>
+      ) : (
+        <Emblem formation />
+      )}
+    </div>
+  </section>
+
+  {c.gancho && (
+    <section class="hook" aria-label="Para quién es">
+      <div class="wrap hook-inner" data-reveal>
+        <blockquote class="hook-quote">«{c.gancho.frase}»</blockquote>
+        {c.gancho.texto && <p>{c.gancho.texto}</p>}
+      </div>
+    </section>
+  )}
+
+  {c.cursada.length > 0 && (
+    <div class="facts formation-facts" id="cursada">
+      <dl class="wrap facts-grid">
+        {c.cursada.map(({ etiqueta, valor }) => (
+          <div><dt>{etiqueta}</dt><dd>{valor}</dd></div>
+        ))}
+      </dl>
+    </div>
+  )}
+
+  {c.paraQuien && (
+    <section class="wrap section split" id="para-quien" data-reveal>
+      <h2>{c.paraQuien.titulo}</h2>
+      <div>
+        <ul class="pain-list">
+          {c.paraQuien.items.map((item) => <li>{item}</li>)}
+        </ul>
+        {c.paraQuien.cierre && <p class="pain-close">{c.paraQuien.cierre}</p>}
+      </div>
+    </section>
+  )}
+
+  {c.programa && (
+    <section class="band program-index" id="programa">
+      <div class="wrap section split" data-reveal>
+        <div>
+          <h2>{c.programa.titulo}</h2>
+          {c.programa.texto && <p>{c.programa.texto}</p>}
+          <a class="button button-dark" href={whatsapp} data-modal-open="reservar">{cta}</a>
+        </div>
+        <TopicGrid topics={c.programa.enfoques} courseName={c.nombre} />
+      </div>
+    </section>
+  )}
+
+  {c.incluye && (
+    <section class="wrap section" id="incluye">
+      <h2 data-reveal>{c.incluye.titulo}</h2>
+      <ul class="gain-grid" data-reveal-group>
+        {c.incluye.items.map(({ titulo, texto }) => (
+          <li><h3>{titulo}</h3><p>{texto}</p></li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  {c.docentes && (
+    <section class="band" id="docentes">
+      <div class="wrap section" data-reveal>
+        <h2>{c.docentes.titulo}</h2>
+        <div class="instructor-list">
+          {c.docentes.personas.map((persona) => (
+            <article class="instructor-profile" aria-labelledby={persona.id}>
+              {persona.foto && (
+                <img
+                  class="instructor-portrait"
+                  src={persona.foto}
+                  alt={persona.alt ?? `Retrato de ${persona.nombre}`}
+                  width={persona.ancho}
+                  height={persona.alto}
+                  style={persona.encuadre ? `object-position: ${persona.encuadre}` : undefined}
+                  loading="lazy"
+                  decoding="async"
+                />
+              )}
+              <div>
+                <h3 id={persona.id}>{persona.nombre}</h3>
+                <p>{persona.bio}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {c.oferta && (
+    <section class="band band-dark" id="oferta">
+      <div class="wrap section offer" data-reveal>
+        <div>
+          <h2>{c.oferta.titulo}</h2>
+          {c.oferta.destacado && <p><strong>{c.oferta.destacado}</strong></p>}
+          {c.oferta.texto && <p>{c.oferta.texto}</p>}
+        </div>
+        {c.oferta.precios.length > 0 && (
+          <dl class="offer-list" aria-label="Arancel">
+            {c.oferta.precios.map(({ periodo, valores }) => (
+              <div><dt>{periodo}</dt><dd>{valores.map((valor, i) => <>{i > 0 && <br />}{valor}</>)}</dd></div>
+            ))}
+          </dl>
+        )}
+        <a class="button" href={whatsapp} data-modal-open="reservar">{cta}</a>
+      </div>
+    </section>
+  )}
+
+  {c.preguntas.length > 0 && (
+    <section class="wrap section split" id="preguntas" data-reveal>
+      <h2>Preguntas frecuentes</h2>
+      <div class="faq">
+        {c.preguntas.map(({ pregunta, respuesta }) => (
+          <details>
+            <summary>{pregunta}</summary>
+            <p>{respuesta}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {c.cierre && (
+    <section class="band band-dark">
+      <div class="wrap section invitation" data-reveal>
+        <h2>{c.cierre.titulo}</h2>
+        {c.cierre.texto && <p>{c.cierre.texto}</p>}
+        <a class="button" href={whatsapp} data-modal-open="reservar">{cta}</a>
+      </div>
+    </section>
+  )}
+
+  <LeadModal
+    funnel={c.planilla ?? curso.id}
+    whatsappMessage={c.whatsapp.mensaje}
+    title={c.reserva.titulo}
+    text={c.reserva.texto}
+    thanks={c.reserva.gracias}
+  />
+</SiteLayout>

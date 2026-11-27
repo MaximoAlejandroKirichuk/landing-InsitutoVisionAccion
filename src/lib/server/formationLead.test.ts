@@ -47,4 +47,21 @@ describe('validateFormationLeadPayload', () => {
     ]);
     expect(row.slice(10).every((cell) => cell === '')).toBe(true);
   });
+
+  it('tags the lead with the course slug and keeps the campaign UTMs', () => {
+    const utm = { utm_source: 'facebook', utm_medium: 'paid', utm_campaign: 'taller-enero', evil: 'x' };
+    const result = validateFormationLeadPayload({ contact, funnel: 'taller-tarot', utm }, metadata);
+    if (!result.ok) throw new Error('expected ok');
+    expect(result.submission.funnelSlug).toBe('taller-tarot');
+    expect(result.submission.metadata.utm).toEqual({ utm_source: 'facebook', utm_medium: 'paid', utm_campaign: 'taller-enero' });
+    const row = buildFunnelSubmissionRow(result.submission, 'lead-2');
+    expect(row.slice(-5)).toEqual(['facebook', 'paid', 'taller-enero', '', '']);
+  });
+
+  it.each([['uppercase', 'Taller'], ['spaces', 'mi curso'], ['not a string', 3], ['too long', 'a'.repeat(61)]])(
+    'rejects a course slug with %s',
+    (_label, funnel) => {
+      expect(validateFormationLeadPayload({ contact, funnel }, metadata).ok).toBe(false);
+    },
+  );
 });

@@ -46,6 +46,9 @@ import ThankYou from './ThankYou.astro';
   import { QUIZ_QUESTIONS } from '../lib/quizData';
   import { validateQuizAnswer, validateLead } from '../lib/validation';
   import { submitFunnel } from '../lib/api/index';
+  import { captureUtm } from '../lib/utm';
+
+  const utm = captureUtm();
 
   /* ── State ────────────────────────────────── */
 
@@ -494,7 +497,7 @@ import ThankYou from './ThankYou.astro';
     state = setSubmitting(state, true);
     renderLeadStep();
 
-    const payload = buildSubmission(state);
+    const payload = buildSubmission(state, utm);
     const result = await submitFunnel(payload);
 
     if (result.ok) {

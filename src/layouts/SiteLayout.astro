@@ -4,9 +4,10 @@ import '../styles/site.css';
 interface Props {
   title: string;
   description: string;
-  formation?: boolean;
+  /** Ad landing (course pages, Método VIA): no navigation menu, so the page keeps a single goal. */
+  landing?: boolean;
 }
-const { title, description, formation = false } = Astro.props;
+const { title, description, landing = false } = Astro.props;
 const instituteLogo = '/favicon.svg';
 const instituteMark = `${instituteLogo}#svgView(viewBox(101,104,153,153))`;
 ---
@@ -29,28 +30,20 @@ const instituteMark = `${instituteLogo}#svgView(viewBox(101,104,153,153))`;
           <img class="brand-mark" src={instituteMark} alt="" width="42" height="42" />
           <span><small>Instituto</small>Visión en Acción</span>
         </a>
-        <nav aria-label={formation ? 'En esta página' : 'Principal'}>
-          {formation ? (
-            <>
-              <a href="#programa">Programa</a>
-              <a href="#preguntas">Preguntas</a>
-              <a href="#oferta">Inscripción</a>
-            </>
-          ) : (
-            <>
-              <a href="#instituto">El instituto</a>
-              <a href="#orientacion">Orientación</a>
-              <a href="/formacion/">Formación</a>
-            </>
-          )}
-        </nav>
+        {!landing && (
+          <nav aria-label="Principal">
+            <a href="#instituto">El instituto</a>
+            <a href="#propuestas">Propuestas</a>
+            <a href="#fernanda">Quién está detrás</a>
+          </nav>
+        )}
       </div>
     </header>
     <main id="contenido"><slot /></main>
     <footer class="site-footer">
       <div class="wrap footer-row">
         <span>Instituto Visión en Acción</span>
-        {formation ? <a href="/">Volver al instituto</a> : <a href="/formacion/">Explorar la formación</a>}
+        {landing ? <a href="/">Conocer el instituto</a> : <a href="/metodo-via/">Hacé el Mapa Inicial VIA</a>}
       </div>
     </footer>
     <script>

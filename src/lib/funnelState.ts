@@ -42,7 +42,8 @@ export interface FunnelState {
 /** Frontend-owned submission payload (matches the adapter contract). */
 export interface FunnelSubmission {
   academySlug: 'instituto-vision-accion';
-  funnelSlug: 'via-orientation' | 'formacion-bio-coaching';
+  /** 'via-orientation' for the quiz, or the course's sheet slug (e.g. 'formacion-bio-coaching'). */
+  funnelSlug: string;
   contact: LeadData;
   answers: Array<{
     questionId: string;
@@ -54,6 +55,8 @@ export interface FunnelSubmission {
     submittedAt: string;
     userAgent: string;
     referrer?: string;
+    /** Campaign params (utm_source, utm_campaign…) captured on the landing page. */
+    utm?: Partial<Record<'utm_source' | 'utm_medium' | 'utm_campaign' | 'utm_content' | 'utm_term', string>>;
   };
 }
 
@@ -205,7 +208,10 @@ export function setSubmitError(state: FunnelState, error: string): FunnelState {
 
 /* ── Submission Builder ─────────────────────── */
 
-export function buildSubmission(state: FunnelState): FunnelSubmission {
+export function buildSubmission(
+  state: FunnelState,
+  utm?: FunnelSubmission['metadata']['utm'],
+): FunnelSubmission {
   const answers = QUIZ_QUESTIONS.map((q) => ({
     questionId: q.id,
     type: q.type,
@@ -221,6 +227,7 @@ export function buildSubmission(state: FunnelState): FunnelSubmission {
     metadata: {
       submittedAt: new Date().toISOString(),
       userAgent: navigator.userAgent,
+      ...(utm && Object.keys(utm).length > 0 ? { utm } : {}),
     },
   };
 }

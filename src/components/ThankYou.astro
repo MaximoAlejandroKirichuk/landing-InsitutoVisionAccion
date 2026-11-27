@@ -1,5 +1,7 @@
 ---
-import { formationName } from '../data/formation';
+import { getEntry } from 'astro:content';
+
+const formationName = (await getEntry('cursos', 'formacion'))?.data.nombre ?? 'Consultorio del Bienestar';
 
 // ThankYou — post-submission confirmation with WhatsApp CTA.
 // Rendered as the final consultation panel in the funnel.

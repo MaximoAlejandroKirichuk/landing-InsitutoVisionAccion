@@ -348,3 +348,82 @@ details p { padding-inline-end: 1.8rem; }
 .hero-link:hover { color: var(--gold); }
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* ── Home: offer cards (one per landing page) ── */
+.section-lead { max-width: 52ch; margin-top: 1rem; }
+.offer-cards { list-style: none; margin: clamp(1.5rem, 3vw, 2.5rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: clamp(.9rem, 2vw, 1.5rem); }
+.offer-cards > li { display: flex; }
+.offer-card {
+  display: flex; flex-direction: column; gap: .7rem; width: 100%;
+  padding: clamp(1.4rem, 3vw, 2rem); text-decoration: none; color: var(--ink);
+  background: var(--paper); border: 1px solid var(--line); border-top: 3px solid var(--gold); border-radius: var(--radius-lg);
+  transition: translate .25s var(--ease-out), box-shadow .25s var(--ease-out);
+}
+.offer-card:hover { translate: 0 -3px; box-shadow: var(--shadow); }
+.offer-card:focus-visible { outline-color: var(--plum); }
+.offer-card-tag { font-size: .8rem; font-weight: 650; letter-spacing: .06em; text-transform: uppercase; color: var(--plum); }
+.offer-card-title { font: 550 clamp(1.6rem, 3vw, 2.1rem)/1.1 var(--display); letter-spacing: -.02em; }
+.offer-card-text { flex: 1; color: var(--body); }
+.offer-card-more { display: inline-flex; align-items: center; gap: .5rem; margin-top: .4rem; font-weight: 650; color: var(--plum); }
+.offer-card-more::after { content: ""; width: .5rem; height: .5rem; border: solid currentColor; border-width: 2px 2px 0 0; rotate: 45deg; transition: translate .2s var(--ease-out); }
+.offer-card:hover .offer-card-more::after { translate: 3px 0; }
+blockquote { margin: 1.4rem 0 0; padding-inline-start: 1.1rem; border-inline-start: 2px solid var(--gold); font: italic 400 1.15rem/1.5 var(--display); color: var(--ink); }
+@media (prefers-reduced-motion: reduce) {
+  .offer-card, .offer-card-more::after { transition: none; }
+  .offer-card:hover { translate: 0; }
+}
+
+/* ── Home hero: breathing aura (wellness) ──── */
+.breath { position: relative; width: min(100%, 29rem); aspect-ratio: 1; justify-self: center; display: grid; place-items: center; isolation: isolate; }
+.breath > * { grid-area: 1 / 1; }
+.breath-aura {
+  width: 92%; aspect-ratio: 1; z-index: -2;
+  border-radius: 46% 54% 52% 48% / 50% 46% 54% 50%;
+  background: radial-gradient(circle at 50% 45%, #d9c3d6cc 0%, #ae92a680 34%, #6d4f8540 60%, transparent 72%);
+  filter: blur(18px);
+}
+.breath-ripple { width: 46%; aspect-ratio: 1; border-radius: 50%; border: 1px solid #ecc98466; z-index: -1; opacity: 0; }
+.breath-ring { width: 54%; aspect-ratio: 1; border-radius: 50%; border: 1px solid #ecc98452; }
+.breath-core {
+  width: 42%; aspect-ratio: 1; display: grid; place-items: center; border-radius: 50%;
+  background: radial-gradient(circle at 50% 38%, #fffdf9 0%, var(--paper) 62%, #efe4ec 100%);
+  box-shadow: 0 0 0 10px #fbf7f114, 0 0 60px 8px #ecc98433, 0 26px 50px -24px rgba(8, 2, 14, .7);
+}
+.breath-core img { width: 68%; height: auto; }
+.breath-sphere {
+  width: 13%; aspect-ratio: 1; border-radius: 50%; align-self: start; justify-self: end; margin: 17% 13% 0 0;
+  background: radial-gradient(circle at 65% 26%, #e3cfdc 0%, #ae92a6 28%, #89717f 62%, #5a4352 96%);
+  box-shadow: 0 18px 28px -14px rgba(8, 2, 14, .6);
+}
+.breath-caption { align-self: end; margin-bottom: 4%; color: var(--gold); font-size: clamp(.7rem, 1.15vw, .86rem); letter-spacing: .04em; }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* One slow breath: about 4s in, 4s out. */
+  .breath-aura { animation: breath-aura 8s ease-in-out infinite, breath-morph 24s ease-in-out infinite; }
+  .breath-core { animation: breath-core 8s ease-in-out infinite; }
+  .breath-ripple { animation: breath-ripple 12s cubic-bezier(.22, .6, .36, 1) infinite; }
+  .breath-ripple:nth-of-type(3) { animation-delay: 4s; }
+  .breath-ripple:nth-of-type(4) { animation-delay: 8s; }
+  .breath-sphere { animation: breath-float 9s ease-in-out infinite; }
+}
+@media (prefers-reduced-motion: reduce) { .breath-ripple:nth-of-type(2) { opacity: .5; scale: 1.5; } }
+@keyframes breath-aura { 0%, 100% { scale: .9; opacity: .75; } 50% { scale: 1.04; opacity: 1; } }
+@keyframes breath-morph {
+  0%, 100% { border-radius: 46% 54% 52% 48% / 50% 46% 54% 50%; rotate: 0deg; }
+  50% { border-radius: 54% 46% 48% 52% / 46% 54% 50% 50%; rotate: 25deg; }
+}
+@keyframes breath-core { 0%, 100% { scale: 1; } 50% { scale: 1.035; } }
+@keyframes breath-ripple { 0% { scale: 1; opacity: 0; } 15% { opacity: .9; } 100% { scale: 2.05; opacity: 0; } }
+@keyframes breath-float { 0%, 100% { translate: 0 0; } 50% { translate: -10% -45%; } }
+@media (max-width: 40rem) { .breath { width: min(82%, 19rem); } }
+
+/* ── Home: founder portrait next to "Quién está detrás" ── */
+.founder-portrait { width: min(100%, 21rem); height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 8%; margin-top: clamp(1.5rem, 3vw, 2.25rem); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+@media (max-width: 40rem) { .founder-portrait { width: min(100%, 17rem); margin-top: 1rem; } }
+
+/* ── Hook: the ideal client's own words, echoing the ad that brought her ── */
+.hook { background: var(--paper); }
+.hook-inner { max-width: 46rem; padding-block: clamp(2.8rem, 6vw, 5rem); text-align: center; }
+.hook-quote { margin: 0; padding: 0; border: 0; font: italic 450 clamp(1.6rem, 3.6vw, 2.6rem)/1.25 var(--display); letter-spacing: -.01em; color: var(--plum); text-wrap: balance; }
+.hook-inner p { max-width: 38rem; margin: 1.2rem auto 0; font-size: clamp(1rem, 1.6vw, 1.12rem); }
+.note { font-size: .9rem; opacity: .85; }

@@ -1,0 +1,115 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# PLANTILLA DE CURSO
+# 1. Copiá este archivo en esta misma carpeta y cambiale el nombre.
+#    El nombre del archivo es la dirección de la página:
+#      taller-tarot.yaml  →  https://sitio/taller-tarot/
+#    Usá minúsculas, sin acentos ni espacios (guiones en lugar de espacios).
+# 2. Completá los textos. Las secciones marcadas (opcional) se pueden borrar
+#    enteras y la página simplemente no las muestra.
+# 3. Subí el cambio a GitHub (main) y Netlify publica la página sola.
+# Este archivo empieza con "_" así que nunca se publica.
+#
+# A QUIÉN LE HABLAMOS: a Lorena (ver README → "A quién le hablamos").
+#   · Frases en primera persona, como las diría ella. Nunca señalarla ("¿Tus hijos te aíslan?").
+#   · No prometer que los hijos vuelvan ni que la relación se arregle.
+#   · Decir que es pago. Una sola idea y una sola acción por página.
+#   · No inventar testimonios.
+# ─────────────────────────────────────────────────────────────────────────────
+
+nombre: Nombre del curso
+publicado: true        # false = la página no se publica (borrador)
+mostrarEnHome: true    # false = no aparece como tarjeta en la home (útil para landings solo de anuncios)
+orden: 10              # orden de la tarjeta en la home (menor = primero)
+# planilla: nombre-del-curso   # (opcional) cómo aparece en la columna funnel_slug de la planilla. Por defecto, el nombre del archivo.
+
+seo:
+  titulo: Nombre del curso | Instituto Visión en Acción   # (opcional) título de la pestaña y de Google
+  descripcion: Una o dos oraciones que resuman el curso. Es lo que muestran Google y WhatsApp al compartir el link.
+
+tarjeta:               # cómo se ve el curso en la home
+  etiqueta: Taller · 4 encuentros
+  resumen: Una oración que diga qué te llevás del curso.
+  boton: Conocer el taller
+
+whatsapp:
+  mensaje: Hola, quisiera conocer el arancel y los pasos de inscripción para el curso Nombre del curso.
+
+hero:                  # lo primero que se ve
+  bajada: La promesa del curso en una oración.
+  datos:               # (opcional) datos cortos debajo de la bajada
+    - 4 encuentros
+    - En vivo
+    - Inicio en marzo
+  boton: Reservar mi lugar
+  nota: Te escribimos para confirmar disponibilidad y explicarte cómo inscribirte.   # (opcional)
+  # linkSecundario:    # (opcional) segundo link al lado del botón
+  #   texto: Ver el programa
+  #   href: "#programa"
+  # imagen:            # (opcional) imagen a la derecha; si no hay, va el emblema del instituto
+  #   src: /images/mi-curso.webp       # poné el archivo en public/images/
+  #   srcMobile: /images/mi-curso-mobile.webp   # (opcional) versión liviana para celular
+
+gancho:                # (opcional, recomendado) la MISMA frase de Lorena que usa el anuncio que trae a esta página
+  frase: Mi hija me busca… y yo le pongo excusas.
+  texto: Lo que no miramos de nuestra historia, se repite en la de nuestros hijos. El cambio no empieza por tus hijos. Empieza por vos.
+
+cursada:               # (opcional) franja de datos prácticos
+  - etiqueta: Modalidad
+    valor: En vivo por Google Meet
+  - etiqueta: Días y horario
+    valor: Martes, 19 hs (Argentina)
+
+paraQuien:             # (opcional)
+  titulo: ¿Para quién es este curso?
+  items:
+    - Una situación en la que Lorena se reconozca, en segunda persona amable ("Ves que tus hijos repiten…").
+    - Otra situación.
+  cierre: Si te reconocés en alguna, este curso está pensado para vos.
+
+programa:              # (opcional) cada enfoque es una tarjeta que abre un modal
+  titulo: Qué vas a ver
+  texto: Tocá cada bloque para ver de qué se trata.
+  enfoques:
+    - id: bloque-1     # minúsculas y guiones, distinto en cada bloque
+      icono: coaching  # (opcional) coaching, tarot, biodescodificacion, hipnosis, pnl
+      titulo: Primer bloque
+      resumen: Una línea simple.
+      descripcion: Un párrafo que se muestra al abrir el bloque.
+
+incluye:               # (opcional)
+  titulo: Qué incluye
+  items:
+    - titulo: Grabaciones
+      texto: Explicación corta.
+
+docentes:              # (opcional)
+  titulo: Quién dicta el curso
+  personas:
+    - id: docente-fernanda
+      nombre: Fernanda Rodríguez
+      bio: Una o dos oraciones.
+      foto: /images/instructor-portrait.jpg   # (opcional) foto real, en public/images/
+      alt: Retrato de Fernanda Rodríguez
+      ancho: 673         # medidas de la foto en píxeles (opcional)
+      alto: 1437
+
+oferta:                # (opcional)
+  titulo: Próxima cursada
+  destacado: Marzo de 2027 · Cupos limitados
+  texto: Cómo y cuándo se paga.
+  precios:
+    - periodo: Arancel
+      valores: [ARS 00.000 en Argentina, USD 00 desde el exterior]
+
+preguntas:             # (opcional)
+  - pregunta: ¿Cómo me inscribo?
+    respuesta: Tocá «Reservar mi lugar» y dejá tus datos. Te contactamos por WhatsApp.
+
+cierre:                # (opcional) último llamado antes del pie
+  titulo: Reservá tu lugar en la próxima cursada
+  texto: Dejá tus datos y te escribimos para confirmar disponibilidad.
+
+# reserva:             # (opcional) textos del formulario emergente
+#   titulo: Reservá tu lugar en la próxima cursada
+#   texto: Dejanos tus datos y te escribimos con la fecha de inicio, el arancel y los pasos de inscripción.
+#   gracias: Te vamos a escribir para contarte la fecha de inicio y el arancel.
