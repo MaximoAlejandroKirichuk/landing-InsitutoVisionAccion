@@ -373,49 +373,49 @@ blockquote { margin: 1.4rem 0 0; padding-inline-start: 1.1rem; border-inline-sta
   .offer-card:hover { translate: 0; }
 }
 
-/* ── Home hero: 3D orbit around the logo ───── */
-.orbit3d { position: relative; width: min(100%, 30rem); aspect-ratio: 1; justify-self: center; display: grid; place-items: center; perspective: 1100px; }
-.orbit3d-scene { position: relative; width: 100%; height: 100%; display: grid; place-items: center; transform-style: preserve-3d; transform: rotateX(-6deg); }
-.orbit3d-plane { position: absolute; inset: 6%; transform-style: preserve-3d; transform: rotateX(72deg); }
-.orbit3d-ring { position: absolute; border-radius: 50%; border: 1.5px solid #ecc98480; box-shadow: 0 0 24px #ecc98422; }
-.orbit3d-ring-outer { inset: 0; }
-.orbit3d-ring-inner { inset: 10%; border-style: dashed; border-color: #ecc98455; }
-.orbit3d-spin { position: absolute; inset: 0; transform-style: preserve-3d; }
-.orbit3d-arm { position: absolute; top: 50%; left: 100%; width: 0; height: 0; transform-style: preserve-3d; }
-.orbit3d-arm-inner { left: 10%; }
-.orbit3d-sphere, .orbit3d-spark { position: absolute; border-radius: 50%; transform: rotateX(-72deg); }
-.orbit3d-sphere {
-  width: clamp(2.6rem, 9vw, 4.4rem); aspect-ratio: 1; margin: calc(clamp(2.6rem, 9vw, 4.4rem) / -2);
+/* ── Home hero: breathing aura (wellness) ──── */
+.breath { position: relative; width: min(100%, 29rem); aspect-ratio: 1; justify-self: center; display: grid; place-items: center; isolation: isolate; }
+.breath > * { grid-area: 1 / 1; }
+.breath-aura {
+  width: 92%; aspect-ratio: 1; z-index: -2;
+  border-radius: 46% 54% 52% 48% / 50% 46% 54% 50%;
+  background: radial-gradient(circle at 50% 45%, #d9c3d6cc 0%, #ae92a680 34%, #6d4f8540 60%, transparent 72%);
+  filter: blur(18px);
+}
+.breath-ripple { width: 46%; aspect-ratio: 1; border-radius: 50%; border: 1px solid #ecc98466; z-index: -1; opacity: 0; }
+.breath-ring { width: 54%; aspect-ratio: 1; border-radius: 50%; border: 1px solid #ecc98452; }
+.breath-core {
+  width: 42%; aspect-ratio: 1; display: grid; place-items: center; border-radius: 50%;
+  background: radial-gradient(circle at 50% 38%, #fffdf9 0%, var(--paper) 62%, #efe4ec 100%);
+  box-shadow: 0 0 0 10px #fbf7f114, 0 0 60px 8px #ecc98433, 0 26px 50px -24px rgba(8, 2, 14, .7);
+}
+.breath-core img { width: 68%; height: auto; }
+.breath-sphere {
+  width: 13%; aspect-ratio: 1; border-radius: 50%; align-self: start; justify-self: end; margin: 17% 13% 0 0;
   background: radial-gradient(circle at 65% 26%, #e3cfdc 0%, #ae92a6 28%, #89717f 62%, #5a4352 96%);
-  box-shadow: 0 14px 30px -10px rgba(10, 4, 16, .6);
+  box-shadow: 0 18px 28px -14px rgba(8, 2, 14, .6);
 }
-.orbit3d-spark { width: .7rem; height: .7rem; margin: -.35rem; background: var(--gold); box-shadow: 0 0 14px 3px #ecc98488; }
-.orbit3d-card {
-  position: relative; width: 58%; aspect-ratio: 310 / 215; display: grid; place-items: center; overflow: hidden;
-  border-radius: var(--radius-lg); background: var(--paper);
-  box-shadow: 0 30px 60px -24px rgba(8, 2, 14, .75), 0 0 0 1px #ecc98440;
-  transform: translateZ(0);
-}
-.orbit3d-card img { width: 100%; height: 100%; aspect-ratio: 310 / 215; border-radius: var(--radius-lg); }
-.orbit3d-shadow { position: absolute; bottom: 14%; width: 44%; height: 6%; border-radius: 50%; background: radial-gradient(closest-side, rgba(8, 2, 14, .55), transparent); transform: translateZ(-40px); }
-.orbit3d-caption { position: absolute; bottom: 3%; color: var(--gold); font-size: clamp(.7rem, 1.15vw, .86rem); }
+.breath-caption { align-self: end; margin-bottom: 4%; color: var(--gold); font-size: clamp(.7rem, 1.15vw, .86rem); letter-spacing: .04em; }
 
 @media (prefers-reduced-motion: no-preference) {
-  .orbit3d-spin { animation: orbit3d-spin 16s linear infinite; }
-  .orbit3d-spin .orbit3d-sphere { animation: orbit3d-face 16s linear infinite; }
-  .orbit3d-spin-slow { animation-duration: 26s; animation-direction: reverse; }
-  .orbit3d-spin-slow .orbit3d-spark { animation: orbit3d-face 26s linear infinite reverse; }
-  .orbit3d-card { animation: orbit3d-float 6s ease-in-out infinite; }
-  .orbit3d-shadow { animation: orbit3d-shadow 6s ease-in-out infinite; }
-  .orbit3d-scene { animation: orbit3d-sway 12s ease-in-out infinite; }
+  /* One slow breath: about 4s in, 4s out. */
+  .breath-aura { animation: breath-aura 8s ease-in-out infinite, breath-morph 24s ease-in-out infinite; }
+  .breath-core { animation: breath-core 8s ease-in-out infinite; }
+  .breath-ripple { animation: breath-ripple 12s cubic-bezier(.22, .6, .36, 1) infinite; }
+  .breath-ripple:nth-of-type(3) { animation-delay: 4s; }
+  .breath-ripple:nth-of-type(4) { animation-delay: 8s; }
+  .breath-sphere { animation: breath-float 9s ease-in-out infinite; }
 }
-@keyframes orbit3d-spin { to { transform: rotateZ(360deg); } }
-/* Counter-rotates the sphere so it always faces the viewer while it travels the tilted orbit. */
-@keyframes orbit3d-face { from { transform: rotateZ(0deg) rotateX(-72deg); } to { transform: rotateZ(-360deg) rotateX(-72deg); } }
-@keyframes orbit3d-float { 0%, 100% { transform: translateY(0) rotateY(-6deg); } 50% { transform: translateY(-4%) rotateY(6deg); } }
-@keyframes orbit3d-shadow { 0%, 100% { scale: 1; opacity: 1; } 50% { scale: .82; opacity: .6; } }
-@keyframes orbit3d-sway { 0%, 100% { transform: rotateX(-6deg) rotateY(-5deg); } 50% { transform: rotateX(-10deg) rotateY(5deg); } }
-@media (max-width: 40rem) { .orbit3d { width: min(88%, 20rem); aspect-ratio: 1 / .85; } }
+@media (prefers-reduced-motion: reduce) { .breath-ripple:nth-of-type(2) { opacity: .5; scale: 1.5; } }
+@keyframes breath-aura { 0%, 100% { scale: .9; opacity: .75; } 50% { scale: 1.04; opacity: 1; } }
+@keyframes breath-morph {
+  0%, 100% { border-radius: 46% 54% 52% 48% / 50% 46% 54% 50%; rotate: 0deg; }
+  50% { border-radius: 54% 46% 48% 52% / 46% 54% 50% 50%; rotate: 25deg; }
+}
+@keyframes breath-core { 0%, 100% { scale: 1; } 50% { scale: 1.035; } }
+@keyframes breath-ripple { 0% { scale: 1; opacity: 0; } 15% { opacity: .9; } 100% { scale: 2.05; opacity: 0; } }
+@keyframes breath-float { 0%, 100% { translate: 0 0; } 50% { translate: -10% -45%; } }
+@media (max-width: 40rem) { .breath { width: min(82%, 19rem); } }
 
 /* ── Home: founder portrait next to "Quién está detrás" ── */
 .founder-portrait { width: min(100%, 21rem); height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 8%; margin-top: clamp(1.5rem, 3vw, 2.25rem); border-radius: var(--radius-lg); box-shadow: var(--shadow); }

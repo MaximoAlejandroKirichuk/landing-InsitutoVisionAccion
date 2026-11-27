@@ -34,7 +34,7 @@ test('institutional home presents the institute and links each offer to its own 
   const html = page('index.html');
   assert.match(html, /lang="es-AR"/);
   assert.match(html, /Instituto Visión en Acción/);
-  assert.match(html, /class="orbit3d"[^>]*aria-hidden="true"[\s\S]*?<img src="\/favicon\.svg#svgView\(viewBox\(28,92,310,215\)\)"/);
+  assert.match(html, /class="breath"[^>]*aria-hidden="true"[\s\S]*?<img src="\/favicon\.svg#svgView\(viewBox\(101,104,153,153\)\)"/);
   assert.match(html, /<img\b[^>]*class="founder-portrait"[^>]*src="\/images\/instructor-portrait\.jpg"/);
   assert.doesNotMatch(html, /formation-sculpture|formation-paths\.svg/);
   assert.match(html, /A qué nos dedicamos/);

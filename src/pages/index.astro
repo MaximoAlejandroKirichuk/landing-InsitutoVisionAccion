@@ -2,7 +2,7 @@
 // Institutional home: what the institute does and its current offers. Each offer has its own landing page;
 // course cards come from src/content/cursos/ (mostrarEnHome), so a new course shows up here on its own.
 import { getCollection } from 'astro:content';
-import HeroOrbit from '../components/HeroOrbit.astro';
+import HeroBreath from '../components/HeroBreath.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
 
 const cursos = (await getCollection('cursos', ({ data }) => data.publicado && data.mostrarEnHome))
@@ -39,7 +39,7 @@ const propuestas = [
           <a class="hero-link" href="/metodo-via/">Hacé el Mapa Inicial VIA</a>
         </div>
       </div>
-      <HeroOrbit />
+      <HeroBreath />
     </div>
   </section>
 
