@@ -420,3 +420,10 @@ blockquote { margin: 1.4rem 0 0; padding-inline-start: 1.1rem; border-inline-sta
 /* ── Home: founder portrait next to "Quién está detrás" ── */
 .founder-portrait { width: min(100%, 21rem); height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 8%; margin-top: clamp(1.5rem, 3vw, 2.25rem); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
 @media (max-width: 40rem) { .founder-portrait { width: min(100%, 17rem); margin-top: 1rem; } }
+
+/* ── Hook: the ideal client's own words, echoing the ad that brought her ── */
+.hook { background: var(--paper); }
+.hook-inner { max-width: 46rem; padding-block: clamp(2.8rem, 6vw, 5rem); text-align: center; }
+.hook-quote { margin: 0; padding: 0; border: 0; font: italic 450 clamp(1.6rem, 3.6vw, 2.6rem)/1.25 var(--display); letter-spacing: -.01em; color: var(--plum); text-wrap: balance; }
+.hook-inner p { max-width: 38rem; margin: 1.2rem auto 0; font-size: clamp(1rem, 1.6vw, 1.12rem); }
+.note { font-size: .9rem; opacity: .85; }

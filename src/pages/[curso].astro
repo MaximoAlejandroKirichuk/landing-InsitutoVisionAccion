@@ -55,6 +55,15 @@ const cta = c.hero.boton;
     </div>
   </section>
 
+  {c.gancho && (
+    <section class="hook" aria-label="Para quién es">
+      <div class="wrap hook-inner" data-reveal>
+        <blockquote class="hook-quote">«{c.gancho.frase}»</blockquote>
+        {c.gancho.texto && <p>{c.gancho.texto}</p>}
+      </div>
+    </section>
+  )}
+
   {c.cursada.length > 0 && (
     <div class="facts formation-facts" id="cursada">
       <dl class="wrap facts-grid">

@@ -36,6 +36,8 @@ const cursos = defineCollection({
         .object({ src: texto, srcMobile: texto.optional(), esfera: z.boolean().default(false) })
         .optional(),
     }),
+    /** First-person phrase of the ideal client, the same one the ad uses, shown right under the hero. */
+    gancho: z.object({ frase: texto, texto: texto.optional() }).optional(),
     cursada: z.array(z.object({ etiqueta: texto, valor: texto })).default([]),
     paraQuien: z
       .object({ titulo: texto, items: z.array(texto).min(1), cierre: texto.optional() })

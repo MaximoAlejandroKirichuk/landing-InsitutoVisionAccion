@@ -25,6 +25,20 @@ Las landings (cursos y Método VIA) no tienen menú: están pensadas para recibi
 
 Para despublicar un curso sin borrarlo: `publicado: false`.
 
+## A quién le hablamos
+
+Todos los textos le hablan a una sola mujer, **Lorena**: alrededor de 54 años, hijos adultos y muchas veces nietos.
+Ve que sus hijos repiten sus errores y que se fueron alejando, y reconoce en eso el mismo rechazo que sintió con su mamá.
+Decide cambiar ella primero para cortar la cadena, y busca entender de dónde viene lo que se repite
+(constelaciones, biodescodificación, hipnosis, vidas pasadas).
+
+- Usá sus frases, en primera persona: «Mi hija me busca… y yo le pongo excusas», «Me juré que con mis hijos iba a ser distinto».
+- No la señales ("¿Tus hijos te aíslan?"): Meta suele rechazar esos anuncios.
+- No prometas que los hijos vuelvan ni que la relación se arregle. No inventes testimonios.
+- Decí que es pago. Una sola idea y una sola acción por página.
+- El campo `gancho` de cada curso va con **la misma frase del anuncio** que lleva a esa página: así, quien llega desde el Reel
+  reconoce enseguida que está en el lugar correcto.
+
 ## Campañas (Meta Ads) y la planilla de leads
 
 - Cada anuncio apunta a la URL de su curso con UTMs, por ejemplo

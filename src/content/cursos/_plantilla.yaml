@@ -8,6 +8,12 @@
 #    enteras y la página simplemente no las muestra.
 # 3. Subí el cambio a GitHub (main) y Netlify publica la página sola.
 # Este archivo empieza con "_" así que nunca se publica.
+#
+# A QUIÉN LE HABLAMOS: a Lorena (ver README → "A quién le hablamos").
+#   · Frases en primera persona, como las diría ella. Nunca señalarla ("¿Tus hijos te aíslan?").
+#   · No prometer que los hijos vuelvan ni que la relación se arregle.
+#   · Decir que es pago. Una sola idea y una sola acción por página.
+#   · No inventar testimonios.
 # ─────────────────────────────────────────────────────────────────────────────
 
 nombre: Nombre del curso
@@ -43,6 +49,10 @@ hero:                  # lo primero que se ve
   #   src: /images/mi-curso.webp       # poné el archivo en public/images/
   #   srcMobile: /images/mi-curso-mobile.webp   # (opcional) versión liviana para celular
 
+gancho:                # (opcional, recomendado) la MISMA frase de Lorena que usa el anuncio que trae a esta página
+  frase: Mi hija me busca… y yo le pongo excusas.
+  texto: Lo que no miramos de nuestra historia, se repite en la de nuestros hijos. El cambio no empieza por tus hijos. Empieza por vos.
+
 cursada:               # (opcional) franja de datos prácticos
   - etiqueta: Modalidad
     valor: En vivo por Google Meet
@@ -52,7 +62,7 @@ cursada:               # (opcional) franja de datos prácticos
 paraQuien:             # (opcional)
   titulo: ¿Para quién es este curso?
   items:
-    - Una situación en la que la persona se reconozca.
+    - Una situación en la que Lorena se reconozca, en segunda persona amable ("Ves que tus hijos repiten…").
     - Otra situación.
   cierre: Si te reconocés en alguna, este curso está pensado para vos.
 

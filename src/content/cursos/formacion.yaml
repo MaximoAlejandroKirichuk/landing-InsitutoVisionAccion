@@ -32,6 +32,11 @@ hero:
     srcMobile: /images/formation-sculpture-base-mobile.webp
     esfera: true
 
+# Frase de la clienta ideal (Lorena), la misma que usa el anuncio. Ver README → "A quién le hablamos".
+gancho:
+  frase: Me juré que con mis hijos iba a ser distinto.
+  texto: Lo que no miramos de nuestra historia, se repite en la de nuestros hijos. No es falta de amor. Es una herida que pasa de generación en generación, hasta que alguien decide mirarla. El cambio no empieza por tus hijos. Empieza por vos.
+
 cursada:
   - etiqueta: Modalidad
     valor: En vivo por Google Meet
@@ -41,7 +46,8 @@ cursada:
 paraQuien:
   titulo: ¿Para quién es esta formación?
   items:
-    - Sentís que en tus vínculos se repiten los mismos patrones y querés entender de dónde vienen.
+    - Ves que en tu familia se repiten las mismas historias, de madre a hija, y querés entender de dónde vienen.
+    - Querés mirar tu propia historia primero, para que tus hijos no hereden lo que a vos te dolió.
     - Ya acompañás a otras personas y buscás enfoques que complementen lo que hacés.
     - Hiciste talleres o cursos sueltos y te falta un recorrido que los integre.
   cierre: Si te reconocés en alguna, este recorrido está pensado para vos.
