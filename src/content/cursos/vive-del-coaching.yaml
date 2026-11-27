@@ -1,0 +1,163 @@
+# Ebook "Vive del Coaching con Propósito" → https://sitio/vive-del-coaching/
+# Datos: institutovisionenaccion.com/cursos/vive-del-coaching-con-proposito/ (relevado 2026-11-27):
+# PDF de 92 páginas en 12 módulos, hojas de trabajo, Sesión de Claridad individual de 20 min online (una por
+# comprador, con reserva y sujeta a agenda), 30 días para descargar, autora Fernanda Rodríguez, $10.000 (antes $25.000).
+# El sitio no publica los títulos de los 12 módulos: el programa agrupa los temas que sí lista.
+#
+# Público: NO es Lorena. Estudiantes de coaching y coaches recién recibidos que no saben cómo empezar a ejercer.
+# Tono: profesional, entre colegas. Sin promesas de ingresos ni de clientes.
+
+nombre: Vive del Coaching con Propósito
+orden: 9
+mostrarEnHome: false
+animacion: vive-del-coaching   # src/components/animaciones/ViveDelCoaching.astro
+
+seo:
+  titulo: Vive del Coaching con Propósito | Ebook para coaches | Instituto Visión en Acción
+  descripcion: Guía en PDF de 92 páginas y 12 módulos para dar tus primeros pasos como coach, con hojas de trabajo y una Sesión de Claridad individual de 20 minutos. $10.000.
+
+tarjeta:
+  etiqueta: Ebook para coaches · 92 páginas
+  resumen: Ordená tus primeros pasos como coach, a quién acompañar y cómo darte a conocer.
+  boton: Conocer el ebook
+
+whatsapp:
+  mensaje: Hola, quisiera el ebook Vive del Coaching con Propósito. ¿Me cuentan cómo lo compro?
+
+hero:
+  bajada: Una guía de autoconocimiento y orientación profesional para pasar de «me formé como coach» a tus primeros pasos ejerciendo, con ejercicios y una sesión de claridad.
+  datos:
+    - PDF de 92 páginas
+    - 12 módulos
+    - Sesión de Claridad de 20 min
+  nota: Es un ebook pago ($10.000). Te escribimos por WhatsApp para contarte cómo comprarlo.
+  linkSecundario:
+    texto: Ver qué incluye
+    href: "#programa"
+
+# La misma frase que usa el anuncio/Reel que trae a esta página.
+gancho:
+  frase: Me formé como coach… y todavía no sé por dónde empezar.
+  texto: «¿A quién puedo acompañar?», «¿Cómo me doy a conocer?», «¿Estoy preparada para ofrecer mis servicios?». Son preguntas de casi todos los colegas al terminar la formación. Este ebook te ayuda a responderlas con ejercicios, no con fórmulas.
+
+cursada:
+  - etiqueta: Formato
+    valor: Ebook en PDF de 92 páginas, en 12 módulos
+  - etiqueta: Incluye
+    valor: Hojas de trabajo y una Sesión de Claridad individual de 20 minutos
+  - etiqueta: Ritmo
+    valor: Lo leés y completás a tu tiempo
+  - etiqueta: Acceso
+    valor: 30 días para descargarlo; el archivo queda para vos
+
+paraQuien:
+  titulo: ¿Para quién es este ebook?
+  items:
+    - Estás estudiando coaching y querés empezar a pensar tus posibilidades profesionales.
+    - Te recibiste hace poco y no sabés cómo empezar a ofrecer tus servicios.
+    - Querés fortalecer tu autoconfianza y definir tu identidad profesional como coach.
+    - Te cuesta elegir un nicho y saber a quién querés acompañar.
+    - Querés armar un proyecto propio y ordenar tus primeros pasos.
+    - Querés nociones iniciales de comunicación, marca personal y redes para presentar lo que hacés.
+  cierre: No hace falta ser experto en marketing ni en negocios. Hace falta empezar a ordenar.
+
+programa:
+  titulo: Qué vas a trabajar
+  texto: Doce módulos breves con explicaciones, ejemplos, preguntas de reflexión y actividades prácticas, en un único PDF. Tocá cada bloque para ver de qué se trata.
+  enfoques:
+    - id: identidad
+      icono: coaching
+      titulo: Tu identidad profesional
+      resumen: Propósito, talentos, valores y fortalezas.
+      descripcion: Ejercicios para reconocer qué te trajo al coaching, qué te distingue y desde dónde querés acompañar. Es la base para todo lo que viene después.
+    - id: confianza
+      icono: coaching
+      titulo: Autoconfianza y merecimiento
+      resumen: Los miedos y creencias que frenan el primer paso.
+      descripcion: Vas a mirar las inseguridades típicas del inicio («todavía no estoy lista», «¿quién me va a elegir?») y a trabajarlas con preguntas de reflexión.
+    - id: practica
+      icono: coaching
+      titulo: Tu desarrollo como coach
+      resumen: Distinciones, buenas prácticas y errores frecuentes.
+      descripcion: Un repaso de distinciones ontológicas, la estructura de una conversación de coaching, buenas prácticas y los errores más comunes al empezar. Más la importancia de la práctica, la mentoría y la supervisión.
+    - id: posibilidades
+      icono: coaching
+      titulo: Posibilidades laborales
+      resumen: Nichos, clientes posibles y formas de ofrecer tu servicio.
+      descripcion: Vas a explorar a quién podrías acompañar, qué necesitan esas personas y distintas maneras de ofrecer tus servicios.
+    - id: planificacion
+      icono: coaching
+      titulo: Herramientas de planificación
+      resumen: Ikigai, Canvas, FODA, CAME y SMART.
+      descripcion: Herramientas simples para ordenar tu proyecto profesional y convertirlo en objetivos y primeros pasos concretos.
+    - id: comunicacion
+      icono: coaching
+      titulo: Comunicación profesional
+      resumen: Oratoria, storytelling, marca personal y redes.
+      descripcion: Nociones iniciales para contar lo que hacés con claridad y empezar a darte a conocer en redes sociales, sin volverte experto en marketing.
+
+# Carrusel de Instagram (placas en public/images/carruseles/vive-del-coaching/)
+carrusel:
+  titulo: Probá este ejercicio
+  texto: Es el mismo que compartimos en Instagram. Deslizá las placas.
+  imagenes:
+    - { src: /images/carruseles/vive-del-coaching/1.webp, alt: "«Me formé como coach… y todavía no sé por dónde empezar.»" }
+    - { src: /images/carruseles/vive-del-coaching/2.webp, alt: "Terminar la formación es un paso. Empezar a acompañar personas es otro. Y nadie te lo explica." }
+    - { src: /images/carruseles/vive-del-coaching/3.webp, alt: "La primera pregunta no es «¿cómo consigo clientes?», sino «¿a quién quiero acompañar?»." }
+    - { src: /images/carruseles/vive-del-coaching/4.webp, alt: "Un ejercicio: describí a una persona que te gustaría acompañar. Qué le pasa, qué busca, qué le cuesta pedir." }
+    - { src: /images/carruseles/vive-del-coaching/5.webp, alt: "Cuanto más clara esa persona, más fácil es saber qué decirle y dónde encontrarla." }
+    - { src: /images/carruseles/vive-del-coaching/6.webp, alt: "Vive del Coaching con Propósito: ebook PDF de 92 páginas en 12 módulos, con hojas de trabajo y una Sesión de Claridad de 20 minutos. Es pago: $10.000." }
+    - { src: /images/carruseles/vive-del-coaching/7.webp, alt: "No empezás sola: lunes y jueves a las 19 hs nos encontramos en vivo en la membresía, $20.000 (USD 20) por mes, aparte del ebook." }
+    - { src: /images/carruseles/vive-del-coaching/8.webp, alt: "¿A quién te gustaría acompañar? Contámelo en una frase en los comentarios. Leo cada uno." }
+
+# Bloque automático "Cómo es estudiar en el Instituto" (membresía y encuentros: src/data/instituto.ts)
+instituto:
+  recibis:
+    - Ebook en PDF de 92 páginas, organizado en 12 módulos breves.
+    - Hojas de trabajo, preguntas de reflexión y actividades prácticas para completar a tu ritmo.
+    - Una Sesión de Claridad individual de 20 minutos, online y sin costo adicional, para conversar sobre tu proyecto (una por compra, con reserva previa y según agenda).
+    - 30 días para descargar el PDF. Una vez descargado, es tuyo para uso personal.
+  encuentros: El ebook es a tu ritmo, sin clases en vivo. Si querés practicar y conversar con colegas, sumate a los encuentros de la membresía.
+  membresia: true
+
+docentes:
+  titulo: Quién lo escribió
+  personas:
+    - id: docente-fernanda
+      nombre: Fernanda Rodríguez
+      bio: Fundadora y directora del Instituto Visión en Acción, formadora de coaches. Escribió esta guía con las preguntas que más escucha de colegas recién recibidos, y es quien te acompaña en la Sesión de Claridad.
+      foto: /images/instructor-portrait.jpg
+      alt: Retrato de Fernanda Rodríguez
+      ancho: 673
+      alto: 1437
+
+oferta:
+  titulo: Disponible ahora
+  destacado: Lo empezás hoy mismo
+  texto: Es un ebook pago. Te escribimos por WhatsApp con los datos para el pago y te habilitamos la descarga y la reserva de tu Sesión de Claridad.
+  precios:
+    - periodo: Ebook Vive del Coaching con Propósito
+      valores: [ARS 10.000, Incluye Sesión de Claridad de 20 min]
+
+preguntas:
+  - pregunta: ¿Cómo lo compro?
+    respuesta: Tocá «Reservar mi lugar» y dejá tus datos. Te escribimos por WhatsApp con los pasos para pagar y te habilitamos la descarga.
+  - pregunta: ¿Cuánto tiempo tengo para descargarlo?
+    respuesta: 30 días corridos desde que se habilita el acceso. El archivo que descargues sigue siendo tuyo para uso personal.
+  - pregunta: ¿Cómo es la Sesión de Claridad?
+    respuesta: Es una conversación individual de 20 minutos, online y sin costo adicional, para mirar tu proyecto, reconocer qué te frena y explorar una primera acción. Es una por compra, con reserva previa y según disponibilidad de agenda; los cupos mensuales son limitados.
+  - pregunta: ¿Me garantiza conseguir clientes o ingresos?
+    respuesta: No. Es una guía de orientación profesional con ejercicios para ordenar tus primeros pasos. Lo que pase después depende de tu práctica y de cada proyecto.
+  - pregunta: ¿Necesito saber de marketing o negocios?
+    respuesta: No. El ebook trae nociones iniciales de comunicación y marca personal, pensadas para coaches que recién empiezan.
+  - pregunta: ¿Es una formación en coaching?
+    respuesta: No. Está pensado para quienes ya estudian o terminaron una formación en coaching. Si todavía no la hiciste, mirá la Academia de Coaching Ontológico del instituto.
+
+cierre:
+  titulo: Tu vocación puede ser el comienzo de un proyecto profesional
+  texto: Dejá tus datos y te escribimos por WhatsApp para contarte cómo conseguir el ebook.
+
+reserva:
+  titulo: Quiero el ebook Vive del Coaching con Propósito
+  texto: Dejanos tus datos y te escribimos por WhatsApp con los pasos para comprarlo y reservar tu Sesión de Claridad.
+  gracias: Te vamos a escribir para contarte cómo pagar y habilitarte la descarga. Si querés, podés escribirnos ahora por WhatsApp.
