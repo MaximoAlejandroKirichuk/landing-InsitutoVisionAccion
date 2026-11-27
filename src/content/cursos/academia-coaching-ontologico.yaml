@@ -132,6 +132,27 @@ instituto:
   encuentros: Cada semana te encontrás en vivo con tu camada y con Fernanda. Si además querés más espacios de práctica y comunidad, está la membresía.
   membresia: true
 
+carrusel:
+  titulo: La Academia en 8 placas
+  texto: El mismo carrusel que publicamos en Instagram. Si te sirve, compartilo con alguien que esté pensando en formarse como coach.
+  imagenes:
+    - src: /images/carruseles/academia-coaching-ontologico/1.webp
+      alt: "¿Sentís que tu experiencia podría acompañar a otras personas?"
+    - src: /images/carruseles/academia-coaching-ontologico/2.webp
+      alt: "Querés formarte en coaching a fondo. Y estudiar sola frente a un PDF no alcanza para practicar."
+    - src: /images/carruseles/academia-coaching-ontologico/3.webp
+      alt: "Academia de Coaching Ontológico. 12 meses. Una clase semanal en vivo por Google Meet."
+    - src: /images/carruseles/academia-coaching-ontologico/4.webp
+      alt: "Cursás con tu camada. Un grupo que empieza y avanza al mismo ritmo que vos."
+    - src: /images/carruseles/academia-coaching-ontologico/5.webp
+      alt: "Practicás sesiones desde el principio. Con las devoluciones de Fernanda."
+    - src: /images/carruseles/academia-coaching-ontologico/6.webp
+      alt: "Cinco ejes para aprender a acompañar: aprendizaje, escucha, comunicación, compromiso y confianza."
+    - src: /images/carruseles/academia-coaching-ontologico/7.webp
+      alt: "Podés empezar desde cero. Al cumplir los requisitos, recibís el certificado del Instituto."
+    - src: /images/carruseles/academia-coaching-ontologico/8.webp
+      alt: "Escribime ACADEMIA por WhatsApp. Es una formación paga, en cuotas mensuales. Te paso el arancel y la fecha de la próxima camada. 11 6677-0206 · 11 5646-7222. Es una formación privada de educación no formal: no es un título universitario ni una certificación oficial del Ministerio de Educación."
+
 cierre:
   titulo: Tu experiencia puede acompañar a otras personas
   texto: Dejá tus datos y te escribimos con el arancel y la fecha de la próxima camada.
