@@ -33,7 +33,7 @@ hero:
 
 # Frase de la clienta ideal (Lorena), la misma que usa el anuncio. Ver README → "A quién le hablamos".
 gancho:
-  frase: Me juré que con mis hijos iba a ser distinto.
+  frase: Mi hija me busca y yo le pongo excusas.
   texto: Lo que no miramos de nuestra historia, se repite en la de nuestros hijos. No es falta de amor. Es una herida que pasa de generación en generación, hasta que alguien decide mirarla. El cambio no empieza por tus hijos. Empieza por vos.
 
 cursada:
@@ -135,6 +135,28 @@ preguntas:
 cierre:
   titulo: Empezá tu formación en la próxima cursada
   texto: Dejá tus datos y te escribimos para confirmar disponibilidad y explicarte cómo inscribirte.
+
+# Carrusel de Instagram del curso (las mismas 8 placas del anuncio).
+carrusel:
+  titulo: Lo que contamos en redes
+  texto: Deslizá para ver de qué se trata, en ocho placas.
+  imagenes:
+    - src: /images/carruseles/formacion/placa-1.webp
+      alt: "«Mi hija me busca... y yo le pongo excusas.»"
+    - src: /images/carruseles/formacion/placa-2.webp
+      alt: "«Es el mismo rechazo que sentí con mi mamá.» Me lo dicen muchas mamás."
+    - src: /images/carruseles/formacion/placa-3.webp
+      alt: "No es falta de amor. Es una herida que pasa de madre a hija, hasta que alguien decide mirarla."
+    - src: /images/carruseles/formacion/placa-4.webp
+      alt: "Lo que no miramos de nuestra historia se repite en la de nuestros hijos. El cambio empieza por vos."
+    - src: /images/carruseles/formacion/placa-5.webp
+      alt: "Consultorio del Bienestar: un año para mirar tu historia familiar, con constelaciones con tarot, biodescodificación, hipnosis y vidas pasadas, entre otros enfoques."
+    - src: /images/carruseles/formacion/placa-6.webp
+      alt: "Cómo se cursa: en vivo por Google Meet, lunes y miércoles a las 20 h; si faltás, tenés la grabación 30 días; podés empezar desde cero."
+    - src: /images/carruseles/formacion/placa-7.webp
+      alt: "Quién la dicta: Fernanda Rodríguez y Daniel Alberto Rodríguez. Exámenes y certificados del instituto incluidos en el arancel."
+    - src: /images/carruseles/formacion/placa-8.webp
+      alt: "Próxima cursada: empieza en enero de 2027. Formación paga: ARS 60.000 por mes de enero a abril (USD 70 desde el exterior). Matrícula bonificada."
 
 # Bloque estándar "Cómo es estudiar en el Instituto" (ver README → "Bloque de membresía y encuentros").
 instituto:
