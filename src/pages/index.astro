@@ -3,11 +3,12 @@ import Emblem from '../components/Emblem.astro';
 import OrientationFunnel from '../components/OrientationFunnel.astro';
 import TopicGrid from '../components/TopicGrid.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
+import { formationName } from '../data/formation';
 import '../styles/via-funnel.css';
 ---
 <SiteLayout
   title="Instituto Visión en Acción"
-  description="Conocé el Instituto Visión en Acción y su formación en Bio Coaching Sistémico Integral."
+  description={`Conocé el Instituto Visión en Acción y su formación ${formationName}.`}
 >
   <section class="site-hero">
     <div class="wrap site-hero-grid">
@@ -38,7 +39,9 @@ import '../styles/via-funnel.css';
     <div class="wrap section split" data-reveal>
       <h2>Quién está detrás</h2>
       <div>
-        <p>Podés contactar al instituto para conocer al equipo y saber quién acompaña cada parte del recorrido.</p>
+        <p><strong>Fernanda Rodríguez</strong> es fundadora, directora y formadora del Instituto Visión en Acción. Es coach de vida y facilitadora. El instituto nació con formaciones de coaching y, con el tiempo, sumó herramientas de desarrollo personal, emocional y sistémico.</p>
+        <p><strong>Ser para hacer, para tener.</strong> Para Fernanda, el punto de partida es trabajar nuestras creencias, emociones y valores. Eso nos ayuda a elegir cómo actuar y acercarnos a lo que queremos construir.</p>
+        <blockquote>«Acompañar no es decirle al otro qué camino debe tomar, sino brindarle un espacio para que pueda descubrir sus propios recursos, reconocer sus posibilidades y elegir conscientemente cómo quiere construir su vida».</blockquote>
         <a class="text-link" href="/formacion/#preguntas">Ver preguntas sobre la formación</a>
       </div>
     </div>
@@ -47,7 +50,7 @@ import '../styles/via-funnel.css';
     <OrientationFunnel />
   </section>
   <section class="wrap section invitation" data-reveal>
-    <h2>Explorá la formación en Bio Coaching Sistémico Integral</h2>
+    <h2>Explorá la formación {formationName}</h2>
     <p>Conocé los contenidos, cómo son las clases y cómo consultar por la próxima cursada.</p>
     <a class="button button-dark" href="/formacion/">Conocer la formación</a>
   </section>

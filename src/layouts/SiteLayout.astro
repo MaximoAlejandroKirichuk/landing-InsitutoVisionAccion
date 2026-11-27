@@ -7,6 +7,8 @@ interface Props {
   formation?: boolean;
 }
 const { title, description, formation = false } = Astro.props;
+const instituteLogo = '/favicon.svg';
+const instituteMark = `${instituteLogo}#svgView(viewBox(101,104,153,153))`;
 ---
 <!doctype html>
 <html lang="es-AR">
@@ -14,7 +16,7 @@ const { title, description, formation = false } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <link rel="icon" href="/loto.svg" type="image/svg+xml" />
+    <link rel="icon" href={instituteLogo} type="image/svg+xml" />
     <title>{title}</title>
     <!-- Reveal styles only apply once JS is known to run, so content never stays hidden without it. -->
     <script is:inline>document.documentElement.classList.add('js');</script>
@@ -24,7 +26,7 @@ const { title, description, formation = false } = Astro.props;
     <header class="site-header">
       <div class="wrap nav-row">
         <a class="brand" href="/" aria-label="Instituto Visión en Acción, inicio">
-          <img src="/loto.svg" alt="" width="39" height="31" />
+          <img class="brand-mark" src={instituteMark} alt="" width="42" height="42" />
           <span><small>Instituto</small>Visión en Acción</span>
         </a>
         <nav aria-label={formation ? 'En esta página' : 'Principal'}>

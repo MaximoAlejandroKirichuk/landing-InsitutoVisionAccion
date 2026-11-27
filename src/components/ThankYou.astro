@@ -1,4 +1,6 @@
 ---
+import { formationName } from '../data/formation';
+
 // ThankYou — post-submission confirmation with WhatsApp CTA.
 // Rendered as the final consultation panel in the funnel.
 const whatsappMessage = 'Hola, quiero mi orientación personalizada. Ya completé el Mapa Inicial VIA® desde la web y me gustaría conversar sobre mi situación.';
@@ -57,7 +59,7 @@ const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whats
             Volver a empezar
           </button>
           <div id="thank-you-formation" class="thank-you-formation" hidden>
-            <p>Por lo que contaste, también puede interesarte nuestra formación en Bio Coaching Sistémico Integral.</p>
+            <p>Por lo que contaste, también puede interesarte nuestra formación {formationName}.</p>
             <a href="/formacion/">Conocer la formación</a>
           </div>
           <p class="thank-you-note">

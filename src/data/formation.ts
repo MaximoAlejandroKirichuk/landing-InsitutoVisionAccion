@@ -1,5 +1,6 @@
-/** Shared content for the Bio Coaching Sistémico Integral training, used by the home and /formacion/. */
+/** Shared training content used by the home and /formacion/. */
 
+export const formationName = 'Consultorio del Bienestar';
 export const WHATSAPP_NUMBER = '5491138105350';
 
 export function whatsappUrl(message: string): string {
@@ -7,7 +8,7 @@ export function whatsappUrl(message: string): string {
 }
 
 export const inquiryMessage =
-  'Hola, quisiera conocer el arancel y los pasos de inscripción para la formación en Bio Coaching Sistémico Integral.';
+  `Hola, quisiera conocer el arancel y los pasos de inscripción para la formación ${formationName}.`;
 
 export interface Topic {
   id: string;
@@ -52,6 +53,6 @@ export const topics: Topic[] = [
 
 export function topicInquiry(topic: Topic): string {
   return whatsappUrl(
-    `Hola, quisiera conocer el temario del bloque de ${topic.title} de la formación en Bio Coaching Sistémico Integral.`,
+    `Hola, quisiera conocer el temario del bloque de ${topic.title} de la formación ${formationName}.`,
   );
 }
