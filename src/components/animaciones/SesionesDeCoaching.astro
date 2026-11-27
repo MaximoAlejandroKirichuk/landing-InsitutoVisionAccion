@@ -1,0 +1,89 @@
+---
+// Hero art for /sesiones-de-coaching/: a compass whose needle wavers and then settles, over a path
+// that clears from mist into a lit trail. Calm, slow cycle: "ordenar y elegir un rumbo".
+// Pure SVG + CSS (only transform, opacity and stroke-dashoffset animate).
+// Under prefers-reduced-motion everything rests: needle pointing ahead, path fully drawn.
+// No props (convention of src/components/animaciones/). Styles are is:inline so only this page loads them.
+---
+<div class="sesiones-coaching-art" aria-hidden="true">
+  <svg class="sesiones-coaching-svg" viewBox="0 0 400 400" role="presentation">
+    <defs>
+      <radialGradient id="sesiones-coaching-halo" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#f6deaa" stop-opacity=".45" />
+        <stop offset="40%" stop-color="#c9a3e0" stop-opacity=".26" />
+        <stop offset="100%" stop-color="#7a4f9a" stop-opacity="0" />
+      </radialGradient>
+      <linearGradient id="sesiones-coaching-camino" gradientUnits="userSpaceOnUse" x1="200" y1="340" x2="200" y2="250">
+        <stop offset="0%" stop-color="#ecc984" />
+        <stop offset="100%" stop-color="#ecc984" stop-opacity=".15" />
+      </linearGradient>
+      <linearGradient id="sesiones-coaching-aguja" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#f6deaa" />
+        <stop offset="100%" stop-color="#b8913f" />
+      </linearGradient>
+    </defs>
+
+    <!-- Path that clears from mist into a lit trail -->
+    <path class="sesiones-coaching-camino" d="M140 340 C 170 318, 246 312, 218 286 S 182 262, 200 248" stroke="url(#sesiones-coaching-camino)" pathLength="100" />
+
+    <!-- Compass -->
+    <g class="sesiones-coaching-brujula">
+      <circle class="sesiones-coaching-halo" cx="200" cy="160" r="130" fill="url(#sesiones-coaching-halo)" />
+      <circle cx="200" cy="160" r="86" fill="#321a46" fill-opacity=".35" stroke="#ecc984" stroke-opacity=".7" stroke-width="1.4" />
+      <circle cx="200" cy="160" r="70" fill="none" stroke="#e9d6f3" stroke-opacity=".3" stroke-dasharray="1.5 6" />
+      <g stroke="#ecc984" stroke-opacity=".75" stroke-width="1.6" stroke-linecap="round">
+        <line x1="200" y1="78" x2="200" y2="90" />
+        <line x1="200" y1="230" x2="200" y2="242" />
+        <line x1="118" y1="160" x2="130" y2="160" />
+        <line x1="270" y1="160" x2="282" y2="160" />
+      </g>
+      <g class="sesiones-coaching-aguja">
+        <path d="M200 100 L210 160 L200 168 L190 160 Z" fill="url(#sesiones-coaching-aguja)" />
+        <path d="M200 220 L210 160 L200 152 L190 160 Z" fill="#e9d6f3" fill-opacity=".45" />
+      </g>
+      <circle cx="200" cy="160" r="5" fill="#fbf7f1" />
+    </g>
+  </svg>
+  <span class="sesiones-coaching-caption">Ordenar lo que querés, elegir el próximo paso</span>
+</div>
+
+<style is:inline>
+  .sesiones-coaching-art {
+    position: relative; width: 100%; aspect-ratio: 1; justify-self: center;
+    display: grid; place-items: center; isolation: isolate;
+  }
+  .sesiones-coaching-art > * { grid-area: 1 / 1; }
+  .sesiones-coaching-svg { width: 100%; height: 100%; display: block; overflow: visible; }
+  .sesiones-coaching-halo { transform-box: fill-box; transform-origin: center; animation: sesiones-coaching-breathe 10s ease-in-out infinite; }
+  .sesiones-coaching-aguja { transform-origin: 200px 160px; animation: sesiones-coaching-settle 10s cubic-bezier(.45,.05,.35,1) infinite; }
+  .sesiones-coaching-camino {
+    fill: none; stroke-width: 2.4; stroke-linecap: round;
+    stroke-dasharray: 100; stroke-dashoffset: 100;
+    animation: sesiones-coaching-draw 10s ease-in-out infinite;
+  }
+  .sesiones-coaching-caption {
+    align-self: end; margin-bottom: .2rem;
+    font: italic 400 .95rem/1.3 var(--display); color: #ecc984cc; letter-spacing: .02em; text-align: center;
+  }
+  @keyframes sesiones-coaching-breathe { 0%, 100% { transform: scale(.92); opacity: .75; } 50% { transform: scale(1.05); opacity: 1; } }
+  /* The needle hesitates, then finds its direction and rests there for a long moment. */
+  @keyframes sesiones-coaching-settle {
+    0% { transform: rotate(-38deg); }
+    12% { transform: rotate(24deg); }
+    22% { transform: rotate(-12deg); }
+    30% { transform: rotate(6deg); }
+    36% { transform: rotate(-2deg); }
+    40%, 88% { transform: rotate(0deg); }
+    100% { transform: rotate(-38deg); }
+  }
+  @keyframes sesiones-coaching-draw {
+    0%, 34% { stroke-dashoffset: 100; opacity: .9; }
+    62%, 86% { stroke-dashoffset: 0; opacity: 1; }
+    98%, 100% { stroke-dashoffset: 0; opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sesiones-coaching-halo, .sesiones-coaching-aguja { animation: none; }
+    .sesiones-coaching-camino { animation: none; stroke-dashoffset: 0; }
+  }
+  @media (max-width: 720px) { .sesiones-coaching-caption { font-size: .85rem; } }
+</style>

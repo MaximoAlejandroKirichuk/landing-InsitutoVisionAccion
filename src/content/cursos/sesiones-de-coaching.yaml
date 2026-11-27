@@ -1,0 +1,165 @@
+# Sesiones de Coaching personalizadas → https://sitio/sesiones-de-coaching/
+# Fuente: institutovisionenaccion.com ("Sesiones de Coaching personalizadas": online, individuales).
+# El sitio no publica precio, duración ni quién las da. Sin precio → arancel por WhatsApp.
+# Docentes: ante la duda, Fernanda y Daniel (pedido de Maximo, 27/11/2026).
+# Tono adulto y concreto: objetivos, decisiones, hábitos, confianza, límites. Sin promesas de resultado.
+
+nombre: Sesiones de Coaching
+mostrarEnHome: false   # landing para anuncios
+orden: 33
+animacion: sesiones-de-coaching   # src/components/animaciones/SesionesDeCoaching.astro
+
+seo:
+  titulo: Sesiones de Coaching personalizadas | Instituto Visión en Acción
+  descripcion: Sesiones de coaching individuales y online para ordenar objetivos, tomar decisiones, sostener hábitos, ganar confianza y poner límites. Es paga; te pasamos el arancel por WhatsApp.
+
+tarjeta:
+  etiqueta: Sesión individual · Online
+  resumen: Una conversación para ordenar lo que querés y dar el próximo paso con claridad.
+  boton: Conocer las sesiones
+
+whatsapp:
+  mensaje: Hola, quisiera conocer el arancel y los horarios disponibles para una sesión de coaching.
+
+hero:
+  bajada: Sesiones individuales y online para ordenar tus objetivos, destrabar una decisión, sostener un hábito o aprender a poner límites. Vos traés el tema; trabajamos juntas en el próximo paso.
+  datos:
+    - Sesión individual
+    - Online
+    - Es una sesión paga
+  boton: Reservar mi sesión
+  nota: Te escribimos por WhatsApp para pasarte el arancel y coordinar el día.
+  linkSecundario:
+    texto: Qué podemos trabajar
+    href: "#programa"
+
+gancho:
+  frase: Sé lo que quiero cambiar. Lo que no sé es por dónde empezar.
+  texto: No es falta de voluntad. Muchas veces es que todo parece igual de urgente, y la cabeza se traba. Una buena conversación ayuda a separar lo importante de lo que hace ruido, elegir una cosa y decidir el primer paso.
+
+cursada:
+  - etiqueta: Formato
+    valor: Sesión individual, una a una
+  - etiqueta: Modalidad
+    valor: Online, por videollamada
+  - etiqueta: Día y horario
+    valor: Lo coordinamos con vos por WhatsApp
+  - etiqueta: Arancel
+    valor: Te lo pasamos por WhatsApp
+
+paraQuien:
+  titulo: ¿Para quién son estas sesiones?
+  items:
+    - Tenés una decisión dando vueltas hace tiempo y querés pensarla con alguien de afuera.
+    - Empezás cosas con ganas y las dejás a mitad de camino, una y otra vez.
+    - Querés poner límites sin sentir culpa cada vez que decís que no.
+    - Estás en una etapa nueva (trabajo, familia, hijos grandes) y querés definir qué sigue para vos.
+    - Preferís algo concreto y práctico, con tareas para la semana.
+  cierre: Si te reconocés en alguna, una sesión es un buen lugar para empezar.
+
+programa:
+  titulo: Qué podemos trabajar
+  texto: Cada sesión parte de lo que traés. Estos son los temas más frecuentes. Tocá cada uno para ver cómo lo encaramos.
+  enfoques:
+    - id: objetivos
+      icono: coaching
+      titulo: Objetivos
+      resumen: Pasar de «quiero cambiar» a algo que se pueda empezar.
+      descripcion: Ponemos en palabras qué querés, por qué te importa y cómo te vas a dar cuenta de que avanzaste. Salís con un objetivo claro y un primer paso posible.
+    - id: decisiones
+      icono: pnl
+      titulo: Decisiones
+      resumen: Mirar las opciones con calma, sin la presión de resolver ya.
+      descripcion: Ordenamos lo que está en juego en cada opción, qué te frena y qué valorás. La decisión siempre es tuya; la sesión te ayuda a tomarla con más claridad.
+    - id: habitos
+      icono: generico
+      titulo: Hábitos
+      resumen: Sostener algo en el tiempo, no solo arrancarlo.
+      descripcion: Miramos qué pasó las veces que lo intentaste, achicamos el paso hasta que entre en un día común y armamos un seguimiento simple para la semana.
+    - id: confianza
+      icono: hipnosis
+      titulo: Confianza
+      resumen: Las frases que te frenan, miradas de frente.
+      descripcion: Reconocemos las ideas que te repetís («ya es tarde», «no me sale») y de dónde vienen, y practicamos otras formas de hablarte que te dejen actuar.
+    - id: limites
+      icono: biodescodificacion
+      titulo: Límites
+      resumen: Decir que no sin pelearte ni sentir culpa.
+      descripcion: Identificamos dónde se te va la energía, qué querés cuidar y cómo decirlo. Preparamos juntas las conversaciones que te cuestan.
+
+carrusel:
+  titulo: Un ejercicio para empezar hoy
+  texto: Deslizá las placas. Es el mismo carrusel que compartimos en Instagram.
+  imagenes:
+    - src: /images/carruseles/sesiones-de-coaching/1.webp
+      alt: "«Sé lo que quiero cambiar. Lo que no sé es por dónde empezar.»"
+    - src: /images/carruseles/sesiones-de-coaching/2.webp
+      alt: "No es falta de voluntad. Muchas veces es que todo parece igual de urgente."
+    - src: /images/carruseles/sesiones-de-coaching/3.webp
+      alt: "Cuando todo pesa lo mismo, la cabeza se traba. Elegir una sola cosa ya es avanzar."
+    - src: /images/carruseles/sesiones-de-coaching/4.webp
+      alt: "Un ejercicio de 3 minutos: escribí tres cosas que querés cambiar este año. Sin ordenarlas."
+    - src: /images/carruseles/sesiones-de-coaching/5.webp
+      alt: "Elegí una y preguntate: ¿cuál es el paso más chico que puedo dar esta semana? Chico de verdad."
+    - src: /images/carruseles/sesiones-de-coaching/6.webp
+      alt: "Sesiones de Coaching: una conversación individual y online para ordenar lo que querés. Objetivos, decisiones, hábitos, confianza y límites. Es una sesión paga; el arancel te lo paso por WhatsApp."
+    - src: /images/carruseles/sesiones-de-coaching/7.webp
+      alt: "Para quién es: para quien tiene una decisión dando vueltas, para quien empieza y deja, para quien quiere aprender a decir que no."
+    - src: /images/carruseles/sesiones-de-coaching/8.webp
+      alt: "¿Cuál es ese paso chico que podrías dar esta semana? Contame abajo. Soy Fernanda, de Visión en Acción."
+
+instituto:              # bloque "Cómo es estudiar en el Instituto", ajustado a una sesión
+  titulo: Qué recibís y cómo seguir
+  recibis:
+    - Una sesión individual y online, centrada en el tema que vos traés.
+    - Un próximo paso concreto para la semana, definido juntas.
+    - Día y horario coordinados por WhatsApp, según tu disponibilidad.
+  encuentros: Si después querés seguir acompañada, podés sumarte a los encuentros en vivo de la membresía. Es opcional.
+  membresia: true
+
+docentes:
+  titulo: Quiénes te acompañan
+  personas:
+    - id: docente-fernanda
+      nombre: Fernanda Rodríguez
+      bio: Fundadora y directora del Instituto Visión en Acción, coach y formadora de coaches. Acompaña procesos de desarrollo personal con herramientas de coaching, autoconocimiento y planificación.
+      foto: /images/instructor-portrait.jpg
+      alt: Retrato de Fernanda Rodríguez
+      ancho: 673
+      alto: 1437
+    - id: docente-daniel
+      nombre: Daniel Alberto Rodríguez
+      bio: Formador del instituto. Integra herramientas de desarrollo personal con su formación en constelaciones familiares, biodescodificación e hipnosis.
+      foto: /images/holistic-instructor-portrait.jpg
+      alt: Retrato de Daniel Alberto Rodríguez
+      ancho: 171
+      alto: 365
+      encuadre: 50% 12%
+
+oferta:
+  titulo: Reservá tu sesión
+  destacado: Sesión individual · Online
+  texto: Coordinamos el día y el horario por WhatsApp. El coaching es un espacio de conversación y acción; no sustituye la atención psicológica, psiquiátrica ni médica.
+
+preguntas:
+  - pregunta: ¿Qué es una sesión de coaching?
+    respuesta: Es una conversación individual con una coach para ordenar lo que querés, ver qué te frena y definir pasos concretos. No damos consejos ni decidimos por vos; te ayudamos a pensar con más claridad.
+  - pregunta: ¿Tengo que tener claro el tema antes?
+    respuesta: No hace falta. Podés llegar con una sensación («estoy trabada», «no sé qué quiero») y la ordenamos en la sesión.
+  - pregunta: ¿Cuántas sesiones necesito?
+    respuesta: Depende de lo que quieras trabajar. Podés empezar con una y decidir después si seguir. No hay paquetes obligatorios.
+  - pregunta: ¿Cuánto cuesta?
+    respuesta: Es una sesión paga. Te pasamos el arancel por WhatsApp, junto con los horarios disponibles.
+  - pregunta: ¿Es lo mismo que una terapia?
+    respuesta: No. El coaching mira hacia adelante y trabaja sobre objetivos y acciones. No sustituye la atención psicológica, psiquiátrica ni médica. Si estás en tratamiento, seguí con él.
+  - pregunta: ¿Cómo reservo?
+    respuesta: Tocá «Reservar mi sesión» y dejá tus datos. Te escribimos por WhatsApp para coordinar el día.
+
+cierre:
+  titulo: Empezar chico también es empezar.
+  texto: Dejá tus datos y te escribimos para coordinar tu sesión de coaching.
+
+reserva:
+  titulo: Reservá tu sesión de coaching
+  texto: Dejanos tus datos y te escribimos por WhatsApp con el arancel y los horarios disponibles.
+  gracias: Te vamos a escribir para pasarte el arancel y coordinar el día. Si querés, podés escribirnos ahora por WhatsApp.
