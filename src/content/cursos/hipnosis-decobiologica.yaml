@@ -97,6 +97,20 @@ incluye:
     - titulo: Un momento para integrar
       texto: Al terminar, hay un espacio para poner en palabras lo que observaste.
 
+# Carrusel de Instagram de esta oferta (placas en public/images/carruseles/hipnosis-decobiologica/).
+carrusel:
+  titulo: Lo que contamos en Instagram
+  texto: Deslizá las placas. Si te resuenan, sumate a la conversación en @fernanda.rodriguez_oficial.
+  imagenes:
+    - { src: /images/carruseles/hipnosis-decobiologica/1.webp, alt: "«Es el mismo rechazo que sentí con mi mamá.»" }
+    - { src: /images/carruseles/hipnosis-decobiologica/2.webp, alt: "Hay reacciones que no elegimos. Aparecen solas, como si vinieran de antes." }
+    - { src: /images/carruseles/hipnosis-decobiologica/3.webp, alt: "No es falta de amor. Es una historia que pasa de madre a hija, hasta que alguien decide mirarla." }
+    - { src: /images/carruseles/hipnosis-decobiologica/4.webp, alt: "Qué es la hipnosis: un estado de relajación profunda, acompañada y a tu ritmo. Ahí es más fácil acercarse a recuerdos y emociones que en el día a día cuestan." }
+    - { src: /images/carruseles/hipnosis-decobiologica/5.webp, alt: "Probá esto antes de dormir: respirá lento cinco veces y recordá un momento en que te sentiste a salvo." }
+    - { src: /images/carruseles/hipnosis-decobiologica/6.webp, alt: "Sesión de Hipnosis Decobiológica: individual, para mirar de dónde viene lo que se repite. Es paga: el arancel te lo paso por WhatsApp. No reemplaza la atención médica ni psicológica." }
+    - { src: /images/carruseles/hipnosis-decobiologica/7.webp, alt: "Para quién es: para vos, si querés empezar por tu propia historia, con calma." }
+    - { src: /images/carruseles/hipnosis-decobiologica/8.webp, alt: "¿Qué frase de tu mamá todavía escuchás en tu cabeza? Contámela en los comentarios. Escribime HIPNOSIS por WhatsApp." }
+
 oferta:
   titulo: Arancel
   destacado: Agenda abierta · Sesiones individuales
