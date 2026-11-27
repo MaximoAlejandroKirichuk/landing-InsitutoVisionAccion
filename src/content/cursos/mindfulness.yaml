@@ -78,19 +78,27 @@ programa:
       resumen: Una rutina breve que puedas sostener.
       descripcion: Armás tu propia práctica, corta y realista, para que el cuidado de vos misma deje de quedar para el final.
 
-# Carrusel de Instagram de este curso (mismas placas que se publican). Requiere el campo `carrusel` de la plantilla.
+# Carrusel de Instagram de este curso (mismas placas que se publican).
 carrusel:
   titulo: La práctica de 5 minutos, para guardar
   texto: Es el mismo carrusel que publicamos en Instagram. Deslizá y probala hoy.
   imagenes:
-    - /images/carruseles/mindfulness/1.webp
-    - /images/carruseles/mindfulness/2.webp
-    - /images/carruseles/mindfulness/3.webp
-    - /images/carruseles/mindfulness/4.webp
-    - /images/carruseles/mindfulness/5.webp
-    - /images/carruseles/mindfulness/6.webp
-    - /images/carruseles/mindfulness/7.webp
-    - /images/carruseles/mindfulness/8.webp
+    - src: /images/carruseles/mindfulness/1.webp
+      alt: "Vivo pendiente de todos… y nunca tengo un rato para mí."
+    - src: /images/carruseles/mindfulness/2.webp
+      alt: "Cuidar a otros se vuelve costumbre. Y una se queda para el final. Cinco minutos alcanzan para empezar."
+    - src: /images/carruseles/mindfulness/3.webp
+      alt: "Práctica de 5 minutos, paso 1: sentate cómoda y apoyá los pies en el piso."
+    - src: /images/carruseles/mindfulness/4.webp
+      alt: "Paso 2: respirá normal. Contá diez respiraciones, de a una."
+    - src: /images/carruseles/mindfulness/5.webp
+      alt: "Paso 3: si la mente se va, notalo y volvé al número uno. No hace falta dejar la mente en blanco."
+    - src: /images/carruseles/mindfulness/6.webp
+      alt: "Paso 4: al terminar, mirá alrededor y nombrá algo que ves. Guardá esta publicación y repetila cuando quieras."
+    - src: /images/carruseles/mindfulness/7.webp
+      alt: "Curso de Mindfulness: prácticas simples para frenar y volver a vos. Online, desde cero, con un encuentro en vivo por mes con Fernanda."
+    - src: /images/carruseles/mindfulness/8.webp
+      alt: "El curso de Mindfulness es pago. El arancel te lo paso por WhatsApp. También practicamos en la membresía: lunes y jueves 19 h, $20.000 por mes. Escribime MINDFULNESS por WhatsApp. No reemplaza un tratamiento médico ni psicológico."
 
 # Bloque común "Cómo es estudiar en el Instituto" (membresía, encuentros, qué recibís): ver src/data/instituto.ts.
 instituto:
