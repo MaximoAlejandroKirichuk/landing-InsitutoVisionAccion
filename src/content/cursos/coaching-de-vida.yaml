@@ -90,6 +90,20 @@ programa:
       resumen: Sostener lo que empezás.
       descripcion: Cómo armar pequeños hábitos que se mantengan en el tiempo, qué hacer cuando te desviás y cómo medir tu avance sin exigirte de más.
 
+# Carrusel de Instagram del curso (placas en public/images/carruseles/coaching-de-vida/)
+carrusel:
+  titulo: Probá este ejercicio
+  texto: Es el mismo que compartimos en Instagram. Deslizá las placas.
+  imagenes:
+    - { src: /images/carruseles/coaching-de-vida/1.webp, alt: "«Pasé años ocupándome de todos… y hoy no sé qué quiero para mí.»" }
+    - { src: /images/carruseles/coaching-de-vida/2.webp, alt: "Me lo dicen muchas mujeres. No es que no tengas deseos. Hace mucho que nadie te pregunta por ellos, ni siquiera vos." }
+    - { src: /images/carruseles/coaching-de-vida/3.webp, alt: "Un ejercicio: escribí tres cosas que hiciste esta semana porque querías, no porque debías." }
+    - { src: /images/carruseles/coaching-de-vida/4.webp, alt: "Ahora mirá esa lista. Ahí hay pistas de lo que te importa. Si te costó llenarla, eso también es un dato." }
+    - { src: /images/carruseles/coaching-de-vida/5.webp, alt: "Del deseo al paso: elegí una y pensá qué pequeña acción podés hacer mañana. Tan chica que no puedas decirle que no." }
+    - { src: /images/carruseles/coaching-de-vida/6.webp, alt: "Curso Coaching de Vida: 10 lecciones en PDF con guía de ejercicios, a tu ritmo. Es pago: $50.000 (USD 50). Examen sin costo y certificado del instituto." }
+    - { src: /images/carruseles/coaching-de-vida/7.webp, alt: "No lo hacés sola: lunes y jueves a las 19 hs nos encontramos en vivo. Es la membresía de la comunidad: $20.000 (USD 20) por mes, aparte del curso." }
+    - { src: /images/carruseles/coaching-de-vida/8.webp, alt: "¿Qué escribiste en tu lista? Contámelo en los comentarios. Leo cada uno." }
+
 # Bloque automático "Cómo es estudiar en el Instituto" (membresía y encuentros: src/data/instituto.ts)
 instituto:
   recibis:
