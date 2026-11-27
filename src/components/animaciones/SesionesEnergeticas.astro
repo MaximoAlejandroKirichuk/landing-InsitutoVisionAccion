@@ -1,0 +1,102 @@
+---
+// Hero art for /sesiones-energeticas/: a crystal pendulum that swings slowly over an aura of light.
+// The aura breathes in soft lilac and gold rings; a few points of light rise and fade. The pendulum
+// swing narrows and widens like a long exhale. Pure SVG + CSS (only transform and opacity animate).
+// Under prefers-reduced-motion everything rests: pendulum at center, aura fully drawn.
+// No props (convention of src/components/animaciones/). Styles are is:inline so only this page loads them.
+---
+<div class="sesiones-energeticas-art" aria-hidden="true">
+  <svg class="sesiones-energeticas-svg" viewBox="0 0 400 400" role="presentation">
+    <defs>
+      <radialGradient id="sesiones-energeticas-aura" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#f6deaa" stop-opacity=".55" />
+        <stop offset="35%" stop-color="#c9a3e0" stop-opacity=".32" />
+        <stop offset="70%" stop-color="#7a4f9a" stop-opacity=".12" />
+        <stop offset="100%" stop-color="#7a4f9a" stop-opacity="0" />
+      </radialGradient>
+      <linearGradient id="sesiones-energeticas-cristal" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#fbf3ff" />
+        <stop offset="45%" stop-color="#c9a3e0" />
+        <stop offset="100%" stop-color="#6b3f8c" />
+      </linearGradient>
+      <linearGradient id="sesiones-energeticas-cadena" gradientUnits="userSpaceOnUse" x1="200" y1="40" x2="200" y2="214">
+        <stop offset="0%" stop-color="#ecc984" stop-opacity="0" />
+        <stop offset="25%" stop-color="#ecc984" stop-opacity=".9" />
+        <stop offset="100%" stop-color="#ecc984" />
+      </linearGradient>
+    </defs>
+
+    <!-- Aura: layered rings that breathe at different rhythms -->
+    <g class="sesiones-energeticas-aura">
+      <circle class="sesiones-energeticas-halo" cx="200" cy="262" r="120" fill="url(#sesiones-energeticas-aura)" />
+      <circle class="sesiones-energeticas-ring sesiones-energeticas-ring-1" cx="200" cy="262" r="58" />
+      <circle class="sesiones-energeticas-ring sesiones-energeticas-ring-2" cx="200" cy="262" r="86" />
+      <circle class="sesiones-energeticas-ring sesiones-energeticas-ring-3" cx="200" cy="262" r="114" />
+    </g>
+
+    <!-- Rising points of light -->
+    <g class="sesiones-energeticas-motas">
+      <circle class="sesiones-energeticas-mota" style="--x:-46px;--d:0s" cx="200" cy="300" r="2.4" />
+      <circle class="sesiones-energeticas-mota" style="--x:38px;--d:1.6s" cx="200" cy="300" r="1.8" />
+      <circle class="sesiones-energeticas-mota" style="--x:-12px;--d:3.1s" cx="200" cy="300" r="2.1" />
+      <circle class="sesiones-energeticas-mota" style="--x:62px;--d:4.4s" cx="200" cy="300" r="1.6" />
+      <circle class="sesiones-energeticas-mota" style="--x:-70px;--d:5.7s" cx="200" cy="300" r="1.9" />
+    </g>
+
+    <!-- Pendulum: pivot at (200, 40) -->
+    <g class="sesiones-energeticas-pendulo">
+      <line x1="200" y1="40" x2="200" y2="214" stroke="url(#sesiones-energeticas-cadena)" stroke-width="1.6" stroke-linecap="round" />
+      <circle cx="200" cy="216" r="4" fill="#ecc984" />
+      <g class="sesiones-energeticas-gota">
+        <circle cx="200" cy="246" r="22" fill="#f6deaa" opacity=".22" />
+        <path d="M200 220 L216 238 L200 278 L184 238 Z" fill="url(#sesiones-energeticas-cristal)" />
+        <path d="M200 220 L216 238 L200 244 L184 238 Z" fill="#fbf3ff" opacity=".55" />
+        <path d="M200 244 L200 278" stroke="#fbf3ff" stroke-opacity=".35" stroke-width="1" />
+      </g>
+    </g>
+    <circle cx="200" cy="40" r="3" fill="#ecc984" opacity=".8" />
+  </svg>
+  <span class="sesiones-energeticas-caption">Soltar lo que no es tuyo, volver a vos</span>
+</div>
+
+<style is:inline>
+  .sesiones-energeticas-art {
+    position: relative; width: 100%; aspect-ratio: 1; justify-self: center;
+    display: grid; place-items: center; isolation: isolate;
+  }
+  .sesiones-energeticas-art > * { grid-area: 1 / 1; }
+  .sesiones-energeticas-svg { width: 100%; height: 100%; display: block; overflow: visible; }
+  .sesiones-energeticas-halo, .sesiones-energeticas-ring { transform-box: fill-box; transform-origin: center; }
+  .sesiones-energeticas-halo { animation: sesiones-energeticas-breathe 9s ease-in-out infinite; }
+  .sesiones-energeticas-ring { fill: none; stroke: #e9d6f3; stroke-width: 1; }
+  .sesiones-energeticas-ring-1 { stroke: #ecc984; opacity: .55; animation: sesiones-energeticas-ring 9s ease-in-out infinite; }
+  .sesiones-energeticas-ring-2 { opacity: .35; stroke-dasharray: 2 7; animation: sesiones-energeticas-ring 9s ease-in-out -3s infinite; }
+  .sesiones-energeticas-ring-3 { opacity: .22; animation: sesiones-energeticas-ring 9s ease-in-out -6s infinite; }
+  .sesiones-energeticas-pendulo { transform-origin: 200px 40px; animation: sesiones-energeticas-swing 7s ease-in-out infinite; }
+  .sesiones-energeticas-gota { transform-box: fill-box; transform-origin: center; animation: sesiones-energeticas-shine 3.5s ease-in-out infinite; }
+  .sesiones-energeticas-mota { fill: #f6deaa; opacity: 0; animation: sesiones-energeticas-rise 7.5s ease-out var(--d) infinite; }
+  .sesiones-energeticas-caption {
+    align-self: end; margin-bottom: .2rem;
+    font: italic 400 .95rem/1.3 var(--display); color: #ecc984cc; letter-spacing: .02em; text-align: center;
+  }
+  @keyframes sesiones-energeticas-breathe { 0%, 100% { transform: scale(.9); opacity: .75; } 50% { transform: scale(1.06); opacity: 1; } }
+  @keyframes sesiones-energeticas-ring { 0%, 100% { transform: scale(.94); } 50% { transform: scale(1.05); } }
+  /* Swing that narrows and widens over one long cycle: a calm, slightly uneven sway. */
+  @keyframes sesiones-energeticas-swing {
+    0%, 100% { transform: rotate(9deg); }
+    25% { transform: rotate(-7deg); }
+    50% { transform: rotate(5deg); }
+    75% { transform: rotate(-8deg); }
+  }
+  @keyframes sesiones-energeticas-shine { 0%, 100% { opacity: .92; } 50% { opacity: 1; } }
+  @keyframes sesiones-energeticas-rise {
+    0% { transform: translate(0, 0); opacity: 0; }
+    15% { opacity: .9; }
+    100% { transform: translate(var(--x), -150px); opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sesiones-energeticas-halo, .sesiones-energeticas-ring, .sesiones-energeticas-pendulo, .sesiones-energeticas-gota { animation: none; }
+    .sesiones-energeticas-mota { animation: none; opacity: 0; }
+  }
+  @media (max-width: 720px) { .sesiones-energeticas-caption { font-size: .85rem; } }
+</style>
