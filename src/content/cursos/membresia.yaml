@@ -1,0 +1,146 @@
+# Membresía Visión en Acción → https://sitio/membresia/
+# La oferta de comunidad del instituto: encuentros en vivo con Fernanda dos veces por semana.
+# Datos: carruseles de Canva "Cómo es un encuentro de la membresía" y "Qué recibís al inscribirte".
+
+nombre: Membresía Visión en Acción
+orden: 2
+mostrarEnHome: false   # cada landing ya enlaza acá desde su tarjeta de membresía
+animacion: membresia
+instituto: false       # el bloque estándar repetiría lo que ya dice esta página
+
+seo:
+  titulo: Membresía Visión en Acción | Encuentros en vivo con Fernanda
+  descripcion: Un lugar fijo en la semana para trabajar en vos, acompañada. Dos encuentros en vivo por semana con Fernanda, lunes y jueves a las 19 h, catálogo de clases y comunidad. $20.000 por mes.
+
+tarjeta:
+  etiqueta: Membresía · Lunes y jueves en vivo
+  resumen: Un grupo que te espera dos veces por semana para seguir trabajando en vos, acompañada.
+  boton: Conocer la membresía
+
+whatsapp:
+  mensaje: Hola, quisiera sumarme a la Membresía Visión en Acción. ¿Cómo es la inscripción? MEMBRESIA
+
+hero:
+  bajada: Un lugar fijo en tu semana para seguir trabajando en vos, en grupo y acompañada por Fernanda.
+  datos:
+    - Lunes y jueves, 19 h
+    - En vivo con Fernanda
+    - $20.000 por mes
+  boton: Quiero sumarme
+  nota: Es una membresía paga. Te escribimos por WhatsApp para contarte cómo inscribirte.
+  linkSecundario:
+    texto: Cómo es un encuentro
+    href: "#programa"
+
+gancho:
+  frase: Siempre pude sola. Pero hay cosas que ya no quiero seguir cargando sola.
+  texto: Muchas venimos de historias donde pedir ayuda no era una opción, y aprendimos a sostener todo en silencio. Lo que se mira en grupo pesa distinto. No hace falta tener todo resuelto para llegar. Alcanza con querer un lugar donde no estés sola.
+
+cursada:
+  - etiqueta: Encuentros
+    valor: Dos por semana, en vivo
+  - etiqueta: Días y horario
+    valor: Lunes y jueves, 19 h (Argentina)
+  - etiqueta: Modalidad
+    valor: Online, desde tu casa
+  - etiqueta: Valor
+    valor: $20.000 por mes (USD 20)
+
+paraQuien:
+  titulo: ¿Para quién es la membresía?
+  items:
+    - Empezás cursos o procesos con muchas ganas y, cuando no tenés con quién compartirlos, los dejás a la mitad.
+    - Ya hiciste un camino de trabajo personal y querés sostenerlo en el tiempo, no quedarte en una sesión suelta.
+    - Te cuesta pedir ayuda y te gustaría tener un lugar donde preguntar sin sentir que molestás.
+    - Querés estar cerca del instituto y de Fernanda todas las semanas, a un valor accesible.
+  cierre: Si te reconocés en alguna, la membresía es tu lugar en la semana.
+
+programa:
+  titulo: Cómo es un encuentro
+  texto: Dos veces por semana nos vemos en vivo. Tocá cada parte para ver de qué se trata.
+  enfoques:
+    - id: llegar
+      icono: coaching
+      titulo: Llegás tal como estás
+      resumen: No hace falta preparar nada.
+      descripcion: Te conectás desde tu casa, lunes o jueves a las 19 h. Podés hablar o simplemente escuchar. Cada una se suma a su ritmo, y nadie te va a pedir que cuentes más de lo que querés contar.
+    - id: practica
+      icono: hipnosis
+      titulo: Un tema y una práctica
+      resumen: Fernanda propone algo para trabajar en el momento.
+      descripcion: En cada encuentro Fernanda trae un tema y una práctica para hacer juntas, con herramientas de los distintos enfoques del instituto. La idea es que te lleves algo concreto para tu semana.
+    - id: dudas
+      icono: tarot
+      titulo: Traés tus dudas
+      resumen: Las vemos juntas, en grupo.
+      descripcion: Lo que te quedó dando vueltas de una clase, de un curso o de tu propia historia lo podés traer al encuentro. Escuchar las preguntas de las demás también ayuda. Muchas veces alguien dice en voz alta lo que vos no te animabas a preguntar.
+    - id: comunidad
+      icono: biodescodificacion
+      titulo: Un grupo que te espera
+      resumen: Personas que están en un camino parecido al tuyo.
+      descripcion: La membresía es, sobre todo, una comunidad. Saber que el lunes y el jueves hay un grupo que te espera hace más fácil sostener lo que empezaste.
+
+incluye:
+  titulo: Qué recibís al sumarte
+  items:
+    - titulo: 2 encuentros en vivo por semana
+      texto: Lunes y jueves a las 19 h (Argentina), con Fernanda, online.
+    - titulo: Catálogo de clases
+      texto: Clases del instituto para mirar cuando quieras, a tu ritmo.
+    - titulo: Espacio para tus dudas
+      texto: Lo que te surja lo traés al encuentro y lo vemos en grupo.
+    - titulo: Comunidad
+      texto: Un grupo de personas en un camino parecido, que se acompañan semana a semana.
+
+docentes:
+  titulo: Quién te acompaña
+  personas:
+    - id: docente-fernanda
+      nombre: Fernanda Rodríguez
+      bio: Fundadora y directora del Instituto Visión en Acción, coach de vida y facilitadora. Coordina los encuentros en vivo de la membresía.
+      foto: /images/instructor-portrait.jpg
+      alt: Retrato de Fernanda Rodríguez
+      ancho: 673
+      alto: 1437
+
+oferta:
+  titulo: Sumate a la membresía
+  destacado: Lunes y jueves, 19 h · En vivo con Fernanda
+  texto: Es una membresía paga y mensual. No incluye certificado, porque es un espacio de práctica y comunidad, no una formación.
+  precios:
+    - periodo: Por mes
+      valores: [$20.000 en Argentina, USD 20 desde el exterior]
+
+preguntas:
+  - pregunta: ¿Tengo que haber hecho algún curso del instituto antes?
+    respuesta: No. La membresía es para cualquier persona que quiera un espacio fijo de trabajo personal en grupo. Si ya hiciste cursos, es una forma de sostener lo que empezaste.
+  - pregunta: ¿Tengo que hablar en los encuentros?
+    respuesta: Solo si querés. Podés participar escuchando, y hablar cuando te sientas cómoda.
+  - pregunta: ¿Incluye certificado?
+    respuesta: No. La membresía es un espacio de práctica y comunidad. Los cursos y formaciones del instituto tienen su propia certificación.
+  - pregunta: ¿Cuánto cuesta y cómo se paga?
+    respuesta: $20.000 por mes en Argentina o USD 20 desde el exterior. Tocá «Quiero sumarme», dejá tus datos y te escribimos por WhatsApp con los medios de pago.
+  - pregunta: ¿Reemplaza una terapia?
+    respuesta: No. Es un espacio de crecimiento personal en grupo y no reemplaza la atención médica ni psicológica.
+
+cierre:
+  titulo: El próximo encuentro puede ser el tuyo
+  texto: Dejá tus datos y te escribimos por WhatsApp para contarte cómo sumarte. Es paga, $20.000 por mes.
+
+reserva:
+  titulo: Quiero sumarme a la membresía
+  texto: Dejanos tus datos y te escribimos por WhatsApp con los pasos para inscribirte y los medios de pago.
+  gracias: Te vamos a escribir para contarte cómo sumarte al próximo encuentro. Si querés, podés escribirnos ahora por WhatsApp con la palabra MEMBRESIA.
+
+carrusel:
+  titulo: Lo que compartimos en Instagram
+  texto: Deslizá las placas. Si te dejan pensando, el próximo encuentro es un buen lugar para traerlo.
+  imagenes:
+    - { src: /images/carruseles/membresia/1.webp, alt: "«Siempre pude sola. Pero hay cosas que ya no quiero seguir cargando sola.»" }
+    - { src: /images/carruseles/membresia/2.webp, alt: "Muchas aprendimos que pedir ayuda era molestar. Y así fuimos sosteniendo todo en silencio." }
+    - { src: /images/carruseles/membresia/3.webp, alt: "Lo que se mira en grupo pesa distinto. Escuchar a otra decir en voz alta lo que te pasa también acompaña." }
+    - { src: /images/carruseles/membresia/4.webp, alt: "Probalo esta semana. Elegí un día y una hora fijos para vos. Aunque sean 20 minutos. Un lugar que te espera ayuda a sostener lo que empezaste." }
+    - { src: /images/carruseles/membresia/5.webp, alt: "Cómo es un encuentro. Llegás tal como estás. Fernanda trae un tema y una práctica. Traés tus dudas y las vemos juntas." }
+    - { src: /images/carruseles/membresia/6.webp, alt: "Membresía Visión en Acción. Lunes y jueves, 19 h, en vivo con Fernanda. Más el catálogo de clases y la comunidad. Es paga, $20.000 por mes (USD 20)." }
+    - { src: /images/carruseles/membresia/7.webp, alt: "Para quién es. Para quien quiere un lugar fijo en la semana para trabajar en ella, acompañada. No hace falta haber hecho cursos antes." }
+    - { src: /images/carruseles/membresia/8.webp, alt: "¿Qué te ayuda a no abandonar lo que empezás? Contame abajo, en una palabra o en una historia. Te leo." }

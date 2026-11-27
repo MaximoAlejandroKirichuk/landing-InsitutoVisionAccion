@@ -1,0 +1,181 @@
+---
+// Hero art for the Membresía landing: a circle of people made of light. They arrive one by one from
+// different places, take their place around a warm center and join hands; then the whole circle
+// breathes together. Inline SVG + CSS only (no JS, no libraries). Under prefers-reduced-motion the
+// finished circle is shown still.
+const CX = 200;
+const CY = 252;
+const RX = 138;
+const RY = 50;
+const N = 8;
+
+const people = Array.from({ length: N }, (_, i) => {
+  const a = (Math.PI * 2 * i) / N + Math.PI / N; // offset so nobody stands dead center in front
+  const x = CX + RX * Math.cos(a);
+  const y = CY + RY * Math.sin(a);
+  const depth = (Math.sin(a) + 1) / 2; // 0 = back of the circle, 1 = front
+  const s = 0.8 + depth * 0.6;
+  // Where each person starts: further out, along their own direction.
+  const dx = Math.cos(a) * 120 + (i % 2 ? 20 : -20);
+  const dy = Math.sin(a) * 70 - 60;
+  return { i, x, y, s, depth, dx, dy, delay: 0.25 + i * 0.32 };
+}).sort((p, q) => p.y - q.y);
+
+const byIndex = [...people].sort((p, q) => p.i - q.i);
+const hands = byIndex.map((p, k) => {
+  const q = byIndex[(k + 1) % N];
+  const h1 = p.y - 26 * p.s;
+  const h2 = q.y - 26 * q.s;
+  const mx = (p.x + q.x) / 2;
+  const my = (h1 + h2) / 2 + 9;
+  return { d: `M${p.x.toFixed(1)} ${h1.toFixed(1)} Q${mx.toFixed(1)} ${my.toFixed(1)} ${q.x.toFixed(1)} ${h2.toFixed(1)}`, back: (p.depth + q.depth) / 2 < 0.5, delay: 3.1 + k * 0.12 };
+});
+
+const motes = Array.from({ length: 10 }, (_, i) => ({
+  x: 120 + ((i * 53) % 160),
+  r: 1.2 + (i % 3) * 0.6,
+  delay: (i * 0.9) % 7,
+  dur: 7 + (i % 4),
+}));
+---
+<div class="membresia-art" aria-hidden="true">
+  <svg viewBox="0 60 400 300" role="presentation">
+    <defs>
+      <radialGradient id="membresia-center" cx="50%" cy="50%" r="50%">
+        <stop offset="0" stop-color="#fff3d6" stop-opacity="0.95" />
+        <stop offset="0.35" stop-color="#ecc984" stop-opacity="0.55" />
+        <stop offset="1" stop-color="#ecc984" stop-opacity="0" />
+      </radialGradient>
+      <radialGradient id="membresia-aura" cx="50%" cy="50%" r="50%">
+        <stop offset="0" stop-color="#c9a6dc" stop-opacity="0.45" />
+        <stop offset="1" stop-color="#c9a6dc" stop-opacity="0" />
+      </radialGradient>
+      <linearGradient id="membresia-body" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#fbeac4" />
+        <stop offset="0.55" stop-color="#d9b8e6" />
+        <stop offset="1" stop-color="#8e62a8" stop-opacity="0.85" />
+      </linearGradient>
+      <filter id="membresia-glow" x="-60%" y="-60%" width="220%" height="220%">
+        <feGaussianBlur stdDeviation="3.2" result="b" />
+        <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+      </filter>
+    </defs>
+
+    <circle class="membresia-aura" cx={CX} cy={CY - 40} r="190" fill="url(#membresia-aura)" />
+
+    <g class="membresia-breathe">
+      <ellipse class="membresia-floor" cx={CX} cy={CY} rx={RX} ry={RY} />
+      <ellipse class="membresia-floor membresia-floor-outer" cx={CX} cy={CY} rx={RX + 34} ry={RY + 13} />
+
+      {hands.filter((h) => h.back).map((h) => (
+        <path class="membresia-hand" d={h.d} style={`--d:${h.delay}s`} />
+      ))}
+
+      <g class="membresia-center">
+        <ellipse cx={CX} cy={CY} rx="64" ry="22" fill="url(#membresia-center)" />
+        <circle class="membresia-flame" cx={CX} cy={CY - 46} r="34" fill="url(#membresia-center)" />
+        <circle cx={CX} cy={CY - 46} r="5" fill="#fff6e2" filter="url(#membresia-glow)" />
+      </g>
+
+      {people.map((p) => (
+        <g class="membresia-person" style={`--dx:${p.dx.toFixed(1)}px;--dy:${p.dy.toFixed(1)}px;--d:${p.delay.toFixed(2)}s`}>
+          <g transform={`translate(${p.x.toFixed(1)} ${p.y.toFixed(1)}) scale(${p.s.toFixed(3)})`} opacity={(0.6 + p.depth * 0.4).toFixed(2)}>
+            <ellipse class="membresia-shadow" cx="0" cy="1" rx="13" ry="3.5" />
+            <g filter="url(#membresia-glow)">
+              <path d="M-13 0 C-14 -20 -9 -30 0 -30 C9 -30 14 -20 13 0 Z" fill="url(#membresia-body)" />
+              <circle cx="0" cy="-39" r="7.5" fill="#fdf0d2" />
+            </g>
+          </g>
+        </g>
+      ))}
+
+      {hands.filter((h) => !h.back).map((h) => (
+        <path class="membresia-hand" d={h.d} style={`--d:${h.delay}s`} />
+      ))}
+    </g>
+
+    {motes.map((m) => (
+      <circle class="membresia-mote" cx={m.x} cy={CY - 30} r={m.r} style={`--d:${m.delay}s;--t:${m.dur}s`} />
+    ))}
+  </svg>
+  <span class="membresia-caption">Nadie llega sola</span>
+</div>
+
+<style is:inline>
+  .membresia-art {
+    position: relative;
+    width: 100%;
+    margin-inline: auto;
+    display: grid;
+    justify-items: center;
+  }
+  .membresia-art svg { width: 100%; height: auto; overflow: visible; }
+
+  .membresia-aura { animation: membresia-aura 9s ease-in-out infinite; transform-origin: 200px 212px; }
+  .membresia-floor {
+    fill: none;
+    stroke: #ecc984;
+    stroke-width: 1;
+    stroke-opacity: 0.55;
+    opacity: 0;
+    animation: membresia-fade-in 2.6s ease-out 0.4s forwards;
+  }
+  .membresia-floor-outer { stroke-dasharray: 1.2 2.4; stroke-opacity: 0.35; animation-delay: 3.6s; }
+
+  .membresia-person {
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy));
+    animation: membresia-arrive 2.4s cubic-bezier(.22,.8,.3,1) var(--d) forwards;
+  }
+  .membresia-shadow { fill: #21112d; opacity: 0.35; }
+
+  .membresia-hand {
+    fill: none;
+    stroke: #f6dfa6;
+    stroke-width: 2;
+    stroke-linecap: round;
+    opacity: 0;
+    filter: drop-shadow(0 0 3px #ecc984);
+    animation: membresia-fade-in 1.4s ease-out var(--d) forwards;
+  }
+
+  .membresia-center { opacity: 0; transform-origin: 200px 230px; animation: membresia-light 2.4s ease-out 2.6s forwards; }
+  .membresia-flame { transform-origin: 200px 206px; animation: membresia-flicker 4.5s ease-in-out 5s infinite; }
+
+  .membresia-breathe { transform-origin: 200px 240px; animation: membresia-breathe 7s ease-in-out 5s infinite; }
+
+  .membresia-mote { fill: #fbeac4; opacity: 0; animation: membresia-rise var(--t) linear calc(var(--d) + 4.5s) infinite; }
+
+  .membresia-caption {
+    margin-top: -0.5rem;
+    font-family: var(--serif, Fraunces, Georgia, serif);
+    font-style: italic;
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+    color: var(--gold, #ecc984);
+    opacity: 0;
+    animation: membresia-fade-in 2s ease 4.6s forwards;
+  }
+
+  @keyframes membresia-arrive {
+    0% { opacity: 0; transform: translate(var(--dx), var(--dy)); }
+    35% { opacity: 1; }
+    100% { opacity: 1; transform: translate(0, 0); }
+  }
+  @keyframes membresia-fade-in { to { opacity: 1; } }
+  @keyframes membresia-light { 0% { opacity: 0; transform: scale(0.4); } 100% { opacity: 1; transform: scale(1); } }
+  @keyframes membresia-flicker { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.12); opacity: 0.85; } }
+  @keyframes membresia-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.025); } }
+  @keyframes membresia-aura { 0%, 100% { transform: scale(0.94); opacity: 0.8; } 50% { transform: scale(1.04); opacity: 1; } }
+  @keyframes membresia-rise {
+    0% { opacity: 0; transform: translateY(0); }
+    15% { opacity: 0.8; }
+    100% { opacity: 0; transform: translateY(-170px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .membresia-art *, .membresia-art { animation: none !important; }
+    .membresia-person, .membresia-center, .membresia-caption, .membresia-floor, .membresia-hand { opacity: 1; transform: none; }
+    .membresia-mote { display: none; }
+  }
+</style>
