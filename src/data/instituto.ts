@@ -11,7 +11,7 @@ export const MEMBRESIA = {
     'El catálogo de clases del Instituto',
     'La comunidad Visión en Acción',
   ],
-  nota: 'Pagás por mes y podés dejar cuando quieras. La membresía no incluye certificado.',
+  nota: 'Pagás por mes y accedés a los encuentros y a las clases. La membresía no incluye certificado.',
   href: '/membresia/',
 } as const;
 
