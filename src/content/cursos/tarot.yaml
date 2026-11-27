@@ -81,6 +81,18 @@ programa:
       resumen: Herramientas de coaching y mindfulness aplicadas al tarot.
       descripcion: La formación suma herramientas de coaching y mindfulness para fortalecer tu escucha y tu presencia. Aprendés a hacer preguntas abiertas y a leer desde la calma, no desde el miedo.
 
+carrusel:
+  titulo: Lo que contamos en Instagram
+  imagenes:
+    - { src: /images/carruseles/tarot/1.webp, alt: "«Quiero entender por qué en mi familia se repite siempre lo mismo.» Tres cartas: El Sol, La Luna, La Estrella." }
+    - { src: /images/carruseles/tarot/2.webp, alt: "Lo que no miramos de nuestra historia, vuelve a aparecer. Hasta que alguien decide mirarlo con calma." }
+    - { src: /images/carruseles/tarot/3.webp, alt: "Formación en Tarot de Marsella. Desde cero, a tu ritmo. Sin conocimientos previos." }
+    - { src: /images/carruseles/tarot/4.webp, alt: "El tarot no adivina el futuro. Es un lenguaje de símbolos que te ayuda a hacerte mejores preguntas sobre tu historia." }
+    - { src: /images/carruseles/tarot/5.webp, alt: "Qué recibís: clases grabadas para mirar a tu ritmo, un encuentro en vivo por mes con Fernanda para practicar, herramientas de coaching y mindfulness." }
+    - { src: /images/carruseles/tarot/6.webp, alt: "No aprendés sola. Si querés más compañía, sumás la membresía: encuentros en vivo lunes y jueves, 19 h, y la comunidad. $20.000 o USD 20 por mes. Es opcional." }
+    - { src: /images/carruseles/tarot/7.webp, alt: "Es para vos si siempre te atrajo el tarot y querés aprenderlo con orden, práctica y compañía. Es una formación paga." }
+    - { src: /images/carruseles/tarot/8.webp, alt: "Te pasamos el arancel por WhatsApp. Escribime TAROT por WhatsApp, 11 6677-0206. Es una formación privada de educación no formal: no es un título universitario ni una certificación oficial del Ministerio de Educación." }
+
 # Bloque común "Cómo es estudiar en el Instituto" (membresía, encuentros, qué recibís): ver README.
 instituto:
   recibis:
