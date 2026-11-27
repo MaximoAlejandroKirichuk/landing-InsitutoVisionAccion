@@ -1,0 +1,145 @@
+---
+// Hero del Consultorio del Bienestar: una pequeña "constelación" en 3D.
+// Tres figuras (abuela, madre, hija) de pie sobre un círculo de luz que gira apenas de un lado a otro.
+// Un hilo dorado las une y la luz pasa de una generación a la siguiente, mientras en el centro
+// respira una esfera: mirar la historia propia con calma. Solo CSS (transform y opacity);
+// con prefers-reduced-motion todo queda quieto en una pose terminada.
+const figuras = [
+  { id: 'abuela', angulo: 210, alto: 0.86 },
+  { id: 'madre', angulo: 330, alto: 0.94 },
+  { id: 'hija', angulo: 90, alto: 1 },
+];
+---
+<div class="cb" aria-hidden="true">
+  <span class="cb-aura"></span>
+  <div class="cb-stage">
+    <div class="cb-world">
+      <div class="cb-turn">
+        <svg class="cb-floor" viewBox="-100 -100 200 200" width="200" height="200">
+          <defs>
+            <radialGradient id="cb-floor-glow">
+              <stop offset="0" stop-color="#f6e7c4" stop-opacity=".55" />
+              <stop offset=".45" stop-color="#b892d4" stop-opacity=".22" />
+              <stop offset="1" stop-color="#b892d4" stop-opacity="0" />
+            </radialGradient>
+            <linearGradient id="cb-fig-fill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#fffaf0" stop-opacity=".95" />
+              <stop offset=".55" stop-color="#ead9f2" stop-opacity=".85" />
+              <stop offset="1" stop-color="#b892d4" stop-opacity=".25" />
+            </linearGradient>
+          </defs>
+          <circle r="98" fill="url(#cb-floor-glow)" />
+          <circle class="cb-ring cb-ring-1" r="88" />
+          <circle class="cb-ring cb-ring-2" r="70" />
+          <circle class="cb-ring cb-ring-3" r="34" />
+          <!-- hilo dorado entre generaciones (vértices en los ángulos de las figuras, radio 62) -->
+          <g class="cb-thread">
+            <line class="cb-thread-1" x1="-53.7" y1="-31" x2="53.7" y2="-31" />
+            <line class="cb-thread-2" x1="53.7" y1="-31" x2="0" y2="62" />
+            <line class="cb-thread-3" x1="0" y1="62" x2="-53.7" y2="-31" />
+          </g>
+        </svg>
+        {figuras.map(({ id, angulo, alto }) => (
+          <div class={`cb-spot cb-spot-${id}`} style={`--a:${angulo}deg; --h:${alto}`}>
+            <div class="cb-unturn">
+              <div class="cb-stand">
+                <span class="cb-halo"></span>
+                <svg class="cb-figure" viewBox="0 0 60 120" width="60" height="120">
+                  <circle cx="30" cy="19" r="10" />
+                  <path d="M30 33c-10 0-16 6-18 16-3 16-6 44-8 67h52c-2-23-5-51-8-67-2-10-8-16-18-16z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        ))}
+        <div class="cb-spot cb-spot-centro" style="--a:0deg; --r:0">
+          <div class="cb-unturn">
+            <div class="cb-stand"><span class="cb-orb"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <span class="cb-caption">Mirar tu historia con luz</span>
+</div>
+
+<style is:inline>
+  .cb { position: relative; aspect-ratio: 1; width: 100%; display: grid; place-items: center; }
+  .cb-aura {
+    position: absolute; inset: 6%; border-radius: 50%;
+    background: radial-gradient(circle at 50% 55%, rgba(236, 201, 132, .22), rgba(184, 146, 212, .18) 42%, transparent 70%);
+    animation: cb-breathe 9s ease-in-out infinite;
+  }
+  .cb-stage { position: absolute; inset: 0; perspective: 62rem; perspective-origin: 50% 30%; }
+  .cb-world {
+    position: absolute; left: 50%; top: 60%; width: 0; height: 0;
+    transform-style: preserve-3d; transform: rotateX(64deg);
+  }
+  .cb-turn { position: absolute; transform-style: preserve-3d; animation: cb-sway 18s ease-in-out infinite alternate; }
+  .cb-floor {
+    position: absolute; width: 26rem; height: 26rem; left: -13rem; top: -13rem; overflow: visible;
+  }
+  .cb-ring { fill: none; stroke: #ecc984; stroke-width: .5; transform-origin: 0 0; }
+  .cb-ring-1 { opacity: .35; animation: cb-ripple 9s ease-in-out infinite; }
+  .cb-ring-2 { opacity: .5; stroke-dasharray: 1.5 3; }
+  .cb-ring-3 { opacity: .4; animation: cb-ripple 9s ease-in-out -4.5s infinite; }
+  .cb-thread line { stroke: #f3d9a1; stroke-width: 1; stroke-linecap: round; opacity: .3; animation: cb-thread 9s ease-in-out infinite; }
+  .cb-thread-2 { animation-delay: 3s !important; }
+  .cb-thread-3 { animation-delay: 6s !important; }
+
+  /* Cada figura se ubica en el círculo y "deshace" el giro para quedar siempre de frente. */
+  .cb-spot {
+    --r: 8.06rem;
+    position: absolute; transform-style: preserve-3d;
+    transform: rotateZ(var(--a)) translateX(var(--r)) rotateZ(calc(var(--a) * -1));
+  }
+  .cb-unturn { transform-style: preserve-3d; animation: cb-unsway 18s ease-in-out infinite alternate; }
+  .cb-stand { position: absolute; transform-style: preserve-3d; transform: rotateX(-64deg); transform-origin: 0 0; }
+  .cb-figure {
+    position: absolute; left: -2.1rem; bottom: 0; width: 4.2rem; height: 8.4rem; overflow: visible;
+    transform: scale(var(--h)); transform-origin: 50% 100%;
+    fill: url(#cb-fig-fill);
+  }
+  .cb-spot-abuela .cb-figure { opacity: .82; }
+  .cb-spot-madre .cb-figure { opacity: .9; }
+  .cb-halo {
+    position: absolute; left: -4rem; bottom: -.5rem; width: 8rem; height: 10rem; border-radius: 50%;
+    background: radial-gradient(ellipse at 50% 60%, rgba(243, 217, 161, .65), rgba(236, 201, 132, 0) 65%);
+    opacity: .25; animation: cb-light 9s ease-in-out infinite;
+  }
+  .cb-spot-madre .cb-halo { animation-delay: 3s; }
+  .cb-spot-hija .cb-halo { animation-delay: 6s; }
+
+  .cb-orb {
+    position: absolute; left: -3rem; bottom: 2rem; width: 6rem; height: 6rem; border-radius: 50%;
+    background: radial-gradient(circle at 46% 44%, #fffaf0, #f3d9a1 18%, rgba(236, 201, 132, .45) 30%, rgba(184, 146, 212, .18) 48%, rgba(184, 146, 212, 0) 70%);
+    animation: cb-float 9s ease-in-out infinite;
+  }
+  .cb-caption {
+    position: absolute; bottom: 2%; left: 0; right: 0; text-align: center;
+    font-family: var(--display); font-style: italic; font-size: clamp(.95rem, 2.4vw, 1.1rem);
+    color: rgba(251, 247, 241, .82); letter-spacing: .02em;
+  }
+
+  @keyframes cb-sway { from { transform: rotateZ(-16deg); } to { transform: rotateZ(16deg); } }
+  @keyframes cb-unsway { from { transform: rotateZ(16deg); } to { transform: rotateZ(-16deg); } }
+  @keyframes cb-breathe { 0%, 100% { transform: scale(.94); opacity: .75; } 50% { transform: scale(1.04); opacity: 1; } }
+  @keyframes cb-ripple { 0%, 100% { transform: scale(.96); opacity: .2; } 50% { transform: scale(1.03); opacity: .55; } }
+  @keyframes cb-thread { 0%, 100% { opacity: .22; } 20% { opacity: .95; } 45% { opacity: .3; } }
+  @keyframes cb-light { 0%, 100% { opacity: .2; } 22% { opacity: 1; } 50% { opacity: .3; } }
+  @keyframes cb-float { 0%, 100% { transform: translateY(.35rem) scale(.94); } 50% { transform: translateY(-.45rem) scale(1.05); } }
+
+  @media (max-width: 40rem) {
+    .cb-floor { width: 18rem; height: 18rem; left: -9rem; top: -9rem; }
+    .cb-spot { --r: 5.58rem; }
+    .cb-figure { width: 3rem; height: 6rem; left: -1.5rem; }
+    .cb-halo { width: 6rem; height: 7.5rem; left: -3rem; }
+    .cb-orb { width: 4.4rem; height: 4.4rem; left: -2.2rem; bottom: 1.4rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cb *, .cb { animation: none !important; }
+    .cb-halo { opacity: .55; }
+    .cb-thread line { opacity: .6; }
+  }
+</style>
