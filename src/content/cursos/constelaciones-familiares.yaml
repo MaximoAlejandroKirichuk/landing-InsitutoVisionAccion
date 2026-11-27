@@ -97,6 +97,27 @@ oferta:
   titulo: Reservá tu sesión
   destacado: Sesión individual · Agenda abierta
 
+carrusel:
+  titulo: Para guardar y compartir
+  texto: El carrusel de Instagram de esta sesión. Deslizá las placas y, si te sirvió, compartilo con alguien que lo necesite.
+  imagenes:
+    - src: /images/carruseles/constelaciones-familiares/1.webp
+      alt: "«Le hago a mi hija lo mismo que me hizo mi mamá.» Deslizá."
+    - src: /images/carruseles/constelaciones-familiares/2.webp
+      alt: "Me lo dicen muchas mamás. Y casi nunca es a propósito. No es falta de amor."
+    - src: /images/carruseles/constelaciones-familiares/3.webp
+      alt: "Lo que no miramos de nuestra historia se repite en la de nuestros hijos. De madre a hija, hasta que alguien decide mirarla."
+    - src: /images/carruseles/constelaciones-familiares/4.webp
+      alt: "Un ejercicio: escribí tres frases que te decía tu mamá. ¿Cuál de ellas le decís hoy a tus hijos?"
+    - src: /images/carruseles/constelaciones-familiares/5.webp
+      alt: "No es para culpar a nadie. Es para ver de dónde viene y poder elegir distinto. El cambio empieza por vos."
+    - src: /images/carruseles/constelaciones-familiares/6.webp
+      alt: "Sesión de Constelaciones Familiares: individual, miramos juntas tu historia familiar para entender qué se repite. Es una sesión paga, el arancel te lo paso por WhatsApp."
+    - src: /images/carruseles/constelaciones-familiares/7.webp
+      alt: "Para quién es: para quien se escuchó repetir a su mamá, para quien quiere cortar la cadena empezando por ella. No hace falta experiencia previa."
+    - src: /images/carruseles/constelaciones-familiares/8.webp
+      alt: "¿Qué frase de tu mamá te escuchaste decir? Contame abajo, leo cada comentario. Soy Fernanda, de Visión en Acción."
+
 preguntas:
   - pregunta: ¿Cómo reservo mi sesión?
     respuesta: Tocá «Reservar mi sesión» y dejá tus datos, o escribinos CONSTELACIONES por WhatsApp al 11 6677-0206 o al 11 5646-7222. Te respondemos con los horarios y el arancel.
