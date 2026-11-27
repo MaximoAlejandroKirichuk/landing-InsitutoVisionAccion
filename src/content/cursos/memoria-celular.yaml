@@ -83,6 +83,27 @@ programa:
       resumen: Cuando sentís que no avanzás o que algo tiene que cambiar.
       descripcion: Una etapa nueva, un duelo, o la sensación de estar siempre en el mismo lugar. La sesión es un espacio para observarlo con calma.
 
+carrusel:
+  titulo: Un ejercicio para empezar hoy
+  texto: Deslizá las placas. Es el mismo carrusel que compartimos en Instagram.
+  imagenes:
+    - src: /images/carruseles/memoria-celular/1.webp
+      alt: "«Me duele ver que mis hijos repiten mis errores.»"
+    - src: /images/carruseles/memoria-celular/2.webp
+      alt: "A veces reaccionamos con una fuerza que no tiene que ver con lo que pasó hoy. Y después no entendemos de dónde salió."
+    - src: /images/carruseles/memoria-celular/3.webp
+      alt: "Desde este enfoque, el cuerpo guarda memoria. De lo que vivimos, y de lo que vivieron antes que nosotras."
+    - src: /images/carruseles/memoria-celular/4.webp
+      alt: "Un ejercicio: la próxima vez que algo te desborde, preguntate: ¿cuándo sentí esto por primera vez?"
+    - src: /images/carruseles/memoria-celular/5.webp
+      alt: "Un ejercicio: anotá lo que aparezca, sin juzgarlo. No hace falta entenderlo todo hoy. Es un punto de partida."
+    - src: /images/carruseles/memoria-celular/6.webp
+      alt: "Sesión de Memoria Celular: un espacio individual para mirar de dónde viene lo que se repite. Es una sesión paga; el arancel te lo paso por WhatsApp. No reemplaza la atención médica ni psicológica."
+    - src: /images/carruseles/memoria-celular/7.webp
+      alt: "Para quién es: para quien ve que algo se repite de madre a hija, para quien ya entendió mucho con la cabeza, para quien decidió empezar por ella."
+    - src: /images/carruseles/memoria-celular/8.webp
+      alt: "¿Te pasó reaccionar fuerte y después no entender por qué? Contame abajo: lo que se nombra, se puede mirar. Soy Fernanda, de Visión en Acción."
+
 instituto:              # bloque "Cómo es estudiar en el Instituto", ajustado a una sesión
   titulo: Qué recibís y cómo seguir
   recibis:
