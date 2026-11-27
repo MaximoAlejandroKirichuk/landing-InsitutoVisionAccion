@@ -427,3 +427,18 @@ blockquote { margin: 1.4rem 0 0; padding-inline-start: 1.1rem; border-inline-sta
 .hook-quote { margin: 0; padding: 0; border: 0; font: italic 450 clamp(1.6rem, 3.6vw, 2.6rem)/1.25 var(--display); letter-spacing: -.01em; color: var(--plum); text-wrap: balance; }
 .hook-inner p { max-width: 38rem; margin: 1.2rem auto 0; font-size: clamp(1rem, 1.6vw, 1.12rem); }
 .note { font-size: .9rem; opacity: .85; }
+.footer-contact a { color: var(--gold); }
+
+/* ── Course hero animation slot (src/components/animaciones/*) ── */
+.hero-animacion { position: relative; width: min(100%, 30rem); justify-self: center; }
+@media (max-width: 40rem) { .hero-animacion { width: min(88%, 21rem); } }
+
+/* ── Standard block: qué recibís · encuentros · membresía ── */
+.estudiar-grid { list-style: none; margin: clamp(1.5rem, 3vw, 2.5rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); gap: clamp(.9rem, 2vw, 1.5rem); }
+.estudiar-grid > li { padding: clamp(1.2rem, 2.5vw, 1.6rem); border: 1px solid var(--line); border-radius: var(--radius-lg); background: #fff; }
+.estudiar-grid h3 { font-size: 1.3rem; margin-bottom: .8rem; }
+.estudiar-lista { margin: 0 0 1em; padding-inline-start: 1.1rem; color: var(--body); }
+.estudiar-lista li + li { margin-top: .35rem; }
+.estudiar-membresia { background: var(--soft) !important; }
+.estudiar-precio { font-weight: 600; color: var(--plum); }
+.offer-whatsapp { max-width: 32ch; }

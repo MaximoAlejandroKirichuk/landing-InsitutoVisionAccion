@@ -7,6 +7,11 @@ import TopicGrid from '../components/TopicGrid.astro';
 import LeadModal from '../components/LeadModal.astro';
 import Emblem from '../components/Emblem.astro';
 import { whatsappUrl } from '../data/contacto';
+import { MEMBRESIA, RECIBIS_POR_DEFECTO, ENCUENTROS_POR_DEFECTO, ARANCEL_POR_WHATSAPP } from '../data/instituto';
+
+// Hero animations: one component per course in src/components/animaciones/ (see README → "Animaciones").
+const animaciones = import.meta.glob<{ default: any }>('../components/animaciones/*.astro');
+const normalizar = (nombre: string) => nombre.toLowerCase().replace(/[^a-z0-9]/g, '');
 
 export async function getStaticPaths() {
   const cursos = await getCollection('cursos', ({ data }) => data.publicado);
@@ -18,6 +23,16 @@ const { curso } = Astro.props;
 const c = curso.data;
 const whatsapp = whatsappUrl(c.whatsapp.mensaje);
 const cta = c.hero.boton;
+
+let Animacion: any = null;
+if (c.animacion) {
+  const ruta = Object.keys(animaciones).find(
+    (r) => normalizar(r.split('/').pop()!.replace(/\.astro$/, '')) === normalizar(c.animacion!),
+  );
+  if (!ruta) throw new Error(`${curso.id}.yaml: no existe src/components/animaciones/ para "animacion: ${c.animacion}"`);
+  Animacion = (await animaciones[ruta]()).default;
+}
+const bloque = c.instituto === false ? null : c.instituto;
 ---
 <SiteLayout title={c.seo.titulo ?? `${c.nombre} | Instituto Visión en Acción`} description={c.seo.descripcion} landing>
   <section class="site-hero hero-formation">
@@ -36,7 +51,9 @@ const cta = c.hero.boton;
         </div>
         {c.hero.nota && <p class="cta-note">{c.hero.nota}</p>}
       </div>
-      {c.hero.imagen ? (
+      {Animacion ? (
+        <div class="hero-animacion" aria-hidden="true"><Animacion /></div>
+      ) : c.hero.imagen ? (
         <div class="formation-hero-art" aria-hidden="true">
           {c.hero.imagen.esfera && <span class="formation-hero-sphere"></span>}
           <img
@@ -140,6 +157,32 @@ const cta = c.hero.boton;
     </section>
   )}
 
+  {bloque && (
+    <section class="wrap section" id="como-es">
+      <h2 data-reveal>{bloque.titulo ?? 'Cómo es estudiar en el Instituto'}</h2>
+      <ul class="estudiar-grid" data-reveal-group>
+        <li>
+          <h3>Qué recibís</h3>
+          <ul class="estudiar-lista">{(bloque.recibis ?? RECIBIS_POR_DEFECTO).map((item) => <li>{item}</li>)}</ul>
+        </li>
+        <li>
+          <h3>Encuentros en vivo</h3>
+          <p>{bloque.encuentros ?? ENCUENTROS_POR_DEFECTO}</p>
+        </li>
+        {bloque.membresia && (
+          <li class="estudiar-membresia">
+            <h3>Membresía Visión en Acción</h3>
+            <p>{MEMBRESIA.encuentros}</p>
+            <ul class="estudiar-lista">{MEMBRESIA.incluye.map((item) => <li>{item}</li>)}</ul>
+            <p class="estudiar-precio">{MEMBRESIA.precio.join(' · ')}</p>
+            <p class="note">{MEMBRESIA.nota}</p>
+            {curso.id !== 'membresia' && <a class="hero-link" href={MEMBRESIA.href}>Conocer la membresía</a>}
+          </li>
+        )}
+      </ul>
+    </section>
+  )}
+
   {c.oferta && (
     <section class="band band-dark" id="oferta">
       <div class="wrap section offer" data-reveal>
@@ -148,6 +191,7 @@ const cta = c.hero.boton;
           {c.oferta.destacado && <p><strong>{c.oferta.destacado}</strong></p>}
           {c.oferta.texto && <p>{c.oferta.texto}</p>}
         </div>
+        {c.oferta.precios.length === 0 && <p class="offer-whatsapp">{ARANCEL_POR_WHATSAPP}</p>}
         {c.oferta.precios.length > 0 && (
           <dl class="offer-list" aria-label="Arancel">
             {c.oferta.precios.map(({ periodo, valores }) => (

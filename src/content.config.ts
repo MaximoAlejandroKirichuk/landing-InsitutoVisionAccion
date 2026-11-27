@@ -19,6 +19,12 @@ const cursos = defineCollection({
     orden: z.number().default(10),
     /** Value written to the funnel_slug column of the leads sheet. Defaults to the file name. */
     planilla: z.string().regex(/^[a-z0-9-]{1,60}$/).optional(),
+    /**
+     * Hero animation: name of a component in src/components/animaciones/ (tarot → Tarot.astro,
+     * coaching-ontologico → CoachingOntologico.astro). Matching ignores case and dashes.
+     * Replaces hero.imagen / the institute emblem.
+     */
+    animacion: z.string().regex(/^[A-Za-z0-9-]{1,60}$/).optional(),
     seo: z.object({ titulo: texto.optional(), descripcion: texto }),
     tarjeta: z.object({
       etiqueta: texto,
@@ -89,6 +95,21 @@ const cursos = defineCollection({
         precios: z.array(z.object({ periodo: texto, valores: z.array(texto).min(1) })).default([]),
       })
       .optional(),
+    /**
+     * Standard block "Cómo es estudiar en el Instituto" (qué recibís · encuentros · membresía), shown on every
+     * course by default with the texts in src/data/instituto.ts. Override any text here, or set `false` to hide it.
+     */
+    instituto: z
+      .union([
+        z.literal(false),
+        z.object({
+          titulo: texto.optional(),
+          recibis: z.array(texto).min(1).optional(),
+          encuentros: texto.optional(),
+          membresia: z.boolean().default(true),
+        }),
+      ])
+      .default({ membresia: true }),
     preguntas: z.array(z.object({ pregunta: texto, respuesta: texto })).default([]),
     cierre: z.object({ titulo: texto, texto: texto.optional() }).optional(),
     reserva: z

@@ -136,3 +136,11 @@ preguntas:
 cierre:
   titulo: Empezá tu formación en la próxima cursada
   texto: Dejá tus datos y te escribimos para confirmar disponibilidad y explicarte cómo inscribirte.
+
+# Bloque estándar "Cómo es estudiar en el Instituto" (ver README → "Bloque de membresía y encuentros").
+instituto:
+  recibis:
+    - Grabaciones de cada clase, disponibles por 30 días.
+    - Material de estudio para descargar.
+    - Evaluaciones y certificados incluidos en el arancel.
+  encuentros: Clases en vivo por Google Meet los lunes y miércoles a las 20 h (Argentina), durante 12 meses.

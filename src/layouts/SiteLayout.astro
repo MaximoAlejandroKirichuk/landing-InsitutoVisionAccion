@@ -1,5 +1,6 @@
 ---
 import '../styles/site.css';
+import { WHATSAPP_LINEAS, whatsappUrl } from '../data/contacto';
 
 interface Props {
   title: string;
@@ -43,6 +44,11 @@ const instituteMark = `${instituteLogo}#svgView(viewBox(101,104,153,153))`;
     <footer class="site-footer">
       <div class="wrap footer-row">
         <span>Instituto Visión en Acción</span>
+        <span class="footer-contact">WhatsApp:
+          {WHATSAPP_LINEAS.map(({ numero, texto }, i) => (
+            <>{i > 0 && ' · '}<a href={whatsappUrl('Hola, quisiera hacer una consulta al Instituto Visión en Acción.', numero)}>{texto}</a></>
+          ))}
+        </span>
         {landing ? <a href="/">Conocer el instituto</a> : <a href="/metodo-via/">Hacé el Mapa Inicial VIA</a>}
       </div>
     </footer>

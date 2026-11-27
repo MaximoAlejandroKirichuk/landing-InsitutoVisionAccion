@@ -73,9 +73,10 @@ test('training page connects the overview, curriculum and FAQs to one inquiry pa
   for (const id of ['para-quien', 'programa', 'cursada', 'preguntas']) {
     assert.match(html, new RegExp(`id="${id}"`));
   }
-  const links = [...html.matchAll(/href="(https:\/\/wa\.me\/[^"]+)"/g)].map((match) => new URL(match[1].replaceAll("&amp;", "&")));
-  // Every WhatsApp link goes to the same number.
-  assert.deepEqual([...new Set(links.map((url) => url.pathname))], ["/5491138105350"]);
+  const main = html.match(/<main[\s\S]*<\/main>/)?.[0] ?? '';
+  const links = [...main.matchAll(/href="(https:\/\/wa\.me\/[^"]+)"/g)].map((match) => new URL(match[1].replaceAll("&amp;", "&")));
+  // Every WhatsApp link in the page body goes to the main number (the footer lists both official lines).
+  assert.deepEqual([...new Set(links.map((url) => url.pathname))], ["/5491166770206"]);
   // The general inquiry (price and enrolment) is repeated along the page.
   const general = links.filter((url) => /arancel.*inscripción/.test(url.searchParams.get("text")));
   assert.ok(general.length >= 2);
@@ -156,7 +157,7 @@ test('each training topic card opens its own modal with a topic inquiry', () => 
     for (const id of openers) {
       const dialog = html.match(new RegExp(`<dialog[^>]*id="${id}"[\\s\\S]*?</dialog>`));
       assert.ok(dialog, `missing dialog ${id}`);
-      assert.match(dialog[0], /href="https:\/\/wa\.me\/5491138105350\?text=[^"]*temario/);
+      assert.match(dialog[0], /href="https:\/\/wa\.me\/5491166770206\?text=[^"]*temario/);
     }
   }
 });
@@ -182,7 +183,7 @@ test('training page repeats one "reserve" action that opens the lead form, with 
   assert.ok(reserve.length >= 4, `expected the reserve action along the page, got ${reserve.length}`);
   for (const [tag, label] of reserve) {
     assert.equal(label.trim(), 'Reservar mi lugar');
-    assert.match(tag, /href="https:\/\/wa\.me\/5491138105350\?text=/);
+    assert.match(tag, /href="https:\/\/wa\.me\/5491166770206\?text=/);
   }
   const dialog = html.match(/<dialog[^>]*id="reservar"[\s\S]*?<\/dialog>/);
   assert.ok(dialog);

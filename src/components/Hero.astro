@@ -1,10 +1,11 @@
 ---
+import { whatsappUrl as waUrl } from '../data/contacto';
 // Hero — Warm split hero with finalized SVG illustration.
 // Cream-led background with restrained gold/night-blue accents.
 // Left-aligned copy in night-blue, right-side project-owned hero art.
 // CTA dispatches `funnel:advance` — functional behavior unchanged.
 const whatsappMessage = 'Hola, quiero recibir orientación sobre el Método VIA. Vengo desde la web y me gustaría conversar sobre mi situación.';
-const whatsappUrl = `https://wa.me/5491126967602?text=${encodeURIComponent(whatsappMessage)}`;
+const whatsappUrl = waUrl(whatsappMessage);
 ---
 
 <section id="funnel-hero" class="hero gradient-hero">
