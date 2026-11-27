@@ -1,0 +1,123 @@
+---
+// Academia de Coaching Ontológico: una persona que sube, paso a paso, una escalera de cinco escalones
+// (aprendizaje, escucha, comunicación, compromiso, confianza). Cada escalón se ilumina al pisarlo; la figura
+// se va enderezando y arriba abre los brazos. Isométrico en SVG + CSS, sin JS.
+// Con prefers-reduced-motion queda quieta en el estado final.
+---
+<div class="coaching-ontologico-anim" aria-hidden="true">
+  <span class="coaching-ontologico-aura"></span>
+  <div class="coaching-ontologico-scene">
+    <svg viewBox="0 0 400 400" width="400" height="400" focusable="false">
+      <defs>
+        <radialGradient id="coaching-ontologico-halo-g" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#ecc984" stop-opacity=".55" />
+          <stop offset="100%" stop-color="#ecc984" stop-opacity="0" />
+        </radialGradient>
+      </defs>
+      <g class="coaching-ontologico-dust">
+        <circle cx="120" cy="300" r="2" /><circle cx="200" cy="260" r="1.6" /><circle cx="250" cy="210" r="2.2" />
+        <circle cx="160" cy="230" r="1.4" /><circle cx="290" cy="170" r="1.8" /><circle cx="230" cy="300" r="1.5" />
+      </g>
+      <g class="coaching-ontologico-step coaching-ontologico-s4"><polygon class="coaching-ontologico-face-l" points="221.7,142.0 277.1,174.0 277.1,294.0 221.7,262.0"/><polygon class="coaching-ontologico-face-f" points="277.1,174.0 310.0,155.0 310.0,275.0 277.1,294.0"/><polygon class="coaching-ontologico-face-t" points="221.7,142.0 254.6,123.0 310.0,155.0 277.1,174.0"/><polygon class="coaching-ontologico-glow" points="221.7,142.0 254.6,123.0 310.0,155.0 277.1,174.0"/></g>
+      <g class="coaching-ontologico-step coaching-ontologico-s3"><polygon class="coaching-ontologico-face-l" points="188.7,185.0 244.2,217.0 244.2,313.0 188.7,281.0"/><polygon class="coaching-ontologico-face-f" points="244.2,217.0 277.1,198.0 277.1,294.0 244.2,313.0"/><polygon class="coaching-ontologico-face-t" points="188.7,185.0 221.7,166.0 277.1,198.0 244.2,217.0"/><polygon class="coaching-ontologico-glow" points="188.7,185.0 221.7,166.0 277.1,198.0 244.2,217.0"/></g>
+      <g class="coaching-ontologico-step coaching-ontologico-s2"><polygon class="coaching-ontologico-face-l" points="155.8,228.0 211.3,260.0 211.3,332.0 155.8,300.0"/><polygon class="coaching-ontologico-face-f" points="211.3,260.0 244.2,241.0 244.2,313.0 211.3,332.0"/><polygon class="coaching-ontologico-face-t" points="155.8,228.0 188.7,209.0 244.2,241.0 211.3,260.0"/><polygon class="coaching-ontologico-glow" points="155.8,228.0 188.7,209.0 244.2,241.0 211.3,260.0"/></g>
+      <g class="coaching-ontologico-step coaching-ontologico-s1"><polygon class="coaching-ontologico-face-l" points="122.9,271.0 178.3,303.0 178.3,351.0 122.9,319.0"/><polygon class="coaching-ontologico-face-f" points="178.3,303.0 211.3,284.0 211.3,332.0 178.3,351.0"/><polygon class="coaching-ontologico-face-t" points="122.9,271.0 155.8,252.0 211.3,284.0 178.3,303.0"/><polygon class="coaching-ontologico-glow" points="122.9,271.0 155.8,252.0 211.3,284.0 178.3,303.0"/></g>
+      <g class="coaching-ontologico-step coaching-ontologico-s0"><polygon class="coaching-ontologico-face-l" points="90.0,314.0 145.4,346.0 145.4,370.0 90.0,338.0"/><polygon class="coaching-ontologico-face-f" points="145.4,346.0 178.3,327.0 178.3,351.0 145.4,370.0"/><polygon class="coaching-ontologico-face-t" points="90.0,314.0 122.9,295.0 178.3,327.0 145.4,346.0"/><polygon class="coaching-ontologico-glow" points="90.0,314.0 122.9,295.0 178.3,327.0 145.4,346.0"/></g>
+      <circle class="coaching-ontologico-halo" cx="268.6" cy="112" r="64" fill="url(#coaching-ontologico-halo-g)" />
+      <g class="coaching-ontologico-walker" transform="translate(137 322.1)">
+        <g class="coaching-ontologico-move">
+          <ellipse class="coaching-ontologico-shadow" cx="0" cy="0" rx="10" ry="3.2" />
+          <g class="coaching-ontologico-body">
+            <path class="coaching-ontologico-arms" d="M-5.5,-27 Q-13,-37 -17,-49 M5.5,-27 Q13,-37 17,-49" />
+            <path class="coaching-ontologico-torso" d="M0,-32 C-8,-32 -9,-24 -9,-14 L-10.5,0 L10.5,0 L9,-14 C9,-24 8,-32 0,-32 Z" />
+            <circle class="coaching-ontologico-head" cx="0" cy="-40" r="6.5" />
+          </g>
+        </g>
+      </g>
+    </svg>
+  </div>
+  <span class="coaching-ontologico-caption">Aprender · Escuchar · Acompañar</span>
+</div>
+
+<style is:inline>
+  .coaching-ontologico-anim { position: relative; width: min(100%, 30rem); aspect-ratio: 1; justify-self: center; display: grid; place-items: center; isolation: isolate; }
+  .coaching-ontologico-anim > * { grid-area: 1 / 1; }
+  .coaching-ontologico-aura {
+    width: 86%; aspect-ratio: 1; border-radius: 50%; z-index: -1;
+    background: radial-gradient(circle at 58% 40%, #d9c3d6aa 0%, #ae92a666 32%, #6d4f8533 58%, transparent 72%);
+  }
+  .coaching-ontologico-scene { width: 100%; perspective: 900px; }
+  .coaching-ontologico-scene svg { display: block; width: 100%; height: auto; overflow: visible; transform-style: preserve-3d; }
+  .coaching-ontologico-face-t { fill: #6a4c80; stroke: #ecc984; stroke-opacity: .45; stroke-width: 1; stroke-linejoin: round; }
+  .coaching-ontologico-face-l { fill: #4a2f61; stroke: #ecc984; stroke-opacity: .25; stroke-width: 1; stroke-linejoin: round; }
+  .coaching-ontologico-face-f { fill: #3a2250; stroke: #ecc984; stroke-opacity: .25; stroke-width: 1; stroke-linejoin: round; }
+  .coaching-ontologico-glow { fill: #ecc984; opacity: 0; }
+  .coaching-ontologico-halo { opacity: 0; transform-box: fill-box; transform-origin: center; }
+  .coaching-ontologico-shadow { fill: #12081b; opacity: .35; }
+  .coaching-ontologico-torso, .coaching-ontologico-head { fill: #ecc984; }
+  .coaching-ontologico-arms { fill: none; stroke: #ecc984; stroke-width: 3.6; stroke-linecap: round; opacity: 0; }
+  .coaching-ontologico-body { transform-box: fill-box; transform-origin: 50% 100%; scale: 1.3; }
+  .coaching-ontologico-dust circle { fill: #ecc984; opacity: 0; }
+  .coaching-ontologico-caption { align-self: end; margin-bottom: 3%; color: var(--gold); font-size: clamp(.7rem, 1.15vw, .86rem); letter-spacing: .04em; }
+
+  /* Estado final (también el de reduced-motion): arriba, de pie, brazos abiertos, escalones encendidos. */
+  .coaching-ontologico-move { transform: translate(131.6px, -172px); }
+  .coaching-ontologico-glow { opacity: .28; }
+  .coaching-ontologico-arms { opacity: 1; }
+  .coaching-ontologico-halo { opacity: .9; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .coaching-ontologico-scene svg { animation: coaching-ontologico-sway 18s ease-in-out infinite; }
+    .coaching-ontologico-aura { animation: coaching-ontologico-breathe 9s ease-in-out infinite; }
+    .coaching-ontologico-move { animation: coaching-ontologico-climb 14s cubic-bezier(.45, .05, .35, 1) infinite; }
+    .coaching-ontologico-body { animation: coaching-ontologico-posture 14s ease-in-out infinite; }
+    .coaching-ontologico-arms { animation: coaching-ontologico-arms 14s ease-in-out infinite; }
+    .coaching-ontologico-halo { animation: coaching-ontologico-halo 14s ease-in-out infinite; }
+    .coaching-ontologico-glow { animation: 14s ease-in-out infinite; }
+    .coaching-ontologico-s0 .coaching-ontologico-glow { animation-name: coaching-ontologico-light-0; }
+    .coaching-ontologico-s1 .coaching-ontologico-glow { animation-name: coaching-ontologico-light-1; }
+    .coaching-ontologico-s2 .coaching-ontologico-glow { animation-name: coaching-ontologico-light-2; }
+    .coaching-ontologico-s3 .coaching-ontologico-glow { animation-name: coaching-ontologico-light-3; }
+    .coaching-ontologico-s4 .coaching-ontologico-glow { animation-name: coaching-ontologico-light-4; }
+    .coaching-ontologico-dust circle { animation: coaching-ontologico-dust 7s ease-out infinite; }
+    .coaching-ontologico-dust circle:nth-child(2) { animation-delay: 1.2s; }
+    .coaching-ontologico-dust circle:nth-child(3) { animation-delay: 2.5s; }
+    .coaching-ontologico-dust circle:nth-child(4) { animation-delay: 3.6s; }
+    .coaching-ontologico-dust circle:nth-child(5) { animation-delay: 4.8s; }
+    .coaching-ontologico-dust circle:nth-child(6) { animation-delay: 5.9s; }
+  }
+
+  @keyframes coaching-ontologico-climb {
+    0% { transform: translate(0, 0); opacity: 0; }
+    5%, 12% { transform: translate(0, 0); opacity: 1; }
+    17% { transform: translate(16.5px, -35.5px); }
+    22%, 30% { transform: translate(32.9px, -43px); }
+    35% { transform: translate(49.4px, -78.5px); }
+    40%, 48% { transform: translate(65.8px, -86px); }
+    53% { transform: translate(82.3px, -121.5px); }
+    58%, 66% { transform: translate(98.7px, -129px); }
+    71% { transform: translate(115.2px, -164.5px); }
+    76%, 94% { transform: translate(131.6px, -172px); opacity: 1; }
+    100% { transform: translate(131.6px, -172px); opacity: 0; }
+  }
+  /* Empieza encorvada y se va enderezando y creciendo un poco en cada escalón. */
+  @keyframes coaching-ontologico-posture {
+    0%, 12% { rotate: -14deg; scale: 1.15; }
+    30% { rotate: -10deg; scale: 1.2; }
+    48% { rotate: -6deg; scale: 1.25; }
+    66% { rotate: -3deg; scale: 1.28; }
+    76%, 100% { rotate: 0deg; scale: 1.34; }
+  }
+  @keyframes coaching-ontologico-arms { 0%, 78% { opacity: 0; } 84%, 94% { opacity: 1; } 100% { opacity: 0; } }
+  @keyframes coaching-ontologico-halo { 0%, 76% { opacity: 0; scale: .6; } 86% { opacity: .9; scale: 1; } 94% { opacity: .7; scale: 1.08; } 100% { opacity: 0; scale: 1.1; } }
+  @keyframes coaching-ontologico-light-0 { 0%, 8% { opacity: 0; } 12%, 94% { opacity: .28; } 100% { opacity: 0; } }
+  @keyframes coaching-ontologico-light-1 { 0%, 20% { opacity: 0; } 24%, 94% { opacity: .28; } 100% { opacity: 0; } }
+  @keyframes coaching-ontologico-light-2 { 0%, 38% { opacity: 0; } 42%, 94% { opacity: .28; } 100% { opacity: 0; } }
+  @keyframes coaching-ontologico-light-3 { 0%, 56% { opacity: 0; } 60%, 94% { opacity: .28; } 100% { opacity: 0; } }
+  @keyframes coaching-ontologico-light-4 { 0%, 74% { opacity: 0; } 78% { opacity: .55; } 86%, 94% { opacity: .38; } 100% { opacity: 0; } }
+  @keyframes coaching-ontologico-dust { 0% { opacity: 0; transform: translateY(0); } 20% { opacity: .8; } 100% { opacity: 0; transform: translateY(-70px); } }
+  @keyframes coaching-ontologico-sway { 0%, 100% { transform: rotateY(-9deg) rotateX(4deg); } 50% { transform: rotateY(9deg) rotateX(-2deg); } }
+  @keyframes coaching-ontologico-breathe { 0%, 100% { scale: .92; opacity: .75; } 50% { scale: 1.04; opacity: 1; } }
+
+  @media (max-width: 40rem) { .coaching-ontologico-anim { width: min(100%, 21rem); } }
+</style>
