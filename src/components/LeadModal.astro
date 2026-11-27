@@ -1,11 +1,20 @@
 ---
-// Lead capture for the training: saves the contact (same Apps Script sheet as the quiz),
+// Lead capture for a course page: saves the contact and the campaign UTMs (same Apps Script sheet as the quiz),
 // then hands off to WhatsApp. Opened by any [data-modal-open="reservar"] on the page.
-import { inquiryMessage, whatsappUrl } from '../data/formation';
+import { whatsappUrl } from '../data/contacto';
 
-const whatsapp = whatsappUrl(inquiryMessage);
+interface Props {
+  /** funnel_slug column in the leads sheet. */
+  funnel: string;
+  whatsappMessage: string;
+  title: string;
+  text: string;
+  thanks: string;
+}
+const { funnel, whatsappMessage, title, text, thanks } = Astro.props;
+const whatsapp = whatsappUrl(whatsappMessage);
 ---
-<dialog class="modal" id="reservar" aria-labelledby="reservar-title">
+<dialog class="modal" id="reservar" aria-labelledby="reservar-title" data-funnel={funnel}>
   <div class="modal-body">
     <button type="button" class="modal-close" data-modal-close aria-label="Cerrar">
       <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
@@ -14,8 +23,8 @@ const whatsapp = whatsappUrl(inquiryMessage);
     </button>
 
     <div data-lead-step="form">
-      <h3 id="reservar-title">Reservá tu lugar en la próxima cursada</h3>
-      <p>Dejanos tus datos y te escribimos con la fecha de inicio, el arancel y los pasos de inscripción.</p>
+      <h3 id="reservar-title">{title}</h3>
+      <p>{text}</p>
       <form class="lead" id="lead-form" novalidate>
         <label class="field">
           <span>Nombre y apellido</span>
@@ -40,13 +49,16 @@ const whatsapp = whatsappUrl(inquiryMessage);
 
     <div data-lead-step="done" hidden tabindex="-1">
       <h3>¡Listo! Ya tenemos tus datos</h3>
-      <p>Te vamos a escribir para contarte la fecha de inicio y el arancel. Si querés, podés escribirnos ahora por WhatsApp.</p>
+      <p>{thanks}</p>
       <a class="button button-dark" href={whatsapp} target="_blank" rel="noopener">Escribir por WhatsApp</a>
     </div>
   </div>
 </dialog>
 
 <script>
+  import { captureUtm } from '../lib/utm';
+
+  const utm = captureUtm();
   const form = document.getElementById('lead-form') as HTMLFormElement | null;
   const dialog = document.getElementById('reservar') as HTMLDialogElement | null;
 
@@ -92,7 +104,7 @@ const whatsapp = whatsappUrl(inquiryMessage);
         const response = await fetch('/api/formation-leads', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ contact }),
+          body: JSON.stringify({ contact, funnel: dialog.dataset.funnel, utm }),
         });
         if (!response.ok) throw new Error(String(response.status));
         formStep.hidden = true;

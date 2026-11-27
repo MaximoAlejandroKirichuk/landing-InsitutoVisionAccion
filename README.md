@@ -1,82 +1,62 @@
-# Instituto Visión Acción Landing
+# Instituto Visión en Acción
 
-Landing + orientation funnel for Instituto Visión Acción, built with Astro.
+Sitio del Instituto Visión en Acción, hecho con Astro 7. Netlify publica `main` automáticamente.
 
-## What this repo contains
+## Páginas
 
-The actual app lives in:
+| URL | Qué es | Archivo |
+| --- | --- | --- |
+| `/` | Home institucional: a qué se dedica el instituto, una tarjeta por propuesta y quién está detrás | `src/pages/index.astro` |
+| `/metodo-via/` | Landing del Método VIA con el quiz Mapa Inicial VIA | `src/pages/metodo-via.astro` |
+| `/formacion/` y cada curso nuevo | Landing de venta de cada curso, generada desde la plantilla | `src/content/cursos/*.yaml` + `src/pages/[curso].astro` |
 
-`instituto-Vision-Accion-FunnelVenta/`
+Las landings (cursos y Método VIA) no tienen menú: están pensadas para recibir el tráfico de una campaña
+(Meta Ads, etc.) y tienen una sola acción, "Reservar mi lugar", que abre el formulario y después ofrece WhatsApp.
 
-The funnel flow is:
+## Cómo sumar un curso nuevo
 
-1. Hero section
-2. VIA method section
-3. 5-step orientation quiz
-4. Lead capture form
-5. Thank-you state
+1. Copiá `src/content/cursos/_plantilla.yaml` en la misma carpeta y renombralo. **El nombre del archivo es la URL**:
+   `taller-tarot.yaml` → `https://<sitio>/taller-tarot/`. Minúsculas, sin acentos, guiones en vez de espacios.
+2. Completá los textos. Cada sección marcada `(opcional)` se puede borrar entera y la página no la muestra.
+   Las fotos van en `public/images/` y se escriben como `/images/archivo.jpg`. Solo fotos reales, nada de IA ni stock.
+3. `npm run build` (o `npm run dev`) avisa si falta un campo obligatorio, con el nombre del campo.
+4. Subí el cambio a `main`. Netlify publica la página y la tarjeta aparece sola en la home
+   (salvo que pongas `mostrarEnHome: false`, útil para una landing que solo usan los anuncios).
 
-The submission adapter uses:
+Para despublicar un curso sin borrarlo: `publicado: false`.
 
-- **real API mode** by default, posting to `/api/funnel-submissions`
-- **real API override** when `PUBLIC_FUNNEL_API_URL` is defined
+## Campañas (Meta Ads) y la planilla de leads
 
-## Stack
+- Cada anuncio apunta a la URL de su curso con UTMs, por ejemplo
+  `https://<sitio>/taller-tarot/?utm_source=facebook&utm_medium=paid&utm_campaign=taller-tarot-marzo`.
+- El sitio guarda `utm_source`, `utm_medium`, `utm_campaign`, `utm_content` y `utm_term` durante la visita
+  y los manda junto con el formulario (también desde el quiz del Método VIA).
+- En la planilla, la columna `funnel_slug` dice de qué curso vino el lead (el nombre del archivo, o el valor de
+  `planilla:` en el YAML; la formación usa `formacion-bio-coaching` para no romper filtros existentes) y las
+  columnas R–V guardan los UTM.
+- **Una sola vez:** agregá los encabezados `utm_source	utm_medium	utm_campaign	utm_content	utm_term` en R1:V1 de
+  la hoja "Leads" (o actualizá `HEADERS` del Apps Script con el snippet de abajo). Las filas viejas no cambian.
 
-- Astro 7
-- TypeScript
-- Vitest
-
-## Quick start
+## Desarrollo
 
 ```bash
-cd instituto-Vision-Accion-FunnelVenta
 npm install
-npm run dev
+npm run dev        # http://localhost:4321
+npm run test       # tests unitarios (vitest)
+npm run test:site  # build + tests sobre el HTML generado
+npm run check      # astro check (tipos y contenido)
 ```
 
-Open `http://localhost:4321`.
-
-## Available scripts
-
-Run these from `instituto-Vision-Accion-FunnelVenta/`:
-
-| Command | Purpose |
-| --- | --- |
-| `npm run dev` | Start local development server |
-| `npm run build` | Create production build |
-| `npm run preview` | Preview the production build locally |
-| `npm run test` | Run unit tests once |
-| `npm run test:watch` | Run tests in watch mode |
-| `npm run check` | Run Astro type/content checks |
-
-## Project structure
-
-```text
-InstitutoVisionAccion/
-├── README.md
-├── instituto-Vision-Accion-FunnelVenta/
-│   ├── public/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── layouts/
-│   │   ├── lib/
-│   │   │   └── api/
-│   │   ├── pages/
-│   │   └── styles/
-│   └── package.json
-├── openspec/
-└── .atl/
-```
+Requiere Node >= 22.23.4.
 
 ## Key files
 
-- `src/pages/index.astro` — app entry page
-- `src/components/OrientationFunnel.astro` — orchestrates the funnel flow on the client
-- `src/lib/funnelState.ts` — state transitions and payload building
-- `src/lib/quizData.ts` — quiz questions and options
-- `src/lib/validation.ts` — quiz and lead form validation
-- `src/lib/api/index.ts` — exports the real submission adapter
+- `src/content.config.ts` — schema of the course template (every field of the YAML files)
+- `src/pages/[curso].astro` — course landing template
+- `src/components/LeadModal.astro` — course lead form (posts to `/api/formation-leads` with the course slug and UTMs)
+- `src/components/OrientationFunnel.astro` — orchestrates the Método VIA quiz on the client
+- `src/lib/utm.ts` — captures campaign params on landing pages
+- `src/lib/funnelState.ts`, `src/lib/quizData.ts`, `src/lib/validation.ts` — quiz state, questions and validation
 
 ## Environment
 
@@ -145,11 +125,16 @@ user-entered value.
 | O | `q3_other` |
 | P | `q4_preferred_modality` |
 | Q | `q5_desired_outcome` |
+| R | `utm_source` |
+| S | `utm_medium` |
+| T | `utm_campaign` |
+| U | `utm_content` |
+| V | `utm_term` |
 
 **Ready-to-copy header row** (paste into row 1 of the "Leads" sheet):
 
 ```
-submission_id	submitted_at	academy_slug	funnel_slug	full_name	whatsapp	email	consent	user_agent	referrer	q1_area	q1_other	q2_current_situation	q3_previous_experience	q3_other	q4_preferred_modality	q5_desired_outcome
+submission_id	submitted_at	academy_slug	funnel_slug	full_name	whatsapp	email	consent	user_agent	referrer	q1_area	q1_other	q2_current_situation	q3_previous_experience	q3_other	q4_preferred_modality	q5_desired_outcome	utm_source	utm_medium	utm_campaign	utm_content	utm_term
 ```
 
 The snippet below also auto-creates headers when the first row is empty, so you can start with a blank sheet.
@@ -164,12 +149,13 @@ The snippet below also auto-creates headers when the first row is empty, so you 
 //   "row": ["cell1", "cell2", ...]
 // }
 //
-// The row array has 17 cells in this fixed order:
+// The row array has 22 cells in this fixed order:
 //   submission_id, submitted_at, academy_slug, funnel_slug,
 //   full_name, whatsapp, email, consent, user_agent, referrer,
 //   q1_area, q1_other, q2_current_situation,
 //   q3_previous_experience, q3_other, q4_preferred_modality,
-//   q5_desired_outcome
+//   q5_desired_outcome, utm_source, utm_medium, utm_campaign,
+//   utm_content, utm_term
 
 var EXPECTED_SECRET = 'your-shared-secret'; // Set your secret here.
 var SHEET_NAME = 'Leads';
@@ -192,6 +178,11 @@ var HEADERS = [
   'q3_other',
   'q4_preferred_modality',
   'q5_desired_outcome',
+  'utm_source',
+  'utm_medium',
+  'utm_campaign',
+  'utm_content',
+  'utm_term',
 ];
 
 function doPost(e) {
@@ -268,16 +259,6 @@ opt-in, forwarded headers are ignored to prevent trivial IP spoofing.
 > guaranteed to be in front of the Node process. Without a proxy that sanitises
 > these headers, any client can inject arbitrary IPs.
 
-## Testing
-
-```bash
-cd instituto-Vision-Accion-FunnelVenta
-npm run test
-npm run check
-```
-
 ## Notes
 
-- The repository root is mainly a wrapper/workspace.
-- The deployable frontend is the nested Astro project.
 - `openspec/` and `.atl/` contain planning/AI workflow artifacts, not runtime app code.

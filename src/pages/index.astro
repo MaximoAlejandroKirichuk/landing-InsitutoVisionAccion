@@ -1,57 +1,94 @@
 ---
+// Institutional home: what the institute does and its current offers. Each offer has its own landing page;
+// course cards come from src/content/cursos/ (mostrarEnHome), so a new course shows up here on its own.
+import { getCollection } from 'astro:content';
 import Emblem from '../components/Emblem.astro';
-import OrientationFunnel from '../components/OrientationFunnel.astro';
-import TopicGrid from '../components/TopicGrid.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
-import { formationName } from '../data/formation';
-import '../styles/via-funnel.css';
+
+const cursos = (await getCollection('cursos', ({ data }) => data.publicado && data.mostrarEnHome))
+  .sort((a, b) => a.data.orden - b.data.orden || a.data.nombre.localeCompare(b.data.nombre, 'es'));
+
+const propuestas = [
+  {
+    href: '/metodo-via/',
+    etiqueta: 'Orientación · Mapa Inicial VIA',
+    titulo: 'Método VIA',
+    resumen: 'Respondé cinco preguntas y recibí una orientación inicial sobre el proceso de acompañamiento que mejor se adapta a tu momento.',
+    boton: 'Hacer el Mapa Inicial VIA',
+  },
+  ...cursos.map(({ id, data }) => ({
+    href: `/${id}/`,
+    etiqueta: data.tarjeta.etiqueta,
+    titulo: data.nombre,
+    resumen: data.tarjeta.resumen,
+    boton: data.tarjeta.boton,
+  })),
+];
 ---
 <SiteLayout
   title="Instituto Visión en Acción"
-  description={`Conocé el Instituto Visión en Acción y su formación ${formationName}.`}
+  description="El Instituto Visión en Acción acompaña procesos de autoconocimiento y forma a quienes acompañan a otras personas. Conocé el Método VIA y sus formaciones."
 >
   <section class="site-hero">
     <div class="wrap site-hero-grid">
       <div class="hero-copy">
         <h1>Instituto<br />Visión en Acción</h1>
-        <p>Un espacio de formación para explorar tu historia personal y conocer distintas maneras de acompañar a otras personas.</p>
+        <p>Acompañamos procesos de autoconocimiento y formamos a quienes quieren acompañar a otras personas.</p>
         <div class="hero-actions">
-          <a class="button" href="#orientacion">Hacé el Mapa Inicial VIA</a>
-          <a class="hero-link" href="/formacion/">Conocer la formación</a>
+          <a class="button" href="#propuestas">Ver propuestas</a>
+          <a class="hero-link" href="/metodo-via/">Hacé el Mapa Inicial VIA</a>
         </div>
-        <p class="cta-note">Cinco preguntas, unos minutos y una orientación personalizada.</p>
       </div>
       <Emblem />
     </div>
   </section>
+
   <section class="wrap section split" id="instituto" data-reveal>
-    <h2>Una mirada que reúne distintos enfoques</h2>
+    <h2>A qué nos dedicamos</h2>
     <div>
-      <p>La propuesta del instituto reúne coaching sistémico, constelaciones con tarot, biodescodificación, hipnosis y programación neurolingüística en un mismo recorrido.</p>
-      <p>Está pensada tanto para quienes buscan un espacio de autoconocimiento como para quienes ya facilitan encuentros de desarrollo personal y quieren conocer otros enfoques.</p>
+      <p>El instituto reúne coaching sistémico, constelaciones con tarot, biodescodificación, hipnosis y programación neurolingüística en un mismo recorrido.</p>
+      <p>Acompañamos a quienes buscan un espacio de autoconocimiento y formamos a quienes ya facilitan encuentros de desarrollo personal y quieren sumar otros enfoques.</p>
     </div>
   </section>
-  <section class="wrap section enfoques" id="enfoques">
-    <h2 data-reveal>Los cinco enfoques de la formación</h2>
-    <TopicGrid idPrefix="home-enfoque" />
-  </section>
-  <section class="band">
-    <div class="wrap section split" data-reveal>
-      <h2>Quién está detrás</h2>
-      <div>
-        <p><strong>Fernanda Rodríguez</strong> es fundadora, directora y formadora del Instituto Visión en Acción. Es coach de vida y facilitadora. El instituto nació con formaciones de coaching y, con el tiempo, sumó herramientas de desarrollo personal, emocional y sistémico.</p>
-        <p><strong>Ser para hacer, para tener.</strong> Para Fernanda, el punto de partida es trabajar nuestras creencias, emociones y valores. Eso nos ayuda a elegir cómo actuar y acercarnos a lo que queremos construir.</p>
-        <blockquote>«Acompañar no es decirle al otro qué camino debe tomar, sino brindarle un espacio para que pueda descubrir sus propios recursos, reconocer sus posibilidades y elegir conscientemente cómo quiere construir su vida».</blockquote>
-        <a class="text-link" href="/formacion/#preguntas">Ver preguntas sobre la formación</a>
-      </div>
+
+  <section class="band" id="propuestas">
+    <div class="wrap section">
+      <h2 data-reveal>Nuestras propuestas</h2>
+      <p class="section-lead" data-reveal>Elegí por dónde empezar. Cada propuesta tiene su propia página con todos los detalles.</p>
+      <ul class="offer-cards" data-reveal-group>
+        {propuestas.map((p) => (
+          <li>
+            <a class="offer-card" href={p.href}>
+              <span class="offer-card-tag">{p.etiqueta}</span>
+              <span class="offer-card-title">{p.titulo}</span>
+              <span class="offer-card-text">{p.resumen}</span>
+              <span class="offer-card-more">{p.boton}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
-  <section id="orientacion" aria-label="Primer encuentro de orientación">
-    <OrientationFunnel />
+
+  <section class="wrap section split" id="fernanda" data-reveal>
+    <h2>Quién está detrás</h2>
+    <div>
+      <p><strong>Fernanda Rodríguez</strong> es fundadora, directora y formadora del Instituto Visión en Acción. Es coach de vida y facilitadora. El instituto nació con formaciones de coaching y, con el tiempo, sumó herramientas de desarrollo personal, emocional y sistémico.</p>
+      <p><strong>Ser para hacer, para tener.</strong> Para Fernanda, el punto de partida es trabajar nuestras creencias, emociones y valores. Eso nos ayuda a elegir cómo actuar y acercarnos a lo que queremos construir.</p>
+      <blockquote>«Acompañar no es decirle al otro qué camino debe tomar, sino brindarle un espacio para que pueda descubrir sus propios recursos, reconocer sus posibilidades y elegir conscientemente cómo quiere construir su vida».</blockquote>
+    </div>
   </section>
-  <section class="wrap section invitation" data-reveal>
-    <h2>Explorá la formación {formationName}</h2>
-    <p>Conocé los contenidos, cómo son las clases y cómo consultar por la próxima cursada.</p>
-    <a class="button button-dark" href="/formacion/">Conocer la formación</a>
+
+  <section class="band band-dark">
+    <div class="wrap section invitation" data-reveal>
+      <h2>¿No sabés por dónde empezar?</h2>
+      <p>Hacé el Mapa Inicial VIA: cinco preguntas, unos minutos y una orientación personalizada.</p>
+      <a class="button" href="/metodo-via/">Hacer el Mapa Inicial VIA</a>
+    </div>
   </section>
+
+  <script is:inline>
+    // Old links to the quiz on the home (/#orientacion) now live at /metodo-via/.
+    if (location.hash === '#orientacion') location.replace('/metodo-via/' + location.search);
+  </script>
 </SiteLayout>

@@ -5,6 +5,7 @@
 
 import type { FunnelSubmission } from '../funnelState';
 import { QUIZ_QUESTIONS } from '../quizData';
+import { UTM_KEYS, sanitizeUtm } from '../utm';
 
 export interface ValidateFunnelSubmissionResult {
   ok: true;
@@ -109,6 +110,11 @@ export const FUNNEL_ROW_HEADERS = [
   'q3_other',
   'q4_preferred_modality',
   'q5_desired_outcome',
+  'utm_source',
+  'utm_medium',
+  'utm_campaign',
+  'utm_content',
+  'utm_term',
 ] as const;
 
 /**
@@ -186,6 +192,12 @@ export function buildFunnelSubmissionRow(
     }
   }
 
+  // Campaign columns go last so sheets created before them keep their layout.
+  const utm = sanitizeUtm(submission.metadata.utm);
+  for (const key of UTM_KEYS) {
+    row.push(sanitizeSheetCell(utm[key] ?? ''));
+  }
+
   return row;
 }
 
@@ -238,6 +250,7 @@ function isMetadata(value: unknown): boolean {
   if (value.submittedAt !== undefined && !isString(value.submittedAt)) return false;
   if (!isString(value.userAgent)) return false;
   if (value.referrer !== undefined && !isString(value.referrer)) return false;
+  if (value.utm !== undefined && (typeof value.utm !== 'object' || value.utm === null || Array.isArray(value.utm))) return false;
 
   return true;
 }

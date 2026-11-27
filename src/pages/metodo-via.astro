@@ -1,0 +1,15 @@
+---
+// Método VIA: the orientation quiz (Mapa Inicial VIA) as its own landing, so ads can point straight at it.
+import OrientationFunnel from '../components/OrientationFunnel.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import '../styles/via-funnel.css';
+---
+<SiteLayout
+  title="Método VIA | Instituto Visión en Acción"
+  description="Hacé el Mapa Inicial VIA: cinco preguntas, unos minutos y una orientación personalizada del Instituto Visión en Acción."
+  landing
+>
+  <section id="orientacion" aria-label="Primer encuentro de orientación">
+    <OrientationFunnel />
+  </section>
+</SiteLayout>

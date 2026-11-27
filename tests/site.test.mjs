@@ -4,8 +4,8 @@ import { test } from 'node:test';
 
 const page = (path) => readFileSync(new URL(`../dist/${path}`, import.meta.url), 'utf8');
 
-test('both pages use the institute logo in the header and browser tab', () => {
-  for (const path of ['index.html', 'formacion/index.html']) {
+test('every page uses the institute logo in the header and browser tab', () => {
+  for (const path of ['index.html', 'formacion/index.html', 'metodo-via/index.html']) {
     const html = page(path);
     assert.match(html, /<link rel="icon" href="\/favicon\.svg" type="image\/svg\+xml"/);
     assert.match(html, /<a class="brand"[^>]*>\s*<img class="brand-mark" src="\/favicon\.svg#svgView\(viewBox\(101,104,153,153\)\)"/);
@@ -30,17 +30,39 @@ test('the formation hero introduces the integrated training and keeps the reserv
   assert.doesNotMatch(hero, /class="emblem"|favicon\.svg/);
 });
 
-test('institutional home introduces the institute and leads to the training page', () => {
+test('institutional home presents the institute and links each offer to its own page', () => {
   const html = page('index.html');
   assert.match(html, /lang="es-AR"/);
   assert.match(html, /Instituto Visión en Acción/);
   assert.match(html, /class="emblem"[^>]*>[\s\S]*?<img src="\/favicon\.svg#svgView\(viewBox\(28,92,310,215\)\)"/);
   assert.doesNotMatch(html, /formation-sculpture|formation-paths\.svg/);
+  assert.match(html, /A qué nos dedicamos/);
   assert.match(html, /Quién está detrás/);
-  assert.match(html, /Explorá la formación Consultorio del Bienestar/);
-  assert.match(html, /<a\b[^>]*href="\/formacion\/"[^>]*>Conocer la formación/);
-  assert.match(html, /id="orientacion"/);
+  const offers = html.match(/<section[^>]*id="propuestas"[\s\S]*?<\/section>/)?.[0];
+  assert.ok(offers);
+  const cards = [...offers.matchAll(/<a class="offer-card" href="([^"]+)"/g)].map((m) => m[1]);
+  assert.deepEqual(cards, ['/metodo-via/', '/formacion/']);
+  assert.match(offers, /Método VIA/);
+  assert.match(offers, /Consultorio del Bienestar/);
+  // The quiz lives on its own page now; the home stays light.
+  assert.doesNotMatch(html, /id="funnel-root"/);
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+});
+
+test('the Método VIA page hosts the orientation quiz as a menu-free landing', () => {
+  const html = page('metodo-via/index.html');
+  assert.match(html, /<title>Método VIA \| Instituto Visión en Acción<\/title>/);
   assert.match(html, /id="funnel-root"/);
+  assert.match(html, /Mapa Inicial VIA/);
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  assert.doesNotMatch(html.match(/<header\b[\s\S]*?<\/header>/)?.[0] ?? '', /<nav\b/);
+});
+
+test('course pages are menu-free landings that tag leads with the course', () => {
+  const html = page('formacion/index.html');
+  assert.doesNotMatch(html.match(/<header\b[\s\S]*?<\/header>/)?.[0] ?? '', /<nav\b/);
+  assert.match(html, /<dialog[^>]*id="reservar"[^>]*data-funnel="formacion-bio-coaching"/);
+  assert.match(html, /id="reservar-title">Reservá tu lugar en la próxima cursada</);
   assert.equal((html.match(/<h1\b/g) || []).length, 1);
 });
 
@@ -124,7 +146,7 @@ test('the training page explains that study materials are downloadable for futur
 });
 
 test('each training topic card opens its own modal with a topic inquiry', () => {
-  for (const [path, prefix] of [['index.html', 'home-enfoque'], ['formacion/index.html', 'enfoque']]) {
+  for (const [path, prefix] of [['formacion/index.html', 'enfoque']]) {
     const html = page(path);
     const openers = [...html.matchAll(/data-modal-open="([^"]+)"/g)]
       .map((match) => match[1])

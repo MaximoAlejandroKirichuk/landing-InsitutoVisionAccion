@@ -1,0 +1,132 @@
+# Consultorio del Bienestar → https://sitio/formacion/
+# Copiá _plantilla.yaml para armar un curso nuevo. El nombre del archivo es la URL.
+
+nombre: Consultorio del Bienestar
+orden: 1
+planilla: formacion-bio-coaching
+
+seo:
+  titulo: Consultorio del Bienestar | Instituto Visión en Acción
+  descripcion: Formación de 12 meses en vivo que integra coaching sistémico, constelaciones con tarot, biodescodificación, hipnosis y PNL. Reservá tu lugar en la próxima cursada.
+
+tarjeta:
+  etiqueta: Formación · 12 meses en vivo
+  resumen: Aprendé a integrar cinco enfoques de acompañamiento mientras explorás tu propia historia.
+  boton: Conocer la formación
+
+whatsapp:
+  mensaje: Hola, quisiera conocer el arancel y los pasos de inscripción para la formación Consultorio del Bienestar.
+
+hero:
+  bajada: Aprendé a integrar cinco enfoques de acompañamiento mientras explorás tu propia historia.
+  datos:
+    - 12 meses
+    - Clases en vivo
+    - Inicio en enero de 2027
+  nota: Te escribimos para confirmar disponibilidad y explicarte cómo inscribirte.
+  linkSecundario:
+    texto: Conocer a los formadores
+    href: "#docentes"
+  imagen:
+    src: /images/formation-sculpture-base.webp
+    srcMobile: /images/formation-sculpture-base-mobile.webp
+    esfera: true
+
+cursada:
+  - etiqueta: Modalidad
+    valor: En vivo por Google Meet
+  - etiqueta: Días y horario
+    valor: Lunes y miércoles, 20 hs (Argentina)
+
+paraQuien:
+  titulo: ¿Para quién es esta formación?
+  items:
+    - Sentís que en tus vínculos se repiten los mismos patrones y querés entender de dónde vienen.
+    - Ya acompañás a otras personas y buscás enfoques que complementen lo que hacés.
+    - Hiciste talleres o cursos sueltos y te falta un recorrido que los integre.
+  cierre: Si te reconocés en alguna, este recorrido está pensado para vos.
+
+programa:
+  titulo: Cinco enfoques en un solo recorrido
+  texto: Cada bloque suma una mirada distinta sobre tu historia y sobre cómo acompañar a otras personas. Tocá cada enfoque para ver de qué se trata.
+  enfoques:
+    - id: coaching
+      icono: coaching
+      titulo: Coaching sistémico e integral
+      resumen: Preguntas y escucha para acompañar a otras personas.
+      descripcion: Exploración de la escucha, las preguntas y los vínculos.
+    - id: tarot
+      icono: tarot
+      titulo: Constelaciones con Tarot
+      resumen: Las cartas como apoyo para mirar vínculos e historias.
+      descripcion: Uso simbólico de las cartas para reflexionar sobre vínculos e historias personales.
+    - id: biodescodificacion
+      icono: biodescodificacion
+      titulo: Biodescodificación
+      resumen: Cómo tu historia familiar se refleja en lo que vivís.
+      descripcion: Presentación del enfoque y actividades de reflexión sobre creencias e historia familiar.
+    - id: hipnosis
+      icono: hipnosis
+      titulo: Hipnosis y terapias de vidas pasadas
+      resumen: Estados de relajación profunda para explorar tu historia.
+      descripcion: Introducción a los enfoques que forman parte del recorrido.
+    - id: pnl
+      icono: pnl
+      titulo: Programación neurolingüística (PNL)
+      resumen: Cómo tus palabras y creencias guían lo que hacés.
+      descripcion: Exploración del lenguaje, las creencias y los patrones de comunicación.
+
+incluye:
+  titulo: Qué incluye la formación
+  items:
+    - titulo: Grabaciones disponibles por 30 días
+      texto: Podés volver a ver cada clase para repasar o recuperar un encuentro al que no pudiste asistir.
+    - titulo: Material de estudio incluido
+      texto: Podés descargar el material de estudio y guardarlo para consultarlo cuando lo necesites.
+    - titulo: Evaluaciones y certificados
+      texto: El arancel incluye los exámenes y la emisión de los certificados dentro de los plazos establecidos por el instituto.
+
+docentes:
+  titulo: Quién dicta la formación
+  personas:
+    - id: formadora-fernanda
+      nombre: Fernanda Rodríguez
+      bio: Fundadora y directora del instituto, es formadora en desarrollo personal y en el área holística. Su trabajo integra herramientas de autoconocimiento y de exploración de patrones personales y familiares.
+      foto: /images/instructor-portrait.jpg
+      alt: Retrato de la formadora
+      ancho: 673
+      alto: 1437
+    - id: formador-holistico
+      nombre: Daniel Alberto Rodríguez
+      bio: Formador del área holística. Su formación incluye tarot y oráculos, constelaciones familiares, biodescodificación, hipnosis y Reiki.
+      foto: /images/holistic-instructor-portrait.jpg
+      alt: Retrato de Daniel Alberto Rodríguez
+      ancho: 171
+      alto: 365
+      encuadre: 50% 12%
+
+oferta:
+  titulo: Próxima cursada
+  destacado: Enero de 2027 · Cupos limitados
+  texto: Matrícula bonificada. Pagás del 1 al 10 de cada mes por transferencia bancaria en Argentina y PayPal desde el exterior.
+  precios:
+    - periodo: Enero a abril
+      valores: [ARS 60.000 por mes en Argentina, USD 70 por mes desde el exterior]
+    - periodo: Mayo a agosto
+      valores: [ARS 70.000 por mes en Argentina, USD 80 por mes desde el exterior]
+    - periodo: Septiembre a diciembre
+      valores: [ARS 80.000 por mes en Argentina, USD 90 por mes desde el exterior]
+
+preguntas:
+  - pregunta: ¿Cómo me inscribo?
+    respuesta: Tocá «Reservar mi lugar» y dejá tus datos. El instituto te contacta por WhatsApp con la disponibilidad y los pasos para inscribirte.
+  - pregunta: ¿Hace falta experiencia previa?
+    respuesta: Podés empezar desde cero. La formación también está abierta a coaches, facilitadores y personas que ya trabajan en el ámbito holístico.
+  - pregunta: ¿Quién emite los certificados y qué requisitos tienen?
+    respuesta: El Instituto Visión en Acción emite los certificados. Para obtenerlos, tenés que cumplir los requisitos académicos de cada formación, aprobar las evaluaciones teóricas y completar las prácticas obligatorias cuando correspondan. Son certificados de formación privada no formal.
+  - pregunta: ¿La formación reemplaza la atención profesional?
+    respuesta: La propuesta es educativa y de desarrollo personal. La formación no reemplaza la atención médica ni psicológica y no habilita por sí misma para ejercer una profesión de salud.
+
+cierre:
+  titulo: Empezá tu formación en la próxima cursada
+  texto: Dejá tus datos y te escribimos para confirmar disponibilidad y explicarte cómo inscribirte.

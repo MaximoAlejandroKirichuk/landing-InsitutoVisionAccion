@@ -348,3 +348,27 @@ details p { padding-inline-end: 1.8rem; }
 .hero-link:hover { color: var(--gold); }
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* ── Home: offer cards (one per landing page) ── */
+.section-lead { max-width: 52ch; margin-top: 1rem; }
+.offer-cards { list-style: none; margin: clamp(1.5rem, 3vw, 2.5rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: clamp(.9rem, 2vw, 1.5rem); }
+.offer-cards > li { display: flex; }
+.offer-card {
+  display: flex; flex-direction: column; gap: .7rem; width: 100%;
+  padding: clamp(1.4rem, 3vw, 2rem); text-decoration: none; color: var(--ink);
+  background: var(--paper); border: 1px solid var(--line); border-top: 3px solid var(--gold); border-radius: var(--radius-lg);
+  transition: translate .25s var(--ease-out), box-shadow .25s var(--ease-out);
+}
+.offer-card:hover { translate: 0 -3px; box-shadow: var(--shadow); }
+.offer-card:focus-visible { outline-color: var(--plum); }
+.offer-card-tag { font-size: .8rem; font-weight: 650; letter-spacing: .06em; text-transform: uppercase; color: var(--plum); }
+.offer-card-title { font: 550 clamp(1.6rem, 3vw, 2.1rem)/1.1 var(--display); letter-spacing: -.02em; }
+.offer-card-text { flex: 1; color: var(--body); }
+.offer-card-more { display: inline-flex; align-items: center; gap: .5rem; margin-top: .4rem; font-weight: 650; color: var(--plum); }
+.offer-card-more::after { content: ""; width: .5rem; height: .5rem; border: solid currentColor; border-width: 2px 2px 0 0; rotate: 45deg; transition: translate .2s var(--ease-out); }
+.offer-card:hover .offer-card-more::after { translate: 3px 0; }
+blockquote { margin: 1.4rem 0 0; padding-inline-start: 1.1rem; border-inline-start: 2px solid var(--gold); font: italic 400 1.15rem/1.5 var(--display); color: var(--ink); }
+@media (prefers-reduced-motion: reduce) {
+  .offer-card, .offer-card-more::after { transition: none; }
+  .offer-card:hover { translate: 0; }
+}

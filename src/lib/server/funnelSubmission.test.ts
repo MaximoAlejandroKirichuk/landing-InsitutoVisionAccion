@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { FunnelSubmission } from '../funnelState';
 import {
+  FUNNEL_ROW_HEADERS,
   buildFunnelSubmissionRow,
   sanitizeSheetCell,
   validateFunnelSubmissionPayload,
@@ -103,7 +104,16 @@ describe('buildFunnelSubmissionRow()', () => {
       '',
       'Online.',
       'inicio',
+      '', '', '', '', '',
     ]);
+  });
+
+  it('appends the campaign UTMs as the last five columns, sanitized', () => {
+    const sub = makeSubmission();
+    sub.metadata.utm = { utm_source: 'facebook', utm_campaign: '=enero', utm_term: 'x' };
+    const row = buildFunnelSubmissionRow(sub, 'submission-123');
+    expect(row).toHaveLength(FUNNEL_ROW_HEADERS.length);
+    expect(row.slice(-5)).toEqual(['facebook', '', "'=enero", '', 'x']);
   });
 
   it('trims otherText before writing it to the sheet row', () => {
