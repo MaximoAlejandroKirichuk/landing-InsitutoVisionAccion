@@ -1,0 +1,142 @@
+# Taller de Sanaciones Populares → https://sitio/sanaciones-populares/
+# Fuente: institutovisionenaccion.com/cursos/taller-de-sanaciones-populares/ (PDF descargable, certificado de participación,
+# $6.000) y la home del sitio (acceso 30 días). La ficha no tiene temario: el programa sale de "Qué aprenderás".
+# Le hablamos a Lorena desde los saberes que pasan de generación en generación. Taller pago, sin promesas de curación.
+
+nombre: Taller de Sanaciones Populares
+mostrarEnHome: false   # landing para anuncios
+orden: 40
+animacion: sanaciones-populares
+
+seo:
+  titulo: Taller de Sanaciones Populares | Instituto Visión en Acción
+  descripcion: Hierbas, rituales y saberes tradicionales que pasaban de abuelas a nietas, en un taller en PDF para leer a tu ritmo. Acceso por 30 días y certificado de participación.
+
+tarjeta:
+  etiqueta: Taller holístico · PDF a tu ritmo
+  resumen: Los saberes de sanación que pasaban de abuelas a nietas, para conocerlos y conservarlos en tu familia.
+  boton: Conocer el taller
+
+whatsapp:
+  mensaje: Hola, quisiera inscribirme en el Taller de Sanaciones Populares.
+
+hero:
+  bajada: Hierbas, rituales y saberes tradicionales que pasaban de abuelas a nietas, de boca en boca. Un taller para conocerlos, entenderlos y que no se pierdan en tu familia.
+  datos:
+    - PDF descargable
+    - Acceso por 30 días
+    - Es un taller pago
+  boton: Quiero el taller
+  nota: Te escribimos por WhatsApp para confirmar tu inscripción y enviarte el acceso.
+  linkSecundario:
+    texto: Qué vas a ver
+    href: "#programa"
+
+gancho:
+  frase: Mi abuela curaba el empacho… y nunca le pregunté cómo.
+  texto: Esos saberes pasaban de abuelas a nietas, en la cocina, sin nada escrito. Muchos se están perdiendo porque nadie los anotó. Conocerlos es una forma de recuperar una parte de tu historia, y de tener algo para contarles a tus hijos y a tus nietos.
+
+cursada:
+  - etiqueta: Formato
+    valor: Material en PDF para descargar
+  - etiqueta: Cuándo
+    valor: A tu ritmo, sin horarios
+  - etiqueta: Acceso
+    valor: 30 días corridos desde la inscripción
+  - etiqueta: Nivel
+    valor: Todos los niveles, desde cero
+
+paraQuien:
+  titulo: ¿Para quién es este taller?
+  items:
+    - Creciste viendo a tu abuela o a tu mamá curar con hierbas, cintas o palabras, y te quedaron preguntas.
+    - Querés conservar esos saberes antes de que se pierdan, y poder contárselos a tus hijos y nietos.
+    - Te interesan las tradiciones de sanación de nuestra cultura y querés conocerlas con más detalle.
+    - Ya trabajás con terapias holísticas y querés sumar este conocimiento.
+  cierre: Si te reconocés en alguna, este taller está pensado para vos.
+
+programa:
+  titulo: Qué vas a ver
+  texto: Tocá cada bloque para ver de qué se trata.
+  enfoques:
+    - id: hierbas-y-remedios
+      icono: biodescodificacion
+      titulo: Hierbas y remedios naturales
+      resumen: Las plantas que se usaban en casa y para qué.
+      descripcion: Las hierbas y preparaciones que formaban parte de la vida cotidiana en muchas familias, y el sentido que tenían dentro de cada tradición.
+    - id: rituales-ancestrales
+      icono: hipnosis
+      titulo: Rituales y prácticas de sanación ancestral
+      resumen: Lo que hacían nuestras abuelas, contado paso a paso.
+      descripcion: Prácticas tradicionales que pasaron de generación en generación, de boca en boca. Qué se hacía, cómo y con qué intención.
+    - id: naturaleza
+      icono: coaching
+      titulo: La conexión con la naturaleza
+      resumen: La mirada de estas tradiciones sobre la naturaleza.
+      descripcion: Cómo entienden estos saberes la relación entre las personas y la naturaleza, y por qué la consideran una fuente de bienestar.
+    - id: cuerpo-mente-espiritu
+      icono: tarot
+      titulo: Armonizar cuerpo, mente y espíritu
+      resumen: Técnicas tradicionales para el bienestar integral.
+      descripcion: Técnicas que estas tradiciones usan para buscar armonía y equilibrio. Son saberes culturales y complementarios, no un tratamiento médico.
+
+carrusel:
+  titulo: Un ejercicio para empezar hoy
+  texto: Deslizá las placas. Es el mismo carrusel que compartimos en Instagram.
+  imagenes:
+    - src: /images/carruseles/sanaciones-populares/1.webp
+      alt: "«Mi abuela curaba el empacho… y nunca le pregunté cómo.»"
+    - src: /images/carruseles/sanaciones-populares/2.webp
+      alt: "Las sanaciones populares pasaban de abuelas a nietas. De boca en boca, en la cocina, sin nada escrito."
+    - src: /images/carruseles/sanaciones-populares/3.webp
+      alt: "Muchas se están perdiendo porque nadie las anotó. Y con ellas, una parte de la historia de cada familia."
+    - src: /images/carruseles/sanaciones-populares/4.webp
+      alt: "Un ejercicio: preguntale a alguien mayor de tu familia qué curaciones conocía. El empacho, el mal de ojo, la culebrilla, un té para dormir."
+    - src: /images/carruseles/sanaciones-populares/5.webp
+      alt: "Un ejercicio: anotalo con sus palabras. Quién lo hacía, para qué, con qué hierbas. Es un recuerdo que se queda en tu familia."
+    - src: /images/carruseles/sanaciones-populares/6.webp
+      alt: "Taller de Sanaciones Populares: hierbas, rituales y saberes tradicionales, en un PDF para leer a tu ritmo. Es pago: $6.000. Acceso por 30 días y certificado de participación. No reemplaza la atención médica."
+    - src: /images/carruseles/sanaciones-populares/7.webp
+      alt: "Para quién es: para quien creció viendo estas curaciones, para quien quiere conservarlas, para quien quiere pasarlas a sus hijos y nietos."
+    - src: /images/carruseles/sanaciones-populares/8.webp
+      alt: "¿Qué curaba tu abuela? Contame abajo cómo lo hacía. Lo que se cuenta, no se pierde. Soy Fernanda, de Visión en Acción."
+
+instituto:              # taller en PDF autogestionado
+  titulo: Qué recibís y cómo seguir
+  recibis:
+    - PDF descargable
+    - Acceso a la descarga por 30 días
+    - Certificado de participación
+  encuentros: Lo hacés a tu ritmo, sin horarios. Si querés practicar en vivo, tenés los encuentros de la membresía.
+  membresia: true
+
+oferta:
+  titulo: Inscribite al taller
+  destacado: Acceso inmediato · PDF para leer a tu ritmo
+  texto: Es un taller pago. Te escribimos por WhatsApp con las formas de pago y, una vez confirmado, te enviamos el acceso. Son saberes de tradición cultural y no reemplazan la atención médica.
+  precios:
+    - periodo: Arancel
+      valores: [$6.000 en Argentina]
+
+preguntas:
+  - pregunta: ¿Qué son las sanaciones populares?
+    respuesta: Son prácticas de sanación de la tradición popular, con hierbas, rituales y técnicas que pasaron de generación en generación, muchas veces de abuelas a nietas.
+  - pregunta: ¿Cómo es el taller?
+    respuesta: Es un material en PDF para descargar y leer a tu ritmo. Tenés acceso durante 30 días corridos desde que te inscribís. Después de ese plazo el acceso vence, así que conviene descargarlo.
+  - pregunta: ¿Necesito saber algo antes?
+    respuesta: No. Es para todos los niveles, podés empezar desde cero.
+  - pregunta: ¿Recibo un certificado?
+    respuesta: Sí, un certificado de participación del Instituto. Es una formación de educación no formal.
+  - pregunta: ¿Cuánto cuesta?
+    respuesta: El taller cuesta $6.000. Te pasamos las formas de pago por WhatsApp.
+  - pregunta: ¿Reemplaza un tratamiento médico?
+    respuesta: No. Son saberes de tradición cultural y complementarios. No reemplazan la atención médica ni psicológica. Ante cualquier síntoma, consultá a tu médico.
+
+cierre:
+  titulo: Lo que se cuenta, no se pierde.
+  texto: Dejá tus datos y te escribimos para enviarte el acceso al Taller de Sanaciones Populares.
+
+reserva:
+  titulo: Inscribite al Taller de Sanaciones Populares
+  texto: Dejanos tus datos y te escribimos por WhatsApp con las formas de pago y el acceso al taller.
+  gracias: Te vamos a escribir para confirmar tu inscripción. Si querés, podés escribirnos ahora por WhatsApp.
