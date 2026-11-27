@@ -1,0 +1,122 @@
+# Mindfulness → https://sitio/mindfulness/
+# Datos del sitio oficial (tarjeta "Mindfulness: atención plena, respiración y herramientas para el bienestar cotidiano")
+# y de los carruseles de Canva (membresía y práctica de 5 minutos). El sitio no publica formato, duración ni precio
+# del curso: por eso el arancel se pasa por WhatsApp. Confirmar con Fernanda antes de pautar.
+
+nombre: Mindfulness
+orden: 30
+mostrarEnHome: false
+animacion: mindfulness
+
+seo:
+  titulo: Mindfulness | Instituto Visión en Acción
+  descripcion: Atención plena, respiración y herramientas simples para el bienestar cotidiano, con Fernanda Rodríguez. Prácticas cortas para frenar y volver a vos. Es una propuesta paga.
+
+tarjeta:
+  etiqueta: Curso · Atención plena
+  resumen: Atención plena, respiración y herramientas simples para el bienestar cotidiano.
+  boton: Conocer el curso
+
+whatsapp:
+  mensaje: Hola, quisiera conocer el arancel y cómo es el curso de Mindfulness.
+
+hero:
+  bajada: Prácticas simples de atención plena y respiración para frenar, escucharte y volver a vos. Cinco minutos alcanzan para empezar.
+  datos:
+    - Desde cero
+    - Online, a tu ritmo
+    - Con Fernanda Rodríguez
+  nota: Es una propuesta paga. Te escribimos por WhatsApp con el arancel y cómo empezar.
+  linkSecundario:
+    texto: Probá una práctica de 5 minutos
+    href: "#programa"
+
+# La misma frase que usa el Reel / anuncio de Mindfulness.
+gancho:
+  frase: Vivo pendiente de todos… y nunca tengo un rato para mí.
+  texto: Cuidar a los hijos, a los nietos, a la casa, se vuelve costumbre, y una se queda para el final. Muchas veces lo que nos tensa hoy viene de lejos, de cómo nos enseñaron a cuidar. Frenar cinco minutos no cambia tu historia, pero te da un lugar para mirarla con calma.
+
+cursada:
+  - etiqueta: Modalidad
+    valor: Online, a tu ritmo
+  - etiqueta: Práctica en vivo
+    valor: Un encuentro grupal por mes con Fernanda
+  - etiqueta: Nivel
+    valor: Desde cero, sin experiencia previa
+
+paraQuien:
+  titulo: ¿Para quién es este curso?
+  items:
+    - Te pasás el día pendiente de tus hijos, tus nietos o tu casa, y cuando por fin te sentás, la cabeza sigue corriendo.
+    - Te cuesta dormir o te despertás con el pecho apretado, pensando en lo que dijiste o en lo que no dijiste.
+    - Reaccionás de una manera que después lamentás, y querés aprender a hacer una pausa antes.
+    - Probaste meditar y sentiste que no te salía, porque no podías dejar la mente en blanco.
+  cierre: No hace falta poner la mente en blanco ni tener una hora libre. Se empieza con cinco minutos.
+
+programa:
+  titulo: Qué vas a practicar
+  texto: Herramientas cortas que podés usar en tu casa, en el colectivo o antes de una conversación difícil. Tocá cada bloque para ver de qué se trata.
+  enfoques:
+    - id: respiracion
+      titulo: Respiración consciente
+      resumen: Volver al cuerpo cuando la cabeza se acelera.
+      descripcion: "Una práctica para hoy: sentate cómoda, apoyá los pies en el piso y respirá normal. Contá diez respiraciones, de a una. Si la mente se va, notalo y volvé al número uno. Al terminar, mirá alrededor y nombrá algo que ves. Podés repetirla cuando quieras."
+    - id: atencion-plena
+      titulo: Atención plena en lo cotidiano
+      resumen: Lavar los platos, caminar, tomar un mate, con presencia.
+      descripcion: El mindfulness no es solo sentarse a meditar. Es aprender a estar presente en lo que ya hacés todos los días, para que no pase todo en piloto automático.
+    - id: cuerpo
+      titulo: Escucha del cuerpo
+      resumen: Notar dónde se guarda la tensión.
+      descripcion: Recorridos por el cuerpo para registrar dónde se acumula lo que no decís, y darle un lugar antes de que se vuelva cansancio o enojo.
+    - id: emociones
+      titulo: Pausa antes de reaccionar
+      resumen: Un espacio entre lo que pasa y lo que hacés.
+      descripcion: Herramientas para reconocer una emoción cuando aparece y elegir qué hacer con ella, en lugar de repetir la reacción de siempre.
+    - id: bienestar
+      titulo: Bienestar cotidiano
+      resumen: Una rutina breve que puedas sostener.
+      descripcion: Armás tu propia práctica, corta y realista, para que el cuidado de vos misma deje de quedar para el final.
+
+# Bloque común "Cómo es estudiar en el Instituto" (membresía, encuentros, qué recibís): ver src/data/instituto.ts.
+instituto:
+  recibis:
+    - Clases grabadas para mirar a tu ritmo, desde el celular o la computadora.
+    - Prácticas guiadas cortas, como la de cinco minutos, para repetir en tu día.
+    - Consultas por WhatsApp o email durante la cursada.
+  membresia: true
+
+docentes:
+  titulo: Quién te acompaña
+  personas:
+    - id: docente-fernanda
+      nombre: Fernanda Rodríguez
+      bio: Coach ontológica y terapeuta, directora del Instituto Visión en Acción. Integra mindfulness, coaching y terapias holísticas en sus cursos y sesiones.
+      foto: /images/instructor-portrait.jpg
+      alt: Retrato de Fernanda Rodríguez
+      ancho: 673
+      alto: 1437
+
+oferta:
+  titulo: Cómo sumarte
+  destacado: Curso de Mindfulness · Online, desde cero
+  texto: Si además querés practicar todas las semanas en grupo, en la membresía hacemos prácticas así en los encuentros en vivo.
+
+preguntas:
+  - pregunta: ¿Necesito experiencia previa?
+    respuesta: No. Empezamos desde cero y con prácticas cortas.
+  - pregunta: No puedo dejar la mente en blanco. ¿Igual sirve?
+    respuesta: Sí. El mindfulness no busca la mente en blanco. Se trata de notar adónde se fue tu atención y volver, todas las veces que haga falta.
+  - pregunta: ¿Reemplaza una terapia?
+    respuesta: No. El mindfulness acompaña, pero no reemplaza un tratamiento médico ni psicológico.
+  - pregunta: ¿Cómo me inscribo?
+    respuesta: Tocá «Reservar mi lugar» y dejá tus datos. Te escribimos por WhatsApp con el arancel y los pasos para empezar.
+
+cierre:
+  titulo: Date cinco minutos para vos
+  texto: Dejá tus datos y te escribimos por WhatsApp con el arancel y cómo empezar.
+
+reserva:
+  titulo: Quiero empezar con Mindfulness
+  texto: Dejanos tus datos y te escribimos por WhatsApp con el arancel, cómo es el curso y cómo sumarte a los encuentros.
+  gracias: Te vamos a escribir para contarte el arancel y cómo empezar. Si querés, podés escribirnos ahora por WhatsApp.
